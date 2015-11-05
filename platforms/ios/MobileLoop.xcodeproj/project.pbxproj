@@ -1367,7 +1367,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.schoolloop.mobileloop.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "efb698d2-2a8f-4186-a945-ca0eec2b99d5";
+				PROVISIONING_PROFILE = "865729d8-c697-4ade-98f7-758c05b33c3d";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1405,7 +1405,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.schoolloop.mobileloop.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "efb698d2-2a8f-4186-a945-ca0eec2b99d5";
+				PROVISIONING_PROFILE = "865729d8-c697-4ade-98f7-758c05b33c3d";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1445,7 +1445,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.schoolloop.mobileloop.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f3dcb040-f64a-4b3c-b2c8-33e60861c2c7";
+				PROVISIONING_PROFILE = "7afd7539-99e3-4242-a478-ea09f8f53047";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1483,7 +1483,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.schoolloop.mobileloop.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f3dcb040-f64a-4b3c-b2c8-33e60861c2c7";
+				PROVISIONING_PROFILE = "7afd7539-99e3-4242-a478-ea09f8f53047";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1523,7 +1523,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.schoolloop.mobileloop.mirror;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ff5cbe30-0040-4a4a-9c88-849455bc2828";
+				PROVISIONING_PROFILE = "c1ca3df9-2287-4600-9cc8-be3c40b15fbf";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1561,7 +1561,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.schoolloop.mobileloop.mirror;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ff5cbe30-0040-4a4a-9c88-849455bc2828";
+				PROVISIONING_PROFILE = "c1ca3df9-2287-4600-9cc8-be3c40b15fbf";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
