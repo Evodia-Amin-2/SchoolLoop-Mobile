@@ -1,0 +1,20 @@
+<div ng-controller="NewsController">
+    <div class="news" scroller="">
+        <div class="empty-list" ng-show="news.length == 0">
+            <p translate>No News Currently</p>
+        </div>
+        <ul class="list-view">
+            <li class="list-view-item" ng-repeat="item in news">
+                <div class="item-content clearfix">
+                    <div class="item-row">
+                        <div class="news-row" ng-click="showNews(item)">
+                            <div class="item-title" ng-class="{new:isNew(item)}">{{item.title}}</div>
+                            <div class="item-subtitle">{{item.createdDate|date:"MMM d, y"}}<span ng-show="item.authorName != 'null'"> - {{item.authorName|isEmpty:""}}</span></div>
+                        </div>
+                    </div>
+                    <list-nav></list-nav>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

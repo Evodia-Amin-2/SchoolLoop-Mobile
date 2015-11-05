@@ -1,0 +1,42 @@
+<div ng-controller="AssignmentsController">
+    <div class="assignments" scroller="">
+        <div class="empty-list" ng-show="assignments.length == 0">
+            <p translate>No Assignments Currently</p>
+        </div>
+
+        <ul class="list-view">
+            <li class="list-view-item" ng-repeat="item in assignments">
+                <div class="item-content clearfix">
+                    <div class="assignment-date" ng-class="{today:isToday(item.date)}">
+                    <span class="due-date">
+                    <strong>
+                        <span ng-show="isToday(item.date)" translate>Today: </span>
+                        <span ng-show="!isToday(item.date) && isTomorrow(item.date)" translate>Tomorrow: </span>
+                        <span ng-show="!isToday(item.date) && !isTomorrow(item.date)">{{item.date|date:"EEEE: "}}</span>
+                    </strong>{{item.date|date:"MMMM d, y"}}</span>
+                    </div>
+                    <ul>
+                        <li ng-repeat="assignment in item.list" class="sublist-view-item clearfix" ng-click="showAssignment(assignment)">
+                            <div class="item-row">
+                                <div class="assignment-row">
+                                    <div class="item-title">{{assignment.title}}</div>
+                                    <div class="item-subtitle" ng-show="assignment.categoryName">{{assignment.categoryName}}</div>
+                                    <div class="item-subtitle">{{assignment.courseName}}</div>
+                                </div>
+                                <div class="assignment-points">
+                                    {{assignment.maxPoints}}
+                                    <div translate>Points</div>
+                                </div>
+                            </div>
+                            <list-nav></list-nav>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+

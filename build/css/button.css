@@ -1,0 +1,67 @@
+button,html input[type="button"],input[type="reset"],input[type="submit"] {
+    -webkit-appearance: button;
+}
+
+button::-moz-focus-inner,input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+.button {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    line-height: normal;
+    white-space: nowrap;
+    vertical-align: baseline;
+    text-align: center;
+    cursor: pointer;
+    -webkit-user-drag: none;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    font-size: 100%;
+    padding: .5em 1.5em;
+    margin: 2px 0;
+    color: #333;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    border-radius: 0;
+    background-color: #eee;
+}
+
+.button:focus {
+    outline: 0;
+}
+
+.button.hidden {
+    display: none;
+}
+
+.button-blue,.button-green,.button-red {
+    color: #fff;
+}
+
+.button-blue {
+    background: #88aacc;
+    border-color: #88aacc;
+}
+
+.button-green {
+    background: #8fb042;
+    border-color: #8fb042;
+}
+
+.button-red {
+    background: #bb262e;
+    border-color: #a01221;
+}
+
+.button-grey {
+    background: #f3f3f3;
+    border-color: #f3f3f3;
+}
+

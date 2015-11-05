@@ -1,0 +1,36 @@
+<div ng-controller="AssignmentDetailController" class="tab-content overthrow" ng-swipe-left="swipeLeft()" ng-swipe-right="swipeRight()">
+    <div>
+        <div class="assignment-detail clearfix">
+            <div class="course">{{assignment.courseName}}</div>
+            <div class="due-date">
+                <span ng-show="isToday(assignment.dueDate)" class="today" translate>Due Today</span>
+                <span ng-show="isTomorrow(assignment.dueDate)" translate>Due Tomorrow</span>
+                <span ng-show="!isToday(assignment.dueDate) && !isTomorrow(assignment.dueDate)">{{assignment.dueDate|date:"MMM d, y"}}</span>
+            </div>
+        </div>
+        <div class="assignment-title">{{assignment.title}}</div>
+        <span class="assignment-score"
+              ng-if="assignment.score != 'null'"><span>{{calcPercent()}}</span> {{assignment.score}}/{{assignment.maxPoints}}</span>
+        <span class="seperator" ng-if="assignment.score != 'null'">-</span>
+        <span class="assignment-category">{{assignment.categoryName}}</span>
+
+        <div ng-show="comment" class="assignment-detail clearfix">
+            <span class="icon-comment"></span><span class="comment">{{comment}}</span>
+        </div>
+
+        <div class="separator"></div>
+        <div class="assignment-desc" ng-show="assignment.description && assignment.description != 'null'" ng-bind-html="trustedDescription"></div>
+        <div class="assignment-desc" ng-show="!assignment.description || assignment.description == 'null'" translate>No Description Provided</div>
+        <ul ng-if="assignment.links" class="assignment-links"><span translate>Attachments:</span>
+            <li ng-repeat="link in assignment.links">
+                <a ng-href="" ng-click="openURL(link)">{{link.Title}}</a>
+            </li>
+        </ul>
+        <div class="separator"></div>
+        <div class="assignment-detail clearfix">
+            <div class="teacher" ng-show="assignment.teacherName">{{assignment.teacherName}}</div>
+            <div class="teacher" ng-show="!assignment.teacherName" translate>Teacher Unknown</div>
+            <div class="due-date"><span translate>Assigned:</span> {{assignment.assignedDate|date:"MMM d, y"}}</div>
+        </div>
+    </div>
+</div>

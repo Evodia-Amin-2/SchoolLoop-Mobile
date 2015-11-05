@@ -1,0 +1,42 @@
+.lookup {
+    width: 100%;
+    margin: auto;
+}
+
+.lookup-search {
+    position: relative;
+}
+
+.lookup-content {
+    border: 1px solid #d0d0d0;
+    height: 155px;
+    border-radius: 4px 4px 4px 4px;
+    padding: 4px;
+    text-align: justify;
+    background: #fff;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.lookup-item {
+    padding: 4px;
+    background-color: #fafaff;
+    margin-bottom: 4px;
+    border: 1px solid #d9d9d9;
+}
+
+.lookup-item div {
+    padding: 1px;
+}
+
+.lookup-content .district {
+    color: #777;
+}
+
+.lookup i {
+    color: #0088CC;
+    font-size: 1.7em;
+    position: absolute;
+    right: 4px;
+    top: 4px;
+}

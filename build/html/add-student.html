@@ -1,0 +1,111 @@
+<div ng-controller="AddStudentController as adder" class="mobileloop-content slide-up" expand="">
+    <div class="overthrow" expand="">
+        <div class="add-student-content">
+            <div ng-show="adder.current == undefined && addedStudent == undefined" class="add-student-school">
+                <p translate>
+                    Add a student from <strong>{{adder.school.name}}</strong> or
+                </p>
+
+                <div class="center-button">
+                    <button class="button button-blue clickable" ng-click="adder.current = false" class="button" type="button" translate>Select a different school
+                    </button>
+                </div>
+            </div>
+
+            <form name="login_form" novalidate ng-show="adder.current == false" class="add-student-school">
+
+                <div class="add-school">
+                    <div class="school-lookup" lookup="adder.schoolLookup"
+                         placeholder="{{'Search for your school...'|translate}}" ng-model="adder.selectedSchool">
+                    </div>
+
+                    <div class="school-login" ng-show="adder.isSchoolSelected() && adder.loginSuccess == false">
+                        <div class="simple-group">
+                            <label translate>Login Name</label>
+                            <input type="text" name="username" autocomplete="off" autocorrect="off" autocapitalize="off" ng-enter="adder.retry()" ng-model="adder.username" placeholder="{{login_form.username.placeholder}}"
+                                   ng-class="{'form-error': login_form.username.$invalid && login_form.submitted}" required />
+                            <span class="bar"></span>
+                        </div>
+
+                        <div class="simple-group">
+                            <label translate>Password</label>
+                            <input type="password" name="password" ng-enter="adder.retry()" ng-model="adder.password" placeholder="{{login_form.password.placeholder}}"
+                                   ng-class="{'form-error': login_form.password.$invalid && login_form.submitted}" required />
+                            <span class="bar"></span>
+                        </div>
+
+                        <div class="login-buttons">
+                            <button ng-click="adder.retry()" class="login-button button button-blue clickable" translate>Login</button>
+                            <button ng-click="adder.register()"  class="register button button-green clickable" translate>Register</button>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div ng-show="adder.students.length > 0 && adder.existing.length == 0 && adder.addMore == undefined">
+                    <p translate>The following students will be added:</p>
+                    <ul class="student-list">
+                        <li ng-repeat="student in adder.students">
+                            {{student.name}}
+                        </li>
+                    </ul>
+                    <div class="center-button">
+                        <button ng-click="adder.add()" class="button" type="button" translate>Add</button>
+                    </div>
+                </div>
+                <div ng-show="adder.existing.length > 0 && adder.addMore == undefined">
+                    <p ng-show="adder.students.length > 0" translate>The following students have been added:</p>
+                    <p class="alert" ng-show="adder.students.length == 0" translate>The following students were already added:</p>
+                    <ul class="student-list">
+                        <li ng-repeat="student in adder.existing">
+                            <i ng-show="adder.students.length > 0" class="icon-check success"></i>{{student.name}}
+                        </li>
+                    </ul>
+                </div>
+
+                <p class="alert">{{adder.message}}</p>
+
+                <div class="add-buttons center-button" ng-show="adder.existing.length > 0 && adder.addMore == undefined">
+                    <button ng-click="adder.addMore = true" class="button button-blue" translate>Add another Student</button>
+                </div>
+            </form>
+
+            <form name="add_student" ng-show="(adder.current == undefined || adder.addMore == true) && addedStudent == undefined" novalidate>
+
+                <div class="simple-group">
+                    <label translate>Student ID number:</label>
+                    <input type="text" name="studentID" autocapitalize="off" ng-enter="adder.next()" ng-model="adder.studentID"
+                           ng-class="{'form-error': add_student.studentID.$invalid && adder.addSubmitted}"
+                           placeholder="{{add_student.studentID.placeholder}}" required />
+                    <span class="bar"></span>
+                </div>
+
+                <div class="simple-group">
+                    <label translate>What is the first letter of this student's first name?</label>
+                    <input type="text" name="firstLetter" ng-enter="adder.next()" ng-model="adder.firstLetter"
+                           ng-class="{'form-error': add_student.firstLetter.$invalid && adder.addSubmitted}"
+                           placeholder="{{add_student.firstLetter.placeholder}}" required />
+                    <span class="bar"></span>
+                </div>
+
+                <div class="simple-group">
+                    <label translate>What is the first letter of this student's last name?</label>
+                    <input type="text" name="lastLetter" ng-enter="adder.addStudent()" ng-model="adder.lastLetter"
+                           ng-class="{'form-error': add_student.lastLetter.$invalid && adder.addSubmitted}"
+                           placeholder="{{add_student.lastLetter.placeholder}}" required />
+                    <span class="bar"></span>
+                </div>
+
+                <div class="center-button" ng-show="!adder.addedStudent" style="margin-top: 20px;margin-bottom: 20px;">
+                    <button ng-click="adder.addStudent()" class="button button-blue" translate>Add Student</button>
+                </div>
+            </form>
+            <div class="add-buttons center-button" ng-show="adder.addedStudent">
+                <p translate>{{adder.addedStudent.name}} has been added</p>
+                <button ng-click="adder.resetAdd()" style="margin-top: 15px;" class="button clickable" type="button" translate>Add another Student</button>
+            </div>
+
+        </div>
+    </div>
+</div>

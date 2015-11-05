@@ -1,0 +1,16 @@
+<div class="mobileloop-page full-page" ng-controller="DebugController as debug">
+    <div class="overthrow page-content" expand="">
+        <h3>Device</h3>
+        <pre>{{debug.device|json}}</pre>
+        <h3>Config</h3>
+        <pre>{{debug.config|json}}</pre>
+        <h3>Data</h3>
+        <pre>{{debug.data|json}}</pre>
+        <h3>Storage</h3>
+        <pre>{{debug.storage|json}}</pre>
+    </div>
+    <div class="footer center">
+        <button class="button button-blue" ng-click="debug.login()">Login</button>
+        <button class="button button-blue" ng-click="debug.done()">Main</button>
+    </div>
+</div>

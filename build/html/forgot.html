@@ -1,0 +1,26 @@
+<div class="mobileloop-page full-page" ng-controller="ForgotController as forgot">
+    <div class="overthrow" expand="">
+        <form name="forgot_form" novalidate>
+            <h1 translate="" style="margin-top: 20px">Reset Password</h1>
+            <div class="form-content">
+                <p class="message-text" translate>
+                    To help you login, we will send an email to the address you used to register.
+                </p>
+                <p class="message-text" translate>
+                    If you did not use an email address to register, have changed your email address, or need help, please ask a school staff member to reset your password.
+                </p>
+                <div class="simple-group" style="margin-top: 20px">
+                    <label translate>Login Name or Email</label>
+                    <input type="text" name="email" ng-enter="forgot.reset()" ng-model="forgot.email"
+                           ng-class="{'form-error': forgot_form.email.$invalid && forgot_form.$submitted}"
+                           autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="{{forgot.placeholder}}" required />
+                    <span class="bar"></span>
+                </div>
+            </div>
+            <div class="footer center">
+                <button ng-click="forgot.cancel()" class="button button-blue" translate>Cancel</button>
+                <button ng-click="forgot.reset()"class="button button-blue" translate>Reset Password</button>
+            </div>
+        </form>
+    </div>
+</div>

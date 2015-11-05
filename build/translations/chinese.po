@@ -1,0 +1,474 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Mobile Chinese\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Bob <bob@schoolloop.com>\n"
+"Language-Team: \n"
+"Language: zh\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.1\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: add-student.html:105
+msgid "{{adder.addedStudent.name}} has been added"
+msgstr "{{adder.addedStudent.name}} 已加入"
+
+#: add-student.html:54
+msgid "Add"
+msgstr "加入"
+
+#: add-student.html:5
+msgid "Add a student from <strong>{{adder.school.name}}</strong> or"
+msgstr "加入由 <strong>{{adder.school.name}}</strong> 學校的學生或"
+
+#: add-student.html:106 add-student.html:70
+msgid "Add another Student"
+msgstr "加入另一個學生"
+
+#: compose.html:33
+msgid "Add Learning Team"
+msgstr "加入學習團體"
+
+#: add-student.html:101 add-student.js:29 main.html:16
+msgid "Add Student"
+msgstr "加入學生"
+
+#: loopmail.js:120 loopmail.js:132 loopmail.js:30
+msgid "All Mail Delivered"
+msgstr "所有郵件已遞送"
+
+#: assignment-detail.html:29
+msgid "Assigned:"
+msgstr "已分派"
+
+#: courses-detail.html:29 main-tabs.html:3
+msgid "Assignments"
+msgstr "作業"
+
+#: loopmail-detail.html:14
+msgid "Attachments:"
+msgstr "附加文件 :"
+
+#: forgot.html:21 navbar.html:5
+msgid "Cancel"
+msgstr "取消"
+
+#: courses-detail.html:127
+msgid "Category"
+msgstr "類別得分"
+
+#: compose.html:24 loopmail.js:223
+msgid "CC:"
+msgstr "加添收信人:"
+
+#: forgot.js:35 invalid.html:13 services/loopmail-service.js:83
+#: unverified.html:13
+msgid "Close"
+msgstr "關閉"
+
+#: courses.js:257
+msgid "Course Info"
+msgstr "每科評分信息"
+
+#: main-tabs.html:4
+msgid "Courses"
+msgstr "科目"
+
+#: navbar.html:12
+msgid "Done"
+msgstr ""
+
+#: assignment-detail.html:6
+msgid "Due Today"
+msgstr "到期日期"
+
+#: assignment-detail.html:7
+msgid "Due Tomorrow"
+msgstr "明天到期"
+
+#: forgot.html:13
+msgid "Login Name or Email"
+msgstr "電郵"
+
+#: services/loopmail-service.js:81
+msgid "Failed to Deliver"
+msgstr "遞送失敗"
+
+#: add-student.js:137 add-student.js:97
+msgid "Fetching students..."
+msgstr "選擇學生"
+
+#: unverified.html:7
+msgid ""
+"For the protection of your child, parent accounts need to be approved by a "
+"school staff member to view grades. Please allow a reasonable period of time "
+"for your account to be approved. If you have questions, please contact your "
+"school for approval policies and procedures."
+msgstr ""
+"為了保障您的子女，家長的戶口必須首先獲得學校職員批准方可查閱成績。請允許適量"
+"的等候時間。如有任何疑問，請與學校查詢批准的條例和程序。"
+
+#: forgot.js:22
+msgid "Forgot Password"
+msgstr "忘記密碼"
+
+#: login.html:21
+msgid "Forgot Password?"
+msgstr "忘記密碼 ?"
+
+#: loopmail.js:201 loopmail.js:67
+msgid "From:"
+msgstr "发件人: "
+
+#: courses-detail.html:157
+msgid "Grade Code"
+msgstr "成績級別 :"
+
+#: courses-detail.html:153
+msgid "Grade Legend:"
+msgstr "成績標識 :"
+
+#: courses-detail.html:142
+msgid "Grade Scale:"
+msgstr "成績級別 :"
+
+#: main.html:6
+msgid "Help"
+msgstr "協助"
+
+#: forgot.html:9
+msgid ""
+"If you did not use an email address to register, have changed your email "
+"address, or need help, please ask a school staff member to reset your "
+"password."
+msgstr ""
+"如果您沒有使用電子郵件地址註冊，已經更改您的電子郵件地址，或需要協助，請向學"
+"校工作人員協助重新設立密碼。"
+
+#: directives/navbar.js:21
+msgid "Inbox"
+msgstr "收件匣"
+
+#: login.js:131
+msgid "Invalid Login"
+msgstr "登入錯誤"
+
+#: assignment-detail.html:20 news-detail.html:10
+msgid "Links:"
+msgstr "連結:"
+
+#: services/status-service.js:16
+msgid "Loading..."
+msgstr ""
+
+#: services/status-service.js:19
+msgid "Logging in..."
+msgstr "現正登入"
+
+#: add-student.html:38 forgot.js:28 login.html:19
+msgid "Login"
+msgstr "登入"
+
+#: add-student.js:106 login.js:138
+msgid "Login Incorrect!"
+msgstr "登入錯誤"
+
+#: add-student.html:24
+msgid "Login Name"
+msgstr "登入名稱"
+
+#: add-student.js:111 login.js:145
+msgid "Login Name Required!"
+msgstr "必須輸入登記名字 !"
+
+#: main-tabs.html:5
+msgid "LoopMail"
+msgstr "Loop 邮件"
+
+#: compose.html:46 reply.html:28
+msgid "Message Text"
+msgstr "信息"
+
+#: compose.js:17
+msgid "New LoopMail"
+msgstr "新的Loop郵件"
+
+#: main-tabs.html:6
+msgid "News"
+msgstr "新闻"
+
+#: courses-detail.html:34
+msgid "No Assignments"
+msgstr "沒有作業"
+
+#: assignments.html:4
+msgid "No Assignments Currently"
+msgstr "現時沒有作業"
+
+#: courses.html:4
+msgid "No Courses Currently"
+msgstr "現時沒有資訊"
+
+#: assignment-detail.html:19 news-detail.html:9
+msgid "No Description Provided"
+msgstr "沒有資料可提供"
+
+#: courses-detail.html:4
+msgid "No Grades Published"
+msgstr "沒有發佈成績"
+
+#: loopmail.js:156
+msgid "No Mail Currently"
+msgstr "目前沒有郵件"
+
+#: news.html:4
+msgid "No News Currently"
+msgstr "現時沒有資訊"
+
+#: courses-detail.html:87
+msgid "No Scores"
+msgstr "沒有分數"
+
+#: courses-detail.html:58
+msgid "No Zeros"
+msgstr "沒有零分"
+
+#: directives/navbar.js:23
+msgid "Outbox"
+msgstr "發送信箱"
+
+#: add-student.js:154
+msgid "Parent needs to be verified"
+msgstr "家長必須查核"
+
+#: add-student.html:31
+msgid "Password"
+msgstr "密碼"
+
+#: add-student.js:112 login.js:146
+msgid "Password Required!"
+msgstr "必須輸入密碼 !"
+
+#: forgot.js:27
+msgid ""
+"Please check your email for your password and try to login again.  Thanks!"
+msgstr "請查看您的電子郵件內臨時密碼然後再次登入"
+
+#: forgot.js:38 forgot.js:42
+msgid "Please enter email!"
+msgstr "請輸入電子郵件 !"
+
+#: assignments.html:28
+msgid "Points"
+msgstr "點數"
+
+#: news-detail.html:5
+msgid "Posted By:"
+msgstr "張貼人："
+
+#: login.html:27 start.html:8
+msgid "Privacy Policy"
+msgstr "私隱政策"
+
+#: directives/scroller.js:29
+msgid "Pull to Refresh"
+msgstr "下拉熒屏刷新"
+
+#: directives/scroller.js:32
+msgid "Refreshing..."
+msgstr "正在刷新…"
+
+#: add-student.html:39
+msgid "Register"
+msgstr "註冊"
+
+#: login.html:20
+msgid "Register Now"
+msgstr "立刻註冊"
+
+#: directives/scroller.js:26
+msgid "Release to Refresh"
+msgstr "釋放回彈刷新"
+
+#: loopmail.html:19
+msgid "Remove"
+msgstr "刪除"
+
+#: directives/navbar.js:16 reply.js:23
+msgid "Reply"
+msgstr "答覆"
+
+#: directives/navbar.js:17 reply.js:23
+msgid "Reply All"
+msgstr "答覆所有人"
+
+#: add-student.js:80 add-student.js:84 add-student.js:85 add-student.js:86
+msgid "Required"
+msgstr "必須輸入密碼 !"
+
+#: forgot.html:22 forgot.html:4
+msgid "Reset Password"
+msgstr "重設密碼"
+
+#: main.html:11
+msgid "School:"
+msgstr "學校："
+
+#: courses-detail.html:129
+msgid "Score"
+msgstr "單項分數"
+
+#: courses-detail.html:123
+msgid "Score by Category:"
+msgstr "類別得分"
+
+#: courses-detail.html:82
+msgid "Scores"
+msgstr "分數概覽"
+
+#: add-student.html:19 login.html:9
+msgid "Search for your school..."
+msgstr "搜尋您的學校"
+
+#: add-student.html:10
+msgid "Select a different school"
+msgstr "選擇一間不同的學校"
+
+#: navbar.html:9
+msgid "Send"
+msgstr ""
+
+#: directives/navbar.js:22
+msgid "Sent"
+msgstr "已寄出"
+
+#: main.html:31
+msgid "Sign out"
+msgstr "登出"
+
+#: main.html:9
+msgid "Signed in as:"
+msgstr "簽署人："
+
+#: add-student.html:77
+msgid "Student ID number:"
+msgstr "學生証號碼:"
+
+#: compose.html:40 reply.html:22
+msgid "Subject"
+msgstr "科目"
+
+#: compose.js:86 reply.js:67
+msgid "Subject required"
+msgstr "必須輸入主題"
+
+#: services/loopmail-service.js:95
+msgid "Success! LoopMail sent."
+msgstr "成功！Loop郵件已遞送"
+
+#: assignment-detail.html:28
+msgid "Teacher Unknown"
+msgstr "沒有此教師"
+
+#: add-student.html:58
+msgid "The following students have been added:"
+msgstr "以下的學生已加入："
+
+#: add-student.html:59
+msgid "The following students were already added:"
+msgstr "以下的學生已加入："
+
+#: add-student.html:47
+msgid "The following students will be added:"
+msgstr "加入以下的學生："
+
+#: services/loopmail-service.js:82
+msgid ""
+"There was a problem sending the message.  It has been placed in your outbox "
+"and an attempt to send again will automatically occur."
+msgstr "信息遞送障礙。信息目前存放在發送信箱稍後再次自動發送"
+
+#: invalid.html:7
+msgid ""
+"This version is no longer valid.  You must upgrade to the latest version in "
+"order to use the School Loop service."
+msgstr "此版本已失效。您必須使用最新版本方可使用School Loop服務"
+
+#: reply.html:11 reply.html:6
+msgid "To"
+msgstr "收件人:"
+
+#: forgot.html:6
+msgid ""
+"To help you login, we will send an email to the address you used to register."
+msgstr "為了幫助您的登入，我們將會按您用於註冊的電子郵件地址發送一封電子郵件。"
+
+#: compose.html:10 compose.html:19 loopmail.js:208 loopmail.js:65
+#: loopmail.js:69
+msgid "To:"
+msgstr "收件人:"
+
+#: assignments.html:13
+msgid "Today:"
+msgstr "今天 :"
+
+#: assignments.html:14
+msgid "Tomorrow:"
+msgstr "明天 :"
+
+#: forgot.js:34
+msgid "Unable to send email to that address. Please try again!"
+msgstr "信息不能遞送至該電子郵件地址。請再常試！"
+
+#: login.html:27 start.html:8
+msgid "User Agreement"
+msgstr "使用者同意書"
+
+#: courses-detail.html:158
+msgid "Value"
+msgstr "評分值（教師用）"
+
+#: main.html:12
+msgid "Version:"
+msgstr "版本"
+
+#: courses-detail.html:128
+msgid "Weight"
+msgstr "分數權衡比例"
+
+#: add-student.html:85
+msgid "What is the first letter of this student's first name?"
+msgstr "學生名字的第一個字母是什麼？"
+
+#: add-student.html:93
+msgid "What is the first letter of this student's last name?"
+msgstr "學生姓氏的第一個字母是什麼 ?"
+
+#: courses-detail.html:106 courses-detail.html:18 courses-detail.html:70
+msgid "Zero"
+msgstr "零分"
+
+#: courses-detail.html:19 courses-detail.html:54
+msgid "Zeros"
+msgstr "零分"
+
+#~ msgid "Error connecting to the server"
+#~ msgstr "連接錯誤"
+
+#~ msgid "Legend"
+#~ msgstr "成績說明"
+
+#~ msgid "Load more messages"
+#~ msgstr "載入更多信息"
+
+#~ msgid "School must be different than the current one."
+#~ msgstr "必須是當前不同的學校"
+
+#~ msgid "Try Again"
+#~ msgstr "再次嘗試"
+
+#~ msgid "Verification"
+#~ msgstr "查核"

@@ -1,0 +1,129 @@
+.loopmail-row {
+    margin-right: 15px;
+    padding: 8px 2px;
+}
+
+.loopmail-row.outgoing {
+    margin-right: 75px;
+}
+
+.new {
+    font-weight: bold !important;
+}
+
+.news-row {
+    margin-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 8px;
+}
+
+.loopmail-detail .title, .news-detail .title {
+    font-size: 1.4em;
+    font-weight: normal;
+    padding: 5px;
+}
+
+.news-detail .created, .news-detail .author {
+    margin-left: 5px;
+}
+
+.loopmail-detail .subtext {
+    color: #999;
+    margin-left: 5px;
+}
+
+.send-message {
+    margin: 10px auto 0;
+    width: 95%;
+}
+
+.recipient-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.recipient-group.compact {
+    margin-bottom: 10px;
+}
+
+.recipient-group label {
+    top: -20px;
+    font-size: 12px;
+    color: #5d8dc5;
+}
+
+.recipient-list {
+    border: 1px solid #f3f3f3;
+    padding-top: 5px;
+    padding-left: 5px;
+    width: 100%;
+    min-height: 30px;
+}
+
+.recipient-list li {
+    display: inline-block;
+    padding: 7px 12px;
+    margin: 0 5px 5px 0;
+    background: #c9d9ed;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.recipient-list li span {
+    margin-left: 5px;
+    padding-left: 5px;
+    font-size: 1.3em;
+    line-height: 1.3em;
+    color: #fff;
+}
+
+.list-loader {
+    width: 100%;
+    text-align: center;
+}
+
+.list-loader.floating {
+    position: absolute;
+    z-index: 500;
+}
+
+blockquote,blockquote p {
+    font-size: 17px;
+    line-height: 24px;
+    color: #777;
+    font-style: italic;
+}
+
+blockquote {
+    margin: 0 0 20px;
+    padding: 9px 20px 0 19px;
+    border-left: 1px solid #ddd;
+}
+
+blockquote cite {
+    display: block;
+    font-size: 12px;
+    color: #555;
+}
+
+.lmt-button {
+    margin-bottom: 20px;
+}
+
+.loopmail-new {
+    position: absolute;
+    top: 2px;
+    left: 60px;
+    color: white !important;
+    background-color: #88aacc !important;
+    padding: 3px 10px !important;
+    opacity: 1.0 !important;
+}
+
+.loopmail-action {
+    text-align: right;
+}
+
+.description {
+    color: #999;
+}

@@ -1,0 +1,15 @@
+<div class="lookup">
+    <div class="lookup-search">
+        <input class="search-value" placeholder="{{placeholder}}" tabindex="-1" data-ng-model="lookup.selected" type="text" autocomplete="off" />
+        <span class="icon-caret-square-o-down" ng-click="expand()" ng-hide="showClear()"></span>
+        <span class="icon-times-circle" ng-click="clear()" ng-show="showClear()"></span>
+    </div>
+    <div class="lookup-content" ng-show="showResults()">
+        <ul>
+            <li class="lookup-item clickable" data-ng-repeat="item in lookup.displaySet" ng-click="select(item)">
+                <div class="school">{{item.name}}</div>
+                <div class="district">{{item.districtName}}</div>
+            </li>
+        </ul>
+    </div>
+</div>

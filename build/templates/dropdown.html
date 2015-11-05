@@ -1,0 +1,10 @@
+<div>
+    <div ng-click="toggle()" ng-class="classlink">
+        <span>{{current.label}}</span><span class="icon-caret-down"></span>
+    </div>
+    <div ng-show="showMenu == true" ng-click="toggle()" ng-class="classmenu" ng-style="menuStyle">
+        <ul>
+            <li ng-repeat="action in menuActions" ng-click="clickAction($index)">{{action.label}}</li>
+        </ul>
+    </div>
+</div>

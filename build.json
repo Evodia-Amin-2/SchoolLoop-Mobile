@@ -1,0 +1,11 @@
+{
+  "android": {
+    "release": {
+      "keystore": "release/mobileloop.keystore",
+      "storePassword": "sch00ly411",
+      "alias": "mobileloop",
+      "password" : "sch00ly411",
+      "keystoreType": ""
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "MobileLoop",
+  "description": "SchoolLoop mobile app",
+  "author": "Rob MacDonell <rob@schoolloop.com>",
+  "version": "2.0.3",
+  "devDependencies": {
+    "del": "^1.1.1",
+    "gulp": "^3.8.10",
+    "gulp-add-src": "^0.2.0",
+    "gulp-angular-gettext": "^2.1.0",
+    "gulp-angular-templatecache": "^1.6.0",
+    "gulp-bower-files": "^0.2.7",
+    "gulp-clean": "^0.3.1",
+    "gulp-concat": "^2.4.3",
+    "gulp-jshint": "^1.9.0",
+    "gulp-ng-config": "^1.0.0",
+    "gulp-plumber": "^0.6.6",
+    "gulp-rename": "^1.2.0",
+    "gulp-replace": "^0.5.3",
+    "gulp-shell": "^0.2.11",
+    "gulp-stylus": "^2.0.0",
+    "gulp-util": "^3.0.2",
+    "main-bower-files": "^2.5.0",
+    "minimist": "^1.1.0"
+  }
+}

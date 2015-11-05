@@ -1,0 +1,141 @@
+.simple-group,
+.input-group,
+.multi-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.simple-group input, .input-ro,
+.input-group input, .input-group textarea,
+.multi-group input {
+    font-size: 16px;
+    padding: 5px;
+    display: block;
+    width: 100%;
+    margin-left: 2px;
+    border: 1px solid #bababa;
+}
+
+.input-ro {
+    border: none;
+}
+
+.input-group textarea {
+    height: 82px;
+}
+
+.simple-group input:focus,
+.input-group input:focus,
+.multi-group input:focus,
+.input-group textarea:focus {
+    outline: none;
+    border: 1px solid #5d8dc5;
+}
+
+.simple-group label,
+.input-group label,
+.multi-group label {
+    color: #ccc;
+    font-size: 16px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 5px;
+    top: 7px;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+.input-group input:focus, .input-group input:valid,
+.input-group textarea:focus, .input-group textarea:valid {
+    border: 1px solid #5d8dc5;
+}
+
+.input-group input:focus ~ label, .input-group input:valid ~ label,
+.multi-group input:focus ~ label, .multi-group input:valid ~ label,
+.input-group textarea:focus ~ label, .input-group textarea:valid ~ label,
+.simple-group label, .multi-group label {
+    top: -17px;
+    left: 0;
+    font-size: 12px;
+    color: #666;
+}
+
+.simple-group label {
+    font-size: 14px;
+}
+
+.simple-group .bar,
+.input-group .bar,
+.multi-group .bar {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin-left: 2px;
+}
+
+.simple-group .bar:before,
+.simple-group .bar:after,
+.input-group .bar:before,
+.input-group .bar:after,
+.multi-group .bar:before,
+.multi-group .bar:after {
+    content: '';
+    height: 1px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: #5d8dc5;
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+}
+
+.simple-group .bar:before,
+.input-group .bar:before,
+.multi-group .bar:before {
+    left: 50%;
+}
+
+.simple-group .bar:after,
+.input-group .bar:after,
+.multi-group .bar:after {
+    right: 50%;
+}
+
+.simple-group input:focus ~ .bar:before, .simple-group input:focus ~ .bar:after,
+.input-group input:focus ~ .bar:before, .input-group input:focus ~ .bar:after,
+.multi-group input:focus ~ .bar:before, .multi-group input:focus ~ .bar:after,
+.input-group textarea:focus ~ .bar:before, .input-group textarea:focus ~ .bar:after {
+    width: 50%;
+}
+
+.form-error {
+    border: 1px solid rgba(234, 153, 153, 0.8) !important;
+}
+
+.form-error::-webkit-input-placeholder {
+    color: #f10f0d;
+    text-align: right;
+    font-size: 16px;
+    vertical-align: bottom;
+}
+
+.simple-group .form-error::-webkit-input-placeholder {
+    text-align: left;
+}
+
+.form-content {
+    max-width: 90%;
+    margin: 10px auto;
+}
+
+.message-text {
+    padding: 10px 0;
+    font-size: 1.2em;
+}
+
+.multi-group {
+    margin-top: 25px;
+}

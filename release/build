@@ -1,0 +1,44 @@
+#!/bin/bash
+PATH=$PATH:/usr/local/bin:/Users/tombu/Library/Android/sdk/platform-tools:/Users/tombu/Library/Android/sdk/tools
+export ANDROID_HOME=/Users/tombu/Library/Android/sdk
+
+if [[ $# -eq 0 ]] ; then
+    echo '    usage:  build {appId} {displayName} {version} {build} {release}'
+    echo '  example:  build "app" "School Loop" "2.0.0" "199" "(199)'
+    exit 1
+fi
+
+ID=$1
+APP_NAME=$2
+VERSION=$3
+BUILD=$4
+RELEASE=$5
+
+npm install
+bower install
+gulp --app-version "${VERSION}" --app-release "${RELEASE}" --config "${1}"
+chmod +w config.xml
+chmod +w plugins/android.json
+chmod +w plugins/browser.json
+chmod +w plugins/ios.json
+chmod -R +w platforms/*
+chmod -R +w www
+echo "Setting app id: com.schoolloop.mobileloop.${ID}"
+sed -i '' "s/com.schoolloop.mobileloop.mirror/com.schoolloop.mobileloop.${ID}/g" config.xml
+echo "Setting version: ${VERSION}"
+sed -i '' "s/version=\"2.0.0\"/version=\"${VERSION}\"/g" config.xml
+sed -i '' "s/\$(BUILD_VERSION)/${BUILD}/g" platforms/ios/MobileLoop/*-Info.plist
+sed -i '' "s/\$(VERSION_NUMBER)/${VERSION}/g" platforms/ios/MobileLoop/*-Info.plist
+echo "Setting app name: ${APP_NAME}"
+chmod +w platforms/android/res/values/strings.xml
+sed -i '' "s/\"launcher_name\">Mirror Loop/\"launcher_name\">${APP_NAME}/g" platforms/android/res/values/strings.xml
+sed -i '' "s/com.schoolloop.mobileloop.mirror/com.schoolloop.mobileloop.${ID}/g" platforms/android/AndroidManifest.xml
+sed -i '' "s/com.schoolloop.mobileloop.mirror/com.schoolloop.mobileloop.${ID}/g" plugins/android.json
+sed -i '' "s/com.schoolloop.mobileloop.mirror/com.schoolloop.mobileloop.${ID}/g" plugins/browser.json
+sed -i '' "s/com.schoolloop.mobileloop.mirror/com.schoolloop.mobileloop.${ID}/g" plugins/ios.json
+if [ ! -d "platforms/android/src/com/schoolloop/mobileloop/${ID}" ]; then
+  mv platforms/android/src/com/schoolloop/mobileloop/mirror platforms/android/src/com/schoolloop/mobileloop/app
+fi
+sed -i '' "s/com.schoolloop.mobileloop.mirror/com.schoolloop.mobileloop.${ID}/g" platforms/android/src/com/schoolloop/mobileloop/${ID}/MainActivity.java
+cordova prepare
+cordova build android --release

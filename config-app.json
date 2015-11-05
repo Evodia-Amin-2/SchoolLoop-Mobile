@@ -1,0 +1,10 @@
+{
+  "config": {
+    "id": "app",
+    "api": "https://api.schoolloop.com",
+    "version":"{version}",
+    "release":"{release}",
+    "gakey":"UA-44906378-1",
+    "senderId":"497458348283"
+  }
+}

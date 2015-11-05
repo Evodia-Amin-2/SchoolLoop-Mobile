@@ -1,0 +1,470 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+
+#: add-student.html:105
+msgid "{{adder.addedStudent.name}} has been added"
+msgstr ""
+
+#: add-student.html:54
+msgid "Add"
+msgstr ""
+
+#: add-student.html:5
+msgid "Add a student from <strong>{{adder.school.name}}</strong> or"
+msgstr ""
+
+#: add-student.html:106
+#: add-student.html:70
+msgid "Add another Student"
+msgstr ""
+
+#: compose.html:33
+msgid "Add Learning Team"
+msgstr ""
+
+#: add-student.html:101
+#: add-student.js:29
+#: main.html:16
+msgid "Add Student"
+msgstr ""
+
+#: loopmail.js:120
+#: loopmail.js:132
+#: loopmail.js:30
+msgid "All Mail Delivered"
+msgstr ""
+
+#: assignment-detail.html:29
+msgid "Assigned:"
+msgstr ""
+
+#: courses-detail.html:29
+#: main-tabs.html:3
+msgid "Assignments"
+msgstr ""
+
+#: loopmail-detail.html:14
+msgid "Attachments:"
+msgstr ""
+
+#: forgot.html:21
+#: navbar.html:5
+msgid "Cancel"
+msgstr ""
+
+#: courses-detail.html:127
+msgid "Category"
+msgstr ""
+
+#: compose.html:24
+#: loopmail.js:223
+msgid "CC:"
+msgstr ""
+
+#: forgot.js:35
+#: invalid.html:13
+#: services/loopmail-service.js:83
+#: unverified.html:13
+msgid "Close"
+msgstr ""
+
+#: courses.js:257
+msgid "Course Info"
+msgstr ""
+
+#: main-tabs.html:4
+msgid "Courses"
+msgstr ""
+
+#: navbar.html:12
+msgid "Done"
+msgstr ""
+
+#: assignment-detail.html:6
+msgid "Due Today"
+msgstr ""
+
+#: assignment-detail.html:7
+msgid "Due Tomorrow"
+msgstr ""
+
+#: forgot.html:13
+msgid "Login Name or Email"
+msgstr ""
+
+#: services/loopmail-service.js:81
+msgid "Failed to Deliver"
+msgstr ""
+
+#: add-student.js:137
+#: add-student.js:97
+msgid "Fetching students..."
+msgstr ""
+
+#: unverified.html:7
+msgid "For the protection of your child, parent accounts need to be approved by a school staff member to view grades. Please allow a reasonable period of time for your account to be approved. If you have questions, please contact your school for approval policies and procedures."
+msgstr ""
+
+#: forgot.js:22
+msgid "Forgot Password"
+msgstr ""
+
+#: login.html:21
+msgid "Forgot Password?"
+msgstr ""
+
+#: loopmail.js:201
+#: loopmail.js:67
+msgid "From:"
+msgstr ""
+
+#: courses-detail.html:157
+msgid "Grade Code"
+msgstr ""
+
+#: courses-detail.html:153
+msgid "Grade Legend:"
+msgstr ""
+
+#: courses-detail.html:142
+msgid "Grade Scale:"
+msgstr ""
+
+#: main.html:6
+msgid "Help"
+msgstr ""
+
+#: forgot.html:9
+msgid "If you did not use an email address to register, have changed your email address, or need help, please ask a school staff member to reset your password."
+msgstr ""
+
+#: directives/navbar.js:21
+msgid "Inbox"
+msgstr ""
+
+#: login.js:131
+msgid "Invalid Login"
+msgstr ""
+
+#: assignment-detail.html:20
+#: news-detail.html:10
+msgid "Links:"
+msgstr ""
+
+#: services/status-service.js:16
+msgid "Loading..."
+msgstr ""
+
+#: services/status-service.js:19
+msgid "Logging in..."
+msgstr ""
+
+#: add-student.html:38
+#: forgot.js:28
+#: login.html:19
+msgid "Login"
+msgstr ""
+
+#: add-student.js:106
+#: login.js:138
+msgid "Login Incorrect!"
+msgstr ""
+
+#: add-student.html:24
+msgid "Login Name"
+msgstr ""
+
+#: add-student.js:111
+#: login.js:145
+msgid "Login Name Required!"
+msgstr ""
+
+#: main-tabs.html:5
+msgid "LoopMail"
+msgstr ""
+
+#: compose.html:46
+#: reply.html:28
+msgid "Message Text"
+msgstr ""
+
+#: compose.js:17
+msgid "New LoopMail"
+msgstr ""
+
+#: main-tabs.html:6
+msgid "News"
+msgstr ""
+
+#: courses-detail.html:34
+msgid "No Assignments"
+msgstr ""
+
+#: assignments.html:4
+msgid "No Assignments Currently"
+msgstr ""
+
+#: courses.html:4
+msgid "No Courses Currently"
+msgstr ""
+
+#: assignment-detail.html:19
+#: news-detail.html:9
+msgid "No Description Provided"
+msgstr ""
+
+#: courses-detail.html:4
+msgid "No Grades Published"
+msgstr ""
+
+#: loopmail.js:156
+msgid "No Mail Currently"
+msgstr ""
+
+#: news.html:4
+msgid "No News Currently"
+msgstr ""
+
+#: courses-detail.html:87
+msgid "No Scores"
+msgstr ""
+
+#: courses-detail.html:58
+msgid "No Zeros"
+msgstr ""
+
+#: directives/navbar.js:23
+msgid "Outbox"
+msgstr ""
+
+#: add-student.js:154
+msgid "Parent needs to be verified"
+msgstr ""
+
+#: add-student.html:31
+msgid "Password"
+msgstr ""
+
+#: add-student.js:112
+#: login.js:146
+msgid "Password Required!"
+msgstr ""
+
+#: forgot.js:27
+msgid "Please check your email for your password and try to login again.  Thanks!"
+msgstr ""
+
+#: forgot.js:38
+#: forgot.js:42
+msgid "Please enter email!"
+msgstr ""
+
+#: assignments.html:28
+msgid "Points"
+msgstr ""
+
+#: news-detail.html:5
+msgid "Posted By:"
+msgstr ""
+
+#: login.html:27
+#: start.html:8
+msgid "Privacy Policy"
+msgstr ""
+
+#: directives/scroller.js:29
+msgid "Pull to Refresh"
+msgstr ""
+
+#: directives/scroller.js:32
+msgid "Refreshing..."
+msgstr ""
+
+#: add-student.html:39
+msgid "Register"
+msgstr ""
+
+#: login.html:20
+msgid "Register Now"
+msgstr ""
+
+#: directives/scroller.js:26
+msgid "Release to Refresh"
+msgstr ""
+
+#: loopmail.html:19
+msgid "Remove"
+msgstr ""
+
+#: directives/navbar.js:16
+#: reply.js:23
+msgid "Reply"
+msgstr ""
+
+#: directives/navbar.js:17
+#: reply.js:23
+msgid "Reply All"
+msgstr ""
+
+#: add-student.js:80
+#: add-student.js:84
+#: add-student.js:85
+#: add-student.js:86
+msgid "Required"
+msgstr ""
+
+#: forgot.html:22
+#: forgot.html:4
+msgid "Reset Password"
+msgstr ""
+
+#: main.html:11
+msgid "School:"
+msgstr ""
+
+#: courses-detail.html:129
+msgid "Score"
+msgstr ""
+
+#: courses-detail.html:123
+msgid "Score by Category:"
+msgstr ""
+
+#: courses-detail.html:82
+msgid "Scores"
+msgstr ""
+
+#: add-student.html:19
+#: login.html:9
+msgid "Search for your school..."
+msgstr ""
+
+#: add-student.html:10
+msgid "Select a different school"
+msgstr ""
+
+#: navbar.html:9
+msgid "Send"
+msgstr ""
+
+#: directives/navbar.js:22
+msgid "Sent"
+msgstr ""
+
+#: main.html:31
+msgid "Sign out"
+msgstr ""
+
+#: main.html:9
+msgid "Signed in as:"
+msgstr ""
+
+#: add-student.html:77
+msgid "Student ID number:"
+msgstr ""
+
+#: compose.html:40
+#: reply.html:22
+msgid "Subject"
+msgstr ""
+
+#: compose.js:86
+#: reply.js:67
+msgid "Subject required"
+msgstr ""
+
+#: services/loopmail-service.js:95
+msgid "Success! LoopMail sent."
+msgstr ""
+
+#: assignment-detail.html:28
+msgid "Teacher Unknown"
+msgstr ""
+
+#: add-student.html:58
+msgid "The following students have been added:"
+msgstr ""
+
+#: add-student.html:59
+msgid "The following students were already added:"
+msgstr ""
+
+#: add-student.html:47
+msgid "The following students will be added:"
+msgstr ""
+
+#: services/loopmail-service.js:82
+msgid "There was a problem sending the message.  It has been placed in your outbox and an attempt to send again will automatically occur."
+msgstr ""
+
+#: invalid.html:7
+msgid "This version is no longer valid.  You must upgrade to the latest version in order to use the School Loop service."
+msgstr ""
+
+#: reply.html:11
+#: reply.html:6
+msgid "To"
+msgstr ""
+
+#: forgot.html:6
+msgid "To help you login, we will send an email to the address you used to register."
+msgstr ""
+
+#: compose.html:10
+#: compose.html:19
+#: loopmail.js:208
+#: loopmail.js:65
+#: loopmail.js:69
+msgid "To:"
+msgstr ""
+
+#: assignments.html:13
+msgid "Today:"
+msgstr ""
+
+#: assignments.html:14
+msgid "Tomorrow:"
+msgstr ""
+
+#: forgot.js:34
+msgid "Unable to send email to that address. Please try again!"
+msgstr ""
+
+#: login.html:27
+#: start.html:8
+msgid "User Agreement"
+msgstr ""
+
+#: courses-detail.html:158
+msgid "Value"
+msgstr ""
+
+#: main.html:12
+msgid "Version:"
+msgstr ""
+
+#: courses-detail.html:128
+msgid "Weight"
+msgstr ""
+
+#: add-student.html:85
+msgid "What is the first letter of this student's first name?"
+msgstr ""
+
+#: add-student.html:93
+msgid "What is the first letter of this student's last name?"
+msgstr ""
+
+#: courses-detail.html:106
+#: courses-detail.html:18
+#: courses-detail.html:70
+msgid "Zero"
+msgstr ""
+
+#: courses-detail.html:19
+#: courses-detail.html:54
+msgid "Zeros"
+msgstr ""

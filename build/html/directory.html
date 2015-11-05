@@ -1,0 +1,29 @@
+<div ng-controller="DirectoryController">
+    <div class="directory" scroller="">
+        <div class="empty-list" ng-show="loopmail.length == 0">
+            <p>{{noMailMessage}}</p>
+        </div>
+        <div ng-show="loopmail.length > 0">
+            <ul class="list-view">
+                <li class="list-view-item" ng-repeat="item in loopmail">
+                    <div class="item-content clearfix">
+                        <div class="item-row">
+                            <div class="loopmail-row" ng-class="{outgoing: mailbox < 0}" ng-click="showMessage(item)">
+                                <div class="item-title" ng-class="{new:isNew(item)}">{{item.subject}}</div>
+                                <div class="item-subtitle">{{sender(item)}}</div>
+                                <div class="item-subtitle">{{item.date|date:"MMM d, y hh:mm a"}}</div>
+                            </div>
+                        </div>
+                        <list-nav ng-show="mailbox > 0"></list-nav>
+                        <div class="item-nav" ng-show="mailbox < 0">
+                            <button ng-click="removeOutgoing(item)" class="button button-blue" type="button" translate>Remove</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div ng-show="needsMore" class="spinner-holder">
+                <div ng-show="loading" class="spinner-small"></div>
+            </div>
+        </div>
+    </div>
+</div>

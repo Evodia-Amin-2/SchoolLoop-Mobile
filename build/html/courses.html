@@ -1,0 +1,27 @@
+<div ng-controller="CoursesController">
+    <div class="courses" scroller="">
+        <div class="empty-list" ng-show="courses.length == 0">
+            <p translate>No Courses Currently</p>
+        </div>
+        <ul class="list-view">
+            <li class="list-view-item" ng-repeat="item in courses">
+                <div class="item-content clearfix">
+                    <div class="item-row">
+                        <div ng-click="showCourse(item)">
+                            <div class="course-period">{{item.period}}</div>
+                            <div class="course-row">
+                                <div class="item-title">{{item.courseName}}</div>
+                                <div class="item-subtitle">{{item.teacherName}}</div>
+                            </div>
+                            <div class="course-grades" ng-show="isGradeEnabled(item) && !isGradeHidden(item)">
+                                <div>{{item.grade}}</div>
+                                <div>{{item.score}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <list-nav></list-nav>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

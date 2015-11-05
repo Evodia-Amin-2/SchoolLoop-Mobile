@@ -1,0 +1,63 @@
+.scroll-container {
+    -webkit-overflow-scrolling: touch;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+
+    background-color: white;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.scroll-content {
+    background: white;
+    width: 100%;
+
+    -webkit-transform-origin: left top;
+    -webkit-transform: translateZ(0);
+    -moz-transform-origin: left top;
+    -moz-transform: translateZ(0);
+    transform-origin: left top;
+    transform: translateZ(0);
+}
+
+.pull-to-refresh {
+    background: #7b91aa;
+    color: white;
+    font-weight: bold;
+    height: 300px;
+    margin-top: -300px;
+    text-align: center;
+
+    -webkit-transition: background-color 300ms;
+    -moz-transition: background-color 300ms;
+    transition: background-color 300ms;
+}
+
+.pull-to-refresh.active{
+    background: #006eb3;
+}
+
+.pull-to-refresh.running{
+    background: #00b373;
+}
+
+.pull-text {
+    padding-top: 270px;
+    font-size: 16px;
+}
+
+.overthrow-enabled .overthrow {
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    transform: translateZ(0);
+
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+

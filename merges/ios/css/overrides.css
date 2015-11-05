@@ -1,0 +1,20 @@
+.slide-top, .login-header, .full-page {
+    padding-top: 20px;
+}
+
+.navbar {
+    padding-top: 20px;
+    height: 50px;
+}
+
+.slide-middle {
+    top: 205px;
+}
+
+.loopmail-menu {
+    top: 20px;
+}
+
+.main-page {
+    top: 46px;
+}

@@ -1,0 +1,40 @@
+.add-student-content {
+    max-width: 315px;
+    margin: 2px auto;
+}
+
+@media (min-width: 500px) {
+    .add-student-content {
+        max-width: 400px;
+    }
+}
+
+.add-student-school {
+    margin: 10px 0;
+    margin-bottom: 40px;
+}
+
+.add-student-school > p {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.add-student-school .school-lookup input {
+    width: 95%;
+    margin-left: 5px;
+}
+
+.student-list {
+    margin-left: 15px;
+    margin-bottom: 20px;
+}
+
+.school-login {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.center-button {
+    text-align: center;
+    margin: 5px;
+}

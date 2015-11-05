@@ -1,0 +1,36 @@
+<div ng-controller="ReplyController as reply" class="mobileloop-content slide-up" expand="">
+    <div class="overthrow" expand="">
+        <div class="send-message">
+            <form name="send_message" novalidate>
+                <div class="recipient-group" ng-class="{'compact':reply.ccList.length > 0}">
+                    <label>{{'To'|translate}}</label>
+                    <div class="input-ro" ng-repeat="item in reply.toList">{{item.name}}</div>
+                </div>
+
+                <div class="recipient-group" ng-show="reply.ccList.length > 0">
+                    <label translate>CC:</label>
+                    <div class="recipient-list">
+                        <ul class="list">
+                            <li ng-repeat="item in reply.ccList" ng-click="reply.removeCC(item)">{{item.name}}<span>x</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" name="subject" ng-model="reply.subject" placeholder="{{reply.subjectError}}" ng-class="{'form-error': send_message.subject.$invalid && send_message.submitted}" required />
+                    <span class="bar"></span>
+                    <label>{{'Subject'|translate}}</label>
+                </div>
+
+                <div class="input-group">
+                    <textarea name="body" ng-model="reply.body" required></textarea>
+                    <span class="bar"></span>
+                    <label>{{'Message Text'|translate}}</label>
+                </div>
+
+                <div class="separator"></div>
+                <div class="assignment-desc" ng-bind-html="reply.originalMsg"></div>
+            </form>
+        </div>
+    </div>
+</div>

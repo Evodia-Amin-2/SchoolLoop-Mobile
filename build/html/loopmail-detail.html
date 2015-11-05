@@ -1,0 +1,20 @@
+<div ng-controller="LoopMailDetailController" class="tab-content overthrow" ng-swipe-left="swipeLeft()" ng-swipe-right="swipeRight()">
+    <div ng-show="loaded">
+        <div class="loopmail-detail clearfix" ng-show="loopmail.subject">
+            <div class="title">{{loopmail.subject}}</div>
+            <div class="subtext">{{sender()}}</div>
+            <div class="subtext">{{recipient()}}</div>
+            <div class="subtext" ng-if="hasCC()">{{recipientCC()}}</div>
+            <div class="subtext">{{loopmail.date|date:"MMM d, y hh:mm a"}}</div>
+        </div>
+        <div class="separator"></div>
+        <div class="loopmail-message" ng-bind-html="trustedMessage">
+        </div>
+        <div class="separator"></div>
+        <ul ng-if="loopmail.links" class="assignment-links"><span translate>Attachments:</span>
+            <li ng-repeat="link in loopmail.links">
+                <a ng-href="" ng-click="openURL(link)">{{link.Title}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

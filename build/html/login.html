@@ -1,0 +1,30 @@
+<div ng-controller="LoginController as login" class="mobileloop-content">
+    <div class="login-header">
+        <img alt="" src="img/sl_logo.png" width="194" height="74">
+    </div>
+    <div class="overthrow" expand="">
+        <div class="login-panel">
+            <form name="login_form" novalidate>
+                <div class="login-inputs">
+                    <div class="school-lookup" lookup="login.schoolLookup" placeholder="{{'Search for your school...'|translate}}" ng-model="login.selectedSchool" ></div>
+                    <div class="login-input" ng-show="login.isSchoolSelected()">
+                        <input name="username" ng-enter="login.auth()" ng-class="{error: login_form.username.$invalid && login_form.submitted}"
+                               type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="{{login_form.username.placeholder}}" ng-model="login.username" required /><br/>
+                        <input name="password" ng-enter="login.auth()" ng-class="{error: login_form.password.$invalid && login_form.submitted}"
+                               type="password" placeholder="{{login_form.password.placeholder}}" ng-model="login.password" required /><br/>
+                    </div>
+                </div>
+                <div class="login-buttons">
+                    <div class="login" ng-show="login.isSchoolSelected()">
+                        <button ng-click="login.auth()" class="login-button button button-blue clickable" translate>Login</button>
+                        <button ng-click="login.register()" class="register button button-green clickable" translate>Register Now</button><br/>
+                        <a ng-href="" ng-click="login.forgot()" translate>Forgot Password?</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="login-footer center">
+            <div>&#169;{{login.year}} School Loop | <a ng-href="" ng-click="login.agreement()" translate>User Agreement</a> | <a ng-href="" ng-click="login.privacy()" translate>Privacy Policy</a></div>
+        </div>
+    </div>
+</div>

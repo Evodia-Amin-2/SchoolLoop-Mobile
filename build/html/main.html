@@ -1,0 +1,46 @@
+<div class="mobileloop-page" ng-controller="MainController as main">
+    <div id="sp-nav">
+        <div id="c2" class="slide-out" ng-swipe-left="main.closeSlideOut()" expand="">
+            <div class="slide-top">
+                <div class="slide-item clickable" ng-click="main.help()">
+                    <span class="icon-question-circle large"></span><div class="item-text" translate>Help</div>
+                </div>
+                <div class="slide-item">
+                    <div class="item-block user-info"><div class="item-label" translate>Signed in as:</div>{{main.user.fullName}}</div>
+                    <div class="item-block school-info">
+                        <div><span translate>School:</span>&nbsp;{{main.school.name}}</div>
+                        <div><span translate>Version:</span>&nbsp;{{main.version}}<span ng-show="main.release">&nbsp;{{main.release}}</span></div>
+                    </div>
+                </div>
+                <div class="slide-item clickable" ng-if="main.user.isParent == 'true'" ng-click="main.addStudent()">
+                    <span class="icon-plus-circle large"></span><div class="item-text" translate>Add Student</div>
+                </div>
+            </div>
+            <div class="slide-middle overthrow">
+                <div ng-if="main.user.isParent == 'true'">
+                    <ul class="students">
+                        <li ng-repeat="student in main.students" class="clickable" ng-class="{selected:main.isSelected(student)}" ng-click="main.selectStudent(student)">
+                            <div class="user-name">{{student.name}}</div>
+                            <div class="school-info">{{student.school.name}}</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-bottom">
+                <div class="slide-item slide-item-last clickable" ng-click="main.logout()">
+                    <span class="icon-sign-out large"></span><div class="item-text" translate>Sign out</div>
+                </div>
+                <div ng-if="main.debugEnabled" style="position: absolute; top: 5px; right: 5px;">
+                    <button class="button button-blue" style="padding: 2px; margin: 0" ng-click="main.debug()">Debug</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="sp-page">
+        <navbar></navbar>
+        <ui-view class="main-page slide-up"></ui-view>
+    </div>
+
+    <div id="sp-close" ng-click="main.toggleMenu()" ng-show="main.menuVisible" ng-swipe-left="main.closeSlideOut()"></div>
+</div>

@@ -1,0 +1,17 @@
+<div class="navbar" ng-class="{'navbar-edit': navbar.isEditMode(),'navbar-back': navbar.isBackEnabled(),'navbar-mail': navbar.isReplyEnabled() || navbar.isLoopMenuEnabled()}">
+    <div class="nav-left">
+        <div class="navbar-icon icon-bars icon-large clickable" ng-show="!navbar.isBackEnabled() && !navbar.isEditMode()" ng-click="toggleMenu()"></div>
+        <div class="navbar-icon icon-chevron-left icon-large clickable" ng-click="back()" ng-show="navbar.isBackEnabled() && !navbar.isEditMode()"></div>
+        <div class="navbar-action clickable" ng-click="cancel()" ng-show="navbar.isEditMode() == true" translate>Cancel</div>
+    </div>
+    <div class="nav-right">
+        <div class="navbar-icon loopmail-action clickable" ng-show="navbar.isMailEnabled()" ng-click="loopmail()"><span class="icon-envelope icon-large"></span></div>
+        <div class="navbar-action clickable" ng-show="navbar.isSendEnabled()" ng-click="send()"><span class="loopmail-send" translate>Send</span></div>
+        <div class="loopmail-menu" ng-show="navbar.isReplyEnabled()"><div dropdown="" classlink="dropdownLink" initial="0" classmenu="dropdownMenu" actions="replyActions" listener="menuListener"></div></div>
+        <div class="loopmail-menu" ng-class="{teacher: isTeacher()}" ng-show="navbar.isLoopMenuEnabled()"><div dropdown="" classlink="dropdownLink" initial="0" classmenu="dropdownMenu" actions="loopActions" listener="menuListener"></div></div>
+        <div class="navbar-action clickable" ng-show="navbar.isDoneEnabled()" ng-click="done()"><span class="loopmail-send" translate>Done</span></div>
+    </div>
+    <div class="nav-middle" ng-click="titleBack()" >
+        <div class="navbar-title">{{navbar.getTitle()}}</div>
+    </div>
+</div>

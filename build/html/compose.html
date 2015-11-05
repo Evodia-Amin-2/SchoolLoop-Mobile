@@ -1,0 +1,57 @@
+<div ng-controller="ComposeController as compose" expand="" class="mobileloop-content slide-up">
+    <div class="overthrow" expand="">
+        <form name="send_message" class="send-message" novalidate>
+
+            <div ng-show="compose.loading" class="list-loader floating">
+                <div class="spinner"></div>
+            </div>
+
+            <div class="recipient-group" ng-show="compose.hasLMT && !compose.isTeacher">
+                <label translate>To:</label>
+                <div class="recipient-list">
+                    <ul class="list">
+                        <li ng-repeat="item in compose.toList" ng-click="compose.remove(item)">{{item.name}}<span>x</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="multi-group" ng-show="compose.isTeacher">
+                <multi-select search="compose.searchContacts" ng-model="compose.toList" ></multi-select>
+                <span class="bar"></span>
+                <label translate>To:</label>
+            </div>
+
+            <div class="recipient-group compact" ng-show="!compose.hasLMT">
+                <label translate>To:</label>
+                <div class="input-ro" ng-repeat="item in compose.toList">{{item.name}}</div>
+            </div>
+
+            <div class="recipient-group" ng-show="compose.addLMT">
+                <label translate>CC:</label>
+                <div class="recipient-list">
+                    <ul class="list">
+                        <li ng-repeat="item in compose.ccList" ng-click="compose.removeCC(item)">{{item.name}}<span>x</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div ng-show="!compose.hasLMT && !compose.addLMT" class="lmt-button" ng-click="compose.addTeam()">
+                <button class="button button-blue" translate>Add Learning Team</button>
+            </div>
+
+            <div class="input-group">
+                <input type="text" name="subject" ng-model="compose.subject" placeholder="{{compose.subjectError}}"
+                       ng-class="{'form-error': send_message.subject.$invalid && send_message.submitted}" required />
+                <span class="bar"></span>
+                <label translate>Subject</label>
+            </div>
+
+            <div class="input-group">
+                <textarea name="body" ng-model="compose.body" required></textarea>
+                <span class="bar"></span>
+                <label translate>Message Text</label>
+            </div>
+
+        </form>
+    </div>
+</div>

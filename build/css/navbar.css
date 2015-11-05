@@ -1,0 +1,148 @@
+.navbar {
+    width: 100%;
+    color: #f9f9f9;
+    background-color: #5d8dc5;
+    border: none;
+    z-index: 2;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    height: 30px;
+}
+
+.navbar-title {
+    margin-top: 2px;
+    font-size: 1.5em;
+    font-weight: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.loopmail-action {
+    background-color: inherit;
+    text-align: right;
+}
+
+.nav-left {
+    width: 25px;
+    height: 30px;
+    float: left;
+    margin-left: 5px;
+    margin-top: 3px;
+}
+
+.nav-right {
+    width: 25px;
+    height: 30px;
+    float: right;
+    margin-right: 5px;
+    margin-top: 3px;
+}
+
+.nav-middle {
+    height: 30px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.navbar-mail .nav-right {
+    width: 90px;
+}
+
+.navbar-mail .nav-middle {
+    margin-left: 90px;
+}
+
+.navbar-mail.navbar-back .nav-middle {
+    margin-right: 90px !important;
+}
+
+.navbar-back .nav-middle {
+    text-align: left !important;
+    margin-left: 0 !important;
+}
+
+.navbar-back .nav-left, .navbar-back .nav-right {
+    width: 25px !important;
+}
+
+.navbar-edit .nav-left, .navbar-edit .nav-right {
+    width: 60px;
+}
+
+.icon-chevron-left {
+    margin-top: 2px !important;
+    margin-left: -6px;
+}
+
+.navbar-icon {
+    font-size: 1.2em;
+    padding: 2px 0px;
+    text-align: center;
+}
+
+.navbar-action {
+    color: #d9e9fd;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 1px;
+    padding: 3px;
+    font-size: 15px;
+}
+
+.loopmail-menu {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 100;
+    color: #f9f9f9;
+    cursor: pointer;
+}
+
+.loopmail-menu.teacher {
+    right: 50px;
+}
+
+.dropdownLink {
+    text-decoration: none;
+    background: #88aacc;
+    padding: 5px 8px;
+    font-size: 1.2em;
+    height: 30px;
+}
+
+.icon-caret-down {
+    color: #f9f9f9;
+    padding-left: 5px;
+}
+
+.dropdownMenu {
+    position: absolute;
+    right: 0;
+    top:30px;
+    z-index: 100;
+    padding: 2px;
+    background: #88aacc;
+    line-height: 2em;
+    word-spacing: 0;
+    width: 140px;
+}
+
+.dropdownMenu li {
+    font-size: 1.25em;
+    padding: 15px;
+    margin: 15px;
+    background: white;
+    color: #000000;
+    display: block;
+    text-align: center;
+}
+
+.icon-bars {
+    margin-top: 1px;
+}
+
+.loopmail-action {
+    text-align: right;
+}

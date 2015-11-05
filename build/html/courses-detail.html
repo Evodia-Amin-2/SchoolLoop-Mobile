@@ -1,0 +1,171 @@
+<div ng-controller="CourseDetailController" class="tab-content overthrow" ng-swipe-left="swipeLeft()" ng-swipe-right="swipeRight()">
+    <div ng-show="!courseInfo == true">
+        <div class="empty-list" ng-if="progress.grades.length == 0">
+            <p translate>No Grades Published</p>
+        </div>
+        <div ng-if="progress.grades.length > 0">
+            <div class="course-summary clearfix">
+                <div class="course-header">
+                    <div class="teacher">{{progress.teacher.name}}</div>
+                    <div class="date">{{progress.date|date:"MMM d, y hh:mm a" : "UTC"}}</div>
+                </div>
+                <div class="grade-info">
+                    <div class="grade">{{progress.grade}}</div>
+                    <div class="score">{{showScore()}}</div>
+                </div>
+                <div class="grade-info zero" ng-show="zeros.length > 0">
+                    <div class="grade">{{zeros.length}}</div>
+                    <div class="score" ng-show="zeros.length == 1" translate>Zero</div>
+                    <div class="score" ng-show="zeros.length > 1" translate>Zeros</div>
+                </div>
+            </div>
+            <div class="chart-holder">
+                <flot class="flot-chart" dataset="parentScope.chartData" options="parentScope.options" height="{{parentScope.chartHeight}}"></flot>
+            </div>
+            <div ng-show="loaded">
+                <div class="collapse-header clickable" ng-click="toggleAssign()">
+                    <i class="icon-chevron-down" ng-show="!assignCollapse"></i>
+                    <i class="icon-chevron-right" ng-show="assignCollapse"></i>
+                    <span translate>Curriculum</span>
+                </div>
+                <div collapse="assignCollapse" listener="update" class="course-assignments">
+                    <div ng-show="assignmentsLoaded == false" class="spinner-small"></div>
+                    <div class="empty-list" ng-show="assignmentsLoaded == true && assignments.length == 0">
+                        <p translate>No Assignments</p>
+                    </div>
+                    <ul class="list-view assignments">
+                        <li class="list-view-item" ng-repeat="item in assignments">
+                            <div class="item-content clearfix">
+                                <div class="item-row">
+                                    <div class="progress-report course-row" ng-click="showAssignment(item)">
+                                        <div>{{item.categoryName}}</div>
+                                        <div class="item-title">{{item.title}}</div>
+                                        <div class="item-subtitle">{{item.dueDate|date:medium}}</div>
+                                    </div>
+                                </div>
+                                <list-nav></list-nav>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="collapse-header clickable" ng-click="toggleZero()">
+                    <i class="icon-chevron-down" ng-show="!zeroCollapse"></i>
+                    <i class="icon-chevron-right" ng-show="zeroCollapse"></i>
+                    <span translate>Zeros</span>
+                </div>
+                <div collapse="zeroCollapse">
+                    <div class="empty-list" ng-if="zeros.length == 0">
+                        <p translate>No Zeros</p>
+                    </div>
+                    <ul class="list-view assignments">
+                        <li class="list-view-item" ng-repeat="item in zeros">
+                            <div class="item-content clearfix">
+                                <div class="item-row">
+                                    <div class="progress-report course-row" ng-click="showGradedAssignment(item)">
+                                        <div>{{item.assignment.categoryName}}</div>
+                                        <div class="item-title">{{item.assignment.title}}</div>
+                                        <div class="item-subtitle">{{item.assignment.dueDate|truncate:10|date:medium}}</div>
+                                    </div>
+                                    <div class="progress-report course-grades zero">
+                                        <div class="grade" translate>Zero</div>
+                                        <div class="score">&nbsp;</div>
+                                    </div>
+                                </div>
+                                <list-nav></list-nav>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="collapse-header clickable" ng-click="toggleScores()">
+                    <i class="icon-chevron-down" ng-show="!scoresCollapse"></i>
+                    <i class="icon-chevron-right" ng-show="scoresCollapse"></i>
+                    <span translate>Scores</span>
+                    <span class="show-course-info clickable" ng-click="showCourseInfo($event)">i</span>
+                </div>
+                <div collapse="scoresCollapse">
+                    <div class="empty-list" ng-if="progress.grades.length == 0">
+                        <p translate>No Scores</p>
+                    </div>
+                    <ul class="list-view">
+                        <li class="list-view-item" ng-repeat="item in progress.grades">
+                            <div class="item-content clearfix">
+                                <div class="item-row">
+                                    <div ng-click="showGradedAssignment(item)">
+                                        <div class="progress-report course-row">
+                                            <div>{{item.assignment.categoryName}}</div>
+                                            <div class="item-title">{{item.assignment.title}}</div>
+                                            <div class="item-subtitle">
+                                                {{item.assignment.dueDate|truncate:10|date:medium}}
+                                                <span class="seperator" ng-show="hasComment(item)">-</span>
+                                                <span class="comment" ng-show="hasComment(item)"><span class="icon-comment"></span>{{item.comment}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="progress-report course-grades" ng-class="{zero:isZero(item)}">
+                                            <div class="grade" ng-if="isExcused(item)">{{item.score|isEmpty:'&nbsp;'}}</div>
+                                            <div class="grade" ng-if="!isExcused(item) && !isZero(item)">{{calcPercent(item)}}</div>
+                                            <div class="grade" ng-show="!isExcused(item) && isZero(item)" translate>Zero</div>
+                                            <div ng-if="!isExcused(item) && !isZero(item)">{{getScore(item)|isEmpty:'&nbsp;'}}</div>
+                                            <div ng-if="isExcused(item)|| isZero(item)">&nbsp;</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <list-nav></list-nav>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="courseInfo == true" class="course-info slide-up" ng-class="{'ng-enter': courseInfo == false}">
+        <div class="course-info-holder">
+            <div class="course-info-section">
+                <h3 translate>Score by Category:</h3>
+                <table cellpadding="0" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th translate="">Category</th>
+                        <th ng-show="progress.useWeighting == 'true'" class="text-right" translate="">Weight</th>
+                        <th class="text-right" translate="">Score</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="cat in progress.categories">
+                        <td>{{cat.name}}</td>
+                        <td ng-show="progress.useWeighting == 'true'" class="info-percent">{{cat.weight|percent:2}}</td>
+                        <td class="info-percent">{{cat.score|percent:2}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div ng-show="scale.length > 0" class="course-info-section">
+                <h3 translate>Grade Scale:</h3>
+                <table cellpadding="0" cellspacing="0" width="100%">
+                    <tbody>
+                    <tr ng-repeat="grade in scale">
+                        <td><span class="grade-name">{{grade[0].name}}</span>= {{grade[0].start}}%</td>
+                        <td><div ng-show="grade[1]" ><span class="grade-name">{{grade[1].name}}</span>= {{grade[1].start}}%</div></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div ng-show="definitions.length > 0" class="course-info-section">
+                <h3 translate>Grade Legend:</h3>
+                <table cellpadding="0" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th translate="">Grade Code</th>
+                        <th translate="">Value</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="def in definitions">
+                        <td>{{def.key}}</td>
+                        <td>{{def.value}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

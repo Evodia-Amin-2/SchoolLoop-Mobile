@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.schoolloop.mobileloop.mirror" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <preference name="AllowInlineMediaPlayback" value="false" />
+    <preference name="BackupWebStorage" value="cloud" />
+    <preference name="DisallowOverscroll" value="false" />
+    <preference name="EnableViewportScale" value="false" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="true" />
+    <preference name="MediaPlaybackRequiresUserAction" value="false" />
+    <preference name="SuppressesIncrementalRendering" value="false" />
+    <preference name="GapBetweenPages" value="0" />
+    <preference name="PageLength" value="0" />
+    <preference name="PaginationBreakingMode" value="page" />
+    <preference name="PaginationMode" value="unpaginated" />
+    <feature name="LocalStorage">
+        <param name="ios-package" value="CDVLocalStorage" />
+    </feature>
+    <feature name="Console">
+        <param name="ios-package" value="CDVLogger" />
+    </feature>
+    <feature name="Device">
+        <param name="ios-package" value="CDVDevice" />
+    </feature>
+    <feature name="Notification">
+        <param name="ios-package" value="CDVNotification" />
+    </feature>
+    <feature name="Globalization">
+        <param name="ios-package" value="CDVGlobalization" />
+    </feature>
+    <feature name="InAppBrowser">
+        <param name="ios-package" value="CDVInAppBrowser" />
+    </feature>
+    <feature name="SplashScreen">
+        <param name="ios-package" value="CDVSplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="StatusBar">
+        <param name="ios-package" value="CDVStatusBar" />
+        <param name="onload" value="true" />
+    </feature>
+    <preference name="StatusBarOverlaysWebView" value="true" />
+    <preference name="StatusBarStyle" value="lightcontent" />
+    <feature name="Vibration">
+        <param name="ios-package" value="CDVVibration" />
+    </feature>
+    <feature name="GoogleAnalytics">
+        <param name="ios-package" value="GoogleAnalyticsPlugin" />
+    </feature>
+    <feature name="Keyboard">
+        <param name="ios-package" onload="true" value="IonicKeyboard" />
+    </feature>
+    <feature name="YoikScreenOrientation">
+        <param name="ios-package" value="YoikScreenOrientation" />
+    </feature>
+    <feature name="Toast">
+        <param name="ios-package" value="Toast" />
+    </feature>
+    <feature name="SpinnerDialog">
+        <param name="ios-package" value="CDVSpinnerDialog" />
+    </feature>
+    <icon height="180" src="build/images/icon/ios/icon-60@3x.png" width="180" />
+    <icon height="60" src="build/images/icon/ios/icon-60.png" width="60" />
+    <icon height="120" src="build/images/icon/ios/icon-60@2x.png" width="120" />
+    <icon height="76" src="build/images/icon/ios/icon-76.png" width="76" />
+    <icon height="152" src="build/images/icon/ios/icon-76@2x.png" width="152" />
+    <icon height="40" src="build/images/icon/ios/icon-40.png" width="40" />
+    <icon height="80" src="build/images/icon/ios/icon-40@2x.png" width="80" />
+    <icon height="57" src="build/images/icon/ios/icon.png" width="57" />
+    <icon height="114" src="build/images/icon/ios/icon@2x.png" width="114" />
+    <icon height="72" src="build/images/icon/ios/icon-72.png" width="72" />
+    <icon height="144" src="build/images/icon/ios/icon-72@2x.png" width="144" />
+    <icon height="29" src="build/images/icon/ios/icon-small.png" width="29" />
+    <icon height="58" src="build/images/icon/ios/icon-small@2x.png" width="58" />
+    <icon height="50" src="build/images/icon/ios/icon-50.png" width="50" />
+    <icon height="100" src="build/images/icon/ios/icon-50@2x.png" width="100" />
+    <splash height="480" src="build/images/splash/ios/Default~iphone.png" width="320" />
+    <splash height="960" src="build/images/splash/ios/Default@2x~iphone.png" width="640" />
+    <splash height="1024" src="build/images/splash/ios/Default-Portrait~ipad.png" width="768" />
+    <splash height="2048" src="build/images/splash/ios/Default-Portrait@2x~ipad.png" width="1536" />
+    <splash height="768" src="build/images/splash/ios/Default-Landscape~ipad.png" width="1024" />
+    <splash height="1536" src="build/images/splash/ios/Default-Landscape@2x~ipad.png" width="2048" />
+    <splash height="1136" src="build/images/splash/ios/Default-568h@2x~iphone.png" width="640" />
+    <splash height="1334" src="build/images/splash/ios/Default-667h.png" width="750" />
+    <splash height="2208" src="build/images/splash/ios/Default-736h.png" width="1242" />
+    <splash height="1242" src="build/images/splash/ios/Default-Landscape-736h.png" width="2208" />
+    <name>MobileLoop</name>
+    <description>
+        Mobile App for School Loop.
+    </description>
+    <author email="rob@schoolloop.com" href="http://www.schoolloop.com">
+        School Loop Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="*" />
+    <allow-navigation href="*" />
+    <preference name="webviewbounce" value="false" />
+    <preference name="UIWebViewBounce" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="BackupWebStorage" value="none" />
+    <preference name="SplashScreenDelay" value="7000" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="Orientation" value="default" />
+    <preference name="EnableViewportScale" value="true" />
+    <icon src="build/images/icon/default.png" />
+    <feature name="PushNotification">
+        <param name="ios-package" value="PushPlugin" />
+    </feature>
+</widget>
