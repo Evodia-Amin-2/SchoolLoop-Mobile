@@ -1,0 +1,8 @@
+{
+    "SystemConfiguration.framework": 2,
+    "CoreData.framework": 2,
+    "libsqlite3.dylib": 2,
+    "libz.dylib": 2,
+    "AudioToolbox.framework": 2,
+    "QuartzCore.framework": 1
+}

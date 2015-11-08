@@ -336,7 +336,6 @@
 				Japanese,
 				French,
 				German,
-				en,
 			);
 			mainGroup = 0867D691FE84028FC02AAC07 /* CordovaLib */;
 			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;

@@ -26,24 +26,15 @@
     <feature name="Globalization">
         <param name="ios-package" value="CDVGlobalization" />
     </feature>
-    <feature name="InAppBrowser">
-        <param name="ios-package" value="CDVInAppBrowser" />
-    </feature>
     <feature name="SplashScreen">
         <param name="ios-package" value="CDVSplashScreen" />
         <param name="onload" value="true" />
     </feature>
-    <feature name="StatusBar">
-        <param name="ios-package" value="CDVStatusBar" />
-        <param name="onload" value="true" />
-    </feature>
-    <preference name="StatusBarOverlaysWebView" value="true" />
-    <preference name="StatusBarStyle" value="lightcontent" />
     <feature name="Vibration">
         <param name="ios-package" value="CDVVibration" />
     </feature>
-    <feature name="GoogleAnalytics">
-        <param name="ios-package" value="GoogleAnalyticsPlugin" />
+    <feature name="Toast">
+        <param name="ios-package" value="Toast" />
     </feature>
     <feature name="Keyboard">
         <param name="ios-package" onload="true" value="IonicKeyboard" />
@@ -51,11 +42,23 @@
     <feature name="YoikScreenOrientation">
         <param name="ios-package" value="YoikScreenOrientation" />
     </feature>
-    <feature name="Toast">
-        <param name="ios-package" value="Toast" />
+    <feature name="GoogleAnalytics">
+        <param name="ios-package" value="GoogleAnalyticsPlugin" />
     </feature>
     <feature name="SpinnerDialog">
         <param name="ios-package" value="CDVSpinnerDialog" />
+    </feature>
+    <feature name="StatusBar">
+        <param name="ios-package" value="CDVStatusBar" />
+        <param name="onload" value="true" />
+    </feature>
+    <preference name="StatusBarOverlaysWebView" value="true" />
+    <preference name="StatusBarStyle" value="lightcontent" />
+    <feature name="InAppBrowser">
+        <param name="ios-package" value="CDVInAppBrowser" />
+    </feature>
+    <feature name="PushNotification">
+        <param name="ios-package" value="PushPlugin" />
     </feature>
     <icon height="180" src="build/images/icon/ios/icon-60@3x.png" width="180" />
     <icon height="60" src="build/images/icon/ios/icon-60.png" width="60" />
@@ -102,7 +105,4 @@
     <preference name="Orientation" value="default" />
     <preference name="EnableViewportScale" value="true" />
     <icon src="build/images/icon/default.png" />
-    <feature name="PushNotification">
-        <param name="ios-package" value="PushPlugin" />
-    </feature>
 </widget>

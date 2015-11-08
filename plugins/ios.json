@@ -4,139 +4,9 @@
         "uninstalled": []
     },
     "config_munge": {
-        "files": {
-            "config.xml": {
-                "parents": {
-                    "/*": [
-                        {
-                            "xml": "<feature name=\"Console\"><param name=\"ios-package\" value=\"CDVLogger\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"Device\"><param name=\"ios-package\" value=\"CDVDevice\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"Notification\"><param name=\"ios-package\" value=\"CDVNotification\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"Globalization\"><param name=\"ios-package\" value=\"CDVGlobalization\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"InAppBrowser\"><param name=\"ios-package\" value=\"CDVInAppBrowser\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"SplashScreen\"><param name=\"ios-package\" value=\"CDVSplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"StatusBar\"><param name=\"ios-package\" value=\"CDVStatusBar\" /><param name=\"onload\" value=\"true\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<preference name=\"StatusBarOverlaysWebView\" value=\"true\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<preference name=\"StatusBarStyle\" value=\"lightcontent\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"Vibration\"><param name=\"ios-package\" value=\"CDVVibration\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"GoogleAnalytics\"><param name=\"ios-package\" value=\"GoogleAnalyticsPlugin\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"Keyboard\"><param name=\"ios-package\" onload=\"true\" value=\"IonicKeyboard\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"YoikScreenOrientation\"><param name=\"ios-package\" value=\"YoikScreenOrientation\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"Toast\"><param name=\"ios-package\" value=\"Toast\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"SpinnerDialog\"><param name=\"ios-package\" value=\"CDVSpinnerDialog\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"PushNotification\"><param name=\"ios-package\" value=\"PushPlugin\" /></feature>",
-                            "count": 1
-                        }
-                    ]
-                }
-            },
-            "framework": {
-                "parents": {
-                    "AudioToolbox.framework": [
-                        {
-                            "xml": true,
-                            "count": 2
-                        }
-                    ],
-                    "CoreGraphics.framework": [
-                        {
-                            "xml": false,
-                            "count": 2
-                        }
-                    ],
-                    "SystemConfiguration.framework": [
-                        {
-                            "xml": false,
-                            "count": 1
-                        }
-                    ],
-                    "CoreData.framework": [
-                        {
-                            "xml": false,
-                            "count": 1
-                        }
-                    ],
-                    "libsqlite3.dylib": [
-                        {
-                            "xml": false,
-                            "count": 1
-                        }
-                    ],
-                    "libz.dylib": [
-                        {
-                            "xml": false,
-                            "count": 1
-                        }
-                    ],
-                    "QuartzCore.framework": [
-                        {
-                            "xml": false,
-                            "count": 1
-                        }
-                    ]
-                }
-            },
-            "*-Info.plist": {
-                "parents": {
-                    "UIBackgroundModes": [
-                        {
-                            "xml": "<array><string>remote-notification</string></array>",
-                            "count": 1
-                        }
-                    ]
-                }
-            }
-        }
+        "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
-        },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
@@ -149,19 +19,16 @@
         "cordova-plugin-globalization": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
-        "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
-        },
         "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
-        },
-        "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
         "cordova-plugin-vibration": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
-        "com.cmackay.plugins.googleanalytics": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
+        "cordova-plugin-x-toast": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
         "ionic-plugin-keyboard": {
@@ -170,14 +37,20 @@
         "cordova-plugin-screen-orientation": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
-        "cordova-plugin-x-toast": {
+        "com.cmackay.plugins.googleanalytics": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
         "hu.dpal.phonegap.plugins.SpinnerDialog": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
         "phonegap-plugin-push": {
-            "PACKAGE_NAME": "$(PRODUCT_BUNDLE_IDENTIFIER)"
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         }
     },
     "dependent_plugins": {}
