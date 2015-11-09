@@ -82,6 +82,12 @@
                 return text;
             };
         })
+        .filter('momentTz', function() {
+            return function (rawDate, format, timeZone) {
+                var ts = moment(new Date(Number(rawDate))).tz(timeZone);
+                return ts.format(format);
+            };
+        })
     ;
 
     function replaceLink(text, href, school, method) {

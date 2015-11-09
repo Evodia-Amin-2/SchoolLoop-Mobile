@@ -7,12 +7,12 @@
         <ul class="list-view">
             <li class="list-view-item" ng-repeat="item in assignments">
                 <div class="item-content clearfix">
-                    <div class="assignment-date" ng-class="{today:isToday(item.date)}">
+                    <div class="assignment-date" ng-class="{today:isToday(item.date, timeZone)}">
                     <span class="due-date">
                     <strong>
-                        <span ng-show="isToday(item.date)" translate>Today: </span>
-                        <span ng-show="!isToday(item.date) && isTomorrow(item.date)" translate>Tomorrow: </span>
-                        <span ng-show="!isToday(item.date) && !isTomorrow(item.date)">{{item.date|date:"EEEE: "}}</span>
+                        <span ng-show="isToday(item.date, timeZone)" translate>Today: </span>
+                        <span ng-show="!isToday(item.date, timeZone) && isTomorrow(item.date, timeZone)" translate>Tomorrow: </span>
+                        <span ng-show="!isToday(item.date, timeZone) && !isTomorrow(item.date, timeZone)">{{item.date|date:"EEEE: "}}</span>
                     </strong>{{item.date|date:"MMMM d, y"}}</span>
                     </div>
                     <ul>

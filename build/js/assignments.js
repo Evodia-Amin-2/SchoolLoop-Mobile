@@ -12,6 +12,7 @@
         navigator.analytics.sendAppView('Assignments');
 
         var assignments = dataService.list(DataType.ASSIGNMENT);
+        getTimeZone(assignments);
         $scope.assignments = groupAssignments(assignments, $scope);
 
         $scope.parentScope = $scope;
@@ -22,6 +23,7 @@
 
         $scope.pullRefresh = function() {
             return dataService.refresh(DataType.ASSIGNMENT).then(function(result) {
+                getTimeZone(result);
                 $scope.assignments = groupAssignments(result, $scope);
                 return result;
             }, function(error) {
@@ -29,12 +31,12 @@
             });
         };
 
-        $scope.isToday = function (itemDate) {
-            return isToday(itemDate);
+        $scope.isToday = function (itemDate, timeZone) {
+            return isToday(itemDate, timeZone);
         };
 
-        $scope.isTomorrow = function (itemDate) {
-            return isTomorrow(itemDate);
+        $scope.isTomorrow = function (itemDate, timeZone) {
+            return isTomorrow(itemDate, timeZone);
         };
 
         $scope.showAssignment = function (assignment) {
@@ -49,6 +51,13 @@
         $timeout(function() {
             $rootScope.$broadcast("scroll.refresh");
         }, 500);
+
+        function getTimeZone(assignments) {
+            if(assignments && assignments.length > 0) {
+                var assignment = assignments[0];
+                $scope.timeZone = assignment.timeZone;
+            }
+        }
 
     }
 
@@ -85,12 +94,12 @@
             return "-";
         };
 
-        $scope.isToday = function (itemDate) {
-            return isToday(itemDate);
+        $scope.isToday = function (itemDate, timeZone) {
+            return isToday(itemDate, timeZone);
         };
 
-        $scope.isTomorrow = function (itemDate) {
-            return isTomorrow(itemDate);
+        $scope.isTomorrow = function (itemDate, timeZone) {
+            return isTomorrow(itemDate, timeZone);
         };
 
         $scope.openURL = function (link) {
@@ -148,15 +157,30 @@
         }
     }
 
-    function isToday(dateInMillis) {
-        var today = new Date();
-        return compareDate(dateInMillis, today);
+    function isToday(source, timeZone) {
+        var sourceDate;
+        var tomorrow;
+        if(timeZone) {
+            sourceDate = moment(new Date(Number(source))).tz(timeZone);
+            tomorrow = moment().tz(timeZone).startOf('day').add(2, 'day');
+        } else {
+            sourceDate = moment(new Date(Number(source)));
+            tomorrow = moment().startOf('day').add(1, 'day');
+        }
+        return sourceDate.isBefore(tomorrow);
     }
 
-    function isTomorrow(dateInMillis) {
-        var today = new Date();
-        var tomorrow = new Date(today.getTime() + 24 * 60 * 60 * 1000);
-        return compareDate(dateInMillis, tomorrow);
+    function isTomorrow(source, timeZone) {
+        var sourceDate;
+        var dayAfter;
+        if(timeZone) {
+            sourceDate = moment(new Date(Number(source))).tz(timeZone);
+            dayAfter = moment().tz(timeZone).startOf('day').add(2, 'day');
+        } else {
+            sourceDate = moment(new Date(Number(source)));
+            dayAfter = moment().startOf('day').add(2, 'day');
+        }
+        return ! sourceDate.isBefore(dayAfter);
     }
 
     function groupAssignments(data) {
@@ -170,17 +194,5 @@
             assignments.push(object);
         }
         return assignments;
-    }
-
-    function compareDate(dateInMillis, date2) {
-        var date1 = new Date(Number(dateInMillis));
-        var d1 = dateFloor(date1);
-        var d2 = dateFloor(date2);
-        return d1.getTime() === d2.getTime();
-    }
-
-    function dateFloor(d) {
-        d.setHours(0, 0, 0, 0);
-        return d;
     }
 })();

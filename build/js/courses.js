@@ -99,6 +99,7 @@
                     $scope.progress = {};
                     $scope.progress.grades = [];
                     navbarService.setMailEnabled(false);
+                    $timeout($scope.toggleAssign);
                     return;
                 } else {
                     $scope.progress = progress;

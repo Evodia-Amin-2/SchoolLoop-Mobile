@@ -92,6 +92,7 @@
         "Scroller" : true,
         "_"         : true,
         "$"         : true,
-        "PushNotification" : true
+        "PushNotification" : true,
+        "moment"    : true
     }        // additional predefined global variables
 }

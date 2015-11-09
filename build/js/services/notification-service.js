@@ -35,7 +35,7 @@
             });
 
             pushNotification.on('error', function(e) {
-                console.log("error " + JSON.stringify(e));
+                console.log("notification error " + JSON.stringify(e));
                 // e.message
             });
         }

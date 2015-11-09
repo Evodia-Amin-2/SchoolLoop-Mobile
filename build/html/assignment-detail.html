@@ -3,9 +3,9 @@
         <div class="assignment-detail clearfix">
             <div class="course">{{assignment.courseName}}</div>
             <div class="due-date">
-                <span ng-show="isToday(assignment.dueDate)" class="today" translate>Due Today</span>
-                <span ng-show="isTomorrow(assignment.dueDate)" translate>Due Tomorrow</span>
-                <span ng-show="!isToday(assignment.dueDate) && !isTomorrow(assignment.dueDate)">{{assignment.dueDate|date:"MMM d, y"}}</span>
+                <span ng-show="isToday(assignment.dueDate, assignment.timeZone)" class="today" translate>Due Today</span>
+                <span ng-show="isTomorrow(assignment.dueDate, assignment.timeZone)" translate>Due Tomorrow</span>
+                <span ng-show="!isToday(assignment.dueDate, assignment.timeZone) && !isTomorrow(assignment)">{{assignment.dueDate | momentTz:"MMM D, YYYY":assignment.timeZone}</span>
             </div>
         </div>
         <div class="assignment-title">{{assignment.title}}</div>
@@ -30,7 +30,7 @@
         <div class="assignment-detail clearfix">
             <div class="teacher" ng-show="assignment.teacherName">{{assignment.teacherName}}</div>
             <div class="teacher" ng-show="!assignment.teacherName" translate>Teacher Unknown</div>
-            <div class="due-date"><span translate>Assigned:</span> {{assignment.assignedDate|date:"MMM d, y"}}</div>
+            <div class="due-date"><span translate>Assigned:</span> {{assignment.assignedDate| momentTz:"MMM D, YYYY":assignment.timeZone}}</div>
         </div>
     </div>
 </div>
