@@ -9,15 +9,31 @@
                 "parents": {
                     "/*": [
                         {
-                            "xml": "<feature name=\"YoikScreenOrientation\"><param name=\"android-package\" value=\"net.yoik.cordova.plugins.screenorientation.YoikScreenOrientation\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"GoogleAnalytics\"><param name=\"android-package\" value=\"com.cmackay.plugins.googleanalytics.GoogleAnalyticsPlugin\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"SpinnerDialog\"><param name=\"android-package\" value=\"hu.dpal.phonegap.plugins.SpinnerDialog\" /></feature>",
+                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Notification\"><param name=\"android-package\" value=\"org.apache.cordova.dialogs.Notification\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Globalization\"><param name=\"android-package\" value=\"org.apache.cordova.globalization.Globalization\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"YoikScreenOrientation\"><param name=\"android-package\" value=\"net.yoik.cordova.plugins.screenorientation.YoikScreenOrientation\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         },
                         {
@@ -25,7 +41,23 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
+                            "xml": "<feature name=\"Vibration\"><param name=\"android-package\" value=\"org.apache.cordova.vibration.Vibration\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Whitelist\"><param name=\"android-package\" value=\"org.apache.cordova.whitelist.WhitelistPlugin\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Toast\"><param name=\"android-package\" value=\"nl.xservices.plugins.Toast\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SpinnerDialog\"><param name=\"android-package\" value=\"hu.dpal.phonegap.plugins.SpinnerDialog\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Keyboard\"><param name=\"android-package\" value=\"io.ionic.keyboard.IonicKeyboard\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         },
                         {
@@ -37,33 +69,13 @@
             },
             "AndroidManifest.xml": {
                 "parents": {
-                    "/manifest": [
+                    "/*": [
                         {
                             "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
                             "count": 1
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.WAKE_LOCK\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.VIBRATE\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"com.google.android.c2dm.permission.RECEIVE\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<permission android:name=\"com.schoolloop.mobileloop.mirror.permission.C2D_MESSAGE\" android:protectionLevel=\"signature\" />",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"com.schoolloop.mobileloop.mirror.permission.C2D_MESSAGE\" />",
                             "count": 1
                         }
                     ],
@@ -105,13 +117,33 @@
                             "count": 1
                         }
                     ],
-                    "/*": [
+                    "/manifest": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.VIBRATE\" />",
+                            "count": 2
+                        },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.INTERNET\" />",
                             "count": 1
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WAKE_LOCK\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"com.google.android.c2dm.permission.RECEIVE\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<permission android:name=\"com.schoolloop.mobileloop.mirror.permission.C2D_MESSAGE\" android:protectionLevel=\"signature\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"com.schoolloop.mobileloop.mirror.permission.C2D_MESSAGE\" />",
                             "count": 1
                         }
                     ]
@@ -120,19 +152,46 @@
         }
     },
     "installed_plugins": {
-        "cordova-plugin-screen-orientation": {
-            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
-        },
         "com.cmackay.plugins.googleanalytics": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
-        "hu.dpal.phonegap.plugins.SpinnerDialog": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
+        "cordova-plugin-globalization": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
+        "cordova-plugin-screen-orientation": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
+        "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
-        "cordova-plugin-inappbrowser": {
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
+        "hu.dpal.phonegap.plugins.SpinnerDialog": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
+        "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
         "phonegap-plugin-push": {
@@ -141,6 +200,79 @@
     },
     "dependent_plugins": {},
     "modules": [
+        {
+            "file": "plugins/com.cmackay.plugins.googleanalytics/www/analytics.js",
+            "id": "com.cmackay.plugins.googleanalytics.GoogleAnalytics",
+            "pluginId": "com.cmackay.plugins.googleanalytics",
+            "clobbers": [
+                "navigator.analytics"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-console/www/logger.js",
+            "id": "cordova-plugin-console.logger",
+            "pluginId": "cordova-plugin-console",
+            "clobbers": [
+                "cordova.logger"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-console/www/console-via-logger.js",
+            "id": "cordova-plugin-console.console",
+            "pluginId": "cordova-plugin-console",
+            "clobbers": [
+                "console"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-device/www/device.js",
+            "id": "cordova-plugin-device.device",
+            "pluginId": "cordova-plugin-device",
+            "clobbers": [
+                "device"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+            "id": "cordova-plugin-dialogs.notification",
+            "pluginId": "cordova-plugin-dialogs",
+            "merges": [
+                "navigator.notification"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
+            "id": "cordova-plugin-dialogs.notification_android",
+            "pluginId": "cordova-plugin-dialogs",
+            "merges": [
+                "navigator.notification"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-globalization/www/GlobalizationError.js",
+            "id": "cordova-plugin-globalization.GlobalizationError",
+            "pluginId": "cordova-plugin-globalization",
+            "clobbers": [
+                "window.GlobalizationError"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-globalization/www/globalization.js",
+            "id": "cordova-plugin-globalization.globalization",
+            "pluginId": "cordova-plugin-globalization",
+            "clobbers": [
+                "navigator.globalization"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+            "id": "cordova-plugin-inappbrowser.inappbrowser",
+            "pluginId": "cordova-plugin-inappbrowser",
+            "clobbers": [
+                "cordova.InAppBrowser.open",
+                "window.open"
+            ]
+        },
         {
             "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
             "id": "cordova-plugin-screen-orientation.screenorientation",
@@ -158,19 +290,11 @@
             ]
         },
         {
-            "file": "plugins/com.cmackay.plugins.googleanalytics/www/analytics.js",
-            "id": "com.cmackay.plugins.googleanalytics.GoogleAnalytics",
-            "pluginId": "com.cmackay.plugins.googleanalytics",
+            "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+            "id": "cordova-plugin-splashscreen.SplashScreen",
+            "pluginId": "cordova-plugin-splashscreen",
             "clobbers": [
-                "navigator.analytics"
-            ]
-        },
-        {
-            "file": "plugins/hu.dpal.phonegap.plugins.SpinnerDialog/www/spinner.js",
-            "id": "hu.dpal.phonegap.plugins.SpinnerDialog.SpinnerDialog",
-            "pluginId": "hu.dpal.phonegap.plugins.SpinnerDialog",
-            "merges": [
-                "window.plugins.spinnerDialog"
+                "navigator.splashscreen"
             ]
         },
         {
@@ -182,13 +306,49 @@
             ]
         },
         {
-            "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
-            "id": "cordova-plugin-inappbrowser.inappbrowser",
-            "pluginId": "cordova-plugin-inappbrowser",
-            "clobbers": [
-                "cordova.InAppBrowser.open",
-                "window.open"
+            "file": "plugins/cordova-plugin-vibration/www/vibration.js",
+            "id": "cordova-plugin-vibration.notification",
+            "pluginId": "cordova-plugin-vibration",
+            "merges": [
+                "navigator.notification",
+                "navigator"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-whitelist/whitelist.js",
+            "id": "cordova-plugin-whitelist.whitelist",
+            "pluginId": "cordova-plugin-whitelist",
+            "runs": true
+        },
+        {
+            "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
+            "id": "cordova-plugin-x-toast.Toast",
+            "pluginId": "cordova-plugin-x-toast",
+            "clobbers": [
+                "window.plugins.toast"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-x-toast/test/tests.js",
+            "id": "cordova-plugin-x-toast.tests",
+            "pluginId": "cordova-plugin-x-toast"
+        },
+        {
+            "file": "plugins/hu.dpal.phonegap.plugins.SpinnerDialog/www/spinner.js",
+            "id": "hu.dpal.phonegap.plugins.SpinnerDialog.SpinnerDialog",
+            "pluginId": "hu.dpal.phonegap.plugins.SpinnerDialog",
+            "merges": [
+                "window.plugins.spinnerDialog"
+            ]
+        },
+        {
+            "file": "plugins/ionic-plugin-keyboard/www/android/keyboard.js",
+            "id": "ionic-plugin-keyboard.keyboard",
+            "pluginId": "ionic-plugin-keyboard",
+            "clobbers": [
+                "cordova.plugins.Keyboard"
+            ],
+            "runs": true
         },
         {
             "file": "plugins/phonegap-plugin-push/www/push.js",

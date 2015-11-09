@@ -9,6 +9,10 @@
                 "parents": {
                     "/*": [
                         {
+                            "xml": "<feature name=\"SpinnerDialog\"><param name=\"ios-package\" value=\"CDVSpinnerDialog\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"Console\"><param name=\"ios-package\" value=\"CDVLogger\" /></feature>",
                             "count": 1
                         },
@@ -33,7 +37,7 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Toast\"><param name=\"ios-package\" value=\"Toast\" /></feature>",
+                            "xml": "<feature name=\"GoogleAnalytics\"><param name=\"ios-package\" value=\"GoogleAnalyticsPlugin\" /></feature>",
                             "count": 1
                         },
                         {
@@ -41,15 +45,15 @@
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"PushNotification\"><param name=\"ios-package\" value=\"PushPlugin\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"YoikScreenOrientation\"><param name=\"ios-package\" value=\"YoikScreenOrientation\" /></feature>",
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"GoogleAnalytics\"><param name=\"ios-package\" value=\"GoogleAnalyticsPlugin\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"SpinnerDialog\"><param name=\"ios-package\" value=\"CDVSpinnerDialog\" /></feature>",
+                            "xml": "<feature name=\"Toast\"><param name=\"ios-package\" value=\"Toast\" /></feature>",
                             "count": 1
                         },
                         {
@@ -66,10 +70,6 @@
                         },
                         {
                             "xml": "<feature name=\"InAppBrowser\"><param name=\"ios-package\" value=\"CDVInAppBrowser\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"PushNotification\"><param name=\"ios-package\" value=\"PushPlugin\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -88,6 +88,12 @@
         }
     },
     "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
+        "hu.dpal.phonegap.plugins.SpinnerDialog": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
@@ -106,22 +112,19 @@
         "cordova-plugin-vibration": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
-        },
-        "cordova-plugin-x-toast": {
+        "com.cmackay.plugins.googleanalytics": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
+        "phonegap-plugin-push": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
         "cordova-plugin-screen-orientation": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
-        "com.cmackay.plugins.googleanalytics": {
-            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
-        },
-        "hu.dpal.phonegap.plugins.SpinnerDialog": {
+        "cordova-plugin-x-toast": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
         "cordova-plugin-statusbar": {
@@ -129,13 +132,18 @@
         },
         "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
-        },
-        "phonegap-plugin-push": {
-            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         }
     },
     "dependent_plugins": {},
     "modules": [
+        {
+            "file": "plugins/hu.dpal.phonegap.plugins.SpinnerDialog/www/spinner.js",
+            "id": "hu.dpal.phonegap.plugins.SpinnerDialog.SpinnerDialog",
+            "pluginId": "hu.dpal.phonegap.plugins.SpinnerDialog",
+            "merges": [
+                "window.plugins.spinnerDialog"
+            ]
+        },
         {
             "file": "plugins/cordova-plugin-console/www/logger.js",
             "id": "cordova-plugin-console.logger",
@@ -202,17 +210,12 @@
             ]
         },
         {
-            "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
-            "id": "cordova-plugin-x-toast.Toast",
-            "pluginId": "cordova-plugin-x-toast",
+            "file": "plugins/com.cmackay.plugins.googleanalytics/www/analytics.js",
+            "id": "com.cmackay.plugins.googleanalytics.GoogleAnalytics",
+            "pluginId": "com.cmackay.plugins.googleanalytics",
             "clobbers": [
-                "window.plugins.toast"
+                "navigator.analytics"
             ]
-        },
-        {
-            "file": "plugins/cordova-plugin-x-toast/test/tests.js",
-            "id": "cordova-plugin-x-toast.tests",
-            "pluginId": "cordova-plugin-x-toast"
         },
         {
             "file": "plugins/ionic-plugin-keyboard/www/ios/keyboard.js",
@@ -222,6 +225,14 @@
                 "cordova.plugins.Keyboard"
             ],
             "runs": true
+        },
+        {
+            "file": "plugins/phonegap-plugin-push/www/push.js",
+            "id": "phonegap-plugin-push.PushNotification",
+            "pluginId": "phonegap-plugin-push",
+            "clobbers": [
+                "PushNotification"
+            ]
         },
         {
             "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
@@ -240,20 +251,17 @@
             ]
         },
         {
-            "file": "plugins/com.cmackay.plugins.googleanalytics/www/analytics.js",
-            "id": "com.cmackay.plugins.googleanalytics.GoogleAnalytics",
-            "pluginId": "com.cmackay.plugins.googleanalytics",
+            "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
+            "id": "cordova-plugin-x-toast.Toast",
+            "pluginId": "cordova-plugin-x-toast",
             "clobbers": [
-                "navigator.analytics"
+                "window.plugins.toast"
             ]
         },
         {
-            "file": "plugins/hu.dpal.phonegap.plugins.SpinnerDialog/www/spinner.js",
-            "id": "hu.dpal.phonegap.plugins.SpinnerDialog.SpinnerDialog",
-            "pluginId": "hu.dpal.phonegap.plugins.SpinnerDialog",
-            "merges": [
-                "window.plugins.spinnerDialog"
-            ]
+            "file": "plugins/cordova-plugin-x-toast/test/tests.js",
+            "id": "cordova-plugin-x-toast.tests",
+            "pluginId": "cordova-plugin-x-toast"
         },
         {
             "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
@@ -270,14 +278,6 @@
             "clobbers": [
                 "cordova.InAppBrowser.open",
                 "window.open"
-            ]
-        },
-        {
-            "file": "plugins/phonegap-plugin-push/www/push.js",
-            "id": "phonegap-plugin-push.PushNotification",
-            "pluginId": "phonegap-plugin-push",
-            "clobbers": [
-                "PushNotification"
             ]
         }
     ]

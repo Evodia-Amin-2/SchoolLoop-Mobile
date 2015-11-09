@@ -7,6 +7,12 @@
         "files": {}
     },
     "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
+        "hu.dpal.phonegap.plugins.SpinnerDialog": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
@@ -25,31 +31,25 @@
         "cordova-plugin-vibration": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
-        },
-        "cordova-plugin-x-toast": {
+        "com.cmackay.plugins.googleanalytics": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
+        "phonegap-plugin-push": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
         "cordova-plugin-screen-orientation": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
-        "com.cmackay.plugins.googleanalytics": {
-            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
-        },
-        "hu.dpal.phonegap.plugins.SpinnerDialog": {
+        "cordova-plugin-x-toast": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
         "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
-        },
-        "phonegap-plugin-push": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         }
     },

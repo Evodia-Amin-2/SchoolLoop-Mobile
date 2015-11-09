@@ -1,6 +1,14 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
+        "file": "plugins/hu.dpal.phonegap.plugins.SpinnerDialog/www/spinner.js",
+        "id": "hu.dpal.phonegap.plugins.SpinnerDialog.SpinnerDialog",
+        "pluginId": "hu.dpal.phonegap.plugins.SpinnerDialog",
+        "merges": [
+            "window.plugins.spinnerDialog"
+        ]
+    },
+    {
         "file": "plugins/cordova-plugin-console/www/logger.js",
         "id": "cordova-plugin-console.logger",
         "pluginId": "cordova-plugin-console",
@@ -66,17 +74,12 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
-        "id": "cordova-plugin-x-toast.Toast",
-        "pluginId": "cordova-plugin-x-toast",
+        "file": "plugins/com.cmackay.plugins.googleanalytics/www/analytics.js",
+        "id": "com.cmackay.plugins.googleanalytics.GoogleAnalytics",
+        "pluginId": "com.cmackay.plugins.googleanalytics",
         "clobbers": [
-            "window.plugins.toast"
+            "navigator.analytics"
         ]
-    },
-    {
-        "file": "plugins/cordova-plugin-x-toast/test/tests.js",
-        "id": "cordova-plugin-x-toast.tests",
-        "pluginId": "cordova-plugin-x-toast"
     },
     {
         "file": "plugins/ionic-plugin-keyboard/www/ios/keyboard.js",
@@ -86,6 +89,14 @@ module.exports = [
             "cordova.plugins.Keyboard"
         ],
         "runs": true
+    },
+    {
+        "file": "plugins/phonegap-plugin-push/www/push.js",
+        "id": "phonegap-plugin-push.PushNotification",
+        "pluginId": "phonegap-plugin-push",
+        "clobbers": [
+            "PushNotification"
+        ]
     },
     {
         "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
@@ -104,20 +115,17 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/com.cmackay.plugins.googleanalytics/www/analytics.js",
-        "id": "com.cmackay.plugins.googleanalytics.GoogleAnalytics",
-        "pluginId": "com.cmackay.plugins.googleanalytics",
+        "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
+        "id": "cordova-plugin-x-toast.Toast",
+        "pluginId": "cordova-plugin-x-toast",
         "clobbers": [
-            "navigator.analytics"
+            "window.plugins.toast"
         ]
     },
     {
-        "file": "plugins/hu.dpal.phonegap.plugins.SpinnerDialog/www/spinner.js",
-        "id": "hu.dpal.phonegap.plugins.SpinnerDialog.SpinnerDialog",
-        "pluginId": "hu.dpal.phonegap.plugins.SpinnerDialog",
-        "merges": [
-            "window.plugins.spinnerDialog"
-        ]
+        "file": "plugins/cordova-plugin-x-toast/test/tests.js",
+        "id": "cordova-plugin-x-toast.tests",
+        "pluginId": "cordova-plugin-x-toast"
     },
     {
         "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
@@ -134,14 +142,6 @@ module.exports = [
         "clobbers": [
             "cordova.InAppBrowser.open",
             "window.open"
-        ]
-    },
-    {
-        "file": "plugins/phonegap-plugin-push/www/push.js",
-        "id": "phonegap-plugin-push.PushNotification",
-        "pluginId": "phonegap-plugin-push",
-        "clobbers": [
-            "PushNotification"
         ]
     }
 ];

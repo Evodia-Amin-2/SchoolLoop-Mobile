@@ -1,6 +1,14 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
+        "file": "plugins/hu.dpal.phonegap.plugins.SpinnerDialog/www/spinner.js",
+        "id": "hu.dpal.phonegap.plugins.SpinnerDialog.SpinnerDialog",
+        "pluginId": "hu.dpal.phonegap.plugins.SpinnerDialog",
+        "merges": [
+            "window.plugins.spinnerDialog"
+        ]
+    },
+    {
         "file": "plugins/cordova-plugin-console/www/logger.js",
         "id": "cordova-plugin-console.logger",
         "pluginId": "cordova-plugin-console",
@@ -98,6 +106,30 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/com.cmackay.plugins.googleanalytics/www/analytics.js",
+        "id": "com.cmackay.plugins.googleanalytics.GoogleAnalytics",
+        "pluginId": "com.cmackay.plugins.googleanalytics",
+        "clobbers": [
+            "navigator.analytics"
+        ]
+    },
+    {
+        "file": "plugins/phonegap-plugin-push/www/push.js",
+        "id": "phonegap-plugin-push.PushNotification",
+        "pluginId": "phonegap-plugin-push",
+        "clobbers": [
+            "PushNotification"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
+        "id": "cordova-plugin-screen-orientation.screenorientation",
+        "pluginId": "cordova-plugin-screen-orientation",
+        "clobbers": [
+            "cordova.plugins.screenorientation"
+        ]
+    },
+    {
         "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
         "id": "cordova-plugin-x-toast.Toast",
         "pluginId": "cordova-plugin-x-toast",
@@ -109,30 +141,6 @@ module.exports = [
         "file": "plugins/cordova-plugin-x-toast/test/tests.js",
         "id": "cordova-plugin-x-toast.tests",
         "pluginId": "cordova-plugin-x-toast"
-    },
-    {
-        "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
-        "id": "cordova-plugin-screen-orientation.screenorientation",
-        "pluginId": "cordova-plugin-screen-orientation",
-        "clobbers": [
-            "cordova.plugins.screenorientation"
-        ]
-    },
-    {
-        "file": "plugins/com.cmackay.plugins.googleanalytics/www/analytics.js",
-        "id": "com.cmackay.plugins.googleanalytics.GoogleAnalytics",
-        "pluginId": "com.cmackay.plugins.googleanalytics",
-        "clobbers": [
-            "navigator.analytics"
-        ]
-    },
-    {
-        "file": "plugins/hu.dpal.phonegap.plugins.SpinnerDialog/www/spinner.js",
-        "id": "hu.dpal.phonegap.plugins.SpinnerDialog.SpinnerDialog",
-        "pluginId": "hu.dpal.phonegap.plugins.SpinnerDialog",
-        "merges": [
-            "window.plugins.spinnerDialog"
-        ]
     },
     {
         "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
@@ -165,14 +173,6 @@ module.exports = [
         "pluginId": "cordova-plugin-inappbrowser",
         "merges": [
             ""
-        ]
-    },
-    {
-        "file": "plugins/phonegap-plugin-push/www/push.js",
-        "id": "phonegap-plugin-push.PushNotification",
-        "pluginId": "phonegap-plugin-push",
-        "clobbers": [
-            "PushNotification"
         ]
     }
 ];

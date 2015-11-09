@@ -162,10 +162,10 @@
         var tomorrow;
         if(timeZone) {
             sourceDate = moment(new Date(Number(source))).tz(timeZone);
-            tomorrow = moment().tz(timeZone).startOf('day').add(2, 'day');
+            tomorrow = sourceDate.startOf('day').add(2, 'day');
         } else {
             sourceDate = moment(new Date(Number(source)));
-            tomorrow = moment().startOf('day').add(1, 'day');
+            tomorrow = sourceDate.add(2, 'day');
         }
         return sourceDate.isBefore(tomorrow);
     }
@@ -175,10 +175,10 @@
         var dayAfter;
         if(timeZone) {
             sourceDate = moment(new Date(Number(source))).tz(timeZone);
-            dayAfter = moment().tz(timeZone).startOf('day').add(2, 'day');
+            dayAfter = sourceDate.add(3, 'day');
         } else {
             sourceDate = moment(new Date(Number(source)));
-            dayAfter = moment().startOf('day').add(2, 'day');
+            dayAfter = sourceDate.add(3, 'day');
         }
         return ! sourceDate.isBefore(dayAfter);
     }
