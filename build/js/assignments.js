@@ -162,12 +162,13 @@
         var tomorrow;
         if(timeZone) {
             sourceDate = moment(new Date(Number(source))).tz(timeZone);
-            tomorrow = sourceDate.startOf('day').add(2, 'day');
+            tomorrow = moment().startOf('day').tz(timeZone);
         } else {
             sourceDate = moment(new Date(Number(source)));
-            tomorrow = sourceDate.add(2, 'day');
+            tomorrow = moment().startOf('day');
         }
-        return sourceDate.isBefore(tomorrow);
+        tomorrow.add(1, 'days');
+        return ! sourceDate.isAfter(tomorrow, 'days');
     }
 
     function isTomorrow(source, timeZone) {
@@ -175,12 +176,13 @@
         var dayAfter;
         if(timeZone) {
             sourceDate = moment(new Date(Number(source))).tz(timeZone);
-            dayAfter = sourceDate.add(3, 'day');
+            dayAfter = moment().startOf('day').tz(timeZone);
         } else {
             sourceDate = moment(new Date(Number(source)));
-            dayAfter = sourceDate.add(3, 'day');
+            dayAfter = moment().startOf('day');
         }
-        return ! sourceDate.isBefore(dayAfter);
+        dayAfter.add(2, 'days');
+        return ! isToday(source, timeZone) && ! sourceDate.isAfter(dayAfter);
     }
 
     function groupAssignments(data) {
