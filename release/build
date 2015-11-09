@@ -14,6 +14,7 @@ VERSION=$3
 BUILD=$4
 RELEASE=$5
 
+rm -rf tmp/*.js
 npm install
 bower install
 gulp --app-version "${VERSION}" --app-release "${RELEASE}" --config "${1}"
@@ -31,7 +32,7 @@ sed -i '' "s/\$(BUILD_VERSION)/${BUILD}/g" platforms/ios/MobileLoop/*-Info.plist
 sed -i '' "s/\$(VERSION_NUMBER)/${VERSION}/g" platforms/ios/MobileLoop/*-Info.plist
 echo "Setting app name: ${APP_NAME}"
 chmod +w platforms/android/res/values/strings.xml
-sed -i '' "s/\"launcher_name\">Mirror Loop/\"launcher_name\">${APP_NAME}/g" platforms/android/res/values/strings.xml
+sed -i '' "s/\"launcher_name\">MobileLoop/\"launcher_name\">${APP_NAME}/g" platforms/android/res/values/strings.xml
 sed -i '' "s/com.schoolloop.mobileloop.mirror/com.schoolloop.mobileloop.${ID}/g" platforms/android/AndroidManifest.xml
 sed -i '' "s/com.schoolloop.mobileloop.mirror/com.schoolloop.mobileloop.${ID}/g" plugins/android.json
 sed -i '' "s/com.schoolloop.mobileloop.mirror/com.schoolloop.mobileloop.${ID}/g" plugins/browser.json
