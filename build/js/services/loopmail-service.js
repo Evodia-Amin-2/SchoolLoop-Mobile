@@ -13,6 +13,7 @@
         var paused = false;
         var timer = null;
         var retryIndex = 0;
+        var recipients;
 
         $rootScope.$on('hardware.pause', function() {
             console.log("LoopmailService: pause");
@@ -108,6 +109,12 @@
             "start": function() {
                 console.log("Starting loopmail service: " + new Date());
                 timer = $timeout(retry, RETRY_INTERVAL_FAST);
+            },
+            "setRecipients": function(users) {
+                recipients = users;
+            },
+            "getRecipients": function() {
+                return recipients;
             }
         };
     }

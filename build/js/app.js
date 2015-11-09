@@ -108,7 +108,7 @@
                     .state('main.tabs.directory', { url: "/directory", templateUrl: "directory.html" })
                     .state('main.tabs.news', { url: "/news", templateUrl: "news.html" })
                     .state('main.tabs.news-detail', { url: "/news/detail/{newsId}", templateUrl: "news-detail.html" })
-                    .state('main.compose', { url: "/compose/{name}/{id}", templateUrl: "compose.html" })
+                    .state('main.compose', { url: "/compose", templateUrl: "compose.html" })
                     .state('main.reply', { url: "/reply/{loopmailId}/{replyAll}", templateUrl: "reply.html" })
                     .state('main.addstudent', { url: "/addstudent", templateUrl: "add-student.html" })
                     .state('unverified', { url: "/unverified", templateUrl: "unverified.html" })

@@ -9,9 +9,6 @@
         function ComposeController($scope, $window, $q, $timeout, navbarService, dataService, loopmailService, storageService, $stateParams, gettextCatalog) {
             var compose = this;
 
-            var id = $stateParams.id;
-            var name = $stateParams.name;
-
             navbarService.reset();
             navbarService.setEditMode(true);
             navbarService.setSendEnabled(true);
@@ -28,7 +25,8 @@
             $scope.multipleDemo = {};
             $scope.multipleDemo.selectedPeopleSimple = [];
 
-            if(id < 0) { // not a detail page - load learning team
+            var recipients = loopmailService.getRecipients();
+            if(!recipients) { // not a detail page - load learning team
                 if(isTeacher()) {
                     compose.isTeacher = true;
                     compose.hasLMT = true;
@@ -41,7 +39,7 @@
                     });
                 }
             } else {
-                compose.toList.push({name: name, id: id});
+                compose.toList = recipients;
             }
 
             compose.searchContacts = function(search) {

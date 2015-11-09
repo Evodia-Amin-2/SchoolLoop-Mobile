@@ -2,12 +2,12 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('CoursesController', ['$scope', '$state', 'DataService', 'DataType', 'StorageService', 'StatusService', 'NavbarService', CoursesController])
+        .controller('CoursesController', ['$scope', '$state', 'DataService', 'DataType', 'StorageService', 'StatusService', 'NavbarService', 'LoopmailService', CoursesController])
         .controller('CourseDetailController', ['$rootScope', '$scope', '$window', '$timeout', '$filter', '$state', '$stateParams',
-            'DataService', 'StatusService', 'NavbarService', 'gettextCatalog', CourseDetailController])
+            'DataService', 'StatusService', 'NavbarService', 'LoopmailService', 'gettextCatalog', CourseDetailController])
     ;
 
-    function CoursesController($scope, $state, dataService, DataType, storageService, statusService, navbarService) {
+    function CoursesController($scope, $state, dataService, DataType, storageService, statusService, navbarService, loopmailService) {
 
         navigator.analytics.sendAppView('Courses');
 
@@ -43,12 +43,13 @@
         };
 
         $scope.$on("menu.loopmail", function() {
-            $state.go("main.compose", {id: -1, name: undefined});
+            loopmailService.setRecipients(undefined);
+            $state.go("main.compose");
         });
     }
 
     function CourseDetailController($rootScope, $scope, $window, $timeout, $filter, $state, $stateParams,
-                                    dataService, statusService, navbarService, gettextCatalog) {
+                                    dataService, statusService, navbarService, loopmailService, gettextCatalog) {
         var periodID;
 
         $scope.loaded = false;
@@ -363,7 +364,12 @@
 
         $scope.$on("menu.loopmail", function() {
             var teacher = $scope.progress.teacher;
-            $state.go("main.compose", {name: teacher.name, id: teacher.systemID});
+            var coTeacher = $scope.progress.coTeacher;
+            var recipients = [];
+            recipients.push({name: teacher.name, id: teacher.systemID});
+            recipients.push({name: coTeacher.name, id: coTeacher.systemID});
+            loopmailService.setRecipients(recipients);
+            $state.go("main.compose");
         });
     }
 

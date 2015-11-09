@@ -2,12 +2,12 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('AssignmentsController', ['$rootScope', '$scope', '$state', '$timeout', 'NavbarService', 'DataService', 'DataType', 'gettextCatalog', AssignmentsController])
+        .controller('AssignmentsController', ['$rootScope', '$scope', '$state', '$timeout', 'NavbarService', 'LoopmailService', 'DataService', 'DataType', 'gettextCatalog', AssignmentsController])
         .controller('AssignmentDetailController', ['$scope', '$window', '$state', '$stateParams', '$sce', '$filter', 'StorageService',
-                                                    'StatusService', 'DataService', 'DataType', 'NavbarService', AssignmentDetailController])
+                                                    'StatusService', 'LoopmailService', 'DataService', 'DataType', 'NavbarService', AssignmentDetailController])
     ;
 
-    function AssignmentsController($rootScope, $scope, $state, $timeout, navbarService, dataService, DataType, gettextCatalog) {
+    function AssignmentsController($rootScope, $scope, $state, $timeout, navbarService, loopmailService, dataService, DataType, gettextCatalog) {
 
         navigator.analytics.sendAppView('Assignments');
 
@@ -42,7 +42,8 @@
         };
 
         $scope.$on("menu.loopmail", function() {
-            $state.go("main.compose", {id: -1, name: undefined});
+            loopmailService.setRecipients(undefined);
+            $state.go("main.compose");
         });
 
         $timeout(function() {
@@ -51,7 +52,8 @@
 
     }
 
-    function AssignmentDetailController($scope, $window, $state, $stateParams, $sce, $filter, storageService, statusService, dataService, DataType, navbarService) {
+    function AssignmentDetailController($scope, $window, $state, $stateParams, $sce, $filter, storageService, statusService,
+                                        loopmailService, dataService, DataType, navbarService) {
         navbarService.reset();
         navbarService.setBackEnabled(true);
         navbarService.setMailEnabled(true);
@@ -122,7 +124,11 @@
         };
 
         $scope.$on("menu.loopmail", function() {
-            $state.go("main.compose", {name: $scope.assignment.teacherName, id: $scope.assignment.teacherID});
+            var recipients = [];
+            recipients.push({name: $scope.assignment.teacherName, id: $scope.assignment.teacherID});
+            recipients.push({name: $scope.assignment.coTeacherName, id: $scope.assignment.coTeacherID});
+            loopmailService.setRecipients(recipients);
+            $state.go("main.compose");
         });
 
         function setAssignment(assignment) {

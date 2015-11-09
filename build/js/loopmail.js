@@ -2,12 +2,14 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('LoopMailController', ['$rootScope', '$scope', '$timeout', '$state', 'DataService', 'DataType', 'StatusService', 'StorageService', 'NavbarService', 'gettextCatalog', LoopMailController])
+        .controller('LoopMailController', ['$rootScope', '$scope', '$timeout', '$state', 'DataService', 'DataType', 'StatusService',
+            'LoopmailService', 'StorageService', 'NavbarService', 'gettextCatalog', LoopMailController])
         .controller('LoopMailDetailController', ['$rootScope', '$scope', '$window', '$state', '$stateParams', '$sce', 'StorageService',
             'DataService', 'DataType', 'StatusService', 'NavbarService', 'gettextCatalog', LoopMailDetailController])
     ;
 
-    function LoopMailController($rootScope, $scope, $timeout, $state, dataService, DataType, statusService, storageService, navbarService, gettextCatalog) {
+    function LoopMailController($rootScope, $scope, $timeout, $state, dataService, DataType, statusService,
+                                loopmailService, storageService, navbarService, gettextCatalog) {
 
         navigator.analytics.sendAppView('LoopMail');
 
@@ -128,7 +130,8 @@
         });
 
         $scope.$on("menu.loopmail", function() {
-            $state.go("main.compose", {id: -1, name: undefined});
+            loopmailService.setRecipients(undefined);
+            $state.go("main.compose");
         });
 
         $scope.$on("menu.dropdown", function(event, data) {

@@ -6,7 +6,7 @@
         <div ng-if="progress.grades.length > 0">
             <div class="course-summary clearfix">
                 <div class="course-header">
-                    <div class="teacher">{{progress.teacher.name}}</div>
+                    <div class="teacher">{{progress.teacher.name}}<span ng-show="progress.coTeacher"><span class="seperator"> - </span>{{progress.coTeacher.name}}</span></div>
                     <div class="date">{{progress.date|date:"MMM d, y hh:mm a" : "UTC"}}</div>
                 </div>
                 <div class="grade-info">
