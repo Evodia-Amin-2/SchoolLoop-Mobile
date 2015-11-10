@@ -12,8 +12,8 @@
                     <strong>
                         <span ng-show="isToday(item.date, timeZone)" translate>Today: </span>
                         <span ng-show="!isToday(item.date, timeZone) && isTomorrow(item.date, timeZone)" translate>Tomorrow: </span>
-                        <span ng-show="!isToday(item.date, timeZone) && !isTomorrow(item.date, timeZone)">{{item.date|date:"EEEE: "}}</span>
-                    </strong>{{item.date|date:"MMMM d, y"}}</span>
+                        <span ng-show="!isToday(item.date, timeZone) && !isTomorrow(item.date, timeZone)">{{item.date | momentTz:"dddd":timeZone}}</span>
+                    </strong>{{item.date | momentTz:"MMM D, YYYY":timeZone}}</span>
                     </div>
                     <ul>
                         <li ng-repeat="assignment in item.list" class="sublist-view-item clearfix" ng-click="showAssignment(assignment)">

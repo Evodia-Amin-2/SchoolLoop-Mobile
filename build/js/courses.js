@@ -211,6 +211,9 @@
         }
 
         $scope.calcPercent = function (item) {
+            if($scope.isExtraCredit(item)) {
+                return "";
+            }
             if (isNaN(item.score)) {
                 var defs = $scope.progress.gradeDefinitions;
                 for (var i = 0, len = defs.length; i < len; i++) {
@@ -246,9 +249,17 @@
             return item.zero === "true";
         };
 
+        $scope.isExtraCredit = function (item) {
+            return item.assignment.categoryName === "Extra Credit";
+        };
+
         $scope.getScore = function (item) {
             if (item.score !== 'null') {
-                return  item.score + "/" + item.assignment.maxPoints;
+                if($scope.isExtraCredit(item)) {
+                    return  item.score;
+                } else {
+                    return  item.score + "/" + item.assignment.maxPoints;
+                }
             } else {
                 return "null";
             }

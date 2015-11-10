@@ -159,30 +159,29 @@
 
     function isToday(source, timeZone) {
         var sourceDate;
-        var tomorrow;
+        var today;
         if(timeZone) {
             sourceDate = moment(new Date(Number(source))).tz(timeZone);
-            tomorrow = moment().startOf('day').tz(timeZone);
+            today = moment().tz(timeZone);
         } else {
             sourceDate = moment(new Date(Number(source)));
-            tomorrow = moment().startOf('day');
+            today = moment();
         }
-        tomorrow.add(1, 'days');
-        return ! sourceDate.isAfter(tomorrow, 'days');
+        return sourceDate.isSame(today, 'day');
     }
 
     function isTomorrow(source, timeZone) {
         var sourceDate;
-        var dayAfter;
+        var tomorrow;
         if(timeZone) {
             sourceDate = moment(new Date(Number(source))).tz(timeZone);
-            dayAfter = moment().startOf('day').tz(timeZone);
+            tomorrow = moment().tz(timeZone);
         } else {
             sourceDate = moment(new Date(Number(source)));
-            dayAfter = moment().startOf('day');
+            tomorrow = moment();
         }
-        dayAfter.add(2, 'days');
-        return ! isToday(source, timeZone) && ! sourceDate.isAfter(dayAfter);
+        tomorrow.add(1, 'days');
+        return sourceDate.isSame(tomorrow, 'day');
     }
 
     function groupAssignments(data) {

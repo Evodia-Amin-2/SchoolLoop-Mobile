@@ -5,7 +5,7 @@
             <div class="due-date">
                 <span ng-show="isToday(assignment.dueDate, assignment.timeZone)" class="today" translate>Due Today</span>
                 <span ng-show="isTomorrow(assignment.dueDate, assignment.timeZone)" translate>Due Tomorrow</span>
-                <span ng-show="!isToday(assignment.dueDate, assignment.timeZone) && !isTomorrow(assignment)">{{assignment.dueDate | momentTz:"MMM D, YYYY":assignment.timeZone}</span>
+                <span ng-show="!isToday(assignment.dueDate, assignment.timeZone) && !isTomorrow(assignment.dueDate, assignment.timeZone)">{{assignment.dueDate | momentTz:"MMM D, YYYY":assignment.timeZone}}</span>
             </div>
         </div>
         <div class="assignment-title">{{assignment.title}}</div>

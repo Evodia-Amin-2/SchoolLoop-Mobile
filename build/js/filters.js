@@ -84,6 +84,9 @@
         })
         .filter('momentTz', function() {
             return function (rawDate, format, timeZone) {
+                if(_.isUndefined(rawDate)) {
+                    return "";
+                }
                 var ts = moment(new Date(Number(rawDate))).tz(timeZone);
                 return ts.format(format);
             };
