@@ -5,9 +5,14 @@
                 <div class="teacher">{{progress.teacher.name}}<span ng-show="progress.coTeacher"><span class="seperator"> - </span>{{progress.coTeacher.name}}</span></div>
                 <div class="date">{{progress.date|date:"MMM d, y hh:mm a" : "UTC"}}</div>
             </div>
-            <div class="grade-info">
+            <div class="grade-info" ng-show="progress.grade !== 'null'">
                 <div class="grade">{{progress.grade}}</div>
                 <div class="score">{{showScore()}}</div>
+            </div>
+            <div class="grade-info" ng-show="progress.grade === 'null'">
+                <div class="grade">
+                    <p translate>No Scores</p>
+                </div>
             </div>
             <div class="grade-info zero" ng-show="zeros.length > 0">
                 <div class="grade">{{zeros.length}}</div>

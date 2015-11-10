@@ -11,7 +11,7 @@
                             <div class="course-period">{{item.period}}</div>
                             <div class="course-row">
                                 <div class="item-title">{{item.courseName}}</div>
-                                <div class="item-subtitle">{{item.teacherName}}<span ng-show="item.coTeacherName"><span class="seperator"> - </span>{{item.coTeacherName}}</span></div>
+                                <div class="item-subtitle">{{item.teacherName}}<span ng-show="hasCoTeacher(item)"><span class="seperator"> - </span>{{item.coTeacherName}}</span></div>
                             </div>
                             <div class="course-grades" ng-show="isGradeEnabled(item) && !isGradeHidden(item)">
                                 <div>{{item.grade}}</div>

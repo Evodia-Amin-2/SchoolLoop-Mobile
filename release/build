@@ -34,6 +34,9 @@ echo "Setting app name: ${APP_NAME}"
 chmod +w platforms/android/res/values/strings.xml
 sed -i '' "s/\"launcher_name\">MobileLoop/\"launcher_name\">${APP_NAME}/g" platforms/android/res/values/strings.xml
 sed -i '' "s/com.schoolloop.mobileloop.mirror/com.schoolloop.mobileloop.${ID}/g" platforms/android/AndroidManifest.xml
+sed -i '' "s/com.schoolloop.mobileloop.mirror/com.schoolloop.mobileloop.${ID}/g" platforms/android/android.json
+sed -i '' "s/com.schoolloop.mobileloop.mirror/com.schoolloop.mobileloop.${ID}/g" platforms/browser/browser.json
+sed -i '' "s/com.schoolloop.mobileloop.mirror/com.schoolloop.mobileloop.${ID}/g" platforms/ios/ios.json
 sed -i '' "s/com.schoolloop.mobileloop.mirror/com.schoolloop.mobileloop.${ID}/g" plugins/android.json
 sed -i '' "s/com.schoolloop.mobileloop.mirror/com.schoolloop.mobileloop.${ID}/g" plugins/browser.json
 sed -i '' "s/com.schoolloop.mobileloop.mirror/com.schoolloop.mobileloop.${ID}/g" plugins/ios.json

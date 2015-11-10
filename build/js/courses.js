@@ -42,6 +42,10 @@
             $state.go("main.tabs.courses-detail", {periodID: course.periodID});
         };
 
+        $scope.hasCoTeacher = function(item) {
+            return _.isUndefined(item.coTeacherName) === false && item.coTeacherName !== 'null';
+        };
+
         $scope.$on("menu.loopmail", function() {
             loopmailService.setRecipients(undefined);
             $state.go("main.compose");
@@ -94,15 +98,12 @@
                 $scope.loaded = true;
                 statusService.hideWait(500);
 
-                var progress = response[0];
-                if(_.isUndefined(progress) || _.isUndefined(progress.date)) {
-                    $scope.progress = {};
+                $scope.progress = response[0];
+                if($scope.progress.hasScore === 'false') {
                     $scope.progress.grades = [];
                     navbarService.setMailEnabled(false);
                     $timeout($scope.toggleAssign);
                     return;
-                } else {
-                    $scope.progress = progress;
                 }
 
                 $scope.progress.grades = _.sortBy($scope.progress.grades, function(o) { return o.assignment.dueDate; }).reverse();
