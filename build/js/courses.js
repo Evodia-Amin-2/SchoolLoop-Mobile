@@ -214,6 +214,9 @@
             if($scope.isExtraCredit(item)) {
                 return "";
             }
+            if(item.score === '') {
+                return 'null';
+            }
             if (isNaN(item.score)) {
                 var defs = $scope.progress.gradeDefinitions;
                 for (var i = 0, len = defs.length; i < len; i++) {
@@ -254,7 +257,7 @@
         };
 
         $scope.getScore = function (item) {
-            if (item.score !== 'null') {
+            if (item.score !== 'null' && item.score !== '') {
                 if($scope.isExtraCredit(item)) {
                     return  item.score;
                 } else {

@@ -103,7 +103,7 @@
                                     </div>
                                     <div class="progress-report course-grades" ng-class="{zero:isZero(item)}">
                                         <div class="grade" ng-if="isExcused(item)">{{item.score|isEmpty:'&nbsp;'}}</div>
-                                        <div class="grade" ng-if="!isExcused(item) && !isZero(item)">{{calcPercent(item)}}</div>
+                                        <div class="grade" ng-if="!isExcused(item) && !isZero(item)">{{calcPercent(item)|isEmpty:'&nbsp;'}}</div>
                                         <div class="grade" ng-show="!isExcused(item) && isZero(item)" translate>Zero</div>
                                         <div ng-if="!isExcused(item) && !isZero(item)">{{getScore(item)|isEmpty:'&nbsp;'}}</div>
                                         <div ng-if="isExcused(item)|| isZero(item)|| isExtraCredit(item)">&nbsp;</div>

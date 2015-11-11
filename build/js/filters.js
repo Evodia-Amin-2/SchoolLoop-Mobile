@@ -2,16 +2,14 @@
     'use strict';
 
     angular.module('ui.components')
-        .filter('isEmpty', [
-            function() {
-                return function (input, replaceText) {
-                    if (!input || input === 'null') {
-                        return replaceText;
-                    }
-                    return input;
-                };
-            }
-        ])
+        .filter('isEmpty', function() {
+            return function (input, replaceText) {
+                if (!input || input === 'null') {
+                    return replaceText;
+                }
+                return input;
+            };
+        })
         .filter('percent', ['$filter', function($filter) {
             return function (input, decimals) {
                 input = input || 0;

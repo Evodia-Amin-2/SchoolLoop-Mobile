@@ -72,11 +72,14 @@
         }
 
         function doNotification(data) {
-            navigator.notification.alert(data.message);
+            var additionalData = data.additionalData;
+            var foreground = additionalData.foreground;
+            if(foreground === true) {
+                window.plugins.toast.showLongBottom("\n  " + data.message + "  \n");
+            }
 
-            var payload = data.additionalData;
-            var notifyMessage = "notify." + payload.type;
-            $rootScope.$broadcast(notifyMessage, {message: data.message, payload: payload});
+            var notifyMessage = "notify." + additionalData.type;
+            $rootScope.$broadcast(notifyMessage, {message: data.message, payload: additionalData});
         }
 
         function clearNotification() {
