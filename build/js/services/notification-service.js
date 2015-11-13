@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('app.services')
-        .factory('NotificationService', ['$rootScope', '$state', 'DataService', 'StorageService', 'DataType', 'config', NotificationService])
+        .factory('NotificationService', ['$rootScope', '$state', 'DataService', 'StorageService', 'DataType', 'config', 'gettextCatalog', NotificationService])
     ;
 
-    function NotificationService($rootScope, $state, dataService, storageService, DataType, config) {
+    function NotificationService($rootScope, $state, dataService, storageService, DataType, config, gettextCatalog) {
         var notificationData;
         var pushNotification;
 
@@ -75,11 +75,17 @@
             var additionalData = data.additionalData;
             var foreground = additionalData.foreground;
             if(foreground === true) {
-                window.plugins.toast.showLongBottom("\n  " + data.message + "  \n");
+                var notification = gettextCatalog.getString("Notification");
+                var view = gettextCatalog.getString("View");
+                var cancel = gettextCatalog.getString("Cancel");
+                navigator.notification.confirm(data.message, function(buttonIndex) {
+                    if(buttonIndex === 2) {
+                        return;
+                    }
+                    var notifyMessage = "notify." + additionalData.type;
+                    $rootScope.$broadcast(notifyMessage, {message: data.message, payload: additionalData});
+                }, notification, [view, cancel]);
             }
-
-            var notifyMessage = "notify." + additionalData.type;
-            $rootScope.$broadcast(notifyMessage, {message: data.message, payload: additionalData});
         }
 
         function clearNotification() {
