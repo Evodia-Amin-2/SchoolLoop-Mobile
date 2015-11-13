@@ -120,6 +120,10 @@
     margin-right: 90px;
 }
 
+.progress-report.course-row.grade {
+    margin-right: 150px;
+}
+
 .progress-report .item-subtitle {
     margin-left: 0;
 }
@@ -127,6 +131,11 @@
 .progress-report.course-grades {
     width: 70px;
     font-size: 0.95em !important;
+}
+
+.progress-report.course-grades.grade{
+    width: 50px;
+    right: 92px;
 }
 
 .progress-report.course-grades div {

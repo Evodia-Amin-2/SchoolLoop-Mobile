@@ -256,6 +256,10 @@
             return item.assignment.categoryName === "Extra Credit";
         };
 
+        $scope.hasGrade = function (item) {
+            return _.isUndefined(item.grade) === false &&  item.grade.length > 0 && item.grade !== "-";
+        };
+
         $scope.getScore = function (item) {
             if (item.score !== 'null' && item.score !== '') {
                 if($scope.isExtraCredit(item)) {

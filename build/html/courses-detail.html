@@ -92,7 +92,7 @@
                         <div class="item-content clearfix">
                             <div class="item-row">
                                 <div ng-click="showGradedAssignment(item)">
-                                    <div class="progress-report course-row">
+                                    <div class="progress-report course-row" ng-class="{grade:hasGrade(item)}">
                                         <div>{{item.assignment.categoryName}}</div>
                                         <div class="item-title">{{item.assignment.title}}</div>
                                         <div class="item-subtitle">
@@ -100,6 +100,10 @@
                                             <span class="seperator" ng-show="hasComment(item)">-</span>
                                             <span class="comment" ng-show="hasComment(item)"><span class="icon-comment"></span>{{item.comment}}</span>
                                         </div>
+                                    </div>
+                                    <div class="progress-report course-grades" ng-class="{grade:hasGrade(item), zero:isZero(item)}" ng-show="hasGrade(item)">
+                                        <div class="grade">{{item.grade|isEmpty:'&nbsp;'}}</div>
+                                        <div class="grade">&nbsp;</div>
                                     </div>
                                     <div class="progress-report course-grades" ng-class="{zero:isZero(item)}">
                                         <div class="grade" ng-if="isExcused(item)">{{item.score|isEmpty:'&nbsp;'}}</div>
