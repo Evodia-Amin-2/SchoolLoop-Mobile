@@ -89,6 +89,18 @@
                 return ts.format(format);
             };
         })
+        .filter('decimal', function() {
+            return function (input, places) {
+                if (isNaN(input)) {
+                    return input;
+                }
+                // If we want 1 decimal place, we want to mult/div by 10
+                // If we want 2 decimal places, we want to mult/div by 100, etc
+                var num = Number(places);
+                var factor = "1" + Array(+(num > 0 && num + 1)).join("0");
+                return Math.round(input * factor) / factor;
+            };
+        })
     ;
 
     function replaceLink(text, href, school, method) {

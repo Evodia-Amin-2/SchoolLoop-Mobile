@@ -116,7 +116,7 @@
         adder.register = function () {
             var school = adder.selectedSchool[0];
             var url = "http://" + school.domainName + "/mobile/app_register_parent";
-            $window.open(url, '_blank', 'location=yes');
+            $window.open(url, '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
         };
 
         adder.resetAdd = function () {

@@ -4,6 +4,7 @@
     document.addEventListener('deviceready', function() {
         console.log("***** device ready *****");
         console.log("Cordova: " + device.cordova);
+        window.open = cordova.InAppBrowser.open;
         var app = document.getElementById("mobile-app");
         angular.bootstrap(app, ["mobileloop"]);
     }, false);
@@ -122,20 +123,6 @@
                 $urlRouterProvider.otherwise("/start");
             }
         ])
-        .filter('decimal',
-            function() {
-                return function (input, places) {
-                    if (isNaN(input)) {
-                        return input;
-                    }
-                    // If we want 1 decimal place, we want to mult/div by 10
-                    // If we want 2 decimal places, we want to mult/div by 100, etc
-                    var num = Number(places);
-                    var factor = "1" + Array(+(num > 0 && num + 1)).join("0");
-                    return Math.round(input * factor) / factor;
-                };
-            }
-        )
     ;
 
     angular.module('templates', []);
@@ -159,5 +146,5 @@
 function browse(url) {
     'use strict';
 
-    window.open(encodeURI(url), '_system', 'location=yes');
+    window.open(encodeURI(url), '_system', 'location=yes,clearcache=yes,clearsessioncache=yes');
 }

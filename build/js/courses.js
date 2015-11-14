@@ -387,7 +387,9 @@
             var coTeacher = $scope.progress.coTeacher;
             var recipients = [];
             recipients.push({name: teacher.name, id: teacher.systemID});
-            recipients.push({name: coTeacher.name, id: coTeacher.systemID});
+            if(_.isUndefined(coTeacher) === false) {
+                recipients.push({name: coTeacher.name, id: coTeacher.systemID});
+            }
             loopmailService.setRecipients(recipients);
             $state.go("main.compose");
         });

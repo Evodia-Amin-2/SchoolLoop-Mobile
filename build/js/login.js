@@ -161,19 +161,19 @@
         login.privacy = function () {
             var code = storageService.getLanguageCode();
             var url = "http://api.schoolloop.com/mobile/app_privacy?force_language=" + code;
-            $window.open(url, '_blank', 'location=yes');
+            $window.open(url, '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
         };
 
         login.agreement = function () {
             var code = storageService.getLanguageCode();
             var url = "http://api.schoolloop.com/mobile/app_agreement?force_language=" + code;
-            $window.open(url, '_blank', 'location=yes');
+            $window.open(url, '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
         };
 
         login.register = function () {
             var code = storageService.getLanguageCode();
             var url = "http://" + login.selectedSchool[0].domainName + "/mobile/app_register?force_language=" + code;
-            $window.open(url, '_blank', 'location=yes');
+            $window.open(url, '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
         };
 
 

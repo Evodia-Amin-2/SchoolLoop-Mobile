@@ -140,7 +140,7 @@
 
                 main.help = function() {
                     main.toggleMenu();
-                    $window.open("http://www.schoolloop.com/contact-us/support", '_blank', 'location=yes');
+                    $window.open("http://www.schoolloop.com/contact-us/support", '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
                 };
 
                 main.addStudent = function() {
