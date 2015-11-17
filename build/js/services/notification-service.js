@@ -15,7 +15,7 @@
                 doNotification(notificationData);
                 notificationData = undefined;
             }
-            pushNotification = PushNotification.init({ "android": {"senderID": config.senderId, "icon": "notification", "iconColor": "olive"},
+            pushNotification = PushNotification.init({ "android": {"senderID": config.senderId, "icon": "notification", "iconColor": "olive", sound: true},
                 "ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
 
             pushNotification.on('registration', function(data) {
@@ -73,6 +73,7 @@
 
         function doNotification(data) {
             var additionalData = data.additionalData;
+            var notifyMessage = "notify." + additionalData.type;
             var foreground = additionalData.foreground;
             if(foreground === true) {
                 var notification = gettextCatalog.getString("Notification");
@@ -82,9 +83,10 @@
                     if(buttonIndex === 2) {
                         return;
                     }
-                    var notifyMessage = "notify." + additionalData.type;
                     $rootScope.$broadcast(notifyMessage, {message: data.message, payload: additionalData});
                 }, notification, [view, cancel]);
+            } else {
+                $rootScope.$broadcast(notifyMessage, {message: data.message, payload: additionalData});
             }
         }
 
