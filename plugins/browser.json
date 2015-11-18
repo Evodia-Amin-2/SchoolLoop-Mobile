@@ -37,9 +37,6 @@
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
-        "phonegap-plugin-push": {
-            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
-        },
         "cordova-plugin-screen-orientation": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
@@ -50,6 +47,9 @@
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
         "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
+        "phonegap-plugin-push": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         }
     },

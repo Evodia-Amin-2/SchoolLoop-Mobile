@@ -48,9 +48,6 @@
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
-        "phonegap-plugin-push": {
-            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
-        },
         "cordova-plugin-screen-orientation": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
@@ -61,6 +58,9 @@
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
         "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
+        "phonegap-plugin-push": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         }
     },
@@ -180,14 +180,6 @@
             ]
         },
         {
-            "file": "plugins/phonegap-plugin-push/www/push.js",
-            "id": "phonegap-plugin-push.PushNotification",
-            "pluginId": "phonegap-plugin-push",
-            "clobbers": [
-                "PushNotification"
-            ]
-        },
-        {
             "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
             "id": "cordova-plugin-screen-orientation.screenorientation",
             "pluginId": "cordova-plugin-screen-orientation",
@@ -239,6 +231,14 @@
             "pluginId": "cordova-plugin-inappbrowser",
             "merges": [
                 ""
+            ]
+        },
+        {
+            "file": "plugins/phonegap-plugin-push/www/push.js",
+            "id": "phonegap-plugin-push.PushNotification",
+            "pluginId": "phonegap-plugin-push",
+            "clobbers": [
+                "PushNotification"
             ]
         }
     ]

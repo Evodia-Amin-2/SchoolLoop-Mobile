@@ -114,14 +114,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/phonegap-plugin-push/www/push.js",
-        "id": "phonegap-plugin-push.PushNotification",
-        "pluginId": "phonegap-plugin-push",
-        "clobbers": [
-            "PushNotification"
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
         "id": "cordova-plugin-screen-orientation.screenorientation",
         "pluginId": "cordova-plugin-screen-orientation",
@@ -173,6 +165,14 @@ module.exports = [
         "pluginId": "cordova-plugin-inappbrowser",
         "merges": [
             ""
+        ]
+    },
+    {
+        "file": "plugins/phonegap-plugin-push/www/push.js",
+        "id": "phonegap-plugin-push.PushNotification",
+        "pluginId": "phonegap-plugin-push",
+        "clobbers": [
+            "PushNotification"
         ]
     }
 ];
