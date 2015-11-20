@@ -58,6 +58,7 @@
             console.log("attempting to register: " + deviceToken);
 
             var params = {
+                "version": parseVersion(config.version),
                 "devToken": deviceToken,
                 "uuid": device.uuid,
                 "devOS": device.platform
@@ -69,6 +70,11 @@
                     console.log("error registering: " + deviceToken);
                 }
             );
+        }
+
+        function parseVersion(version) {
+            var tokens = version.split(" ");
+            return tokens[0];
         }
 
         function doNotification(data) {

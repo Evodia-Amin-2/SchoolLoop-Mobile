@@ -1,5 +1,5 @@
 <div ng-show="main.currentStudent" class="current-student"><span>{{main.currentStudent.name}}</span></div>
-<tabs ng-class="{'show-student': main.currentStudent}">
+<tabs tab-height ng-class="{'show-student': main.currentStudent}">
     <tab-pane ng-if="!main.isTeacher" src="main.tabs.assignments" title="{{'Assignments'|translate}}" image="assignments.png" selected="{{!main.isTeacher}}"></tab-pane>
     <tab-pane ng-if="!main.isTeacher" src="main.tabs.courses" title="{{'Courses'|translate}}" image="courses.png"></tab-pane>
     <tab-pane ng-if="true" src="main.tabs.loopmail" title="{{'LoopMail'|translate}}" image="loopmail.png"  selected="{{main.isTeacher}}" badge="true" count="getMailCount()"></tab-pane>
