@@ -34,6 +34,10 @@
                 doNotification(data);
             });
 
+            pushNotification.off('notification', function(data) {
+                console.log("off notification " + JSON.stringify(data));
+            });
+
             pushNotification.on('error', function(e) {
                 console.log("notification error " + JSON.stringify(e));
                 // e.message

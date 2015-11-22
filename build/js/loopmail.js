@@ -171,7 +171,7 @@
 
         function isTeacher() {
             var domain = storageService.getDefaultDomain();
-            return (domain.user.role === 'teacher');
+            return (domain.user.role !== 'student' && domain.user.role !== 'parent');
         }
     }
 

@@ -16,12 +16,18 @@
                         });
 
                         function resizeHandler() {
+                            if(!isIos()) {
+                                return;
+                            }
                             var tabHolder = $(".tab-holder");
                             var height = window.innerHeight;
                             var top = tabHolder.offset().top;
                             $(tabHolder).height(height - top);
                         }
 
+                        function isIos() {
+                            return device.platform.toLowerCase() === "ios";
+                        }
                     }
                 };
             }

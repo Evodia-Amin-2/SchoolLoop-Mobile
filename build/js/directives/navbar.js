@@ -61,7 +61,7 @@
 
                         scope.isTeacher = function() {
                             var domain = storageService.getDefaultDomain();
-                            return (domain && domain.user && domain.user.role === 'teacher');
+                            return (domain && domain.user && ((domain.user.role !== 'student' && domain.user.role !== 'parent')));
                         };
                     },
                     templateUrl: 'navbar.html'

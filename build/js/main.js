@@ -42,7 +42,7 @@
                     main.selectedStudent = storageService.getSelectedStudentIndex();
                     setCurrentStudent();
                 }
-                main.isTeacher = (main.user.role === 'teacher');
+                main.isTeacher = (main.user.role !== 'student' && main.user.role !== 'parent');
 
                 main.debugEnabled = config.id === "mirror";
 
