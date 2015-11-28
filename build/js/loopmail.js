@@ -11,7 +11,7 @@
     function LoopMailController($rootScope, $scope, $timeout, $state, dataService, DataType, statusService,
                                 loopmailService, storageService, navbarService, gettextCatalog) {
 
-        navigator.analytics.sendAppView('LoopMail');
+        window.analytics.trackView('LoopMail');
 
         $scope.loading = false;
         $scope.pageLoaded = false;

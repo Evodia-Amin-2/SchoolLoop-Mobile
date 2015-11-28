@@ -7,10 +7,16 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-whitelist": {
+        "hu.dpal.phonegap.plugins.SpinnerDialog": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
-        "hu.dpal.phonegap.plugins.SpinnerDialog": {
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
+        "phonegap-plugin-push": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
         "cordova-plugin-console": {
@@ -25,31 +31,28 @@
         "cordova-plugin-globalization": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
-        },
-        "cordova-plugin-vibration": {
-            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
-        },
-        "com.cmackay.plugins.googleanalytics": {
-            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
-        },
-        "ionic-plugin-keyboard": {
+        "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
         "cordova-plugin-screen-orientation": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
-        "cordova-plugin-x-toast": {
+        "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
-        "cordova-plugin-inappbrowser": {
+        "cordova-plugin-vibration": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
-        "phonegap-plugin-push": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
+        "cordova-plugin-google-analytics": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
+        "com.cmackay.plugins.googleanalytics": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         }
     },

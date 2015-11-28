@@ -31,6 +31,8 @@
                     var error = response.data;
                     if(error.startsWith("ERROR 6")) {
                         $state.go('notstarted');
+                    } else if(error.startsWith("ERROR 6")) {
+                        $state.go('reset');
                     }
                     $timeout(function() {
                         statusService.hideNoWait();

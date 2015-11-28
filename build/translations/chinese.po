@@ -28,7 +28,7 @@ msgstr "加入由 <strong>{{adder.school.name}}</strong> 學校的學生或"
 msgid "Add another Student"
 msgstr "加入另一個學生"
 
-#: compose.html:33
+#: compose.html:39
 msgid "Add Learning Team"
 msgstr "加入學習團體"
 
@@ -36,46 +36,59 @@ msgstr "加入學習團體"
 msgid "Add Student"
 msgstr "加入學生"
 
-#: loopmail.js:120 loopmail.js:132 loopmail.js:30
+#: loopmail.js:127 loopmail.js:144 loopmail.js:34
 msgid "All Mail Delivered"
 msgstr "所有郵件已遞送"
 
-#: assignment-detail.html:29
+#: assignment-detail.html:33
 msgid "Assigned:"
 msgstr "已分派"
 
-#: courses-detail.html:29 main-tabs.html:3
+#: assignments.js:22 main-tabs.html:3
 msgid "Assignments"
 msgstr "作業"
 
-#: loopmail-detail.html:14
+#: assignment-detail.html:24 loopmail-detail.html:14 news-detail.html:10
 msgid "Attachments:"
 msgstr "附加文件 :"
 
-#: forgot.html:21 navbar.html:5
+#: forgot.html:21 navbar.html:5 reset.html:18
+#: services/notification-service.js:91
 msgid "Cancel"
 msgstr "取消"
 
-#: courses-detail.html:127
+#: courses-detail.html:131
 msgid "Category"
 msgstr "類別得分"
 
-#: compose.html:24 loopmail.js:223
+#: compose.html:30 loopmail.js:247 reply.html:11
 msgid "CC:"
 msgstr "加添收信人:"
 
-#: forgot.js:35 invalid.html:13 services/loopmail-service.js:83
-#: unverified.html:13
+#: forgot.js:35 invalid.html:13 not-started.html:13 reset.js:35
+#: services/loopmail-service.js:84 unverified.html:13
 msgid "Close"
 msgstr "關閉"
 
-#: courses.js:257
+#: reset.html:12
+msgid "Confirm Password"
+msgstr ""
+
+#: courses.js:295
 msgid "Course Info"
 msgstr "每科評分信息"
 
 #: main-tabs.html:4
 msgid "Courses"
 msgstr "科目"
+
+#: courses-detail.html:30
+msgid "Curriculum"
+msgstr ""
+
+#: main-tabs.html:6
+msgid "Directory"
+msgstr ""
 
 #: navbar.html:12
 msgid "Done"
@@ -89,11 +102,7 @@ msgstr "到期日期"
 msgid "Due Tomorrow"
 msgstr "明天到期"
 
-#: forgot.html:13
-msgid "Login Name or Email"
-msgstr "電郵"
-
-#: services/loopmail-service.js:81
+#: services/loopmail-service.js:82
 msgid "Failed to Deliver"
 msgstr "遞送失敗"
 
@@ -119,19 +128,19 @@ msgstr "忘記密碼"
 msgid "Forgot Password?"
 msgstr "忘記密碼 ?"
 
-#: loopmail.js:201 loopmail.js:67
+#: loopmail.js:225 loopmail.js:74
 msgid "From:"
 msgstr "发件人: "
 
-#: courses-detail.html:157
+#: courses-detail.html:161
 msgid "Grade Code"
 msgstr "成績級別 :"
 
-#: courses-detail.html:153
+#: courses-detail.html:157
 msgid "Grade Legend:"
 msgstr "成績標識 :"
 
-#: courses-detail.html:142
+#: courses-detail.html:146
 msgid "Grade Scale:"
 msgstr "成績級別 :"
 
@@ -152,27 +161,23 @@ msgstr ""
 msgid "Inbox"
 msgstr "收件匣"
 
-#: login.js:131
+#: login.js:137
 msgid "Invalid Login"
 msgstr "登入錯誤"
 
-#: assignment-detail.html:20 news-detail.html:10
-msgid "Links:"
-msgstr "連結:"
-
-#: services/status-service.js:16
+#: services/status-service.js:18
 msgid "Loading..."
 msgstr ""
 
-#: services/status-service.js:19
+#: services/status-service.js:23
 msgid "Logging in..."
 msgstr "現正登入"
 
-#: add-student.html:38 forgot.js:28 login.html:19
+#: add-student.html:38 forgot.js:28 login.html:19 reset.js:28
 msgid "Login"
 msgstr "登入"
 
-#: add-student.js:106 login.js:138
+#: add-student.js:106 login.js:144
 msgid "Login Incorrect!"
 msgstr "登入錯誤"
 
@@ -180,27 +185,35 @@ msgstr "登入錯誤"
 msgid "Login Name"
 msgstr "登入名稱"
 
-#: add-student.js:111 login.js:145
+#: forgot.html:13
+msgid "Login Name or Email"
+msgstr "電郵"
+
+#: add-student.js:111 login.js:151
 msgid "Login Name Required!"
 msgstr "必須輸入登記名字 !"
 
-#: main-tabs.html:5
+#: loopmail.js:21 main-tabs.html:5
 msgid "LoopMail"
 msgstr "Loop 邮件"
 
-#: compose.html:46 reply.html:28
+#: compose.html:52 reply.html:28
 msgid "Message Text"
 msgstr "信息"
 
-#: compose.js:17
+#: compose.js:15
 msgid "New LoopMail"
 msgstr "新的Loop郵件"
 
-#: main-tabs.html:6
+#: reset.html:7
+msgid "New Password"
+msgstr ""
+
+#: main-tabs.html:7
 msgid "News"
 msgstr "新闻"
 
-#: courses-detail.html:34
+#: courses-detail.html:35
 msgid "No Assignments"
 msgstr "沒有作業"
 
@@ -212,15 +225,11 @@ msgstr "現時沒有作業"
 msgid "No Courses Currently"
 msgstr "現時沒有資訊"
 
-#: assignment-detail.html:19 news-detail.html:9
+#: assignment-detail.html:23 news-detail.html:9
 msgid "No Description Provided"
 msgstr "沒有資料可提供"
 
-#: courses-detail.html:4
-msgid "No Grades Published"
-msgstr "沒有發佈成績"
-
-#: loopmail.js:156
+#: loopmail.js:168
 msgid "No Mail Currently"
 msgstr "目前沒有郵件"
 
@@ -228,13 +237,17 @@ msgstr "目前沒有郵件"
 msgid "No News Currently"
 msgstr "現時沒有資訊"
 
-#: courses-detail.html:87
+#: courses-detail.html:14 courses-detail.html:88
 msgid "No Scores"
 msgstr "沒有分數"
 
-#: courses-detail.html:58
+#: courses-detail.html:59
 msgid "No Zeros"
 msgstr "沒有零分"
+
+#: services/notification-service.js:89
+msgid "Notification"
+msgstr ""
 
 #: directives/navbar.js:23
 msgid "Outbox"
@@ -248,16 +261,16 @@ msgstr "家長必須查核"
 msgid "Password"
 msgstr "密碼"
 
-#: add-student.js:112 login.js:146
+#: add-student.js:112 login.js:152
 msgid "Password Required!"
 msgstr "必須輸入密碼 !"
 
-#: forgot.js:27
+#: forgot.js:27 reset.js:27
 msgid ""
 "Please check your email for your password and try to login again.  Thanks!"
 msgstr "請查看您的電子郵件內臨時密碼然後再次登入"
 
-#: forgot.js:38 forgot.js:42
+#: forgot.js:38 forgot.js:42 reset.js:38 reset.js:42
 msgid "Please enter email!"
 msgstr "請輸入電子郵件 !"
 
@@ -293,7 +306,7 @@ msgstr "立刻註冊"
 msgid "Release to Refresh"
 msgstr "釋放回彈刷新"
 
-#: loopmail.html:19
+#: directory.html:19 loopmail.html:19
 msgid "Remove"
 msgstr "刪除"
 
@@ -309,23 +322,30 @@ msgstr "答覆所有人"
 msgid "Required"
 msgstr "必須輸入密碼 !"
 
-#: forgot.html:22 forgot.html:4
+#: forgot.html:22 forgot.html:4 reset.js:22
 msgid "Reset Password"
 msgstr "重設密碼"
+
+#: not-started.html:7
+msgid ""
+"School has not started. Thank you for logging on to your School Loop "
+"Account. Full account access will not be available until the first day of "
+"school. Please check back on that date. Have a great summer!"
+msgstr ""
 
 #: main.html:11
 msgid "School:"
 msgstr "學校："
 
-#: courses-detail.html:129
+#: courses-detail.html:133
 msgid "Score"
 msgstr "單項分數"
 
-#: courses-detail.html:123
+#: courses-detail.html:127
 msgid "Score by Category:"
 msgstr "類別得分"
 
-#: courses-detail.html:82
+#: courses-detail.html:83
 msgid "Scores"
 msgstr "分數概覽"
 
@@ -345,6 +365,10 @@ msgstr ""
 msgid "Sent"
 msgstr "已寄出"
 
+#: reset.html:19 reset.html:4
+msgid "Set Password"
+msgstr ""
+
 #: main.html:31
 msgid "Sign out"
 msgstr "登出"
@@ -357,19 +381,19 @@ msgstr "簽署人："
 msgid "Student ID number:"
 msgstr "學生証號碼:"
 
-#: compose.html:40 reply.html:22
+#: compose.html:46 reply.html:22
 msgid "Subject"
 msgstr "科目"
 
-#: compose.js:86 reply.js:67
+#: compose.js:108 reply.js:71
 msgid "Subject required"
 msgstr "必須輸入主題"
 
-#: services/loopmail-service.js:95
+#: services/loopmail-service.js:96
 msgid "Success! LoopMail sent."
 msgstr "成功！Loop郵件已遞送"
 
-#: assignment-detail.html:28
+#: assignment-detail.html:32
 msgid "Teacher Unknown"
 msgstr "沒有此教師"
 
@@ -385,7 +409,7 @@ msgstr "以下的學生已加入："
 msgid "The following students will be added:"
 msgstr "加入以下的學生："
 
-#: services/loopmail-service.js:82
+#: services/loopmail-service.js:83
 msgid ""
 "There was a problem sending the message.  It has been placed in your outbox "
 "and an attempt to send again will automatically occur."
@@ -397,7 +421,7 @@ msgid ""
 "order to use the School Loop service."
 msgstr "此版本已失效。您必須使用最新版本方可使用School Loop服務"
 
-#: reply.html:11 reply.html:6
+#: reply.html:6
 msgid "To"
 msgstr "收件人:"
 
@@ -406,8 +430,8 @@ msgid ""
 "To help you login, we will send an email to the address you used to register."
 msgstr "為了幫助您的登入，我們將會按您用於註冊的電子郵件地址發送一封電子郵件。"
 
-#: compose.html:10 compose.html:19 loopmail.js:208 loopmail.js:65
-#: loopmail.js:69
+#: compose.html:10 compose.html:21 compose.html:25 loopmail.js:232
+#: loopmail.js:72 loopmail.js:76
 msgid "To:"
 msgstr "收件人:"
 
@@ -419,7 +443,7 @@ msgstr "今天 :"
 msgid "Tomorrow:"
 msgstr "明天 :"
 
-#: forgot.js:34
+#: forgot.js:34 reset.js:34
 msgid "Unable to send email to that address. Please try again!"
 msgstr "信息不能遞送至該電子郵件地址。請再常試！"
 
@@ -427,7 +451,7 @@ msgstr "信息不能遞送至該電子郵件地址。請再常試！"
 msgid "User Agreement"
 msgstr "使用者同意書"
 
-#: courses-detail.html:158
+#: courses-detail.html:162
 msgid "Value"
 msgstr "評分值（教師用）"
 
@@ -435,7 +459,11 @@ msgstr "評分值（教師用）"
 msgid "Version:"
 msgstr "版本"
 
-#: courses-detail.html:128
+#: services/notification-service.js:90
+msgid "View"
+msgstr ""
+
+#: courses-detail.html:132
 msgid "Weight"
 msgstr "分數權衡比例"
 
@@ -447,13 +475,19 @@ msgstr "學生名字的第一個字母是什麼？"
 msgid "What is the first letter of this student's last name?"
 msgstr "學生姓氏的第一個字母是什麼 ?"
 
-#: courses-detail.html:106 courses-detail.html:18 courses-detail.html:70
+#: courses-detail.html:111 courses-detail.html:19 courses-detail.html:71
 msgid "Zero"
 msgstr "零分"
 
-#: courses-detail.html:19 courses-detail.html:54
+#: courses-detail.html:20 courses-detail.html:55
 msgid "Zeros"
 msgstr "零分"
+
+#~ msgid "Links:"
+#~ msgstr "連結:"
+
+#~ msgid "No Grades Published"
+#~ msgstr "沒有發佈成績"
 
 #~ msgid "Error connecting to the server"
 #~ msgstr "連接錯誤"

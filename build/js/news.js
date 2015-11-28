@@ -9,7 +9,7 @@
 
     function NewsController($scope, $state, dataService, DataType, navbarService) {
 
-        navigator.analytics.sendAppView('News');
+        window.analytics.trackView('News');
 
         $scope.news = dataService.list(DataType.NEWS);
 

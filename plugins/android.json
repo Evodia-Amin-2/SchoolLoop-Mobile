@@ -7,7 +7,16 @@
         "files": {}
     },
     "installed_plugins": {
-        "com.cmackay.plugins.googleanalytics": {
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
+        "hu.dpal.phonegap.plugins.SpinnerDialog": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
+        },
+        "phonegap-plugin-push": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
         "cordova-plugin-console": {
@@ -40,16 +49,10 @@
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
-        "cordova-plugin-x-toast": {
+        "cordova-plugin-google-analytics": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
-        "hu.dpal.phonegap.plugins.SpinnerDialog": {
-            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
-        },
-        "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
-        },
-        "phonegap-plugin-push": {
+        "com.cmackay.plugins.googleanalytics": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         }
     },

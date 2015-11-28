@@ -124,6 +124,9 @@
                         } else if(error.status === 400 && error.data.toLowerCase().startsWith("error 6")) {
                             $state.go('notstarted');
                             return;
+                        } else if(error.status === 400 && error.data.toLowerCase().startsWith("error 7")) {
+                            $state.go('reset');
+                            return;
                         } else {
                             var isCredError = error.data.toLowerCase().startsWith("error 1:") ||
                                 error.data.toLowerCase().startsWith("error 2:");

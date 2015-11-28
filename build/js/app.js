@@ -16,15 +16,6 @@
             function($rootScope, gettextCatalog, storageService, updateService, loopmailService, config) {
                 console.log("Initializing app");
 
-                //if(usesTestFairy()) {
-                //    console.log("Starting TestFairy");
-                //    TestFairy.begin("ecd0f0847c6c16137276d2b414ef80ddec8e911a");
-                //}
-
-                function usesTestFairy() {
-                    return (config.id === "mirror" && window.TestFairy !== undefined);
-                }
-
                 //gettextCatalog.setCurrentLanguage('es');
                 //gettextCatalog.debug = (config.id === "mirror");
                 //storageService.setLanguageCode('es');
@@ -58,7 +49,7 @@
 
                 console.log("Starting tracking: " + config.gakey);
 
-                navigator.analytics.setTrackingId(config.gakey);
+                window.analytics.startTrackerWithId(config.gakey);
 
                 document.addEventListener("backbutton", function () {
                     $rootScope.$broadcast("hardware.backbutton");
@@ -115,6 +106,7 @@
                     .state('unverified', { url: "/unverified", templateUrl: "unverified.html" })
                     .state('invalid', { url: "/invalid", templateUrl: "invalid.html" })
                     .state('forgot', { url: "/forgot", templateUrl: "forgot.html" })
+                    .state('reset', { url: "/reset", templateUrl: "reset.html" })
                     .state('notstarted', { url: "/notstarted", templateUrl: "not-started.html" })
                     .state('agreement-en', { url: "/agreement-en", templateUrl: "agreement-en.html" })
                     .state('agreement-es', { url: "/agreement-es", templateUrl: "agreement-es.html" })

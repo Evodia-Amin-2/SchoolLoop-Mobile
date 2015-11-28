@@ -1,0 +1,23 @@
+<div class="mobileloop-page full-page" ng-controller="ResetController as reset">
+    <div class="overthrow" expand="">
+        <form name="reset_form" novalidate>
+            <h1 translate="" style="margin-top: 20px">Set Password</h1>
+            <div class="form-content">
+                <div class="simple-group" style="margin-top: 20px">
+                    <label translate>New Password</label>
+                    <input name="password" ng-enter="login.auth()" ng-class="{error: login_form.password.$invalid && login_form.submitted}"
+                           type="password" placeholder="{{login_form.password.placeholder}}" ng-model="login.password" required /><br/>
+                </div>
+                <div class="simple-group" style="margin-top: 20px">
+                    <label translate>Confirm Password</label>
+                    <input name="password" ng-enter="login.auth()" ng-class="{error: login_form.password.$invalid && login_form.submitted}"
+                           type="password" placeholder="{{login_form.password.placeholder}}" ng-model="login.password" required /><br/>
+                </div>
+            </div>
+            <div class="footer center">
+                <button ng-click="reset.cancel()" class="button button-blue" translate>Cancel</button>
+                <button ng-click="reset.reset()"class="button button-blue" translate>Set Password</button>
+            </div>
+        </form>
+    </div>
+</div>
