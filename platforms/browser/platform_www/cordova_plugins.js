@@ -159,14 +159,6 @@ module.exports = [
             "navigator.notification",
             "navigator"
         ]
-    },
-    {
-        "file": "plugins/cordova-plugin-google-analytics/www/analytics.js",
-        "id": "cordova-plugin-google-analytics.UniversalAnalytics",
-        "pluginId": "cordova-plugin-google-analytics",
-        "clobbers": [
-            "analytics"
-        ]
     }
 ];
 module.exports.metadata = 
@@ -182,7 +174,6 @@ module.exports.metadata =
     "cordova-plugin-statusbar": "2.0.0",
     "cordova-plugin-vibration": "2.0.0",
     "cordova-plugin-whitelist": "1.2.0",
-    "cordova-plugin-google-analytics": "0.8.1",
     "com.cmackay.plugins.googleanalytics": "0.1.22"
 }
 // BOTTOM OF METADATA

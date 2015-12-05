@@ -49,9 +49,6 @@
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
-        "cordova-plugin-google-analytics": {
-            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
-        },
         "com.cmackay.plugins.googleanalytics": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         }

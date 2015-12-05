@@ -57,9 +57,6 @@
     <feature name="Vibration">
         <param name="ios-package" value="CDVVibration" />
     </feature>
-    <feature name="UniversalAnalytics">
-        <param name="ios-package" value="UniversalAnalyticsPlugin" />
-    </feature>
     <feature name="GoogleAnalytics">
         <param name="ios-package" value="GoogleAnalyticsPlugin" />
     </feature>

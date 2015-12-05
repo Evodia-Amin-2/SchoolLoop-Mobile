@@ -69,10 +69,6 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"UniversalAnalytics\"><param name=\"ios-package\" value=\"UniversalAnalyticsPlugin\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"GoogleAnalytics\"><param name=\"ios-package\" value=\"GoogleAnalyticsPlugin\" /></feature>",
                             "count": 1
                         }
@@ -132,9 +128,6 @@
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
-        },
-        "cordova-plugin-google-analytics": {
             "PACKAGE_NAME": "com.schoolloop.mobileloop.mirror"
         },
         "com.cmackay.plugins.googleanalytics": {
@@ -280,14 +273,6 @@
             ]
         },
         {
-            "file": "plugins/cordova-plugin-google-analytics/www/analytics.js",
-            "id": "cordova-plugin-google-analytics.UniversalAnalytics",
-            "pluginId": "cordova-plugin-google-analytics",
-            "clobbers": [
-                "analytics"
-            ]
-        },
-        {
             "file": "plugins/com.cmackay.plugins.googleanalytics/www/analytics.js",
             "id": "com.cmackay.plugins.googleanalytics.GoogleAnalytics",
             "pluginId": "com.cmackay.plugins.googleanalytics",
@@ -307,7 +292,6 @@
         "cordova-plugin-statusbar": "2.0.0",
         "cordova-plugin-vibration": "2.0.0",
         "cordova-plugin-whitelist": "1.2.0",
-        "cordova-plugin-google-analytics": "0.8.1",
         "com.cmackay.plugins.googleanalytics": "0.1.22"
     }
 }
