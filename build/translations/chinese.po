@@ -65,14 +65,14 @@ msgstr "類別得分"
 msgid "CC:"
 msgstr "加添收信人:"
 
-#: forgot.js:35 invalid.html:13 not-started.html:13 reset.js:35
+#: forgot.js:35 invalid.html:13 not-started.html:13
 #: services/loopmail-service.js:84 unverified.html:13
 msgid "Close"
 msgstr "關閉"
 
 #: reset.html:12
 msgid "Confirm Password"
-msgstr ""
+msgstr "Confirm Password"
 
 #: courses.js:295
 msgid "Course Info"
@@ -84,15 +84,15 @@ msgstr "科目"
 
 #: courses-detail.html:30
 msgid "Curriculum"
-msgstr ""
+msgstr "Curriculum"
 
 #: main-tabs.html:6
 msgid "Directory"
-msgstr ""
+msgstr "Directory"
 
 #: navbar.html:12
 msgid "Done"
-msgstr ""
+msgstr "Done"
 
 #: assignment-detail.html:6
 msgid "Due Today"
@@ -161,23 +161,23 @@ msgstr ""
 msgid "Inbox"
 msgstr "收件匣"
 
-#: login.js:137
+#: login.js:138
 msgid "Invalid Login"
 msgstr "登入錯誤"
 
 #: services/status-service.js:18
 msgid "Loading..."
-msgstr ""
+msgstr "Loading…"
 
 #: services/status-service.js:23
 msgid "Logging in..."
 msgstr "現正登入"
 
-#: add-student.html:38 forgot.js:28 login.html:19 reset.js:28
+#: add-student.html:38 forgot.js:28 login.html:19
 msgid "Login"
 msgstr "登入"
 
-#: add-student.js:106 login.js:144
+#: add-student.js:106 login.js:145
 msgid "Login Incorrect!"
 msgstr "登入錯誤"
 
@@ -189,7 +189,7 @@ msgstr "登入名稱"
 msgid "Login Name or Email"
 msgstr "電郵"
 
-#: add-student.js:111 login.js:151
+#: add-student.js:111 login.js:152
 msgid "Login Name Required!"
 msgstr "必須輸入登記名字 !"
 
@@ -207,7 +207,7 @@ msgstr "新的Loop郵件"
 
 #: reset.html:7
 msgid "New Password"
-msgstr ""
+msgstr "New Password"
 
 #: main-tabs.html:7
 msgid "News"
@@ -247,7 +247,7 @@ msgstr "沒有零分"
 
 #: services/notification-service.js:89
 msgid "Notification"
-msgstr ""
+msgstr "Notification"
 
 #: directives/navbar.js:23
 msgid "Outbox"
@@ -261,16 +261,16 @@ msgstr "家長必須查核"
 msgid "Password"
 msgstr "密碼"
 
-#: add-student.js:112 login.js:152
+#: add-student.js:112 login.js:153
 msgid "Password Required!"
 msgstr "必須輸入密碼 !"
 
-#: forgot.js:27 reset.js:27
+#: forgot.js:27
 msgid ""
 "Please check your email for your password and try to login again.  Thanks!"
 msgstr "請查看您的電子郵件內臨時密碼然後再次登入"
 
-#: forgot.js:38 forgot.js:42 reset.js:38 reset.js:42
+#: forgot.js:38 forgot.js:42 reset.js:32
 msgid "Please enter email!"
 msgstr "請輸入電子郵件 !"
 
@@ -322,7 +322,7 @@ msgstr "答覆所有人"
 msgid "Required"
 msgstr "必須輸入密碼 !"
 
-#: forgot.html:22 forgot.html:4 reset.js:22
+#: forgot.html:22 forgot.html:4
 msgid "Reset Password"
 msgstr "重設密碼"
 
@@ -332,6 +332,9 @@ msgid ""
 "Account. Full account access will not be available until the first day of "
 "school. Please check back on that date. Have a great summer!"
 msgstr ""
+"School has not started. Thank you for logging on to your School Loop "
+"Account. Full account access will not be available until the first day of "
+"school. Please check back on that date. Have a great summer!"
 
 #: main.html:11
 msgid "School:"
@@ -359,7 +362,7 @@ msgstr "選擇一間不同的學校"
 
 #: navbar.html:9
 msgid "Send"
-msgstr ""
+msgstr "Send"
 
 #: directives/navbar.js:22
 msgid "Sent"
@@ -367,7 +370,7 @@ msgstr "已寄出"
 
 #: reset.html:19 reset.html:4
 msgid "Set Password"
-msgstr ""
+msgstr "Set Password"
 
 #: main.html:31
 msgid "Sign out"
@@ -443,7 +446,7 @@ msgstr "今天 :"
 msgid "Tomorrow:"
 msgstr "明天 :"
 
-#: forgot.js:34 reset.js:34
+#: forgot.js:34
 msgid "Unable to send email to that address. Please try again!"
 msgstr "信息不能遞送至該電子郵件地址。請再常試！"
 
@@ -461,7 +464,7 @@ msgstr "版本"
 
 #: services/notification-service.js:90
 msgid "View"
-msgstr ""
+msgstr "View"
 
 #: courses-detail.html:132
 msgid "Weight"

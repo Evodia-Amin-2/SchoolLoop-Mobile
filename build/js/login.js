@@ -124,7 +124,8 @@
                         } else if(error.status === 400 && error.data.toLowerCase().startsWith("error 6")) {
                             $state.go('notstarted');
                             return;
-                        } else if(error.status === 400 && error.data.toLowerCase().startsWith("error 7")) {
+                        } else if(error.status === 401 && error.data.toLowerCase().startsWith("error 7")) {
+                            storageService.setPassword(login.selectedSchool[0].domainName, login.password);
                             $state.go('reset');
                             return;
                         } else {

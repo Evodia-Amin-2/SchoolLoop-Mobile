@@ -195,7 +195,6 @@
                 return getRequest("add_student", params);
             },
             sendLoopMail: function(toList, ccList, subject, body) {
-
                 var params = {
                     to: getRecipientIds(toList),
                     cc: getRecipientIds(ccList),
@@ -204,6 +203,13 @@
                 };
 
                 return doPost($q, $http, Base64, "mail_messages", params, storageService);
+            },
+            resetPassword: function(password) {
+                var params = {
+                    'new': password
+                };
+
+                return doPost($q, $http, Base64, "reset", params, storageService);
             },
             sendForgetEmail: function(params) {
                 return getRequest("forgot", params);
@@ -300,7 +306,6 @@
         );
         return deferred.promise;
     }
-
 
     function doPost($q, $http, Base64, action, params, storageService) {
 

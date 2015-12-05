@@ -72,7 +72,6 @@ msgstr ""
 #: forgot.js:35
 #: invalid.html:13
 #: not-started.html:13
-#: reset.js:35
 #: services/loopmail-service.js:84
 #: unverified.html:13
 msgid "Close"
@@ -160,7 +159,7 @@ msgstr ""
 msgid "Inbox"
 msgstr ""
 
-#: login.js:137
+#: login.js:138
 msgid "Invalid Login"
 msgstr ""
 
@@ -175,12 +174,11 @@ msgstr ""
 #: add-student.html:38
 #: forgot.js:28
 #: login.html:19
-#: reset.js:28
 msgid "Login"
 msgstr ""
 
 #: add-student.js:106
-#: login.js:144
+#: login.js:145
 msgid "Login Incorrect!"
 msgstr ""
 
@@ -193,7 +191,7 @@ msgid "Login Name or Email"
 msgstr ""
 
 #: add-student.js:111
-#: login.js:151
+#: login.js:152
 msgid "Login Name Required!"
 msgstr ""
 
@@ -270,19 +268,17 @@ msgid "Password"
 msgstr ""
 
 #: add-student.js:112
-#: login.js:152
+#: login.js:153
 msgid "Password Required!"
 msgstr ""
 
 #: forgot.js:27
-#: reset.js:27
 msgid "Please check your email for your password and try to login again.  Thanks!"
 msgstr ""
 
 #: forgot.js:38
 #: forgot.js:42
-#: reset.js:38
-#: reset.js:42
+#: reset.js:32
 msgid "Please enter email!"
 msgstr ""
 
@@ -343,7 +339,6 @@ msgstr ""
 
 #: forgot.html:22
 #: forgot.html:4
-#: reset.js:22
 msgid "Reset Password"
 msgstr ""
 
@@ -465,7 +460,6 @@ msgid "Tomorrow:"
 msgstr ""
 
 #: forgot.js:34
-#: reset.js:34
 msgid "Unable to send email to that address. Please try again!"
 msgstr ""
 

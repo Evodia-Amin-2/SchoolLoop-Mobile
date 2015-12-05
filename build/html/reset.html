@@ -5,13 +5,13 @@
             <div class="form-content">
                 <div class="simple-group" style="margin-top: 20px">
                     <label translate>New Password</label>
-                    <input name="password" ng-enter="login.auth()" ng-class="{error: login_form.password.$invalid && login_form.submitted}"
-                           type="password" placeholder="{{login_form.password.placeholder}}" ng-model="login.password" required /><br/>
+                    <input name="password" ng-enter="reset.reset()" ng-class="{error: reset_form.password.$invalid && reset_form.submitted}"
+                           type="password" placeholder="{{reset_form.password.placeholder}}" ng-model="reset.password" required /><br/>
                 </div>
                 <div class="simple-group" style="margin-top: 20px">
                     <label translate>Confirm Password</label>
-                    <input name="password" ng-enter="login.auth()" ng-class="{error: login_form.password.$invalid && login_form.submitted}"
-                           type="password" placeholder="{{login_form.password.placeholder}}" ng-model="login.password" required /><br/>
+                    <input name="confirm" ng-enter="reset.reset()" ng-class="{error: reset_form.confirm.$invalid && reset_form.submitted}"
+                           type="password" placeholder="{{reset_form.confirm.placeholder}}" ng-model="reset.confirm" required /><br/>
                 </div>
             </div>
             <div class="footer center">
