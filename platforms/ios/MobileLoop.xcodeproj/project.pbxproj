@@ -15,6 +15,18 @@
 		1CB3BAB9F8394321A45AFD7B /* UIWebViewExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 89493CB948CC41289A09C3F5 /* UIWebViewExtension.m */; };
 		1D3623260D0F684500981E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		231417231C1388FD0076C666 /* GoogleAnalyticsPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B53D7B6C0EB4311AE846808 /* GoogleAnalyticsPlugin.m */; };
+		231417241C1389450076C666 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97318FAD33CB4155B4A66E1C /* libGoogleAnalyticsServices.a */; };
+		231417251C1389460076C666 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97318FAD33CB4155B4A66E1C /* libGoogleAnalyticsServices.a */; };
+		231417261C1389470076C666 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 97318FAD33CB4155B4A66E1C /* libGoogleAnalyticsServices.a */; };
+		231417271C13894C0076C666 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A04BAAB4B640129522E86E /* libsqlite3.dylib */; };
+		231417281C13894D0076C666 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A04BAAB4B640129522E86E /* libsqlite3.dylib */; };
+		231417291C13894F0076C666 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A04BAAB4B640129522E86E /* libsqlite3.dylib */; };
+		2314172A1C1389520076C666 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D60691B321E64029848FD97B /* libz.dylib */; };
+		2314172B1C1389530076C666 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D60691B321E64029848FD97B /* libz.dylib */; };
+		2314172C1C1389550076C666 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D60691B321E64029848FD97B /* libz.dylib */; };
+		2314172D1C1389F10076C666 /* GoogleAnalyticsPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B53D7B6C0EB4311AE846808 /* GoogleAnalyticsPlugin.m */; };
+		2314172E1C138A040076C666 /* GoogleAnalyticsPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B53D7B6C0EB4311AE846808 /* GoogleAnalyticsPlugin.m */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		2CEB9F9CCB8A4D2F940F9001 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 00A04BAAB4B640129522E86E /* libsqlite3.dylib */; };
 		301BF552109A68D80062928A /* libCordova.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 301BF535109A57CC0062928A /* libCordova.a */; };
@@ -400,13 +412,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2314172B1C1389530076C666 /* libz.dylib in Frameworks */,
 				D41D8D141BEFEA0800458DC5 /* AssetsLibrary.framework in Frameworks */,
 				D41D8D151BEFEA0800458DC5 /* libCordova.a in Frameworks */,
+				231417251C1389460076C666 /* libGoogleAnalyticsServices.a in Frameworks */,
 				D41D8D161BEFEA0800458DC5 /* CoreGraphics.framework in Frameworks */,
 				D41D8D171BEFEA0800458DC5 /* MobileCoreServices.framework in Frameworks */,
 				D41D8D181BEFEA0800458DC5 /* SystemConfiguration.framework in Frameworks */,
 				D41D8D191BEFEA0800458DC5 /* CoreData.framework in Frameworks */,
 				D41D8D1C1BEFEA0800458DC5 /* AudioToolbox.framework in Frameworks */,
+				231417281C13894D0076C666 /* libsqlite3.dylib in Frameworks */,
 				D41D8D1D1BEFEA0800458DC5 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,13 +430,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2314172C1C1389550076C666 /* libz.dylib in Frameworks */,
 				D41D8D5C1BEFECF200458DC5 /* AssetsLibrary.framework in Frameworks */,
 				D41D8D5D1BEFECF200458DC5 /* libCordova.a in Frameworks */,
+				231417261C1389470076C666 /* libGoogleAnalyticsServices.a in Frameworks */,
 				D41D8D5E1BEFECF200458DC5 /* CoreGraphics.framework in Frameworks */,
 				D41D8D5F1BEFECF200458DC5 /* MobileCoreServices.framework in Frameworks */,
 				D41D8D601BEFECF200458DC5 /* SystemConfiguration.framework in Frameworks */,
 				D41D8D611BEFECF200458DC5 /* CoreData.framework in Frameworks */,
 				D41D8D641BEFECF200458DC5 /* AudioToolbox.framework in Frameworks */,
+				231417291C13894F0076C666 /* libsqlite3.dylib in Frameworks */,
 				D41D8D651BEFECF200458DC5 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,13 +448,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2314172A1C1389520076C666 /* libz.dylib in Frameworks */,
 				D498F2B71BEFE33D009E43ED /* AssetsLibrary.framework in Frameworks */,
 				D498F2B81BEFE33D009E43ED /* libCordova.a in Frameworks */,
+				231417241C1389450076C666 /* libGoogleAnalyticsServices.a in Frameworks */,
 				D498F2B91BEFE33D009E43ED /* CoreGraphics.framework in Frameworks */,
 				D498F2BA1BEFE33D009E43ED /* MobileCoreServices.framework in Frameworks */,
 				D498F2BB1BEFE33D009E43ED /* SystemConfiguration.framework in Frameworks */,
 				D498F2BC1BEFE33D009E43ED /* CoreData.framework in Frameworks */,
 				D498F2BF1BEFE33D009E43ED /* AudioToolbox.framework in Frameworks */,
+				231417271C13894C0076C666 /* libsqlite3.dylib in Frameworks */,
 				D498F2C01BEFE33D009E43ED /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1059,6 +1080,7 @@
 				D4BF872B1C09563600BF3782 /* CDVViewController+SplashScreen.m in Sources */,
 				D4BF872C1C09563600BF3782 /* CDVStatusBar.m in Sources */,
 				D4BF872D1C09563600BF3782 /* CDVVibration.m in Sources */,
+				2314172E1C138A040076C666 /* GoogleAnalyticsPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1086,6 +1108,7 @@
 				D4BF87371C09567300BF3782 /* CDVViewController+SplashScreen.m in Sources */,
 				D4BF87381C09567300BF3782 /* CDVStatusBar.m in Sources */,
 				D4BF87391C09567300BF3782 /* CDVVibration.m in Sources */,
+				2314172D1C1389F10076C666 /* GoogleAnalyticsPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1113,6 +1136,7 @@
 				D4BF871F1C09558800BF3782 /* CDVViewController+SplashScreen.m in Sources */,
 				D4BF87201C09558800BF3782 /* CDVStatusBar.m in Sources */,
 				D4BF87211C09558800BF3782 /* CDVVibration.m in Sources */,
+				231417231C1388FD0076C666 /* GoogleAnalyticsPlugin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1319,6 +1343,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/MobileLoop/Plugins/com.cmackay.plugins.googleanalytics\"",
+					"$(PROJECT_DIR)/MobileLoop/Plugins/com.cmackay.plugins.googleanalytics",
 				);
 				OTHER_LDFLAGS = (
 					"-weak_framework",
@@ -1355,6 +1380,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/MobileLoop/Plugins/com.cmackay.plugins.googleanalytics\"",
+					"$(PROJECT_DIR)/MobileLoop/Plugins/com.cmackay.plugins.googleanalytics",
 				);
 				OTHER_LDFLAGS = (
 					"-weak_framework",
@@ -1393,6 +1419,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/MobileLoop/Plugins/com.cmackay.plugins.googleanalytics\"",
+					"$(PROJECT_DIR)/MobileLoop/Plugins/com.cmackay.plugins.googleanalytics",
 				);
 				OTHER_LDFLAGS = (
 					"-weak_framework",
@@ -1429,6 +1456,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/MobileLoop/Plugins/com.cmackay.plugins.googleanalytics\"",
+					"$(PROJECT_DIR)/MobileLoop/Plugins/com.cmackay.plugins.googleanalytics",
 				);
 				OTHER_LDFLAGS = (
 					"-weak_framework",
@@ -1467,6 +1495,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/MobileLoop/Plugins/com.cmackay.plugins.googleanalytics\"",
+					"$(PROJECT_DIR)/MobileLoop/Plugins/com.cmackay.plugins.googleanalytics",
 				);
 				OTHER_LDFLAGS = (
 					"-weak_framework",
@@ -1503,6 +1532,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/MobileLoop/Plugins/com.cmackay.plugins.googleanalytics\"",
+					"$(PROJECT_DIR)/MobileLoop/Plugins/com.cmackay.plugins.googleanalytics",
 				);
 				OTHER_LDFLAGS = (
 					"-weak_framework",
