@@ -5,6 +5,12 @@
         console.log("***** device ready *****");
         console.log("Cordova: " + device.cordova);
         window.open = cordova.InAppBrowser.open;
+        if(!navigator.analytics) {
+            navigator.analytics = {
+                setTrackingId: function() {},
+                sendAppView: function() {}
+            };
+        }
         var app = document.getElementById("mobile-app");
         angular.bootstrap(app, ["mobileloop"]);
     }, false);
@@ -49,7 +55,7 @@
 
                 console.log("Starting tracking: " + config.gakey);
 
-                window.analytics.startTrackerWithId(config.gakey);
+                navigator.analytics.setTrackingId(config.gakey);
 
                 document.addEventListener("backbutton", function () {
                     $rootScope.$broadcast("hardware.backbutton");

@@ -66,7 +66,6 @@
         <splash height="2208" src="build/images/splash/ios/Default-736h.png" width="1242" />
         <splash height="1242" src="build/images/splash/ios/Default-Landscape-736h.png" width="2208" />
     </platform>
-    <plugin name="com.cmackay.plugins.googleanalytics" spec="~0.1.22" />
     <plugin name="cordova-plugin-console" spec="~1.0.2" />
     <plugin name="cordova-plugin-device" spec="~1.1.0" />
     <plugin name="cordova-plugin-dialogs" spec="~1.2.0" />
@@ -77,4 +76,5 @@
     <plugin name="cordova-plugin-statusbar" spec="~2.0.0" />
     <plugin name="cordova-plugin-vibration" spec="~2.0.0" />
     <plugin name="cordova-plugin-whitelist" spec="~1.2.0" />
+    <plugin name="com.cmackay.plugins.googleanalytics" spec="~0.1.22" />
 </widget>

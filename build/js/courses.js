@@ -9,7 +9,7 @@
 
     function CoursesController($scope, $state, dataService, DataType, storageService, statusService, navbarService, loopmailService) {
 
-        window.analytics.trackView('Courses');
+        navigator.analytics.sendAppView('Courses');
 
         $scope.courses = dataService.list(DataType.COURSE);
 

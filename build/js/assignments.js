@@ -9,7 +9,7 @@
 
     function AssignmentsController($rootScope, $scope, $state, $timeout, navbarService, loopmailService, dataService, DataType, gettextCatalog) {
 
-        window.analytics.trackView('Assignments');
+        navigator.analytics.sendAppView('Assignments');
 
         var assignments = dataService.list(DataType.ASSIGNMENT);
         getTimeZone(assignments);

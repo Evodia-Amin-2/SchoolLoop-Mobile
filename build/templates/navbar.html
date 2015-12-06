@@ -8,7 +8,7 @@
         <div class="navbar-icon loopmail-action clickable" ng-show="navbar.isMailEnabled()" ng-click="loopmail()"><span class="icon-envelope icon-large"></span></div>
         <div class="navbar-action clickable" ng-show="navbar.isSendEnabled()" ng-click="send()"><span class="loopmail-send" translate>Send</span></div>
         <div class="loopmail-menu" ng-show="navbar.isReplyEnabled()"><div dropdown="" classlink="dropdownLink" initial="0" classmenu="dropdownMenu" actions="replyActions" listener="menuListener"></div></div>
-        <div class="loopmail-menu" ng-class="{teacher: isTeacher()}" ng-show="navbar.isLoopMenuEnabled()"><div dropdown="" classlink="dropdownLink" initial="0" classmenu="dropdownMenu" actions="loopActions" listener="menuListener"></div></div>
+        <div class="loopmail-menu compose" ng-show="navbar.isLoopMenuEnabled()"><div dropdown="" classlink="dropdownLink" initial="0" classmenu="dropdownMenu" actions="loopActions" listener="menuListener"></div></div>
         <div class="navbar-action clickable" ng-show="navbar.isDoneEnabled()" ng-click="done()"><span class="loopmail-send" translate>Done</span></div>
     </div>
     <div class="nav-middle" ng-click="titleBack()" >

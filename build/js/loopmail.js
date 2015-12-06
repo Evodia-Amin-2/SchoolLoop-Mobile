@@ -11,7 +11,7 @@
     function LoopMailController($rootScope, $scope, $timeout, $state, dataService, DataType, statusService,
                                 loopmailService, storageService, navbarService, gettextCatalog) {
 
-        window.analytics.trackView('LoopMail');
+        navigator.analytics.sendAppView('LoopMail');
 
         $scope.loading = false;
         $scope.pageLoaded = false;
@@ -37,9 +37,9 @@
 
         navbarService.reset();
         navbarService.setLoopMenuEnabled(true);
-        if(isTeacher()) {
+//        if(isTeacher()) {
             navbarService.setMailEnabled(true);
-        }
+//        }
 
         $scope.parentScope = $scope;
 

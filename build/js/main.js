@@ -19,7 +19,7 @@
                 StatusBar.styleLightContent();
                 StatusBar.show();
 
-                window.analytics.trackView('Main');
+                navigator.analytics.sendAppView('Main');
 
                 $timeout(function() {
                     statusService.hideNoWait();
