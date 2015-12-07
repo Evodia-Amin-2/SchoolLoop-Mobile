@@ -88,9 +88,10 @@
 
                 statusService.showLogin();
 
+                var data;
                 loginService.login(login.selectedSchool[0].domainName, login.username, login.password).then(
                     function(message) {
-                        var data = message.data;
+                        data = message.data;
                         storageService.addDomain(login.selectedSchool[0], data, login.password);
                         if(data.isUnverifiedParent === 'true') {
                             storageService.clearPassword(login.selectedSchool[0].domainName);
@@ -113,7 +114,7 @@
                             return;
                         }
                         if (error.status === 401 && error.data.toLowerCase().startsWith("error 3:")) {
-                            var data = {"userName": login.username};
+                            data = {"userName": login.username};
                             storageService.addDomain(login.selectedSchool[0], data, null);
                             login.unverified('Student');
                             storageService.clearPassword(login.selectedSchool[0].domainName);
@@ -125,7 +126,8 @@
                             $state.go('notstarted');
                             return;
                         } else if(error.status === 401 && error.data.toLowerCase().startsWith("error 7")) {
-                            storageService.setPassword(login.selectedSchool[0].domainName, login.password);
+                            data = {"userName": login.username};
+                            storageService.setTempAuth(login.username, login.password);
                             $state.go('reset');
                             return;
                         } else {

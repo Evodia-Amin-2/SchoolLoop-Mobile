@@ -21,9 +21,8 @@
                     if(reset.password === reset.confirm) {
                         dataService.resetPassword(reset.password).then(
                             function() {
-                                var domain = storageService.getDefaultDomain();
-                                var domainName = domain.school.domainName;
-                                storageService.setPassword(domainName, reset.password);
+                                var auth = storageService.getTempAuth();
+                                storageService.resetPassword(auth.username, reset.password);
                                 $state.go('main');
                             },
                             function() {

@@ -168,11 +168,6 @@
                 $scope.noMailMessage = gettextCatalog.getString("No Mail Currently");
             }
         }
-
-        function isTeacher() {
-            var domain = storageService.getDefaultDomain();
-            return (domain.user.role !== 'student' && domain.user.role !== 'parent');
-        }
     }
 
     function LoopMailDetailController($rootScope, $scope, $window, $state, $stateParams, $sce, storageService, dataService,

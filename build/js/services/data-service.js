@@ -208,8 +208,8 @@
                 var params = {
                     'new': password
                 };
-
-                return doPost($q, $http, Base64, "reset", params, storageService);
+                var auth = storageService.getTempAuth();
+                return doPost($q, $http, Base64, "reset", params, storageService, auth);
             },
             sendForgetEmail: function(params) {
                 return getRequest("forgot", params);
@@ -307,12 +307,16 @@
         return deferred.promise;
     }
 
-    function doPost($q, $http, Base64, action, params, storageService) {
+    function doPost($q, $http, Base64, action, params, storageService, auth) {
 
         var url = storageService.getSelectedSchool().domainName;
-        var domain = storageService.getDomain(url);
-        if(_.isUndefined(domain) === false && _.isNull(domain) === false) {
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode(domain.user.userName + ':' + domain.password);
+        if(_.isUndefined(auth) === false) {
+            $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode(auth.username + ':' + auth.password);
+        } else {
+            var domain = storageService.getDomain(url);
+            if(_.isUndefined(domain) === false && _.isNull(domain) === false) {
+                $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode(domain.user.userName + ':' + domain.password);
+            }
         }
 
         var endpoint = "https://" + url + "/mapi/" + action;

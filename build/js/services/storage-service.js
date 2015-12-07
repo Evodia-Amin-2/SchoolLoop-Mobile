@@ -9,6 +9,8 @@
         var storage = $window.localStorage;
         var visitedNews = null;
         var languageCode = 'en';
+        var tempAuth;
+        var currentMap;
 
         var service = {
             clear: function() {
@@ -41,6 +43,22 @@
                     saveDomainMap(domainMap);
                 }
             },
+            resetPassword: function(username, password) {
+                var domain = service.getDefaultDomain();
+                if (_.isUndefined(domain) === false && _.isNull(domain) === false) {
+                    if(domain.user.userName === username) {
+                        var data = sjcl.encrypt(domain.user.userID, password);
+                        domain.encrypted = sjcl.json.decode(data);
+                        saveDomainMap(currentMap);
+                    } else {
+                        // different user - clear user and password
+                        domain.encrypted = undefined;
+                        domain.user = {};
+                        saveDomainMap(currentMap);
+                    }
+                }
+
+            },
             clearPassword: function(domainName) {
                 var domainMap = loadDomainMap();
                 var domain = domainMap[domainName];
@@ -48,6 +66,12 @@
                     domain.encrypted = undefined;
                     saveDomainMap(domainMap);
                 }
+            },
+            setTempAuth: function(username, password) {
+                tempAuth = {username: username, password: password};
+            },
+            getTempAuth: function() {
+                return tempAuth;
             },
             getDomain: function(domainName) {
                 var domainMap = loadDomainMap();
@@ -265,6 +289,7 @@
                     storage.removeItem("domainMap");
                 }
             }
+            currentMap = map;
             return map;
         }
 
