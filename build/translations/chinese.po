@@ -61,7 +61,7 @@ msgstr "取消"
 msgid "Category"
 msgstr "類別得分"
 
-#: compose.html:30 loopmail.js:247 reply.html:11
+#: compose.html:30 loopmail.js:242 reply.html:11
 msgid "CC:"
 msgstr "加添收信人:"
 
@@ -128,7 +128,7 @@ msgstr "忘記密碼"
 msgid "Forgot Password?"
 msgstr "忘記密碼 ?"
 
-#: loopmail.js:225 loopmail.js:74
+#: loopmail.js:220 loopmail.js:74
 msgid "From:"
 msgstr "发件人: "
 
@@ -161,13 +161,13 @@ msgstr ""
 msgid "Inbox"
 msgstr "收件匣"
 
-#: login.js:138
+#: login.js:140
 msgid "Invalid Login"
 msgstr "登入錯誤"
 
 #: services/status-service.js:18
 msgid "Loading..."
-msgstr "Loading…"
+msgstr "Loading..."
 
 #: services/status-service.js:23
 msgid "Logging in..."
@@ -177,7 +177,7 @@ msgstr "現正登入"
 msgid "Login"
 msgstr "登入"
 
-#: add-student.js:106 login.js:145
+#: add-student.js:106 login.js:147
 msgid "Login Incorrect!"
 msgstr "登入錯誤"
 
@@ -189,7 +189,7 @@ msgstr "登入名稱"
 msgid "Login Name or Email"
 msgstr "電郵"
 
-#: add-student.js:111 login.js:152
+#: add-student.js:111 login.js:154
 msgid "Login Name Required!"
 msgstr "必須輸入登記名字 !"
 
@@ -249,6 +249,10 @@ msgstr "沒有零分"
 msgid "Notification"
 msgstr "Notification"
 
+#: reset.js:35
+msgid "Oops! Passwords don't match"
+msgstr "Oops! Passwords don't match"
+
 #: directives/navbar.js:23
 msgid "Outbox"
 msgstr "發送信箱"
@@ -261,7 +265,7 @@ msgstr "家長必須查核"
 msgid "Password"
 msgstr "密碼"
 
-#: add-student.js:112 login.js:153
+#: add-student.js:112 login.js:155 reset.js:40 reset.js:44
 msgid "Password Required!"
 msgstr "必須輸入密碼 !"
 
@@ -270,7 +274,7 @@ msgid ""
 "Please check your email for your password and try to login again.  Thanks!"
 msgstr "請查看您的電子郵件內臨時密碼然後再次登入"
 
-#: forgot.js:38 forgot.js:42 reset.js:32
+#: forgot.js:38 forgot.js:42
 msgid "Please enter email!"
 msgstr "請輸入電子郵件 !"
 
@@ -433,7 +437,7 @@ msgid ""
 "To help you login, we will send an email to the address you used to register."
 msgstr "為了幫助您的登入，我們將會按您用於註冊的電子郵件地址發送一封電子郵件。"
 
-#: compose.html:10 compose.html:21 compose.html:25 loopmail.js:232
+#: compose.html:10 compose.html:21 compose.html:25 loopmail.js:227
 #: loopmail.js:72 loopmail.js:76
 msgid "To:"
 msgstr "收件人:"

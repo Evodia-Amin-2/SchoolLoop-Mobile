@@ -62,7 +62,7 @@ msgstr "Cancelar"
 msgid "Category"
 msgstr "Puntajes por categoría"
 
-#: compose.html:30 loopmail.js:247 reply.html:11
+#: compose.html:30 loopmail.js:242 reply.html:11
 msgid "CC:"
 msgstr "Con copia a:"
 
@@ -133,7 +133,7 @@ msgstr "Olvidé la contraseña"
 msgid "Forgot Password?"
 msgstr "¿Se le ha olvidado la contraseña? "
 
-#: loopmail.js:225 loopmail.js:74
+#: loopmail.js:220 loopmail.js:74
 msgid "From:"
 msgstr "de:"
 
@@ -167,7 +167,7 @@ msgstr ""
 msgid "Inbox"
 msgstr "Recibidos"
 
-#: login.js:138
+#: login.js:140
 msgid "Invalid Login"
 msgstr "Credenciales de ingreso no válidas"
 
@@ -183,7 +183,7 @@ msgstr "Iniciando sesión"
 msgid "Login"
 msgstr "Login"
 
-#: add-student.js:106 login.js:145
+#: add-student.js:106 login.js:147
 msgid "Login Incorrect!"
 msgstr "¡Se inició la sesión incorrectamente!"
 
@@ -195,7 +195,7 @@ msgstr "Nombre de usuario"
 msgid "Login Name or Email"
 msgstr "Correo electrónico"
 
-#: add-student.js:111 login.js:152
+#: add-student.js:111 login.js:154
 msgid "Login Name Required!"
 msgstr "¡Se requiere el nombre del usuario!"
 
@@ -255,6 +255,10 @@ msgstr "No hay ceros"
 msgid "Notification"
 msgstr "Notification"
 
+#: reset.js:35
+msgid "Oops! Passwords don't match"
+msgstr "Oops! Passwords don't match"
+
 #: directives/navbar.js:23
 msgid "Outbox"
 msgstr "No enviado"
@@ -267,7 +271,7 @@ msgstr "Aprobación de cuentas para padres"
 msgid "Password"
 msgstr "Contraseña"
 
-#: add-student.js:112 login.js:153
+#: add-student.js:112 login.js:155 reset.js:40 reset.js:44
 msgid "Password Required!"
 msgstr "¡Se requiere la contraseña!"
 
@@ -278,7 +282,7 @@ msgstr ""
 "Por favor revise su correo electrónico para ver su contraseña temporal y "
 "trate de ingresar nuevamente. ¡Gracias!"
 
-#: forgot.js:38 forgot.js:42 reset.js:32
+#: forgot.js:38 forgot.js:42
 msgid "Please enter email!"
 msgstr "¡Ingrese su correo electrónico!"
 
@@ -447,7 +451,7 @@ msgstr ""
 "Para ayudarle a ingresar le enviaremos un correo electrónico a la dirección "
 "que usó al registrarse."
 
-#: compose.html:10 compose.html:21 compose.html:25 loopmail.js:232
+#: compose.html:10 compose.html:21 compose.html:25 loopmail.js:227
 #: loopmail.js:72 loopmail.js:76
 msgid "To:"
 msgstr "A:"

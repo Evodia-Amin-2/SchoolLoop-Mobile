@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('ResetController', ['$scope', '$state', 'DataService', 'StorageService', ResetController])
+        .controller('ResetController', ['$scope', '$state', 'DataService', 'StorageService', 'gettextCatalog', ResetController])
         ;
 
-        function ResetController($scope, $state, dataService, storageService) {
+        function ResetController($scope, $state, dataService, storageService, gettextCatalog) {
             var reset = this;
 
             StatusBar.styleDefault();
@@ -16,7 +16,7 @@
             };
 
             reset.reset = function() {
-                $scope.reset_form.$submitted = true;
+                $scope.reset_form.submitted = true;
                 if($scope.reset_form.$valid) {
                     if(reset.password === reset.confirm) {
                         dataService.resetPassword(reset.password).then(
@@ -29,6 +29,19 @@
                                 goLogin();
                             }
                         );
+                    } else {
+                        reset.confirm = undefined;
+                        $scope.reset_form.confirm.$invalid = true;
+                        $scope.reset_form.confirm.placeholder = gettextCatalog.getString("Oops! Passwords don't match");
+                    }
+                } else {
+                    if(_.isUndefined(reset.password) === true) {
+                        $scope.reset_form.password.$invalid = true;
+                        $scope.reset_form.password.placeholder = gettextCatalog.getString("Password Required!");
+                    }
+                    if(_.isUndefined(reset.confirm) === true) {
+                        $scope.reset_form.confirm.$invalid = true;
+                        $scope.reset_form.confirm.placeholder = gettextCatalog.getString("Password Required!");
                     }
                 }
             };

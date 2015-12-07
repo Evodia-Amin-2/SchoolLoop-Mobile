@@ -64,7 +64,7 @@ msgid "Category"
 msgstr ""
 
 #: compose.html:30
-#: loopmail.js:247
+#: loopmail.js:242
 #: reply.html:11
 msgid "CC:"
 msgstr ""
@@ -130,7 +130,7 @@ msgstr ""
 msgid "Forgot Password?"
 msgstr ""
 
-#: loopmail.js:225
+#: loopmail.js:220
 #: loopmail.js:74
 msgid "From:"
 msgstr ""
@@ -159,7 +159,7 @@ msgstr ""
 msgid "Inbox"
 msgstr ""
 
-#: login.js:138
+#: login.js:140
 msgid "Invalid Login"
 msgstr ""
 
@@ -178,7 +178,7 @@ msgid "Login"
 msgstr ""
 
 #: add-student.js:106
-#: login.js:145
+#: login.js:147
 msgid "Login Incorrect!"
 msgstr ""
 
@@ -191,7 +191,7 @@ msgid "Login Name or Email"
 msgstr ""
 
 #: add-student.js:111
-#: login.js:152
+#: login.js:154
 msgid "Login Name Required!"
 msgstr ""
 
@@ -255,6 +255,10 @@ msgstr ""
 msgid "Notification"
 msgstr ""
 
+#: reset.js:35
+msgid "Oops! Passwords don't match"
+msgstr ""
+
 #: directives/navbar.js:23
 msgid "Outbox"
 msgstr ""
@@ -268,7 +272,9 @@ msgid "Password"
 msgstr ""
 
 #: add-student.js:112
-#: login.js:153
+#: login.js:155
+#: reset.js:40
+#: reset.js:44
 msgid "Password Required!"
 msgstr ""
 
@@ -278,7 +284,6 @@ msgstr ""
 
 #: forgot.js:38
 #: forgot.js:42
-#: reset.js:32
 msgid "Please enter email!"
 msgstr ""
 
@@ -445,7 +450,7 @@ msgstr ""
 #: compose.html:10
 #: compose.html:21
 #: compose.html:25
-#: loopmail.js:232
+#: loopmail.js:227
 #: loopmail.js:72
 #: loopmail.js:76
 msgid "To:"
