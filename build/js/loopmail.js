@@ -4,8 +4,8 @@
     angular.module('mobileloop')
         .controller('LoopMailController', ['$rootScope', '$scope', '$timeout', '$state', 'DataService', 'DataType', 'StatusService',
             'LoopmailService', 'StorageService', 'NavbarService', 'gettextCatalog', LoopMailController])
-        .controller('LoopMailDetailController', ['$rootScope', '$scope', '$window', '$state', '$stateParams', '$sce', 'StorageService',
-            'DataService', 'DataType', 'StatusService', 'NavbarService', 'gettextCatalog', LoopMailDetailController])
+        .controller('LoopMailDetailController', ['$rootScope', '$scope', '$window', '$state', '$stateParams', '$sce', '$filter',
+            'StorageService', 'DataService', 'DataType', 'StatusService', 'NavbarService', 'gettextCatalog', LoopMailDetailController])
     ;
 
     function LoopMailController($rootScope, $scope, $timeout, $state, dataService, DataType, statusService,
@@ -170,8 +170,8 @@
         }
     }
 
-    function LoopMailDetailController($rootScope, $scope, $window, $state, $stateParams, $sce, storageService, dataService,
-                                      DataType, statusService, navbarService, gettextCatalog) {
+    function LoopMailDetailController($rootScope, $scope, $window, $state, $stateParams, $sce, $filter, storageService,
+                                      dataService, DataType, statusService, navbarService, gettextCatalog) {
         var loopmailId = $stateParams.loopmailId;
         $scope.loaded = false;
         navbarService.reset();
@@ -199,7 +199,8 @@
                 navbarService.setBackEnabled(true);
 
                 if(loopmail.message) {
-                    $scope.trustedMessage = $sce.trustAsHtml(loopmail.message);
+                    message = $filter('replaceUrlFilter')(loopmail.message);
+                    $scope.trustedMessage = $sce.trustAsHtml(message);
                 }
             }
             $rootScope.$broadcast("scroll.refresh");
