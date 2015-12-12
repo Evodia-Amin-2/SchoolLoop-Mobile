@@ -30,6 +30,7 @@
         <div class="assignment-detail clearfix">
             <div class="teacher" ng-show="assignment.teacherName">{{assignment.teacherName}}</div>
             <div class="teacher" ng-show="!assignment.teacherName" translate>Teacher Unknown</div>
+            <div class="teacher" ng-show="assignment.coTeacherName"><span>&nbsp;-&nbsp;</span>{{assignment.coTeacherName}}</div>
             <div class="due-date"><span translate>Assigned:</span> {{assignment.assignedDate| momentTz:"MMM D, YYYY":assignment.timeZone}}</div>
         </div>
     </div>
