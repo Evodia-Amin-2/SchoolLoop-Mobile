@@ -33,9 +33,14 @@
 
         $timeout(hideStatus, 100);
 
+        var school = storageService.getSelectedSchool();
+        if (_.isUndefined(school) === false && _.isNull(school) === false) {
+            login.selectedSchool[0] = school;
+        }
+
+
         var domain = storageService.getDefaultDomain();
         if (_.isUndefined(domain) === false && _.isNull(domain) === false) {
-            login.selectedSchool[0] = domain.school;
             login.username = domain.user.userName;
             login.password = domain.password;
         }
@@ -126,8 +131,7 @@
                             $state.go('notstarted');
                             return;
                         } else if(error.status === 401 && error.data.toLowerCase().startsWith("error 7")) {
-                            data = {"userName": login.username};
-                            storageService.setTempAuth(login.username, login.password);
+                            storageService.setSchool(login.selectedSchool[0]);
                             $state.go('reset');
                             return;
                         } else {

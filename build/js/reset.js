@@ -20,10 +20,19 @@
                 if($scope.reset_form.$valid) {
                     if(reset.password === reset.confirm) {
                         dataService.resetPassword(reset.password).then(
-                            function() {
-                                var auth = storageService.getTempAuth();
-                                storageService.resetPassword(auth.username, reset.password);
-                                $state.go('main');
+                            function(message) {
+                                var data = message.data;
+                                if(_.isString(data) && data.startsWith("ERROR")) {
+                                    reset.password = undefined;
+                                    reset.confirm = undefined;
+                                    $scope.reset_form.password.placeholder = message.data;
+                                    $scope.reset_form.password.$invalid = true;
+                                } else {
+                                    var school = storageService.getSelectedSchool();
+                                    storageService.addDomain(school, data, reset.password);
+                                    storageService.addStudents(school, data.students, true);
+                                    $state.go('main');
+                                }
                             },
                             function() {
                                 goLogin();

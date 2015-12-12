@@ -82,7 +82,8 @@
                 return domain;
             },
             getDefaultDomain: function() {
-                var domainName = storage.getItem("school");
+                var school = loadSchool();
+                var domainName = school.domainName;
                 var domain = service.getDomain(domainName);
                 return domain;
             },
@@ -110,7 +111,7 @@
             },
             setSchool: function(school) {
                 console.log("setting school: " + JSON.stringify(school));
-                storage.setItem("school", school.domainName);
+                storage.setItem("school", JSON.stringify(school));
             },
             getSelectedSchool: function() {
                 var students = loadStudents();
@@ -122,9 +123,7 @@
                     if (_.isUndefined(domain) === false && _.isNull(domain) === false) {
                         return domain.school;
                     } else {
-                        var school = {};
-                        var domainName = storage.getItem("school");
-                        school.domainName = domainName;
+                        var school = loadSchool();
                         return school;
                     }
                 }
@@ -265,6 +264,19 @@
             }
         };
         return service;
+
+        function loadSchool() {
+            var school = {};
+            var data = storage.getItem("school");
+            if (data) {
+                try {
+                    school = JSON.parse(data);
+                } catch (err) {
+                    storage.removeItem("school");
+                }
+            }
+            return school;
+        }
 
         function loadStudents() {
             var students = [];

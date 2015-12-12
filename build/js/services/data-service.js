@@ -271,7 +271,7 @@
         params = params || {};
 
         var url = params.url;
-        if(_.isUndefined() === true) {
+        if(_.isUndefined(url) === true) {
             url = storageService.getSelectedSchool().domainName;
 
         }
