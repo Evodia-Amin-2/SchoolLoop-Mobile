@@ -132,6 +132,7 @@
                             return;
                         } else if(error.status === 401 && error.data.toLowerCase().startsWith("error 7")) {
                             storageService.setSchool(login.selectedSchool[0]);
+                            storageService.setPassword(login.selectedSchool[0].domainName, login.password);
                             $state.go('reset');
                             return;
                         } else {

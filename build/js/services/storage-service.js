@@ -9,7 +9,6 @@
         var storage = $window.localStorage;
         var visitedNews = null;
         var languageCode = 'en';
-        var tempAuth;
         var currentMap;
 
         var service = {
@@ -66,12 +65,6 @@
                     domain.encrypted = undefined;
                     saveDomainMap(domainMap);
                 }
-            },
-            setTempAuth: function(username, password) {
-                tempAuth = {username: username, password: password};
-            },
-            getTempAuth: function() {
-                return tempAuth;
             },
             getDomain: function(domainName) {
                 var domainMap = loadDomainMap();
