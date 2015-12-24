@@ -27,6 +27,7 @@ chmod -R +w platforms/*
 chmod -R +w www
 echo "Setting app id: com.schoolloop.mobileloop.${ID}"
 sed -i '' "s/com.schoolloop.mobileloop.mirror/com.schoolloop.mobileloop.${ID}/g" config.xml
+sed -i '' "s/MobileLoop/${APP_NAME}/g" config.xml
 echo "Setting version: ${VERSION}"
 sed -i '' "s/version=\"2.0.0\"/version=\"${VERSION}\"/g" config.xml
 sed -i '' "s/\$(BUILD_VERSION)/${BUILD}/g" platforms/ios/MobileLoop/*-Info.plist
