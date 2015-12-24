@@ -265,7 +265,23 @@
                 try {
                     school = JSON.parse(data);
                 } catch (err) {
-                    storage.removeItem("school");
+                    var domainName = data;
+                    var map = loadDomainMap();
+                    var domain = map[domainName];
+                    if(domain) {
+                        school = domain.school;
+                        service.setSchool(school);
+                    }
+                }
+            } else {
+                var map = loadDomainMap();
+                for(var domainName in map) {
+                    if(map.hasOwnProperty(domainName)) {
+                        var domain = map[domainName];
+                        school = domain.school;
+                        service.setSchool(school);
+                        break;
+                    }
                 }
             }
             return school;
