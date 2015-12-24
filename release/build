@@ -3,16 +3,17 @@ PATH=$PATH:/usr/local/bin:/Users/tombu/Library/Android/sdk/platform-tools:/Users
 export ANDROID_HOME=/Users/tombu/Library/Android/sdk
 
 if [[ $# -eq 0 ]] ; then
-    echo '    usage:  build {appId} {displayName} {version} {build} {release}'
-    echo '  example:  build "app" "School Loop" "2.0.0" "199" "(199)'
+    echo '    usage:  build {appId} {appName} {displayName} {version} {build} {release}'
+    echo '  example:  build "app" "SchoolLoop" "School Loop" "2.0.0" "199" "(199)'
     exit 1
 fi
 
 ID=$1
 APP_NAME=$2
-VERSION=$3
-BUILD=$4
-RELEASE=$5
+DISPLAY_NAME=$3
+VERSION=$4
+BUILD=$5
+RELEASE=$6
 
 rm -rf tmp/*.js
 npm install
@@ -33,7 +34,7 @@ sed -i '' "s/\$(VERSION_NUMBER)/${VERSION}/g" platforms/ios/MobileLoop/*-Info.pl
 echo "Setting app name: ${APP_NAME}"
 chmod +w platforms/android/res/values/strings.xml
 sed -i '' "s/\"app_name\">MobileLoop/\"app_name\">${APP_NAME}/g" platforms/android/res/values/strings.xml
-sed -i '' "s/\"launcher_name\">MobileLoop/\"launcher_name\">${APP_NAME}/g" platforms/android/res/values/strings.xml
+sed -i '' "s/\"launcher_name\">MobileLoop/\"launcher_name\">${DISPLAY_NAME}/g" platforms/android/res/values/strings.xml
 sed -i '' "s/com.schoolloop.mobileloop.mirror/com.schoolloop.mobileloop.${ID}/g" platforms/android/AndroidManifest.xml
 sed -i '' "s/com.schoolloop.mobileloop.mirror/com.schoolloop.mobileloop.${ID}/g" platforms/android/android.json
 sed -i '' "s/com.schoolloop.mobileloop.mirror/com.schoolloop.mobileloop.${ID}/g" platforms/browser/browser.json
