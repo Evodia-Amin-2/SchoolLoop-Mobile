@@ -32,6 +32,7 @@ sed -i '' "s/\$(BUILD_VERSION)/${BUILD}/g" platforms/ios/MobileLoop/*-Info.plist
 sed -i '' "s/\$(VERSION_NUMBER)/${VERSION}/g" platforms/ios/MobileLoop/*-Info.plist
 echo "Setting app name: ${APP_NAME}"
 chmod +w platforms/android/res/values/strings.xml
+sed -i '' "s/\"app_name\">MobileLoop/\"app_name\">${APP_NAME}/g" platforms/android/res/values/strings.xml
 sed -i '' "s/\"launcher_name\">MobileLoop/\"launcher_name\">${APP_NAME}/g" platforms/android/res/values/strings.xml
 sed -i '' "s/com.schoolloop.mobileloop.mirror/com.schoolloop.mobileloop.${ID}/g" platforms/android/AndroidManifest.xml
 sed -i '' "s/com.schoolloop.mobileloop.mirror/com.schoolloop.mobileloop.${ID}/g" platforms/android/android.json
