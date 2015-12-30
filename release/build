@@ -9,11 +9,10 @@ if [[ $# -eq 0 ]] ; then
 fi
 
 ID=$1
-APP_NAME=$2
-DISPLAY_NAME=$3
-VERSION=$4
-BUILD=$5
-RELEASE=$6
+DISPLAY_NAME=$2
+VERSION=$3
+BUILD=$4
+RELEASE=$5
 
 rm -rf tmp/*.js
 npm install
@@ -27,14 +26,12 @@ chmod -R +w platforms/*
 chmod -R +w www
 echo "Setting app id: com.schoolloop.mobileloop.${ID}"
 sed -i '' "s/com.schoolloop.mobileloop.mirror/com.schoolloop.mobileloop.${ID}/g" config.xml
-#sed -i '' "s/MobileLoop/${APP_NAME}/g" config.xml
 echo "Setting version: ${VERSION}"
 sed -i '' "s/version=\"2.0.0\"/version=\"${VERSION}\"/g" config.xml
 sed -i '' "s/\$(BUILD_VERSION)/${BUILD}/g" platforms/ios/MobileLoop/*-Info.plist
 sed -i '' "s/\$(VERSION_NUMBER)/${VERSION}/g" platforms/ios/MobileLoop/*-Info.plist
-echo "Setting app name: ${APP_NAME}"
+echo "Setting app name: ${DISPLAY_NAME}"
 chmod +w platforms/android/res/values/strings.xml
-sed -i '' "s/\"app_name\">MobileLoop/\"app_name\">${APP_NAME}/g" platforms/android/res/values/strings.xml
 sed -i '' "s/\"launcher_name\">MobileLoop/\"launcher_name\">${DISPLAY_NAME}/g" platforms/android/res/values/strings.xml
 sed -i '' "s/com.schoolloop.mobileloop.mirror/com.schoolloop.mobileloop.${ID}/g" platforms/android/AndroidManifest.xml
 sed -i '' "s/com.schoolloop.mobileloop.mirror/com.schoolloop.mobileloop.${ID}/g" platforms/android/android.json
