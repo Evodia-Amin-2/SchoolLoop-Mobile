@@ -2,12 +2,12 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('NewsController', ['$scope', '$state', 'DataService', 'DataType', 'NavbarService', NewsController])
+        .controller('NewsController', ['$scope', '$state', 'DataService', 'DataType', 'NavbarService', 'StorageService', NewsController])
         .controller('NewsDetailController', ['$rootScope', '$scope', '$window', '$stateParams', '$sce', '$filter', 'StorageService',
             'DataService', 'DataType', 'NavbarService', NewsDetailController])
     ;
 
-    function NewsController($scope, $state, dataService, DataType, navbarService) {
+    function NewsController($scope, $state, dataService, DataType, navbarService, storageService) {
 
         navigator.analytics.sendAppView('News');
 
@@ -20,6 +20,7 @@
         $scope.pullRefresh = function() {
             return dataService.refresh(DataType.NEWS).then(function(result) {
                 $scope.news = result;
+                storageService.setNews(result);
                 return result;
             }, function(error) {
                 return error;
