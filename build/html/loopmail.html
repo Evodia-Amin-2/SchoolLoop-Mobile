@@ -1,6 +1,6 @@
 <div ng-controller="LoopMailController">
     <div class="loopmail" scroller="">
-        <div class="empty-list" ng-show="loopmail.length == 0">
+        <div class="empty-list" ng-show="loopmail && loopmail.length == 0">
             <p>{{noMailMessage}}</p>
         </div>
         <div ng-show="loopmail.length > 0">

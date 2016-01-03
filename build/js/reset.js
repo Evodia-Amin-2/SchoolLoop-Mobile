@@ -41,7 +41,7 @@
                     } else {
                         reset.confirm = undefined;
                         $scope.reset_form.confirm.$invalid = true;
-                        $scope.reset_form.confirm.placeholder = gettextCatalog.getString("Oops! Passwords don't match");
+                        $scope.reset_form.confirm.placeholder = gettextCatalog.getString("Passwords don't match");
                     }
                 } else {
                     if(_.isUndefined(reset.password) === true) {

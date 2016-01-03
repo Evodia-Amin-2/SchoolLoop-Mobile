@@ -1,3 +1,9 @@
+.list-view, .list-view-item, .sublist-view-item {
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+    list-style: none outside;
+}
 
 .list-view-item, .sublist-view-item {
     border-bottom: 1px solid #f0f0f0;

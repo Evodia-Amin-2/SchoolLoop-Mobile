@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.1\n"
+"X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: add-student.html:105
@@ -40,7 +40,7 @@ msgstr "加入學生"
 msgid "All Mail Delivered"
 msgstr "所有郵件已遞送"
 
-#: assignment-detail.html:33
+#: assignment-detail.html:34
 msgid "Assigned:"
 msgstr "已分派"
 
@@ -61,7 +61,7 @@ msgstr "取消"
 msgid "Category"
 msgstr "類別得分"
 
-#: compose.html:30 loopmail.js:242 reply.html:11
+#: compose.html:30 loopmail.js:243 reply.html:11
 msgid "CC:"
 msgstr "加添收信人:"
 
@@ -72,7 +72,7 @@ msgstr "關閉"
 
 #: reset.html:12
 msgid "Confirm Password"
-msgstr "Confirm Password"
+msgstr "確認密碼"
 
 #: courses.js:295
 msgid "Course Info"
@@ -84,15 +84,15 @@ msgstr "科目"
 
 #: courses-detail.html:30
 msgid "Curriculum"
-msgstr "Curriculum"
+msgstr "課程內容"
 
 #: main-tabs.html:6
 msgid "Directory"
-msgstr "Directory"
+msgstr "用戶目錄"
 
 #: navbar.html:12
 msgid "Done"
-msgstr "Done"
+msgstr "完成"
 
 #: assignment-detail.html:6
 msgid "Due Today"
@@ -128,7 +128,7 @@ msgstr "忘記密碼"
 msgid "Forgot Password?"
 msgstr "忘記密碼 ?"
 
-#: loopmail.js:220 loopmail.js:74
+#: loopmail.js:221 loopmail.js:74
 msgid "From:"
 msgstr "发件人: "
 
@@ -161,13 +161,13 @@ msgstr ""
 msgid "Inbox"
 msgstr "收件匣"
 
-#: login.js:140
+#: login.js:145
 msgid "Invalid Login"
 msgstr "登入錯誤"
 
 #: services/status-service.js:18
 msgid "Loading..."
-msgstr "Loading..."
+msgstr "加載中…"
 
 #: services/status-service.js:23
 msgid "Logging in..."
@@ -177,7 +177,7 @@ msgstr "現正登入"
 msgid "Login"
 msgstr "登入"
 
-#: add-student.js:106 login.js:147
+#: add-student.js:106 login.js:152
 msgid "Login Incorrect!"
 msgstr "登入錯誤"
 
@@ -189,7 +189,7 @@ msgstr "登入名稱"
 msgid "Login Name or Email"
 msgstr "電郵"
 
-#: add-student.js:111 login.js:154
+#: add-student.js:111 login.js:159
 msgid "Login Name Required!"
 msgstr "必須輸入登記名字 !"
 
@@ -207,7 +207,7 @@ msgstr "新的Loop郵件"
 
 #: reset.html:7
 msgid "New Password"
-msgstr "New Password"
+msgstr "輸入新密碼"
 
 #: main-tabs.html:7
 msgid "News"
@@ -247,11 +247,7 @@ msgstr "沒有零分"
 
 #: services/notification-service.js:89
 msgid "Notification"
-msgstr "Notification"
-
-#: reset.js:35
-msgid "Oops! Passwords don't match"
-msgstr "Oops! Passwords don't match"
+msgstr "通知"
 
 #: directives/navbar.js:23
 msgid "Outbox"
@@ -265,9 +261,13 @@ msgstr "家長必須查核"
 msgid "Password"
 msgstr "密碼"
 
-#: add-student.js:112 login.js:155 reset.js:40 reset.js:44
+#: add-student.js:112 login.js:160 reset.js:49 reset.js:53
 msgid "Password Required!"
 msgstr "必須輸入密碼 !"
+
+#: reset.js:44
+msgid "Passwords don't match"
+msgstr "密碼前後不符"
 
 #: forgot.js:27
 msgid ""
@@ -330,16 +330,6 @@ msgstr "必須輸入密碼 !"
 msgid "Reset Password"
 msgstr "重設密碼"
 
-#: not-started.html:7
-msgid ""
-"School has not started. Thank you for logging on to your School Loop "
-"Account. Full account access will not be available until the first day of "
-"school. Please check back on that date. Have a great summer!"
-msgstr ""
-"School has not started. Thank you for logging on to your School Loop "
-"Account. Full account access will not be available until the first day of "
-"school. Please check back on that date. Have a great summer!"
-
 #: main.html:11
 msgid "School:"
 msgstr "學校："
@@ -366,7 +356,7 @@ msgstr "選擇一間不同的學校"
 
 #: navbar.html:9
 msgid "Send"
-msgstr "Send"
+msgstr "發送電郵"
 
 #: directives/navbar.js:22
 msgid "Sent"
@@ -374,7 +364,7 @@ msgstr "已寄出"
 
 #: reset.html:19 reset.html:4
 msgid "Set Password"
-msgstr "Set Password"
+msgstr "設定密碼"
 
 #: main.html:31
 msgid "Sign out"
@@ -403,6 +393,15 @@ msgstr "成功！Loop郵件已遞送"
 #: assignment-detail.html:32
 msgid "Teacher Unknown"
 msgstr "沒有此教師"
+
+#: not-started.html:7
+msgid ""
+"Thank you for logging on to your School Loop Account. Full account access "
+"will not be available until the first day of school. Please check back on "
+"that date. Have a great summer!"
+msgstr ""
+"多謝登入你的家校通戶口。你須待至開學第一天才可全面使用戶口功能。請在當天再次"
+"登入查看。祝你有個愉快暑假！"
 
 #: add-student.html:58
 msgid "The following students have been added:"
@@ -437,7 +436,7 @@ msgid ""
 "To help you login, we will send an email to the address you used to register."
 msgstr "為了幫助您的登入，我們將會按您用於註冊的電子郵件地址發送一封電子郵件。"
 
-#: compose.html:10 compose.html:21 compose.html:25 loopmail.js:227
+#: compose.html:10 compose.html:21 compose.html:25 loopmail.js:228
 #: loopmail.js:72 loopmail.js:76
 msgid "To:"
 msgstr "收件人:"
@@ -468,7 +467,7 @@ msgstr "版本"
 
 #: services/notification-service.js:90
 msgid "View"
-msgstr "View"
+msgstr "閱覽郵件"
 
 #: courses-detail.html:132
 msgid "Weight"

@@ -136,7 +136,7 @@
 
         $scope.$on("menu.dropdown", function(event, data) {
             var index = data.index;
-            $scope.loopmail = [];
+            $scope.loopmail = undefined;
             dataService.setLoopmailFolder(index);
             $scope.mailbox = dataService.getFolderId();
             if(dataService.getFolderId() < 0) {

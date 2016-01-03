@@ -2,29 +2,29 @@
     'use strict';
 
     angular.module('ui.components')
-        .filter('isEmpty', function() {
+        .filter('isEmpty', [function() {
             return function (input, replaceText) {
                 if (!input || input === 'null') {
                     return replaceText;
                 }
                 return input;
             };
-        })
+        }])
         .filter('percent', ['$filter', function($filter) {
             return function (input, decimals) {
                 input = input || 0;
                 return $filter('number')(input * 100, decimals) + '%';
             };
         }])
-        .filter('truncate', function () {
+        .filter('truncate', [function () {
             return function (input, length) {
                 if (isNaN(length)) {
                     return input;
                 }
                 return input.substring(0, length);
             };
-        })
-        .filter('characters', function () {
+        }])
+        .filter('characters', [function () {
             return function (input, chars, breakOnWord) {
                 if (isNaN(chars)) {
                     return input;
@@ -50,8 +50,8 @@
                 }
                 return input;
             };
-        })
-        .filter('replaceUrlFilter', function () {
+        }])
+        .filter('replaceUrlFilter', [function () {
             var hrefPattern = /href=(["]*)([^"]*)(["]*)/gi;
             return function (text) {
                 if(!text) {
@@ -62,8 +62,8 @@
                 });
                 return text;
             };
-        })
-        .filter('replaceSrcFilter', function () {
+        }])
+        .filter('replaceSrcFilter', [function () {
             var hrefPattern = /src=(["]*)([^"]*)(["]*)/gi;
             return function (text, school) {
                 if(!text) {
@@ -79,8 +79,8 @@
 
                 return text;
             };
-        })
-        .filter('momentTz', function() {
+        }])
+        .filter('momentTz', [function() {
             return function (rawDate, format, timeZone) {
                 if(_.isUndefined(rawDate)) {
                     return "";
@@ -88,8 +88,8 @@
                 var ts = moment(new Date(Number(rawDate))).tz(timeZone);
                 return ts.format(format);
             };
-        })
-        .filter('decimal', function() {
+        }])
+        .filter('decimal', [function() {
             return function (input, places) {
                 if (isNaN(input)) {
                     return input;
@@ -100,7 +100,7 @@
                 var factor = "1" + Array(+(num > 0 && num + 1)).join("0");
                 return Math.round(input * factor) / factor;
             };
-        })
+        }])
     ;
 
     function replaceLink(text, href, school, method) {

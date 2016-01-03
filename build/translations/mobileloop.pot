@@ -37,7 +37,7 @@ msgstr ""
 msgid "All Mail Delivered"
 msgstr ""
 
-#: assignment-detail.html:33
+#: assignment-detail.html:34
 msgid "Assigned:"
 msgstr ""
 
@@ -64,7 +64,7 @@ msgid "Category"
 msgstr ""
 
 #: compose.html:30
-#: loopmail.js:242
+#: loopmail.js:243
 #: reply.html:11
 msgid "CC:"
 msgstr ""
@@ -130,7 +130,7 @@ msgstr ""
 msgid "Forgot Password?"
 msgstr ""
 
-#: loopmail.js:220
+#: loopmail.js:221
 #: loopmail.js:74
 msgid "From:"
 msgstr ""
@@ -159,7 +159,7 @@ msgstr ""
 msgid "Inbox"
 msgstr ""
 
-#: login.js:140
+#: login.js:145
 msgid "Invalid Login"
 msgstr ""
 
@@ -178,7 +178,7 @@ msgid "Login"
 msgstr ""
 
 #: add-student.js:106
-#: login.js:147
+#: login.js:152
 msgid "Login Incorrect!"
 msgstr ""
 
@@ -191,7 +191,7 @@ msgid "Login Name or Email"
 msgstr ""
 
 #: add-student.js:111
-#: login.js:154
+#: login.js:159
 msgid "Login Name Required!"
 msgstr ""
 
@@ -255,10 +255,6 @@ msgstr ""
 msgid "Notification"
 msgstr ""
 
-#: reset.js:35
-msgid "Oops! Passwords don't match"
-msgstr ""
-
 #: directives/navbar.js:23
 msgid "Outbox"
 msgstr ""
@@ -272,10 +268,14 @@ msgid "Password"
 msgstr ""
 
 #: add-student.js:112
-#: login.js:155
-#: reset.js:40
-#: reset.js:44
+#: login.js:160
+#: reset.js:49
+#: reset.js:53
 msgid "Password Required!"
+msgstr ""
+
+#: reset.js:44
+msgid "Passwords don't match"
 msgstr ""
 
 #: forgot.js:27
@@ -347,10 +347,6 @@ msgstr ""
 msgid "Reset Password"
 msgstr ""
 
-#: not-started.html:7
-msgid "School has not started. Thank you for logging on to your School Loop Account. Full account access will not be available until the first day of school. Please check back on that date. Have a great summer!"
-msgstr ""
-
 #: main.html:11
 msgid "School:"
 msgstr ""
@@ -419,6 +415,10 @@ msgstr ""
 msgid "Teacher Unknown"
 msgstr ""
 
+#: not-started.html:7
+msgid "Thank you for logging on to your School Loop Account. Full account access will not be available until the first day of school. Please check back on that date. Have a great summer!"
+msgstr ""
+
 #: add-student.html:58
 msgid "The following students have been added:"
 msgstr ""
@@ -450,7 +450,7 @@ msgstr ""
 #: compose.html:10
 #: compose.html:21
 #: compose.html:25
-#: loopmail.js:227
+#: loopmail.js:228
 #: loopmail.js:72
 #: loopmail.js:76
 msgid "To:"

@@ -38,22 +38,24 @@
                         };
 
                         $scope.$on("$stateChangeSuccess", function(event, toState /*, toParams, fromState, fromParams */) {
-                            var paths = toState.name.split(".");
-                            var selectedTab = false;
-                            tabs.forEach(function(tab) {
-                                var src = tab.src;
-                                var isSrc = $state.is(src);
-                                var selected = isSrc || inPath(src, paths);
-                                if(selected) {
-                                    selectedTab = tab;
-                                    $scope.selectedIndex = tab.index;
-                                    var title = tab.title;
-                                    if(isSrc === true) {
-                                        navbarService.setTitle(title);
-                                        navbarService.setBackEnabled(false);
+                            $timeout(function() {
+                                var paths = toState.name.split(".");
+                                var selectedTab = false;
+                                tabs.forEach(function(tab) {
+                                    var src = tab.src;
+                                    var isSrc = $state.is(src);
+                                    var selected = isSrc || inPath(src, paths);
+                                    if(selected) {
+                                        selectedTab = tab;
+                                        $scope.selectedIndex = tab.index;
+                                        var title = tab.title;
+                                        if(isSrc === true) {
+                                            navbarService.setTitle(title);
+                                            navbarService.setBackEnabled(false);
+                                        }
                                     }
-                                }
-                                tab.selected = selected;
+                                    tab.selected = selected;
+                                });
                             });
                         });
 

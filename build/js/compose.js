@@ -3,7 +3,7 @@
 
     angular.module('mobileloop')
         .controller('ComposeController', ['$scope', '$window', '$q', '$timeout', 'NavbarService', 'DataService', 'LoopmailService', 'StorageService', '$stateParams', 'gettextCatalog', ComposeController])
-        .filter('propsFilter', PropsFilter)
+        .filter('propsFilter', [PropsFilter])
         ;
 
         function ComposeController($scope, $window, $q, $timeout, navbarService, dataService, loopmailService, storageService, $stateParams, gettextCatalog) {

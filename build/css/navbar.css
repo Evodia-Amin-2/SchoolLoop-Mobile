@@ -129,6 +129,13 @@
     width: 140px;
 }
 
+.dropdownMenu ul, .dropdownMenu li {
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+    list-style: none outside;
+}
+
 .dropdownMenu li {
     font-size: 1.25em;
     padding: 15px;
