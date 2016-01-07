@@ -78,11 +78,18 @@
 }
 
 .assignment-links, .news-links {
+    margin: 0;
+    line-height: normal;
+    list-style: none outside;
     padding: 10px;
     padding-top: 3px;
 }
 
 .assignment-links li, .news-links li {
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+    list-style: none outside;
     margin-left: 10px;
     margin-top: 15px;
 }

@@ -18,7 +18,7 @@
             </div>
             <div class="slide-middle overthrow">
                 <div ng-if="main.user.isParent == 'true'">
-                    <ul class="students">
+                    <ul class="students list">
                         <li ng-repeat="student in main.students" class="clickable" ng-class="{selected:main.isSelected(student)}" ng-click="main.selectStudent(student)">
                             <div class="user-name">{{student.name}}</div>
                             <div class="school-info">{{student.school.name}}</div>

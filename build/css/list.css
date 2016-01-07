@@ -1,4 +1,4 @@
-.list-view, .list-view-item, .sublist-view-item {
+.list, .list li, .list-view, .list-view-item, .sublist-view-item {
     margin: 0;
     padding: 0;
     line-height: normal;

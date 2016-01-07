@@ -24,6 +24,13 @@
     margin-left: 5px;
 }
 
+.student-list, .student-list li {
+    margin: 0;
+    padding: 0;
+    line-height: normal;
+    list-style: none outside;
+}
+
 .student-list {
     margin-left: 15px;
     margin-bottom: 20px;
