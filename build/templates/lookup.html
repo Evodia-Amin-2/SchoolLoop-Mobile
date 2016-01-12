@@ -5,7 +5,7 @@
         <span class="icon-times-circle" ng-click="clear()" ng-show="showClear()"></span>
     </div>
     <div class="lookup-content" ng-show="showResults()">
-        <ul>
+        <ul class="list">
             <li class="lookup-item clickable" data-ng-repeat="item in lookup.displaySet" ng-click="select(item)">
                 <div class="school">{{item.name}}</div>
                 <div class="district">{{item.districtName}}</div>

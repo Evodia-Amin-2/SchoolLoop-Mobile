@@ -5,6 +5,11 @@
     list-style: none outside;
 }
 
+.list li {
+    margin: 2px;
+    padding: 2px;
+}
+
 .list-view-item, .sublist-view-item {
     border-bottom: 1px solid #f0f0f0;
     position: relative;

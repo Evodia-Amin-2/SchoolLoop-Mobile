@@ -15,7 +15,7 @@
                         <span ng-show="!isToday(item.date, timeZone) && !isTomorrow(item.date, timeZone)">{{item.date | momentTz:"dddd":timeZone}}</span>
                     </strong>{{item.date | momentTz:"MMM D, YYYY":timeZone}}</span>
                     </div>
-                    <ul>
+                    <ul class="list">
                         <li ng-repeat="assignment in item.list" class="sublist-view-item clearfix" ng-click="showAssignment(assignment)">
                             <div class="item-row">
                                 <div class="assignment-row">

@@ -34,10 +34,9 @@
         $timeout(hideStatus, 100);
 
         var school = storageService.getSelectedSchool();
-        if (_.isUndefined(school) === false && _.isNull(school) === false) {
+        if (_.isUndefined(school) === false && _.isNull(school) === false && _.isUndefined(school.domainName) === false) {
             login.selectedSchool[0] = school;
         }
-
 
         var domain = storageService.getDefaultDomain();
         if (_.isUndefined(domain) === false && _.isNull(domain) === false) {
