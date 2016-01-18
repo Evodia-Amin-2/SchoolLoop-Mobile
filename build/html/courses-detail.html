@@ -5,11 +5,11 @@
                 <div class="teacher">{{progress.teacher.name}}<span ng-show="progress.coTeacher"><span class="seperator"> - </span>{{progress.coTeacher.name}}</span></div>
                 <div class="date">{{progress.date|date:"MMM d, y hh:mm a" : "UTC"}}</div>
             </div>
-            <div class="grade-info" ng-show="progress.grade && progress.grade !== 'null'">
-                <div class="grade">{{progress.grade}}</div>
-                <div class="score">{{showScore()}}</div>
+            <div class="grade-info" ng-show="hasScore() === true">
+                <div class="grade" ns-show="showGrade()">{{getGrade()}}</div>
+                <div class="score" ns-show="showScore()">{{getScore()}}</div>
             </div>
-            <div class="grade-info" ng-show="progress.grade && progress.grade === 'null'">
+            <div class="grade-info" ng-show="hasScore() === false">
                 <div class="grade">
                     <p translate>No Scores</p>
                 </div>
@@ -109,7 +109,7 @@
                                         <div class="grade" ng-if="isExcused(item)">{{item.score|isEmpty:'&nbsp;'}}</div>
                                         <div class="grade" ng-if="!isExcused(item) && !isZero(item)">{{calcPercent(item)|isEmpty:'&nbsp;'}}</div>
                                         <div class="grade" ng-show="!isExcused(item) && isZero(item)" translate>Zero</div>
-                                        <div ng-if="!isExcused(item) && !isZero(item)">{{getScore(item)|isEmpty:'&nbsp;'}}</div>
+                                        <div ng-if="!isExcused(item) && !isZero(item)">{{getAssignmentScore(item)|isEmpty:'&nbsp;'}}</div>
                                         <div ng-if="isExcused(item)|| isZero(item)|| isExtraCredit(item)">&nbsp;</div>
                                     </div>
                                 </div>

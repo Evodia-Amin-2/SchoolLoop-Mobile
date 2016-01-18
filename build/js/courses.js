@@ -260,7 +260,37 @@
             return _.isUndefined(item.grade) === false &&  item.grade.length > 0 && item.grade !== "-";
         };
 
-        $scope.getScore = function (item) {
+        $scope.showScore = function () {
+            if ($scope.progress.hideScore === 'false') {
+                return true;
+            }
+            return false;
+        };
+
+        $scope.showGrade = function() {
+            if ($scope.progress.hideScore === 'false') {
+                return true;
+            } else {
+                if ($scope.progress.showLetterGradeIfScoreHidden) {
+                    return true;
+                }
+            }
+            return false;
+        };
+
+        $scope.getScore = function() {
+            var value = $scope.progress.score;
+            if (_.isUndefined(value) === false && _.isNull(value) === false) {
+                return roundWithPrecision(value * 100, $scope.progress.precision) + "%";
+            }
+            return "";
+        };
+
+        $scope.getGrade = function() {
+            return $scope.progress.grade;
+        };
+
+        $scope.getAssignmentScore = function (item) {
             if (item.score !== 'null' && item.score !== '') {
                 if($scope.isExtraCredit(item)) {
                     return  item.score;
@@ -270,6 +300,17 @@
             } else {
                 return "null";
             }
+        };
+
+        $scope.isGradeHidden = function () {
+            return ($scope.progress.grade === 'hidden' || $scope.progress.grade === 'Hidden');
+        };
+
+        $scope.hasScore = function() {
+            if(_.isUndefined($scope.progress.hasScore) === true) {
+                return true;
+            }
+            return $scope.progress.hasScore === 'true';
         };
 
         $scope.showCourseInfo = function(event) {
@@ -335,23 +376,6 @@
                 $window.history.back();
             }
         });
-
-        $scope.showScore = function () {
-            var grade = $scope.progress.grade;
-            if (_.isUndefined(grade) === false && _.isNull(grade) === false && $scope.isGradeHidden()) {
-                $scope.progress.grade = 'Hidden';
-                return "";
-            }
-            var value = $scope.progress.score;
-            if (_.isUndefined(value) === false && _.isNull(value) === false) {
-                return roundWithPrecision(value * 100, $scope.progress.precision) + "%";
-            }
-            return 0;
-        };
-
-        $scope.isGradeHidden = function () {
-            return ($scope.progress.grade === 'hidden' || $scope.progress.grade === 'Hidden');
-        };
 
         $scope.toggleAssign = function () {
             $scope.assignCollapse = !$scope.assignCollapse;
