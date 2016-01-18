@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('SupportController', ['$scope', '$window', 'NavbarService', 'DataService', 'LoopmailService', 'StorageService', '$stateParams', 'gettextCatalog', SupportController])
+        .controller('SupportController', ['$scope', '$window', 'NavbarService', 'DataService', 'StorageService', 'gettextCatalog', SupportController])
         ;
 
-        function SupportController($scope, $window, navbarService, dataService, loopmailService, storageService, $stateParams, gettextCatalog) {
+        function SupportController($scope, $window, navbarService, dataService, storageService, gettextCatalog) {
             var support = this;
 
             navbarService.reset();
@@ -23,11 +23,20 @@
             support.details = "";
 
             $scope.$on("menu.send", function() {
+                var error = false;
+                if(_.isUndefined(support.email) || support.email.length === 0) {
+                    $scope.ticket.submitted = true;
+                    $scope.ticket.email.$invalid = true;
+                    support.emailError = gettextCatalog.getString("Email required");
+                    error = true;
+                }
                 if(_.isUndefined(support.subject) || support.subject.length === 0) {
                     $scope.ticket.submitted = true;
                     $scope.ticket.subject.$invalid = true;
                     support.subjectError = gettextCatalog.getString("Subject required");
-                } else {
+                    error = true;
+                }
+                if(error === false) {
                     alert("Send support ticket");
                     //loopmailService.send(support.toList, support.ccList, support.subject, support.body);
                 }

@@ -5,7 +5,7 @@
     margin-bottom: 25px;
 }
 
-.simple-group input, .input-ro,
+.simple-group input, .simple-group textarea, .input-ro,
 .input-group input, .input-group textarea,
 .multi-group input {
     font-size: 16px;
@@ -20,13 +20,14 @@
     border: none;
 }
 
-.input-group textarea {
+.input-group textarea, .simple-group textarea {
     height: 82px;
 }
 
 .simple-group input:focus,
 .input-group input:focus,
 .multi-group input:focus,
+.simple-group textarea:focus,
 .input-group textarea:focus {
     outline: none;
     border: 1px solid #5d8dc5;
@@ -48,7 +49,8 @@
 }
 
 .input-group input:focus, .input-group input:valid,
-.input-group textarea:focus, .input-group textarea:valid {
+.input-group textarea:focus, .input-group textarea:valid,
+.simple-group textarea:focus {
     border: 1px solid #5d8dc5;
 }
 
@@ -138,4 +140,13 @@
 
 .multi-group {
     margin-top: 25px;
+}
+
+.support-ticket {
+    margin: 10px auto 0;
+    width: 95%;
+}
+
+.support-ticket .message-text {
+    margin-bottom: 15px;
 }
