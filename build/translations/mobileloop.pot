@@ -52,9 +52,14 @@ msgstr ""
 msgid "Attachments:"
 msgstr ""
 
+#: support.html:24
+msgid "Brief Subject:"
+msgstr ""
+
 #: forgot.html:21
 #: navbar.html:5
 #: reset.html:18
+#: reset.js:39
 #: services/notification-service.js:91
 msgid "Cancel"
 msgstr ""
@@ -66,6 +71,7 @@ msgstr ""
 #: compose.html:30
 #: loopmail.js:243
 #: reply.html:11
+#: support.html:19
 msgid "CC:"
 msgstr ""
 
@@ -81,7 +87,7 @@ msgstr ""
 msgid "Confirm Password"
 msgstr ""
 
-#: courses.js:295
+#: courses.js:336
 msgid "Course Info"
 msgstr ""
 
@@ -91,6 +97,10 @@ msgstr ""
 
 #: courses-detail.html:30
 msgid "Curriculum"
+msgstr ""
+
+#: support.html:30
+msgid "Details:"
 msgstr ""
 
 #: main-tabs.html:6
@@ -107,6 +117,14 @@ msgstr ""
 
 #: assignment-detail.html:7
 msgid "Due Tomorrow"
+msgstr ""
+
+#: support.html:13
+msgid "Email Address:"
+msgstr ""
+
+#: support.js:30
+msgid "Email required"
 msgstr ""
 
 #: services/loopmail-service.js:82
@@ -148,6 +166,7 @@ msgid "Grade Scale:"
 msgstr ""
 
 #: main.html:6
+#: support.js:14
 msgid "Help"
 msgstr ""
 
@@ -159,7 +178,11 @@ msgstr ""
 msgid "Inbox"
 msgstr ""
 
-#: login.js:145
+#: reset.js:37
+msgid "Info"
+msgstr ""
+
+#: login.js:147
 msgid "Invalid Login"
 msgstr ""
 
@@ -178,7 +201,7 @@ msgid "Login"
 msgstr ""
 
 #: add-student.js:106
-#: login.js:152
+#: login.js:154
 msgid "Login Incorrect!"
 msgstr ""
 
@@ -191,7 +214,7 @@ msgid "Login Name or Email"
 msgstr ""
 
 #: add-student.js:111
-#: login.js:159
+#: login.js:161
 msgid "Login Name Required!"
 msgstr ""
 
@@ -203,6 +226,10 @@ msgstr ""
 #: compose.html:52
 #: reply.html:28
 msgid "Message Text"
+msgstr ""
+
+#: support.html:8
+msgid "Name:"
 msgstr ""
 
 #: compose.js:15
@@ -268,14 +295,22 @@ msgid "Password"
 msgstr ""
 
 #: add-student.js:112
-#: login.js:160
-#: reset.js:49
-#: reset.js:53
+#: login.js:162
+#: reset.js:67
+#: reset.js:71
 msgid "Password Required!"
 msgstr ""
 
-#: reset.js:44
+#: reset.js:15
+msgid "Passwords do not match"
+msgstr ""
+
+#: reset.js:62
 msgid "Passwords don't match"
+msgstr ""
+
+#: reset.js:14
+msgid "Passwords must be at least 6 characters"
 msgstr ""
 
 #: forgot.js:27
@@ -393,6 +428,10 @@ msgstr ""
 msgid "Signed in as:"
 msgstr ""
 
+#: reset.js:12
+msgid "Spaces are not allowed"
+msgstr ""
+
 #: add-student.html:77
 msgid "Student ID number:"
 msgstr ""
@@ -404,6 +443,7 @@ msgstr ""
 
 #: compose.js:108
 #: reply.js:71
+#: support.js:36
 msgid "Subject required"
 msgstr ""
 
@@ -485,6 +525,10 @@ msgstr ""
 msgid "View"
 msgstr ""
 
+#: support.html:5
+msgid "We are sorry you are having trouble. How can we help?"
+msgstr ""
+
 #: courses-detail.html:132
 msgid "Weight"
 msgstr ""
@@ -495,6 +539,14 @@ msgstr ""
 
 #: add-student.html:93
 msgid "What is the first letter of this student's last name?"
+msgstr ""
+
+#: reset.js:13
+msgid "You must include at least one digit"
+msgstr ""
+
+#: reset.js:38
+msgid "Your username and password are managed by your school district. Please follow district protocol for reseting your password. In some cases, this can be done online. Visit your district website for more information."
 msgstr ""
 
 #: courses-detail.html:111

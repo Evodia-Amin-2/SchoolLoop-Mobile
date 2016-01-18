@@ -53,7 +53,11 @@ msgstr "Tareas"
 msgid "Attachments:"
 msgstr "Documentos adjuntos:"
 
-#: forgot.html:21 navbar.html:5 reset.html:18
+#: support.html:24
+msgid "Brief Subject:"
+msgstr ""
+
+#: forgot.html:21 navbar.html:5 reset.html:18 reset.js:39
 #: services/notification-service.js:91
 msgid "Cancel"
 msgstr "Cancelar"
@@ -62,7 +66,7 @@ msgstr "Cancelar"
 msgid "Category"
 msgstr "Puntajes por categoría"
 
-#: compose.html:30 loopmail.js:243 reply.html:11
+#: compose.html:30 loopmail.js:243 reply.html:11 support.html:19
 msgid "CC:"
 msgstr "Con copia a:"
 
@@ -75,7 +79,7 @@ msgstr "Cerrar"
 msgid "Confirm Password"
 msgstr "Confirme su contraseña"
 
-#: courses.js:295
+#: courses.js:336
 msgid "Course Info"
 msgstr "Información del curso"
 
@@ -86,6 +90,10 @@ msgstr "Curso"
 #: courses-detail.html:30
 msgid "Curriculum"
 msgstr "Plan de estudios"
+
+#: support.html:30
+msgid "Details:"
+msgstr ""
 
 #: main-tabs.html:6
 msgid "Directory"
@@ -102,6 +110,14 @@ msgstr "Entregar hoy"
 #: assignment-detail.html:7
 msgid "Due Tomorrow"
 msgstr "Entregar mañana"
+
+#: support.html:13
+msgid "Email Address:"
+msgstr ""
+
+#: support.js:30
+msgid "Email required"
+msgstr ""
 
 #: services/loopmail-service.js:82
 msgid "Failed to Deliver"
@@ -149,7 +165,7 @@ msgstr "Clave de calificaciones:"
 msgid "Grade Scale:"
 msgstr "Escala de calificaciones"
 
-#: main.html:6
+#: main.html:6 support.js:14
 msgid "Help"
 msgstr "Ayuda"
 
@@ -167,7 +183,11 @@ msgstr ""
 msgid "Inbox"
 msgstr "Recibidos"
 
-#: login.js:145
+#: reset.js:37
+msgid "Info"
+msgstr ""
+
+#: login.js:147
 msgid "Invalid Login"
 msgstr "Credenciales de ingreso no válidas"
 
@@ -183,7 +203,7 @@ msgstr "Iniciando sesión"
 msgid "Login"
 msgstr "Login"
 
-#: add-student.js:106 login.js:152
+#: add-student.js:106 login.js:154
 msgid "Login Incorrect!"
 msgstr "¡Se inició la sesión incorrectamente!"
 
@@ -195,7 +215,7 @@ msgstr "Nombre de usuario"
 msgid "Login Name or Email"
 msgstr "Correo electrónico"
 
-#: add-student.js:111 login.js:159
+#: add-student.js:111 login.js:161
 msgid "Login Name Required!"
 msgstr "¡Se requiere el nombre del usuario!"
 
@@ -206,6 +226,10 @@ msgstr "LoopMail "
 #: compose.html:52 reply.html:28
 msgid "Message Text"
 msgstr "Texto del mensaje"
+
+#: support.html:8
+msgid "Name:"
+msgstr ""
 
 #: compose.js:15
 msgid "New LoopMail"
@@ -267,13 +291,21 @@ msgstr "Aprobación de cuentas para padres"
 msgid "Password"
 msgstr "Contraseña"
 
-#: add-student.js:112 login.js:160 reset.js:49 reset.js:53
+#: add-student.js:112 login.js:162 reset.js:67 reset.js:71
 msgid "Password Required!"
 msgstr "¡Se requiere la contraseña!"
 
-#: reset.js:44
+#: reset.js:15
+msgid "Passwords do not match"
+msgstr ""
+
+#: reset.js:62
 msgid "Passwords don't match"
 msgstr "Las contraseñas no coinciden"
+
+#: reset.js:14
+msgid "Passwords must be at least 6 characters"
+msgstr ""
 
 #: forgot.js:27
 msgid ""
@@ -382,6 +414,10 @@ msgstr "Salida"
 msgid "Signed in as:"
 msgstr "Ingresó como:"
 
+#: reset.js:12
+msgid "Spaces are not allowed"
+msgstr ""
+
 #: add-student.html:77
 msgid "Student ID number:"
 msgstr "Número de Identificación del estudiante"
@@ -390,7 +426,7 @@ msgstr "Número de Identificación del estudiante"
 msgid "Subject"
 msgstr "Tema"
 
-#: compose.js:108 reply.js:71
+#: compose.js:108 reply.js:71 support.js:36
 msgid "Subject required"
 msgstr "Se requiere el asunto"
 
@@ -486,6 +522,10 @@ msgstr "Versión:"
 msgid "View"
 msgstr "Ver"
 
+#: support.html:5
+msgid "We are sorry you are having trouble. How can we help?"
+msgstr ""
+
 #: courses-detail.html:132
 msgid "Weight"
 msgstr "Valor representativo"
@@ -497,6 +537,17 @@ msgstr "¿Cuál es la primera letra del nombre del estudiante?"
 #: add-student.html:93
 msgid "What is the first letter of this student's last name?"
 msgstr "¿Cuál es la primera letra del apellido del estudiante?"
+
+#: reset.js:13
+msgid "You must include at least one digit"
+msgstr ""
+
+#: reset.js:38
+msgid ""
+"Your username and password are managed by your school district. Please "
+"follow district protocol for reseting your password. In some cases, this can "
+"be done online. Visit your district website for more information."
+msgstr ""
 
 #: courses-detail.html:111 courses-detail.html:19 courses-detail.html:71
 msgid "Zero"

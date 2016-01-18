@@ -52,7 +52,11 @@ msgstr "作業"
 msgid "Attachments:"
 msgstr "附加文件 :"
 
-#: forgot.html:21 navbar.html:5 reset.html:18
+#: support.html:24
+msgid "Brief Subject:"
+msgstr ""
+
+#: forgot.html:21 navbar.html:5 reset.html:18 reset.js:39
 #: services/notification-service.js:91
 msgid "Cancel"
 msgstr "取消"
@@ -61,7 +65,7 @@ msgstr "取消"
 msgid "Category"
 msgstr "類別得分"
 
-#: compose.html:30 loopmail.js:243 reply.html:11
+#: compose.html:30 loopmail.js:243 reply.html:11 support.html:19
 msgid "CC:"
 msgstr "加添收信人:"
 
@@ -74,7 +78,7 @@ msgstr "關閉"
 msgid "Confirm Password"
 msgstr "確認密碼"
 
-#: courses.js:295
+#: courses.js:336
 msgid "Course Info"
 msgstr "每科評分信息"
 
@@ -85,6 +89,10 @@ msgstr "科目"
 #: courses-detail.html:30
 msgid "Curriculum"
 msgstr "課程內容"
+
+#: support.html:30
+msgid "Details:"
+msgstr ""
 
 #: main-tabs.html:6
 msgid "Directory"
@@ -101,6 +109,14 @@ msgstr "到期日期"
 #: assignment-detail.html:7
 msgid "Due Tomorrow"
 msgstr "明天到期"
+
+#: support.html:13
+msgid "Email Address:"
+msgstr ""
+
+#: support.js:30
+msgid "Email required"
+msgstr ""
 
 #: services/loopmail-service.js:82
 msgid "Failed to Deliver"
@@ -144,7 +160,7 @@ msgstr "成績標識 :"
 msgid "Grade Scale:"
 msgstr "成績級別 :"
 
-#: main.html:6
+#: main.html:6 support.js:14
 msgid "Help"
 msgstr "協助"
 
@@ -161,7 +177,11 @@ msgstr ""
 msgid "Inbox"
 msgstr "收件匣"
 
-#: login.js:145
+#: reset.js:37
+msgid "Info"
+msgstr ""
+
+#: login.js:147
 msgid "Invalid Login"
 msgstr "登入錯誤"
 
@@ -177,7 +197,7 @@ msgstr "現正登入"
 msgid "Login"
 msgstr "登入"
 
-#: add-student.js:106 login.js:152
+#: add-student.js:106 login.js:154
 msgid "Login Incorrect!"
 msgstr "登入錯誤"
 
@@ -189,7 +209,7 @@ msgstr "登入名稱"
 msgid "Login Name or Email"
 msgstr "電郵"
 
-#: add-student.js:111 login.js:159
+#: add-student.js:111 login.js:161
 msgid "Login Name Required!"
 msgstr "必須輸入登記名字 !"
 
@@ -200,6 +220,10 @@ msgstr "Loop 邮件"
 #: compose.html:52 reply.html:28
 msgid "Message Text"
 msgstr "信息"
+
+#: support.html:8
+msgid "Name:"
+msgstr ""
 
 #: compose.js:15
 msgid "New LoopMail"
@@ -261,13 +285,21 @@ msgstr "家長必須查核"
 msgid "Password"
 msgstr "密碼"
 
-#: add-student.js:112 login.js:160 reset.js:49 reset.js:53
+#: add-student.js:112 login.js:162 reset.js:67 reset.js:71
 msgid "Password Required!"
 msgstr "必須輸入密碼 !"
 
-#: reset.js:44
+#: reset.js:15
+msgid "Passwords do not match"
+msgstr ""
+
+#: reset.js:62
 msgid "Passwords don't match"
 msgstr "密碼前後不符"
+
+#: reset.js:14
+msgid "Passwords must be at least 6 characters"
+msgstr ""
 
 #: forgot.js:27
 msgid ""
@@ -374,6 +406,10 @@ msgstr "登出"
 msgid "Signed in as:"
 msgstr "簽署人："
 
+#: reset.js:12
+msgid "Spaces are not allowed"
+msgstr ""
+
 #: add-student.html:77
 msgid "Student ID number:"
 msgstr "學生証號碼:"
@@ -382,7 +418,7 @@ msgstr "學生証號碼:"
 msgid "Subject"
 msgstr "科目"
 
-#: compose.js:108 reply.js:71
+#: compose.js:108 reply.js:71 support.js:36
 msgid "Subject required"
 msgstr "必須輸入主題"
 
@@ -469,6 +505,10 @@ msgstr "版本"
 msgid "View"
 msgstr "閱覽郵件"
 
+#: support.html:5
+msgid "We are sorry you are having trouble. How can we help?"
+msgstr ""
+
 #: courses-detail.html:132
 msgid "Weight"
 msgstr "分數權衡比例"
@@ -480,6 +520,17 @@ msgstr "學生名字的第一個字母是什麼？"
 #: add-student.html:93
 msgid "What is the first letter of this student's last name?"
 msgstr "學生姓氏的第一個字母是什麼 ?"
+
+#: reset.js:13
+msgid "You must include at least one digit"
+msgstr ""
+
+#: reset.js:38
+msgid ""
+"Your username and password are managed by your school district. Please "
+"follow district protocol for reseting your password. In some cases, this can "
+"be done online. Visit your district website for more information."
+msgstr ""
 
 #: courses-detail.html:111 courses-detail.html:19 courses-detail.html:71
 msgid "Zero"
