@@ -40,7 +40,7 @@ gulp.task('app-config', function () {
 
     var appVersion = flags["app-version"];
     if(!appVersion || appVersion.length === 0) {
-        appVersion = "2.1.0";
+        appVersion = "2.2.0";
     }
     var appRelease = flags["app-release"];
     if(!appRelease || appRelease.length === 0) {

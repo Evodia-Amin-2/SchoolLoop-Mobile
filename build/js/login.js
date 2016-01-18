@@ -129,9 +129,12 @@
                         } else if(error.status === 400 && error.data.toLowerCase().startsWith("error 6")) {
                             $state.go('notstarted');
                             return;
-                        } else if(error.status === 401 && error.data.toLowerCase().startsWith("error 7")) {
+                        } else if(error.status === 401 && error.data.toLowerCase().startsWith("error 7")) { // reset
                             storageService.setSchool(login.selectedSchool[0]);
-                            storageService.setPassword(login.selectedSchool[0].domainName, login.password);
+                            var user = {};
+                            user.userID = "-999999999";  // temporary user id until an actual login occurs
+                            user.userName = login.username;
+                            storageService.setPassword(login.selectedSchool[0].domainName, user, login.password);
                             $state.go('reset');
                             return;
                         } else {

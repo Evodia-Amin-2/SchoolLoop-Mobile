@@ -8,6 +8,13 @@
         function ResetController($scope, $state, dataService, storageService, gettextCatalog) {
             var reset = this;
 
+            var messages = {
+                "ERROR: error_password_has_space": gettextCatalog.getString("Spaces are not allowed"),
+                "ERROR: error_password_must_have_digit": gettextCatalog.getString("You must include at least one digit"),
+                "ERROR: error_password_to_short": gettextCatalog.getString("Passwords must be at least 6 characters"),
+                "ERROR: error_passwords_must_match": gettextCatalog.getString("Passwords do not match")
+            };
+
             StatusBar.styleDefault();
             StatusBar.backgroundColorByHexString("#5d8dc5");
 
@@ -20,13 +27,23 @@
                 if($scope.reset_form.$valid) {
                     if(reset.password === reset.confirm) {
                         dataService.resetPassword(reset.password).then(
-                            function(message) {
-                                var data = message.data;
+                            function(response) {
+                                var data = response.data;
                                 if(_.isString(data) && data.startsWith("ERROR")) {
                                     reset.password = undefined;
                                     reset.confirm = undefined;
-                                    $scope.reset_form.password.placeholder = message.data;
-                                    $scope.reset_form.password.$invalid = true;
+
+                                    if(data === "ERROR: err_external_user_forgot_msg") {
+                                        var title = gettextCatalog.getString("Info");
+                                        var message = gettextCatalog.getString("Your username and password are managed by your school district. Please follow district protocol for reseting your password. In some cases, this can be done online. Visit your district website for more information.");
+                                        var button = gettextCatalog.getString("Cancel");
+                                        navigator.notification.alert(message, function() {
+                                            goLogin();
+                                        }, title, button);
+                                    } else {
+                                        $scope.reset_form.password.placeholder = messages[data];
+                                        $scope.reset_form.password.$invalid = true;
+                                    }
                                 } else {
                                     var school = storageService.getSelectedSchool();
                                     storageService.addDomain(school, data, reset.password);
@@ -34,7 +51,8 @@
                                     $state.go('main');
                                 }
                             },
-                            function() {
+                            function(error) {
+                                console.log(error);
                                 goLogin();
                             }
                         );

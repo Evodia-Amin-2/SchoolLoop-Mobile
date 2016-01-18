@@ -33,9 +33,13 @@
                 }
                 return password;
             },
-            setPassword: function(domainName, password) {
+            setPassword: function(domainName, user, password) {
                 var domainMap = loadDomainMap();
                 var domain = domainMap[domainName];
+                if(user.userName !== domain.user.userName || _.isUndefined(domain.user.userID) === true) {
+                    domain.encrypted = undefined;
+                    domain.user = user;
+                }
                 if (_.isUndefined(domain) === false && _.isNull(domain) === false) {
                     var data = sjcl.encrypt(domain.user.userID, password);
                     domain.encrypted = sjcl.json.decode(data);
@@ -99,7 +103,7 @@
                 domainMap[school.domainName] = domain;
                 saveDomainMap(domainMap);
                 if(password !== null) {
-                    service.setPassword(school.domainName, password);
+                    service.setPassword(school.domainName, user, password);
                 }
             },
             setSchool: function(school) {

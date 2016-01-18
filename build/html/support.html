@@ -1,0 +1,41 @@
+<div ng-controller="SupportController as support" expand="" class="mobileloop-content slide-up">
+    <div class="overthrow" expand="">
+        <form name="ticket" class="send-message" novalidate>
+
+            <div class="message-text" translate>We are sorry you are having trouble. How can we help?</div>
+
+            <div class="recipient-group">
+                <label translate>Name:</label>
+                <div class="recipient-list">{{support.name}}</div>
+            </div>
+
+            <div class="input-group">
+                <input type="text" name="email" ng-model="support.email" placeholder="{{support.emailError}}"
+                       ng-class="{'form-error': ticket.email.$invalid && ticket.submitted}" required />
+                <span class="bar"></span>
+                <label translate>Email Address</label>
+            </div>
+
+            <div class="input-group">
+                <input type="text" name="cc" ng-model="support.cc" placeholder="{{support.ccError}}"
+                       ng-class="{'form-error': ticket.cc.$invalid && ticket.submitted}" required />
+                <span class="bar"></span>
+                <label translate>CC</label>
+            </div>
+
+            <div class="input-group">
+                <input type="text" name="subject" ng-model="support.subject" placeholder="{{support.subjectError}}"
+                       ng-class="{'form-error': ticket.subject.$invalid && ticket.submitted}" required />
+                <span class="bar"></span>
+                <label translate>Brief Subject</label>
+            </div>
+
+            <div class="input-group">
+                <textarea name="details" ng-model="support.details" required></textarea>
+                <span class="bar"></span>
+                <label translate>Details</label>
+            </div>
+
+        </form>
+    </div>
+</div>

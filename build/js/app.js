@@ -109,6 +109,7 @@
                     .state('main.compose', { url: "/compose", templateUrl: "compose.html" })
                     .state('main.reply', { url: "/reply/{loopmailId}/{replyAll}", templateUrl: "reply.html" })
                     .state('main.addstudent', { url: "/addstudent", templateUrl: "add-student.html" })
+                    .state('main.support', { url: "/support", templateUrl: "support.html" })
                     .state('unverified', { url: "/unverified", templateUrl: "unverified.html" })
                     .state('invalid', { url: "/invalid", templateUrl: "invalid.html" })
                     .state('forgot', { url: "/forgot", templateUrl: "forgot.html" })
