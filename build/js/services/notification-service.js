@@ -16,7 +16,7 @@
                 notificationData = undefined;
             }
             pushNotification = PushNotification.init({ "android": {"senderID": config.senderId, "icon": "notification", "iconColor": "olive", sound: true},
-                "ios": {"alert": "true", "badge": "true", "sound": "true"}, "windows": {} } );
+                "ios": {"alert": "true", "badge": "false", "sound": "true"}, "windows": {} } );
 
             pushNotification.on('registration', function(data) {
                 doPushRegister(data.registrationId);

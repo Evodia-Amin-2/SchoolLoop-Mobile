@@ -211,6 +211,7 @@
         }
 
         $scope.calcPercent = function (item) {
+
             if($scope.isExtraCredit(item)) {
                 return "";
             }
@@ -280,14 +281,17 @@
 
         $scope.getScore = function() {
             var value = $scope.progress.score;
-            if (_.isUndefined(value) === false && _.isNull(value) === false) {
+            if($scope.showScore() === true && _.isUndefined(value) === false && _.isNull(value) === false) {
                 return roundWithPrecision(value * 100, $scope.progress.precision) + "%";
             }
             return "";
         };
 
         $scope.getGrade = function() {
-            return $scope.progress.grade;
+            if($scope.showGrade() === true) {
+                return $scope.progress.grade;
+            }
+            return "";
         };
 
         $scope.getAssignmentScore = function (item) {

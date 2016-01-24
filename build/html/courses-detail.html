@@ -6,8 +6,8 @@
                 <div class="date">{{progress.date|date:"MMM d, y hh:mm a" : "UTC"}}</div>
             </div>
             <div class="grade-info" ng-show="hasScore() === true">
-                <div class="grade" ns-show="showGrade()">{{getGrade()}}</div>
-                <div class="score" ns-show="showScore()">{{getScore()}}</div>
+                <div class="grade">{{getGrade()|isEmpty:'&nbsp;'}}</div>
+                <div class="score">{{getScore()|isEmpty:'&nbsp;'}}</div>
             </div>
             <div class="grade-info" ng-show="hasScore() === false">
                 <div class="grade">
@@ -106,8 +106,8 @@
                                         <div class="grade">&nbsp;</div>
                                     </div>
                                     <div class="progress-report course-grades" ng-class="{zero:isZero(item)}">
-                                        <div class="grade" ng-if="isExcused(item)">{{item.score|isEmpty:'&nbsp;'}}</div>
-                                        <div class="grade" ng-if="!isExcused(item) && !isZero(item)">{{calcPercent(item)|isEmpty:'&nbsp;'}}</div>
+                                        <div class="grade" ng-show="showScore() && isExcused(item)">{{item.score|isEmpty:'&nbsp;'}}</div>
+                                        <div class="grade" ng-show="showScore() && !isExcused(item) && !isZero(item)">{{calcPercent(item)|isEmpty:'&nbsp;'}}</div>
                                         <div class="grade" ng-show="!isExcused(item) && isZero(item)" translate>Zero</div>
                                         <div ng-if="!isExcused(item) && !isZero(item)">{{getAssignmentScore(item)|isEmpty:'&nbsp;'}}</div>
                                         <div ng-if="isExcused(item)|| isZero(item)|| isExtraCredit(item)">&nbsp;</div>
@@ -123,7 +123,7 @@
     </div>
     <div ng-show="courseInfo == true" class="course-info slide-up" ng-class="{'ng-enter': courseInfo == false}">
         <div class="course-info-holder">
-            <div class="course-info-section">
+            <div class="course-info-section" ng-show="showScore()">
                 <h3 translate>Score by Category:</h3>
                 <table cellpadding="0" cellspacing="0" width="100%">
                     <thead>
@@ -142,7 +142,7 @@
                     </tbody>
                 </table>
             </div>
-            <div ng-show="scale.length > 0" class="course-info-section">
+            <div ng-show="showScore() && scale.length > 0" class="course-info-section">
                 <h3 translate>Grade Scale:</h3>
                 <table cellpadding="0" cellspacing="0" width="100%">
                     <tbody>
