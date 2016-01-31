@@ -221,6 +221,18 @@
             },
             getContacts: function(query) {
                 return getRequest("contacts", { "q":query, "max":25 });
+            },
+            supportTicket: function(name, subject, details, email, cc) {
+                var params = {
+                    "devOS": device.platform,
+                    'version': parseVersion(config.version),
+                    'name': name,
+                    'subject': subject,
+                    'details': details,
+                    'email': email,
+                    'cc': cc
+                };
+                return doPost($q, $http, Base64, "help", params, storageService);
             }
         };
         return service;
@@ -330,4 +342,8 @@
         return deferred.promise;
     }
 
+    function parseVersion(version) {
+        var tokens = version.split(" ");
+        return tokens[0];
+    }
 })();

@@ -37,8 +37,18 @@
                     error = true;
                 }
                 if(error === false) {
-                    alert("Send support ticket");
-                    //loopmailService.send(support.toList, support.ccList, support.subject, support.body);
+                    var message;
+                    dataService.supportTicket(support.name, support.subject, support.details, support.email, support.cc).then(
+                        function() {
+                            message = gettextCatalog.getString("Help ticket has been submitted");
+                            window.plugins.toast.showLongBottom(message);
+                        },
+                        function() {
+                            message = gettextCatalog.getString("There was a problem sending the help ticket");
+                            window.plugins.toast.showLongBottom(message);
+                        }
+
+                    );
                 }
             });
 
