@@ -57,9 +57,7 @@
     margin-right: 5px;
     text-align: center;
     min-width: 45px;
-}
-
-.course-summary .grade-info {
+    min-height: 40px;
     background: #faf6da;
 }
 
@@ -131,6 +129,7 @@
 
 .progress-report.course-grades {
     width: 75px;
+    min-height: 55px;
     font-size: 0.95em !important;
 }
 

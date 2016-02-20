@@ -147,7 +147,7 @@
                 if(cache.progress_report && cache.progress_report.periodID === periodID) {
                     return cachedResult("progress_report");
                 }
-                return getRequest("progress_report", {"periodID": periodID}).then(
+                return getRequest("progress_report", {"periodID": periodID, trim: true}).then(
                     function(response) {
                         cache.progress_report = response;
                         return response;

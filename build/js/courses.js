@@ -257,64 +257,36 @@
             return item.assignment.categoryName === "Extra Credit";
         };
 
-        $scope.hasGrade = function (item) {
-            return _.isUndefined(item.grade) === false &&  item.grade.length > 0 && item.grade !== "-";
+        $scope.hasScore = function() {
+            return _.isUndefined($scope.progress.score) === false && $scope.progress.score !== "null";
         };
 
-        $scope.showScore = function () {
-            if ($scope.progress.hideScore === 'false') {
-                return true;
-            }
-            return false;
+        $scope.hasGrade = function() {
+            return _.isUndefined($scope.progress.grade) === false && $scope.progress.grade !== "null";
         };
 
-        $scope.showGrade = function() {
-            if ($scope.progress.hideScore === 'false') {
-                return true;
-            } else {
-                if ($scope.progress.showLetterGradeIfScoreHidden) {
-                    return true;
-                }
-            }
-            return false;
+        $scope.hasAssignmentGrade = function (item) {
+            return _.isUndefined(item.grade) === false && item.grade.length > 0;
         };
 
         $scope.getScore = function() {
-            var value = $scope.progress.score;
-            if($scope.showScore() === true && _.isUndefined(value) === false && _.isNull(value) === false) {
-                return roundWithPrecision(value * 100, $scope.progress.precision) + "%";
-            }
-            return "";
+            return roundWithPrecision($scope.progress.score * 100, $scope.progress.precision) + "%";
         };
 
         $scope.getGrade = function() {
-            if($scope.showGrade() === true) {
-                return $scope.progress.grade;
-            }
-            return "";
+            return $scope.progress.grade;
         };
 
         $scope.getAssignmentScore = function (item) {
-            if (item.score !== 'null' && item.score !== '') {
-                if($scope.isExtraCredit(item)) {
-                    return  item.score;
-                } else {
-                    return  item.score + "/" + item.assignment.maxPoints;
-                }
-            } else {
-                return "null";
-            }
+            return item.percentScore;
+        };
+
+        $scope.getAssignmentResult = function (item) {
+            return item.score || "Unknown";
         };
 
         $scope.isGradeHidden = function () {
             return ($scope.progress.grade === 'hidden' || $scope.progress.grade === 'Hidden');
-        };
-
-        $scope.hasScore = function() {
-            if(_.isUndefined($scope.progress.hasScore) === true) {
-                return true;
-            }
-            return $scope.progress.hasScore === 'true';
         };
 
         $scope.showCourseInfo = function(event) {
