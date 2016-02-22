@@ -152,6 +152,14 @@
             assignmentNotification(data);
         });
 
+        $rootScope.$on('notify.assignment assigned', function(event, data) {
+            assignmentNotification(data);
+        });
+
+        $rootScope.$on('notify.test assigned', function(event, data) {
+            assignmentNotification(data);
+        });
+
         $rootScope.$on('notify.test due', function(event, data) {
             assignmentNotification(data);
         });
