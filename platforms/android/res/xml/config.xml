@@ -48,11 +48,12 @@
         <param name="android-package" value="com.cmackay.plugins.googleanalytics.GoogleAnalyticsPlugin" />
     </feature>
     <preference name="KeepRunning" value="false" />
-    <icon density="ldpi" src="build/images/icon/android/ldpi.png" />
-    <icon density="mdpi" src="build/images/icon/android/mdpi.png" />
-    <icon density="hdpi" src="build/images/icon/android/hdpi.png" />
-    <icon density="xhdpi" src="build/images/icon/android/xhdpi.png" />
-    <icon density="xxhdpi" src="build/images/icon/android/xxhdpi.png" />
+    <icon density="ldpi" src="build/images/icon/android/mipmap-ldpi/ic_launcher.png" />
+    <icon density="mdpi" src="build/images/icon/android/mipmap-mdpi/ic_launcher.png" />
+    <icon density="hdpi" src="build/images/icon/android/mipmap-hdpi/ic_launcher.png" />
+    <icon density="xhdpi" src="build/images/icon/android/mipmap-xhdpi/ic_launcher.png" />
+    <icon density="xxhdpi" src="build/images/icon/android/mipmap-xxhdpi/ic_launcher.png" />
+    <icon density="xxxhdpi" src="build/images/icon/android/mipmap-xxxhdpi/ic_launcher.png" />
     <splash density="land-hdpi" src="build/images/splash/android/land-hdpi.png" />
     <splash density="land-ldpi" src="build/images/splash/android/land-ldpi.png" />
     <splash density="land-mdpi" src="build/images/splash/android/land-mdpi.png" />

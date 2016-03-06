@@ -9,7 +9,7 @@
     <key>CFBundleExecutable</key>
     <string>${EXECUTABLE_NAME}</string>
     <key>CFBundleIconFile</key>
-    <string>icon.png</string>
+    <string>Icon.png</string>
     <key>CFBundleIcons</key>
     <dict>
       <key>CFBundlePrimaryIcon</key>
@@ -73,6 +73,10 @@
     <string/>
     <key>NSMainNibFile~ipad</key>
     <string/>
+    <key>UIBackgroundModes</key>
+    <array>
+      <string>remote-notification</string>
+    </array>
     <key>UILaunchImages</key>
     <array>
       <dict>
@@ -178,9 +182,5 @@
     </array>
     <key>UIRequiresFullScreen</key>
     <true/>
-    <key>UIBackgroundModes</key>
-    <array>
-      <string>remote-notification</string>
-    </array>
   </dict>
 </plist>

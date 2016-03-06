@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.7\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: add-student.html:105
@@ -54,7 +54,7 @@ msgstr "附加文件 :"
 
 #: support.html:24
 msgid "Brief Subject:"
-msgstr ""
+msgstr "簡短主題"
 
 #: forgot.html:21 navbar.html:5 reset.html:18 reset.js:39
 #: services/notification-service.js:91
@@ -92,7 +92,7 @@ msgstr "課程內容"
 
 #: support.html:30
 msgid "Details:"
-msgstr ""
+msgstr "詳情"
 
 #: main-tabs.html:6
 msgid "Directory"
@@ -112,11 +112,11 @@ msgstr "明天到期"
 
 #: support.html:13
 msgid "Email Address:"
-msgstr ""
+msgstr "電子郵件地址"
 
 #: support.js:30
 msgid "Email required"
-msgstr ""
+msgstr "需要電子郵件"
 
 #: services/loopmail-service.js:82
 msgid "Failed to Deliver"
@@ -179,7 +179,7 @@ msgstr "收件匣"
 
 #: reset.js:37
 msgid "Info"
-msgstr ""
+msgstr "信息"
 
 #: login.js:147
 msgid "Invalid Login"
@@ -223,7 +223,7 @@ msgstr "信息"
 
 #: support.html:8
 msgid "Name:"
-msgstr ""
+msgstr "姓名"
 
 #: compose.js:15
 msgid "New LoopMail"
@@ -291,7 +291,7 @@ msgstr "必須輸入密碼 !"
 
 #: reset.js:15
 msgid "Passwords do not match"
-msgstr ""
+msgstr "密碼前後不符"
 
 #: reset.js:62
 msgid "Passwords don't match"
@@ -299,7 +299,7 @@ msgstr "密碼前後不符"
 
 #: reset.js:14
 msgid "Passwords must be at least 6 characters"
-msgstr ""
+msgstr "密碼需至少6個字母"
 
 #: forgot.js:27
 msgid ""
@@ -408,7 +408,7 @@ msgstr "簽署人："
 
 #: reset.js:12
 msgid "Spaces are not allowed"
-msgstr ""
+msgstr "不允許留空格"
 
 #: add-student.html:77
 msgid "Student ID number:"
@@ -507,7 +507,7 @@ msgstr "閱覽郵件"
 
 #: support.html:5
 msgid "We are sorry you are having trouble. How can we help?"
-msgstr ""
+msgstr "對你所遇到的問題感到抱歉。我們可以怎樣幫你？"
 
 #: courses-detail.html:132
 msgid "Weight"
@@ -523,7 +523,7 @@ msgstr "學生姓氏的第一個字母是什麼 ?"
 
 #: reset.js:13
 msgid "You must include at least one digit"
-msgstr ""
+msgstr "必須至少包括一位數字"
 
 #: reset.js:38
 msgid ""
@@ -531,6 +531,8 @@ msgid ""
 "follow district protocol for reseting your password. In some cases, this can "
 "be done online. Visit your district website for more information."
 msgstr ""
+"你的用戶名稱及密碼由校區管理。請按照校區規定重設密碼。在某種情況下，你可在網"
+"上重設。請瀏覽校區網頁以了解詳情。"
 
 #: courses-detail.html:111 courses-detail.html:19 courses-detail.html:71
 msgid "Zero"
