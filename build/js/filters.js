@@ -101,6 +101,14 @@
                 return Math.round(input * factor) / factor;
             };
         }])
+        .filter('decodeScore', [function() {
+            return function (input) {
+                if(_.isUndefined(input)) {
+                    return "";
+                }
+                return decodeURIComponent(input);
+            };
+        }])
     ;
 
     function replaceLink(text, href, school, method) {

@@ -277,14 +277,6 @@
             return $scope.progress.grade;
         };
 
-        $scope.getAssignmentScore = function (item) {
-            return item.percentScore;
-        };
-
-        $scope.getAssignmentResult = function (item) {
-            return item.score || "Unknown";
-        };
-
         $scope.isGradeHidden = function () {
             return ($scope.progress.grade === 'hidden' || $scope.progress.grade === 'Hidden');
         };

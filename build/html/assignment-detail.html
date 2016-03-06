@@ -9,9 +9,7 @@
             </div>
         </div>
         <div class="assignment-title">{{assignment.title}}</div>
-        <span class="assignment-score"
-              ng-if="assignment.score != 'null'"><span>{{calcPercent()}}</span> {{assignment.score}}/{{assignment.maxPoints}}</span>
-        <span class="seperator" ng-if="assignment.score != 'null'">-</span>
+        <span class="assignment-score">{{assignment.score | decodeScore}}</span>
         <span class="assignment-category">{{assignment.categoryName}}</span>
 
         <div ng-show="comment" class="assignment-detail clearfix">

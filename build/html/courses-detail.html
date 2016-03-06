@@ -99,9 +99,9 @@
                                             <span class="comment" ng-show="hasComment(item)"><span class="icon-comment"></span>{{item.comment}}</span>
                                         </div>
                                     </div>
-                                    <div class="progress-report course-grades" ng-class="{zero:isZero(item)}" ng-show="hasAssignmentGrade(item)">
-                                        <div class="grade">{{getAssignmentScore(item)}}</div>
-                                        <div class="result">{{getAssignmentResult(item)}}</div>
+                                    <div class="progress-report course-grades" ng-class="{zero:isZero(item)}">
+                                        <div class="grade">{{item.percentScore}}</div>
+                                        <div class="result">{{item.score}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -114,7 +114,7 @@
     </div>
     <div ng-show="courseInfo == true" class="course-info slide-up" ng-class="{'ng-enter': courseInfo == false}">
         <div class="course-info-holder">
-            <div class="course-info-section" ng-show="showScore()">
+            <div class="course-info-section">
                 <h3 translate>Score by Category:</h3>
                 <table cellpadding="0" cellspacing="0" width="100%">
                     <thead>
@@ -133,7 +133,7 @@
                     </tbody>
                 </table>
             </div>
-            <div ng-show="showScore() && scale.length > 0" class="course-info-section">
+            <div ng-show="scale.length > 0" class="course-info-section">
                 <h3 translate>Grade Scale:</h3>
                 <table cellpadding="0" cellspacing="0" width="100%">
                     <tbody>

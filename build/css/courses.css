@@ -116,7 +116,7 @@
 .progress-report.course-row {
     font-size: 0.9em;
     margin-left: 3px;
-    margin-right: 90px;
+    margin-right: 95px;
 }
 
 .progress-report.course-row.grade {
@@ -128,14 +128,14 @@
 }
 
 .progress-report.course-grades {
-    width: 75px;
+    width: 80px;
     min-height: 55px;
     font-size: 0.95em !important;
 }
 
 .progress-report.course-grades.grade{
     width: 50px;
-    right: 92px;
+    right: 95px;
 }
 
 .progress-report.course-grades div {
@@ -144,7 +144,7 @@
 
 .progress-report .grade {
     font-weight: bold;
-    font-size: 1.0em;
+    font-size: 0.95em;
 }
 
 .course-scores {
