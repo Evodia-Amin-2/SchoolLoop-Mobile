@@ -41,7 +41,7 @@ msgstr "Agregue un estudiante"
 msgid "All Mail Delivered"
 msgstr "Se enviaron todos los correos"
 
-#: assignment-detail.html:34
+#: assignment-detail.html:32
 msgid "Assigned:"
 msgstr "Asignado:"
 
@@ -49,7 +49,7 @@ msgstr "Asignado:"
 msgid "Assignments"
 msgstr "Tareas"
 
-#: assignment-detail.html:24 loopmail-detail.html:14 news-detail.html:10
+#: assignment-detail.html:22 loopmail-detail.html:14 news-detail.html:10
 msgid "Attachments:"
 msgstr "Documentos adjuntos:"
 
@@ -62,7 +62,7 @@ msgstr "Tema breve:"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: courses-detail.html:131
+#: courses-detail.html:122
 msgid "Category"
 msgstr "Puntajes por categoría"
 
@@ -70,7 +70,7 @@ msgstr "Puntajes por categoría"
 msgid "CC:"
 msgstr "Con copia a:"
 
-#: forgot.js:35 invalid.html:13 not-started.html:13
+#: forgot.js:35 invalid.html:13 no-schedule.html:16 not-started.html:13
 #: services/loopmail-service.js:84 unverified.html:13
 msgid "Close"
 msgstr "Cerrar"
@@ -79,7 +79,7 @@ msgstr "Cerrar"
 msgid "Confirm Password"
 msgstr "Confirme su contraseña"
 
-#: courses.js:336
+#: courses.js:304
 msgid "Course Info"
 msgstr "Información del curso"
 
@@ -87,7 +87,7 @@ msgstr "Información del curso"
 msgid "Courses"
 msgstr "Curso"
 
-#: courses-detail.html:30
+#: courses-detail.html:28
 msgid "Curriculum"
 msgstr "Plan de estudios"
 
@@ -153,21 +153,25 @@ msgstr "¿Se le ha olvidado la contraseña? "
 msgid "From:"
 msgstr "de:"
 
-#: courses-detail.html:161
+#: courses-detail.html:152
 msgid "Grade Code"
 msgstr "Escala de calificaciones"
 
-#: courses-detail.html:157
+#: courses-detail.html:148
 msgid "Grade Legend:"
 msgstr "Clave de calificaciones:"
 
-#: courses-detail.html:146
+#: courses-detail.html:137
 msgid "Grade Scale:"
 msgstr "Escala de calificaciones"
 
 #: main.html:6 support.js:14
 msgid "Help"
 msgstr "Ayuda"
+
+#: support.js:43
+msgid "Help ticket has been submitted"
+msgstr "Help ticket has been submitted"
 
 #: forgot.html:9
 msgid ""
@@ -187,7 +191,7 @@ msgstr "Recibidos"
 msgid "Info"
 msgstr "Información"
 
-#: login.js:147
+#: login.js:150
 msgid "Invalid Login"
 msgstr "Credenciales de ingreso no válidas"
 
@@ -203,7 +207,7 @@ msgstr "Iniciando sesión"
 msgid "Login"
 msgstr "Login"
 
-#: add-student.js:106 login.js:154
+#: add-student.js:106 login.js:157
 msgid "Login Incorrect!"
 msgstr "¡Se inició la sesión incorrectamente!"
 
@@ -215,7 +219,7 @@ msgstr "Nombre de usuario"
 msgid "Login Name or Email"
 msgstr "Correo electrónico"
 
-#: add-student.js:111 login.js:161
+#: add-student.js:111 login.js:164
 msgid "Login Name Required!"
 msgstr "¡Se requiere el nombre del usuario!"
 
@@ -243,7 +247,7 @@ msgstr "Nueva contraseña"
 msgid "News"
 msgstr "Noticias"
 
-#: courses-detail.html:35
+#: courses-detail.html:33
 msgid "No Assignments"
 msgstr "No hay asignaturas/tareas"
 
@@ -255,7 +259,7 @@ msgstr "Actualmente no hay tareas"
 msgid "No Courses Currently"
 msgstr "Actualmente no hay noticias"
 
-#: assignment-detail.html:23 news-detail.html:9
+#: assignment-detail.html:21 news-detail.html:9
 msgid "No Description Provided"
 msgstr "Descripción no otorgada"
 
@@ -267,11 +271,15 @@ msgstr "Actualmente no hay mensajes"
 msgid "No News Currently"
 msgstr "Actualmente no hay noticias"
 
-#: courses-detail.html:14 courses-detail.html:88
+#: no-schedule.html:7
+msgid "No Schedule"
+msgstr "No Schedule"
+
+#: courses-detail.html:13 courses-detail.html:86
 msgid "No Scores"
 msgstr "No hay resultados"
 
-#: courses-detail.html:59
+#: courses-detail.html:57
 msgid "No Zeros"
 msgstr "No hay ceros"
 
@@ -291,7 +299,7 @@ msgstr "Aprobación de cuentas para padres"
 msgid "Password"
 msgstr "Contraseña"
 
-#: add-student.js:112 login.js:162 reset.js:67 reset.js:71
+#: add-student.js:112 login.js:165 reset.js:67 reset.js:71
 msgid "Password Required!"
 msgstr "¡Se requiere la contraseña!"
 
@@ -374,15 +382,15 @@ msgstr "Cambie la contraseña"
 msgid "School:"
 msgstr "Escuela:"
 
-#: courses-detail.html:133
+#: courses-detail.html:124
 msgid "Score"
 msgstr "Puntos"
 
-#: courses-detail.html:127
+#: courses-detail.html:118
 msgid "Score by Category:"
 msgstr "Puntajes por categoría"
 
-#: courses-detail.html:83
+#: courses-detail.html:81
 msgid "Scores"
 msgstr "Puntajes"
 
@@ -434,7 +442,7 @@ msgstr "Se requiere el asunto"
 msgid "Success! LoopMail sent."
 msgstr "¡Éxito! Enviamos un LoopMail."
 
-#: assignment-detail.html:32
+#: assignment-detail.html:30
 msgid "Teacher Unknown"
 msgstr "Se desconoce al maestro"
 
@@ -459,6 +467,10 @@ msgstr "Los siguientes alumnos ya se agregaron:"
 #: add-student.html:47
 msgid "The following students will be added:"
 msgstr "Los siguientes estudiantes serán agregados:"
+
+#: support.js:49
+msgid "There was a problem sending the help ticket"
+msgstr "There was a problem sending the help ticket"
 
 #: services/loopmail-service.js:83
 msgid ""
@@ -510,7 +522,7 @@ msgstr ""
 msgid "User Agreement"
 msgstr "Contrato Usuario"
 
-#: courses-detail.html:162
+#: courses-detail.html:153
 msgid "Value"
 msgstr "Códigos de evaluación"
 
@@ -526,7 +538,7 @@ msgstr "Ver"
 msgid "We are sorry you are having trouble. How can we help?"
 msgstr "Sentimos que esté teniendo dificultades. ¿Cómo le podemos ayudar?"
 
-#: courses-detail.html:132
+#: courses-detail.html:123
 msgid "Weight"
 msgstr "Valor representativo"
 
@@ -537,6 +549,16 @@ msgstr "¿Cuál es la primera letra del nombre del estudiante?"
 #: add-student.html:93
 msgid "What is the first letter of this student's last name?"
 msgstr "¿Cuál es la primera letra del apellido del estudiante?"
+
+#: no-schedule.html:10
+msgid ""
+"You are seeing this message because the school is not reporting a current "
+"schedule of classes for your child. Please contact school administration if "
+"you believe there is an error."
+msgstr ""
+"You are seeing this message because the school is not reporting a current "
+"schedule of classes for your child. Please contact school administration if "
+"you believe there is an error."
 
 #: reset.js:13
 msgid "You must include at least one digit"
@@ -553,11 +575,11 @@ msgstr ""
 "contraseña. En algunos casos, esto se puede hacer vía internet. Visite el "
 "portal de internet de su distrito para más información."
 
-#: courses-detail.html:111 courses-detail.html:19 courses-detail.html:71
+#: courses-detail.html:17 courses-detail.html:69
 msgid "Zero"
 msgstr "Cero"
 
-#: courses-detail.html:20 courses-detail.html:55
+#: courses-detail.html:18 courses-detail.html:53
 msgid "Zeros"
 msgstr "Ceros"
 

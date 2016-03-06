@@ -137,6 +137,9 @@
                             storageService.setPassword(login.selectedSchool[0].domainName, user, login.password);
                             $state.go('reset');
                             return;
+                        } else if(error.status === 401 && error.data.toLowerCase().startsWith("error 8")) {
+                            $state.go('noschedule');
+                            return;
                         } else {
                             var isCredError = error.data.toLowerCase().startsWith("error 1:") ||
                                 error.data.toLowerCase().startsWith("error 2:");

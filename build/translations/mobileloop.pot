@@ -37,7 +37,7 @@ msgstr ""
 msgid "All Mail Delivered"
 msgstr ""
 
-#: assignment-detail.html:34
+#: assignment-detail.html:32
 msgid "Assigned:"
 msgstr ""
 
@@ -46,7 +46,7 @@ msgstr ""
 msgid "Assignments"
 msgstr ""
 
-#: assignment-detail.html:24
+#: assignment-detail.html:22
 #: loopmail-detail.html:14
 #: news-detail.html:10
 msgid "Attachments:"
@@ -64,7 +64,7 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: courses-detail.html:131
+#: courses-detail.html:122
 msgid "Category"
 msgstr ""
 
@@ -77,6 +77,7 @@ msgstr ""
 
 #: forgot.js:35
 #: invalid.html:13
+#: no-schedule.html:16
 #: not-started.html:13
 #: services/loopmail-service.js:84
 #: unverified.html:13
@@ -87,7 +88,7 @@ msgstr ""
 msgid "Confirm Password"
 msgstr ""
 
-#: courses.js:336
+#: courses.js:304
 msgid "Course Info"
 msgstr ""
 
@@ -95,7 +96,7 @@ msgstr ""
 msgid "Courses"
 msgstr ""
 
-#: courses-detail.html:30
+#: courses-detail.html:28
 msgid "Curriculum"
 msgstr ""
 
@@ -153,21 +154,25 @@ msgstr ""
 msgid "From:"
 msgstr ""
 
-#: courses-detail.html:161
+#: courses-detail.html:152
 msgid "Grade Code"
 msgstr ""
 
-#: courses-detail.html:157
+#: courses-detail.html:148
 msgid "Grade Legend:"
 msgstr ""
 
-#: courses-detail.html:146
+#: courses-detail.html:137
 msgid "Grade Scale:"
 msgstr ""
 
 #: main.html:6
 #: support.js:14
 msgid "Help"
+msgstr ""
+
+#: support.js:43
+msgid "Help ticket has been submitted"
 msgstr ""
 
 #: forgot.html:9
@@ -182,7 +187,7 @@ msgstr ""
 msgid "Info"
 msgstr ""
 
-#: login.js:147
+#: login.js:150
 msgid "Invalid Login"
 msgstr ""
 
@@ -201,7 +206,7 @@ msgid "Login"
 msgstr ""
 
 #: add-student.js:106
-#: login.js:154
+#: login.js:157
 msgid "Login Incorrect!"
 msgstr ""
 
@@ -214,7 +219,7 @@ msgid "Login Name or Email"
 msgstr ""
 
 #: add-student.js:111
-#: login.js:161
+#: login.js:164
 msgid "Login Name Required!"
 msgstr ""
 
@@ -244,7 +249,7 @@ msgstr ""
 msgid "News"
 msgstr ""
 
-#: courses-detail.html:35
+#: courses-detail.html:33
 msgid "No Assignments"
 msgstr ""
 
@@ -256,7 +261,7 @@ msgstr ""
 msgid "No Courses Currently"
 msgstr ""
 
-#: assignment-detail.html:23
+#: assignment-detail.html:21
 #: news-detail.html:9
 msgid "No Description Provided"
 msgstr ""
@@ -269,12 +274,16 @@ msgstr ""
 msgid "No News Currently"
 msgstr ""
 
-#: courses-detail.html:14
-#: courses-detail.html:88
+#: no-schedule.html:7
+msgid "No Schedule"
+msgstr ""
+
+#: courses-detail.html:13
+#: courses-detail.html:86
 msgid "No Scores"
 msgstr ""
 
-#: courses-detail.html:59
+#: courses-detail.html:57
 msgid "No Zeros"
 msgstr ""
 
@@ -295,7 +304,7 @@ msgid "Password"
 msgstr ""
 
 #: add-student.js:112
-#: login.js:162
+#: login.js:165
 #: reset.js:67
 #: reset.js:71
 msgid "Password Required!"
@@ -386,15 +395,15 @@ msgstr ""
 msgid "School:"
 msgstr ""
 
-#: courses-detail.html:133
+#: courses-detail.html:124
 msgid "Score"
 msgstr ""
 
-#: courses-detail.html:127
+#: courses-detail.html:118
 msgid "Score by Category:"
 msgstr ""
 
-#: courses-detail.html:83
+#: courses-detail.html:81
 msgid "Scores"
 msgstr ""
 
@@ -451,7 +460,7 @@ msgstr ""
 msgid "Success! LoopMail sent."
 msgstr ""
 
-#: assignment-detail.html:32
+#: assignment-detail.html:30
 msgid "Teacher Unknown"
 msgstr ""
 
@@ -469,6 +478,10 @@ msgstr ""
 
 #: add-student.html:47
 msgid "The following students will be added:"
+msgstr ""
+
+#: support.js:49
+msgid "There was a problem sending the help ticket"
 msgstr ""
 
 #: services/loopmail-service.js:83
@@ -513,7 +526,7 @@ msgstr ""
 msgid "User Agreement"
 msgstr ""
 
-#: courses-detail.html:162
+#: courses-detail.html:153
 msgid "Value"
 msgstr ""
 
@@ -529,7 +542,7 @@ msgstr ""
 msgid "We are sorry you are having trouble. How can we help?"
 msgstr ""
 
-#: courses-detail.html:132
+#: courses-detail.html:123
 msgid "Weight"
 msgstr ""
 
@@ -541,6 +554,10 @@ msgstr ""
 msgid "What is the first letter of this student's last name?"
 msgstr ""
 
+#: no-schedule.html:10
+msgid "You are seeing this message because the school is not reporting a current schedule of classes for your child. Please contact school administration if you believe there is an error."
+msgstr ""
+
 #: reset.js:13
 msgid "You must include at least one digit"
 msgstr ""
@@ -549,13 +566,12 @@ msgstr ""
 msgid "Your username and password are managed by your school district. Please follow district protocol for reseting your password. In some cases, this can be done online. Visit your district website for more information."
 msgstr ""
 
-#: courses-detail.html:111
-#: courses-detail.html:19
-#: courses-detail.html:71
+#: courses-detail.html:17
+#: courses-detail.html:69
 msgid "Zero"
 msgstr ""
 
-#: courses-detail.html:20
-#: courses-detail.html:55
+#: courses-detail.html:18
+#: courses-detail.html:53
 msgid "Zeros"
 msgstr ""

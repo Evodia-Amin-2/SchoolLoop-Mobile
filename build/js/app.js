@@ -115,6 +115,7 @@
                     .state('forgot', { url: "/forgot", templateUrl: "forgot.html" })
                     .state('reset', { url: "/reset", templateUrl: "reset.html" })
                     .state('notstarted', { url: "/notstarted", templateUrl: "not-started.html" })
+                    .state('noschedule', { url: "/noschedule", templateUrl: "no-schedule.html" })
                     .state('agreement-en', { url: "/agreement-en", templateUrl: "agreement-en.html" })
                     .state('agreement-es', { url: "/agreement-es", templateUrl: "agreement-es.html" })
                     .state('agreement-zh', { url: "/agreement-zh", templateUrl: "agreement-zh.html" })
