@@ -18,7 +18,7 @@
                 <div class="score" ng-show="zeros.length > 1" translate>Zeros</div>
             </div>
         </div>
-        <div class="chart-holder" ng-show="progress.grades.length > 0">
+        <div class="chart-holder" ng-show="progress.trendScores.length > 0">
             <flot class="flot-chart" dataset="parentScope.chartData" options="parentScope.options" height="{{parentScope.chartHeight}}"></flot>
         </div>
         <div ng-show="loaded">
