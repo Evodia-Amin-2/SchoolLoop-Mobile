@@ -6,6 +6,10 @@
 var ncp = require('ncp').ncp,
     transfers = [
         {
+            'source': './build/images/icon/ios',
+            'destination': './platforms/ios/MobileLoop/Resources/icon'
+        },
+        {
             'source': './build/images/splash/ios',
             'destination': './platforms/ios/MobileLoop/Resources/splash'
         }
