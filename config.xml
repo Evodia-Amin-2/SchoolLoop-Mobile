@@ -35,10 +35,14 @@
         <splash density="land-ldpi" src="build/images/splash/android/land-ldpi.png" />
         <splash density="land-mdpi" src="build/images/splash/android/land-mdpi.png" />
         <splash density="land-xhdpi" src="build/images/splash/android/land-xhdpi.png" />
+        <splash density="land-xxhdpi" src="build/images/splash/android/land-xxhdpi.png" />
+        <splash density="land-xxxhdpi" src="build/images/splash/android/land-xxxhdpi.png" />
         <splash density="port-hdpi" src="build/images/splash/android/port-hdpi.png" />
         <splash density="port-ldpi" src="build/images/splash/android/port-ldpi.png" />
         <splash density="port-mdpi" src="build/images/splash/android/port-mdpi.png" />
         <splash density="port-xhdpi" src="build/images/splash/android/port-xhdpi.png" />
+        <splash density="port-xxhdpi" src="build/images/splash/android/port-xxhdpi.png" />
+        <splash density="port-xxxhdpi" src="build/images/splash/android/port-xxxhdpi.png" />
     </platform>
     <platform name="ios">
         <icon height="40" src="build/images/icon/ios/Icon-40.png" width="40" />
@@ -59,16 +63,20 @@
         <icon height="87" src="build/images/icon/ios/Icon-Small@3x.png" width="87" />
         <icon height="57" src="build/images/icon/ios/Icon.png" width="57" />
         <icon height="114" src="build/images/icon/ios/Icon@2x.png" width="114" />
-        <splash height="480" src="build/images/splash/ios/Default~iphone.png" width="320" />
         <splash height="960" src="build/images/splash/ios/Default@2x~iphone.png" width="640" />
-        <splash height="1024" src="build/images/splash/ios/Default-Portrait~ipad.png" width="768" />
-        <splash height="2048" src="build/images/splash/ios/Default-Portrait@2x~ipad.png" width="1536" />
-        <splash height="768" src="build/images/splash/ios/Default-Landscape~ipad.png" width="1024" />
-        <splash height="1536" src="build/images/splash/ios/Default-Landscape@2x~ipad.png" width="2048" />
         <splash height="1136" src="build/images/splash/ios/Default-568h@2x~iphone.png" width="640" />
         <splash height="1334" src="build/images/splash/ios/Default-667h.png" width="750" />
         <splash height="2208" src="build/images/splash/ios/Default-736h.png" width="1242" />
+        <splash height="1536" src="build/images/splash/ios/Default-Landscape@2x~ipad.png" width="2048" />
+        <splash height="640" src="build/images/splash/ios/Default-Landscape@2x~iphone.png" width="960" />
+        <splash height="750" src="build/images/splash/ios/Default-Landscape-667h.png" width="1334" />
         <splash height="1242" src="build/images/splash/ios/Default-Landscape-736h.png" width="2208" />
+        <splash height="768" src="build/images/splash/ios/Default-Landscape~ipad.png" width="1024" />
+        <splash height="320" src="build/images/splash/ios/Default-Landscape~iphone.png" width="480" />
+        <splash height="2048" src="build/images/splash/ios/Default-Portrait@2x~ipad.png" width="1536" />
+        <splash height="640" src="build/images/splash/ios/Default-Portrait-568h@2x~iphone.png" width="1136" />
+        <splash height="1024" src="build/images/splash/ios/Default-Portrait~ipad.png" width="768" />
+        <splash height="480" src="build/images/splash/ios/Default~iphone.png" width="320" />
     </platform>
     <plugin name="cordova-plugin-console" spec="~1.0.2" />
     <plugin name="cordova-plugin-device" spec="~1.1.0" />

@@ -78,16 +78,20 @@
     <icon height="87" src="build/images/icon/ios/Icon-Small@3x.png" width="87" />
     <icon height="57" src="build/images/icon/ios/Icon.png" width="57" />
     <icon height="114" src="build/images/icon/ios/Icon@2x.png" width="114" />
-    <splash height="480" src="build/images/splash/ios/Default~iphone.png" width="320" />
     <splash height="960" src="build/images/splash/ios/Default@2x~iphone.png" width="640" />
-    <splash height="1024" src="build/images/splash/ios/Default-Portrait~ipad.png" width="768" />
-    <splash height="2048" src="build/images/splash/ios/Default-Portrait@2x~ipad.png" width="1536" />
-    <splash height="768" src="build/images/splash/ios/Default-Landscape~ipad.png" width="1024" />
-    <splash height="1536" src="build/images/splash/ios/Default-Landscape@2x~ipad.png" width="2048" />
     <splash height="1136" src="build/images/splash/ios/Default-568h@2x~iphone.png" width="640" />
     <splash height="1334" src="build/images/splash/ios/Default-667h.png" width="750" />
     <splash height="2208" src="build/images/splash/ios/Default-736h.png" width="1242" />
+    <splash height="1536" src="build/images/splash/ios/Default-Landscape@2x~ipad.png" width="2048" />
+    <splash height="640" src="build/images/splash/ios/Default-Landscape@2x~iphone.png" width="960" />
+    <splash height="750" src="build/images/splash/ios/Default-Landscape-667h.png" width="1334" />
     <splash height="1242" src="build/images/splash/ios/Default-Landscape-736h.png" width="2208" />
+    <splash height="768" src="build/images/splash/ios/Default-Landscape~ipad.png" width="1024" />
+    <splash height="320" src="build/images/splash/ios/Default-Landscape~iphone.png" width="480" />
+    <splash height="2048" src="build/images/splash/ios/Default-Portrait@2x~ipad.png" width="1536" />
+    <splash height="640" src="build/images/splash/ios/Default-Portrait-568h@2x~iphone.png" width="1136" />
+    <splash height="1024" src="build/images/splash/ios/Default-Portrait~ipad.png" width="768" />
+    <splash height="480" src="build/images/splash/ios/Default~iphone.png" width="320" />
     <name>MobileLoop</name>
     <description>
         Mobile App for School Loop.

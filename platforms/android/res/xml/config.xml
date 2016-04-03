@@ -58,10 +58,14 @@
     <splash density="land-ldpi" src="build/images/splash/android/land-ldpi.png" />
     <splash density="land-mdpi" src="build/images/splash/android/land-mdpi.png" />
     <splash density="land-xhdpi" src="build/images/splash/android/land-xhdpi.png" />
+    <splash density="land-xxhdpi" src="build/images/splash/android/land-xxhdpi.png" />
+    <splash density="land-xxxhdpi" src="build/images/splash/android/land-xxxhdpi.png" />
     <splash density="port-hdpi" src="build/images/splash/android/port-hdpi.png" />
     <splash density="port-ldpi" src="build/images/splash/android/port-ldpi.png" />
     <splash density="port-mdpi" src="build/images/splash/android/port-mdpi.png" />
     <splash density="port-xhdpi" src="build/images/splash/android/port-xhdpi.png" />
+    <splash density="port-xxhdpi" src="build/images/splash/android/port-xxhdpi.png" />
+    <splash density="port-xxxhdpi" src="build/images/splash/android/port-xxxhdpi.png" />
     <name>MobileLoop</name>
     <description>
         Mobile App for School Loop.
