@@ -281,29 +281,31 @@
         };
 
         $scope.showCourseInfo = function(event) {
-            var cutoffs = $scope.progress.GradingScale.Cutoffs || [];
-            var mid = Math.ceil(cutoffs.length / 2);
-            $scope.scale = [];
-            for(var i = 0; i < mid; i++) {
-                var value = cutoffs[i];
-                var list = [];
-                list.push({"name": value.Name, "start": value.Start});
-
-                value = cutoffs[mid + i];
-                if(value !== undefined) {
-                    list.push({"name": value.Name, "start": value.Start});
-                } else {
-                    list.push(undefined);
-                }
-
-                $scope.scale.push(list);
-            }
-
             navbarService.reset();
             navbarService.setTitle(gettextCatalog.getString('Course Info'));
             navbarService.setMailEnabled(false);
             navbarService.setEditMode(true);
             navbarService.setDoneEnabled(true);
+
+            if(_.isUndefined($scope.progress.GradingScale) === false) {
+                var cutoffs = $scope.progress.GradingScale.Cutoffs || [];
+                var mid = Math.ceil(cutoffs.length / 2);
+                $scope.scale = [];
+                for(var i = 0; i < mid; i++) {
+                    var value = cutoffs[i];
+                    var list = [];
+                    list.push({"name": value.Name, "start": value.Start});
+
+                    value = cutoffs[mid + i];
+                    if(value !== undefined) {
+                        list.push({"name": value.Name, "start": value.Start});
+                    } else {
+                        list.push(undefined);
+                    }
+
+                    $scope.scale.push(list);
+                }
+            }
 
             $scope.definitions = $scope.progress.gradeDefinitions || [];
             $scope.courseInfo = true;
