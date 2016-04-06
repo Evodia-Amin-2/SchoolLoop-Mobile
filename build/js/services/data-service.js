@@ -70,7 +70,7 @@
                     requests = [loopmail, news];
                 } else {
                     var assignments = getRequest(DataType.ASSIGNMENT);
-                    var courses = getRequest(DataType.COURSE);
+                    var courses = getRequest(DataType.COURSE, {trim: true});
                     requests = [assignments, courses, loopmail, news];
                 }
 

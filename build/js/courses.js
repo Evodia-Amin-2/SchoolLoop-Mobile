@@ -27,13 +27,12 @@
             });
         };
 
-        $scope.isGradeEnabled = function() {
-            var school = storageService.getSelectedSchool();
-            return _.isUndefined(school) === false && _.isNull(school) === false && school.grades === 'true';
+        $scope.hasGrade = function(course) {
+            return !(course.grade === 'null' || course.grade === 'hidden');
         };
 
-        $scope.isGradeHidden = function(course) {
-            return course.score === 'null' || course.score === 'hidden';
+        $scope.hasScore = function(course) {
+            return !(course.score === 'null' || course.score === 'hidden');
         };
 
         $scope.showCourse = function(course) {
