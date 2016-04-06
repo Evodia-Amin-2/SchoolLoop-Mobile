@@ -437,6 +437,10 @@ msgstr ""
 msgid "Signed in as:"
 msgstr ""
 
+#: no-schedule.html:10
+msgid "Sorry. The school is not reporting a current schedule of classes for the student associated with this account. Please contact school administration if you believe there is an error."
+msgstr ""
+
 #: reset.js:12
 msgid "Spaces are not allowed"
 msgstr ""
@@ -554,16 +558,12 @@ msgstr ""
 msgid "What is the first letter of this student's last name?"
 msgstr ""
 
-#: no-schedule.html:10
-msgid "You are seeing this message because the school is not reporting a current schedule of classes for your child. Please contact school administration if you believe there is an error."
-msgstr ""
-
 #: reset.js:13
 msgid "You must include at least one digit"
 msgstr ""
 
 #: reset.js:38
-msgid "Your username and password are managed by your school district. Please follow district protocol for reseting your password. In some cases, this can be done online. Visit your district website for more information."
+msgid "Your username and password are managed by your school district. Please follow district protocol for resetting your password. In some cases, this can be done online. Visit your district website for more information."
 msgstr ""
 
 #: courses-detail.html:17

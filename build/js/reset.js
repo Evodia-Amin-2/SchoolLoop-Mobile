@@ -35,7 +35,7 @@
 
                                     if(data === "ERROR: err_external_user_forgot_msg") {
                                         var title = gettextCatalog.getString("Info");
-                                        var message = gettextCatalog.getString("Your username and password are managed by your school district. Please follow district protocol for reseting your password. In some cases, this can be done online. Visit your district website for more information.");
+                                        var message = gettextCatalog.getString("Your username and password are managed by your school district. Please follow district protocol for resetting your password. In some cases, this can be done online. Visit your district website for more information.");
                                         var button = gettextCatalog.getString("Cancel");
                                         navigator.notification.alert(message, function() {
                                             goLogin();

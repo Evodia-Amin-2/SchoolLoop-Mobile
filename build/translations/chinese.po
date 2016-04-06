@@ -166,7 +166,7 @@ msgstr "協助"
 
 #: support.js:43
 msgid "Help ticket has been submitted"
-msgstr "Help ticket has been submitted"
+msgstr ""
 
 #: forgot.html:9
 msgid ""
@@ -267,7 +267,7 @@ msgstr "現時沒有資訊"
 
 #: no-schedule.html:7
 msgid "No Schedule"
-msgstr "No Schedule"
+msgstr ""
 
 #: courses-detail.html:13 courses-detail.html:86
 msgid "No Scores"
@@ -414,6 +414,13 @@ msgstr "登出"
 msgid "Signed in as:"
 msgstr "簽署人："
 
+#: no-schedule.html:10
+msgid ""
+"Sorry. The school is not reporting a current schedule of classes for the "
+"student associated with this account. Please contact school administration "
+"if you believe there is an error."
+msgstr ""
+
 #: reset.js:12
 msgid "Spaces are not allowed"
 msgstr "不允許留空格"
@@ -461,7 +468,7 @@ msgstr "加入以下的學生："
 
 #: support.js:49
 msgid "There was a problem sending the help ticket"
-msgstr "There was a problem sending the help ticket"
+msgstr ""
 
 #: services/loopmail-service.js:83
 msgid ""
@@ -533,16 +540,6 @@ msgstr "學生名字的第一個字母是什麼？"
 msgid "What is the first letter of this student's last name?"
 msgstr "學生姓氏的第一個字母是什麼 ?"
 
-#: no-schedule.html:10
-msgid ""
-"You are seeing this message because the school is not reporting a current "
-"schedule of classes for your child. Please contact school administration if "
-"you believe there is an error."
-msgstr ""
-"You are seeing this message because the school is not reporting a current "
-"schedule of classes for your child. Please contact school administration if "
-"you believe there is an error."
-
 #: reset.js:13
 msgid "You must include at least one digit"
 msgstr "必須至少包括一位數字"
@@ -550,11 +547,9 @@ msgstr "必須至少包括一位數字"
 #: reset.js:38
 msgid ""
 "Your username and password are managed by your school district. Please "
-"follow district protocol for reseting your password. In some cases, this can "
-"be done online. Visit your district website for more information."
+"follow district protocol for resetting your password. In some cases, this "
+"can be done online. Visit your district website for more information."
 msgstr ""
-"你的用戶名稱及密碼由校區管理。請按照校區規定重設密碼。在某種情況下，你可在網"
-"上重設。請瀏覽校區網頁以了解詳情。"
 
 #: courses-detail.html:17 courses-detail.html:69
 msgid "Zero"
@@ -563,6 +558,14 @@ msgstr "零分"
 #: courses-detail.html:18 courses-detail.html:53
 msgid "Zeros"
 msgstr "零分"
+
+#~ msgid ""
+#~ "Your username and password are managed by your school district. Please "
+#~ "follow district protocol for reseting your password. In some cases, this "
+#~ "can be done online. Visit your district website for more information."
+#~ msgstr ""
+#~ "你的用戶名稱及密碼由校區管理。請按照校區規定重設密碼。在某種情況下，你可在"
+#~ "網上重設。請瀏覽校區網頁以了解詳情。"
 
 #~ msgid "Links:"
 #~ msgstr "連結:"
