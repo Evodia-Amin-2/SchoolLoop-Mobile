@@ -166,7 +166,7 @@ msgstr "協助"
 
 #: support.js:43
 msgid "Help ticket has been submitted"
-msgstr ""
+msgstr "Help ticket has been submitted"
 
 #: forgot.html:9
 msgid ""
@@ -267,7 +267,7 @@ msgstr "現時沒有資訊"
 
 #: no-schedule.html:7
 msgid "No Schedule"
-msgstr ""
+msgstr "No Schedule"
 
 #: courses-detail.html:13 courses-detail.html:86
 msgid "No Scores"
@@ -420,6 +420,9 @@ msgid ""
 "student associated with this account. Please contact school administration "
 "if you believe there is an error."
 msgstr ""
+"Sorry. The school is not reporting a current schedule of classes for the "
+"student associated with this account. Please contact school administration "
+"if you believe there is an error."
 
 #: reset.js:12
 msgid "Spaces are not allowed"
@@ -468,7 +471,7 @@ msgstr "加入以下的學生："
 
 #: support.js:49
 msgid "There was a problem sending the help ticket"
-msgstr ""
+msgstr "There was a problem sending the help ticket"
 
 #: services/loopmail-service.js:83
 msgid ""
@@ -550,6 +553,9 @@ msgid ""
 "follow district protocol for resetting your password. In some cases, this "
 "can be done online. Visit your district website for more information."
 msgstr ""
+"Your username and password are managed by your school district. Please "
+"follow district protocol for resetting your password. In some cases, this "
+"can be done online. Visit your district website for more information."
 
 #: courses-detail.html:17 courses-detail.html:69
 msgid "Zero"
