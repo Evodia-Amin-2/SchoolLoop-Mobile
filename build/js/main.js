@@ -3,9 +3,9 @@
 
     angular.module('mobileloop')
         .controller('MainController', ['$rootScope', '$scope', '$window', '$state', '$timeout', '$spMenu',
-            'DataService', 'DataType', 'StorageService', 'StatusService', 'NotificationService', 'config',
+            'DataService', 'DataType', 'StorageService', 'LoginService', 'StatusService', 'NotificationService', 'config',
             function($rootScope, $scope, $window, $state, $timeout, $spMenu,
-                     dataService, DataType, storageService, statusService, notificationService, config) {
+                     dataService, DataType, storageService, loginService, statusService, notificationService, config) {
                 var main = this;
                 main.menuVisible = false;
                 main.user = {};
@@ -171,6 +171,7 @@
 
                 main.logout = function() {
                     dataService.clearCache();
+                    loginService.logout();
                     if(_.isUndefined(main.school) === false) {
                         storageService.clearPassword(main.school.domainName);
                     }

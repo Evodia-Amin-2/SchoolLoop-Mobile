@@ -3,10 +3,10 @@
     'use strict';
 
     angular.module('app.services')
-        .factory('LoginService', ['$http', '$q', 'Base64', 'config', LoginService])
+        .factory('LoginService', ['$http', '$q', 'Base64', 'config', 'StorageService', LoginService])
     ;
 
-    function LoginService($http, $q, Base64, config) {
+    function LoginService($http, $q, Base64, config, storageService) {
         function doLogin(url, username, password) {
             if(config.data) {
                 var data = config.data.login;
@@ -37,7 +37,14 @@
             return $http.get(endpoint, parameters);
         }
 
-        return {"login": doLogin};
+        function doLogout() {
+            var url = storageService.getSelectedSchool().domainName;
+            var endpoint = "https://" + url + "/mapi/logout";
+            return $http.get(endpoint);
+        }
+
+        return {"login": doLogin,
+            "logout": doLogout};
     }
 
     function parseVersion(version) {
