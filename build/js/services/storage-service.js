@@ -265,23 +265,26 @@
         function loadSchool() {
             var school = {};
             var data = storage.getItem("school");
+            var domainName;
+            var map;
+            var domain;
             if (data) {
                 try {
                     school = JSON.parse(data);
                 } catch (err) {
-                    var domainName = data;
-                    var map = loadDomainMap();
-                    var domain = map[domainName];
+                    domainName = data;
+                    map = loadDomainMap();
+                    domain = map[domainName];
                     if(domain) {
                         school = domain.school;
                         service.setSchool(school);
                     }
                 }
             } else {
-                var map = loadDomainMap();
-                for(var domainName in map) {
+                map = loadDomainMap();
+                for(domainName in map) {
                     if(map.hasOwnProperty(domainName)) {
-                        var domain = map[domainName];
+                        domain = map[domainName];
                         school = domain.school;
                         service.setSchool(school);
                         break;
