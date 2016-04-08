@@ -1241,6 +1241,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Sharon Heiny (JQGM2UYD8U)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1277,6 +1278,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: School Loop Inc. (4HK36Z99TA)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MobileLoop/MobileLoop-Prefix.pch";
@@ -1316,7 +1318,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_THUMB_SUPPORT = NO;
@@ -1361,7 +1363,7 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = "";
@@ -1429,7 +1431,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.schoolloop.mobileloop.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "865729d8-c697-4ade-98f7-758c05b33c3d";
+				PROVISIONING_PROFILE = "1eed915e-635b-47fd-a31d-c634437d8b1c";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1466,7 +1468,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.schoolloop.mobileloop.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "865729d8-c697-4ade-98f7-758c05b33c3d";
+				PROVISIONING_PROFILE = "1eed915e-635b-47fd-a31d-c634437d8b1c";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1505,7 +1507,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.schoolloop.mobileloop.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7afd7539-99e3-4242-a478-ea09f8f53047";
+				PROVISIONING_PROFILE = "5a35ca8c-fd53-46bc-b6e6-c5f7f045b61d";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1542,7 +1544,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.schoolloop.mobileloop.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7afd7539-99e3-4242-a478-ea09f8f53047";
+				PROVISIONING_PROFILE = "5a35ca8c-fd53-46bc-b6e6-c5f7f045b61d";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1581,7 +1583,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.schoolloop.mobileloop.mirror;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c1ca3df9-2287-4600-9cc8-be3c40b15fbf";
+				PROVISIONING_PROFILE = "695f2ab5-723f-4f06-b04d-31ae9c3754f2";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1618,7 +1620,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.schoolloop.mobileloop.mirror;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c1ca3df9-2287-4600-9cc8-be3c40b15fbf";
+				PROVISIONING_PROFILE = "695f2ab5-723f-4f06-b04d-31ae9c3754f2";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
