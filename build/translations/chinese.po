@@ -78,7 +78,7 @@ msgstr "關閉"
 msgid "Confirm Password"
 msgstr "確認密碼"
 
-#: courses.js:304
+#: courses.js:285
 msgid "Course Info"
 msgstr "每科評分信息"
 
@@ -478,6 +478,10 @@ msgid ""
 "There was a problem sending the message.  It has been placed in your outbox "
 "and an attempt to send again will automatically occur."
 msgstr "信息遞送障礙。信息目前存放在發送信箱稍後再次自動發送"
+
+#: main.js:186
+msgid "There was a problem signing out. Please try again."
+msgstr "There was a problem signing out. Please try again."
 
 #: invalid.html:7
 msgid ""

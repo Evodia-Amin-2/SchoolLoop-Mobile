@@ -88,7 +88,7 @@ msgstr ""
 msgid "Confirm Password"
 msgstr ""
 
-#: courses.js:304
+#: courses.js:285
 msgid "Course Info"
 msgstr ""
 
@@ -490,6 +490,10 @@ msgstr ""
 
 #: services/loopmail-service.js:83
 msgid "There was a problem sending the message.  It has been placed in your outbox and an attempt to send again will automatically occur."
+msgstr ""
+
+#: main.js:195
+msgid "There was a problem signing out. Please try again."
 msgstr ""
 
 #: invalid.html:7

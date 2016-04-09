@@ -79,7 +79,7 @@ msgstr "Cerrar"
 msgid "Confirm Password"
 msgstr "Confirme su contraseña"
 
-#: courses.js:304
+#: courses.js:285
 msgid "Course Info"
 msgstr "Información del curso"
 
@@ -489,6 +489,10 @@ msgid ""
 msgstr ""
 "Hubo un problema al enviar el mensaje. Se guardó en su bandeja de salida y "
 "se intentará renviarlo automáticamente."
+
+#: main.js:186
+msgid "There was a problem signing out. Please try again."
+msgstr "There was a problem signing out. Please try again."
 
 #: invalid.html:7
 msgid ""

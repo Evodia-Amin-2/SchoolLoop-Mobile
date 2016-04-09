@@ -3,9 +3,9 @@
 
     angular.module('mobileloop')
         .controller('MainController', ['$rootScope', '$scope', '$window', '$state', '$timeout', '$spMenu',
-            'DataService', 'DataType', 'StorageService', 'LoginService', 'StatusService', 'NotificationService', 'config',
+            'DataService', 'DataType', 'StorageService', 'LoginService', 'StatusService', 'NotificationService', 'gettextCatalog', 'config',
             function($rootScope, $scope, $window, $state, $timeout, $spMenu,
-                     dataService, DataType, storageService, loginService, statusService, notificationService, config) {
+                     dataService, DataType, storageService, loginService, statusService, notificationService, gettextCatalog, config) {
                 var main = this;
                 main.menuVisible = false;
                 main.user = {};
@@ -170,16 +170,31 @@
                 };
 
                 main.logout = function() {
-                    dataService.clearCache();
-                    loginService.logout();
-                    if(_.isUndefined(main.school) === false) {
-                        storageService.clearPassword(main.school.domainName);
-                    }
+                    loginService.logout().then(
+                        function(response) {
+                            if(String(response.data).indexOf("SUCCESS") === 0) {
+                                dataService.clearCache();
+                                if(_.isUndefined(main.school) === false) {
+                                    storageService.clearPassword(main.school.domainName);
+                                }
 
-                    notificationService.unregister();
+                                notificationService.unregister();
 
-                    $state.go("login");
+                                $state.go("login");
+                            } else {
+                                logoutError();
+                            }
+                        },
+                        function() {
+                            logoutError();
+                        }
+                    );
                 };
+
+                function logoutError() {
+                    var message = gettextCatalog.getString("There was a problem signing out. Please try again.");
+                    window.plugins.toast.showLongBottom(message);
+                }
 
                 main.ios = function() {
                     return device.platform.toLowerCase() === "ios"; // || main.browser() === true;
