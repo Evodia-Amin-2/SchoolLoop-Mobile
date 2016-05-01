@@ -7,6 +7,7 @@
 
         function ResetController($scope, $state, dataService, storageService, gettextCatalog) {
             var reset = this;
+            reset.inReset = false;
 
             var messages = {
                 "ERROR: error_password_has_space": gettextCatalog.getString("Spaces are not allowed"),
@@ -23,6 +24,10 @@
             };
 
             reset.reset = function() {
+                if(reset.inReset === true) {
+                    return;
+                }
+                reset.inReset = true;
                 $scope.reset_form.submitted = true;
                 if($scope.reset_form.$valid) {
                     if(reset.password === reset.confirm) {
@@ -32,7 +37,6 @@
                                 if(_.isString(data) && data.startsWith("ERROR")) {
                                     reset.password = undefined;
                                     reset.confirm = undefined;
-
                                     if(data === "ERROR: err_external_user_forgot_msg") {
                                         var title = gettextCatalog.getString("Info");
                                         var message = gettextCatalog.getString("Your username and password are managed by your school district. Please follow district protocol for resetting your password. In some cases, this can be done online. Visit your district website for more information.");
@@ -43,11 +47,13 @@
                                     } else {
                                         $scope.reset_form.password.placeholder = messages[data];
                                         $scope.reset_form.password.$invalid = true;
+                                        reset.inReset = false;
                                     }
                                 } else {
                                     var school = storageService.getSelectedSchool();
                                     storageService.addDomain(school, data, reset.password);
                                     storageService.addStudents(school, data.students, true);
+                                    reset.inReset = false;
                                     $state.go('main');
                                 }
                             },
@@ -60,6 +66,7 @@
                         reset.confirm = undefined;
                         $scope.reset_form.confirm.$invalid = true;
                         $scope.reset_form.confirm.placeholder = gettextCatalog.getString("Passwords don't match");
+                        reset.inReset = false;
                     }
                 } else {
                     if(_.isUndefined(reset.password) === true) {
@@ -70,10 +77,12 @@
                         $scope.reset_form.confirm.$invalid = true;
                         $scope.reset_form.confirm.placeholder = gettextCatalog.getString("Password Required!");
                     }
+                    reset.inReset = false;
                 }
             };
 
             function goLogin() {
+                reset.inReset = false;
                 var domain = storageService.getDefaultDomain();
                 var domainName = domain.school.domainName;
                 storageService.clearPassword(domainName);

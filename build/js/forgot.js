@@ -7,6 +7,7 @@
 
         function ForgotController($scope, $state, dataService, gettextCatalog) {
             var forgot = this;
+            forgot.inReset = false;
 
             StatusBar.styleDefault();
             StatusBar.backgroundColorByHexString("#5d8dc5");
@@ -16,6 +17,10 @@
             };
 
             forgot.reset = function() {
+                if(forgot.inReset === true) {
+                    return;
+                }
+                forgot.inReset = true;
                 $scope.forgot_form.$submitted = true;
                 if($scope.forgot_form.$valid) {
                     var params = {"email": forgot.email};
@@ -27,19 +32,26 @@
                             message = gettextCatalog.getString("Please check your email for your password and try to login again.  Thanks!");
                             button = gettextCatalog.getString("Login");
                             navigator.notification.alert(message, function() {
+                                forgot.inReset = false;
                                 $state.go("login");
                             }, title, button);
                         },
                         function() {
                             message = gettextCatalog.getString("Unable to send email to that address. Please try again!");
                             button = gettextCatalog.getString("Close");
-                            navigator.notification.alert(message, function() {}, title, button);
-                            forgot.email = "";
-                            forgot.placeholder = gettextCatalog.getString("Please enter email!");
+                            navigator.notification.alert(message, function() {
+                                $scope.$apply(function() {
+                                    forgot.inReset = false;
+                                    $scope.forgot_form.$submitted = false;
+                                    forgot.email = "";
+                                    forgot.placeholder = gettextCatalog.getString("Please enter email!");
+                                });
+                            }, title, button);
                         }
                     );
                 } else {
                     forgot.placeholder = gettextCatalog.getString("Please enter email!");
+                    forgot.inReset = false;
                 }
             };
 

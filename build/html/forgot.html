@@ -18,8 +18,8 @@
                 </div>
             </div>
             <div class="footer center">
-                <button ng-click="forgot.cancel()" class="button button-blue" translate>Cancel</button>
-                <button ng-click="forgot.reset()"class="button button-blue" translate>Reset Password</button>
+                <button ng-click="forgot.cancel()" class="button button-blue" ng-disabled="forgot.inReset" translate>Cancel</button>
+                <button ng-click="forgot.reset()"class="button button-blue" ng-disabled="forgot.inReset" translate>Reset Password</button>
             </div>
         </form>
     </div>

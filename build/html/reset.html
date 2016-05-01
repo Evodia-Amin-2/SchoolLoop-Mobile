@@ -15,8 +15,8 @@
                 </div>
             </div>
             <div class="footer center">
-                <button ng-click="reset.cancel()" class="button button-blue clickable" translate>Cancel</button>
-                <button ng-click="reset.reset()"class="button button-blue clickable" translate>Set Password</button>
+                <button ng-click="reset.cancel()" class="button button-blue clickable" ng-disabled="reset.inReset" translate>Cancel</button>
+                <button ng-click="reset.reset()"class="button button-blue clickable" ng-disabled="reset.inReset" translate>Set Password</button>
             </div>
         </form>
     </div>

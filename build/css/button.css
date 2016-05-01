@@ -41,6 +41,10 @@ button::-moz-focus-inner,input::-moz-focus-inner {
     display: none;
 }
 
+.button:disabled {
+    opacity: 0.3;
+}
+
 .button-blue,.button-green,.button-red {
     color: #fff;
 }
