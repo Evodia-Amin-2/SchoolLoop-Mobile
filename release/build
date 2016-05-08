@@ -1,6 +1,6 @@
 #!/bin/bash
-PATH=$PATH:/usr/local/bin:/Users/tombu/Library/Android/sdk/platform-tools:/Users/tombu/Library/Android/sdk/tools
-export ANDROID_HOME=/Users/tombu/Library/Android/sdk
+PATH=$PATH:/usr/local/bin:~/Library/Android/sdk/platform-tools:~/Library/Android/sdk/tools
+export ANDROID_HOME=~/Library/Android/sdk
 
 if [[ $# -eq 0 ]] ; then
     echo '    usage:  build {appId} {appName} {displayName} {version} {build} {release}'

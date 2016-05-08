@@ -14,7 +14,7 @@ BUILD=$4
 cp platforms/android/build/outputs/apk/android-release.apk release/${APP_NAME}-${VERSION}-${BUILD}.apk
 mv release/${APP_NAME}-*.ipa release/${APP_NAME}-${VERSION}-${BUILD}.ipa
 mv release/${APP_NAME}-*.zip release/${APP_NAME}-${VERSION}-${BUILD}-dSYM.zip
-cp release/*.apk /Users/tombu/Downloads/builds/${ID}/
-cp release/*.ipa /Users/tombu/Downloads/builds/${ID}/
+cp release/*.apk ~/Downloads/builds/${ID}/
+cp release/*.ipa ~/Downloads/builds/${ID}/
 cp release/${APP_NAME}-${VERSION}-${BUILD}.ipa release/${APP_NAME}-${VERSION}.ipa
 rm -f release/${APP_NAME}-*
