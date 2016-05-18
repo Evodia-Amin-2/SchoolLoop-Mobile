@@ -19,8 +19,6 @@ cordova.define("cordova-plugin-vibration.Vibration", function(require, exports, 
  *
 */
 
-var cordova = require('cordova');
-
 module.exports = {
     vibrate: function(success, fail, milliseconds) {
         console.log('Vibration is not supported');

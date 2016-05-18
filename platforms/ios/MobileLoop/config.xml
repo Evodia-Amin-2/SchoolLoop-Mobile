@@ -1,30 +1,19 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.schoolloop.mobileloop.mirror" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <preference name="AllowInlineMediaPlayback" value="false" />
-    <preference name="BackupWebStorage" value="cloud" />
-    <preference name="DisallowOverscroll" value="false" />
-    <preference name="EnableViewportScale" value="false" />
-    <preference name="KeyboardDisplayRequiresUserAction" value="true" />
-    <preference name="MediaPlaybackRequiresUserAction" value="false" />
-    <preference name="SuppressesIncrementalRendering" value="false" />
-    <preference name="GapBetweenPages" value="0" />
-    <preference name="PageLength" value="0" />
-    <preference name="PaginationBreakingMode" value="page" />
-    <preference name="PaginationMode" value="unpaginated" />
+<widget id="com.schoolloop.mobileloop.app" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <feature name="LocalStorage">
         <param name="ios-package" value="CDVLocalStorage" />
     </feature>
-    <feature name="SpinnerDialog">
-        <param name="ios-package" value="CDVSpinnerDialog" />
+    <feature name="HandleOpenUrl">
+        <param name="ios-package" value="CDVHandleOpenURL" />
+        <param name="onload" value="true" />
     </feature>
-    <feature name="Keyboard">
-        <param name="ios-package" onload="true" value="IonicKeyboard" />
+    <feature name="IntentAndNavigationFilter">
+        <param name="ios-package" value="CDVIntentAndNavigationFilter" />
+        <param name="onload" value="true" />
     </feature>
-    <feature name="Toast">
-        <param name="ios-package" value="Toast" />
-    </feature>
-    <feature name="PushNotification">
-        <param name="ios-package" value="PushPlugin" />
+    <feature name="GestureHandler">
+        <param name="ios-package" value="CDVGestureHandler" />
+        <param name="onload" value="true" />
     </feature>
     <feature name="Console">
         <param name="ios-package" value="CDVLogger" />
@@ -52,18 +41,44 @@
         <param name="ios-package" value="CDVStatusBar" />
         <param name="onload" value="true" />
     </feature>
-    <preference name="StatusBarOverlaysWebView" value="true" />
-    <preference name="StatusBarStyle" value="lightcontent" />
     <feature name="Vibration">
         <param name="ios-package" value="CDVVibration" />
     </feature>
     <feature name="GoogleAnalytics">
         <param name="ios-package" value="GoogleAnalyticsPlugin" />
     </feature>
+    <feature name="Toast">
+        <param name="ios-package" value="Toast" />
+    </feature>
+    <feature name="SpinnerDialog">
+        <param name="ios-package" value="CDVSpinnerDialog" />
+    </feature>
+    <feature name="Keyboard">
+        <param name="ios-package" onload="true" value="IonicKeyboard" />
+    </feature>
+    <feature name="PushNotification">
+        <param name="ios-package" value="PushPlugin" />
+    </feature>
+    <name>MobileLoop</name>
+    <description>
+        Mobile App for School Loop.
+    </description>
+    <author email="rob@schoolloop.com" href="http://www.schoolloop.com">
+        School Loop Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <allow-intent href="itms:*" />
+    <allow-intent href="itms-apps:*" />
     <icon height="40" src="build/images/icon/ios/Icon-40.png" width="40" />
     <icon height="80" src="build/images/icon/ios/Icon-40@2x.png" width="80" />
     <icon height="120" src="build/images/icon/ios/Icon-40@3x.png" width="120" />
-    <icon height="60" src="build/images/icon/ios/Icon-60.png" width="60" />
     <icon height="120" src="build/images/icon/ios/Icon-60@2x.png" width="120" />
     <icon height="180" src="build/images/icon/ios/Icon-60@3x.png" width="180" />
     <icon height="72" src="build/images/icon/ios/Icon-72.png" width="72" />
@@ -92,24 +107,20 @@
     <splash height="640" src="build/images/splash/ios/Default-Portrait-568h@2x~iphone.png" width="1136" />
     <splash height="1024" src="build/images/splash/ios/Default-Portrait~ipad.png" width="768" />
     <splash height="480" src="build/images/splash/ios/Default~iphone.png" width="320" />
-    <name>MobileLoop</name>
-    <description>
-        Mobile App for School Loop.
-    </description>
-    <author email="rob@schoolloop.com" href="http://www.schoolloop.com">
-        School Loop Team
-    </author>
-    <content src="index.html" />
-    <access origin="*" />
-    <allow-intent href="*" />
-    <allow-navigation href="*" />
-    <preference name="webviewbounce" value="false" />
-    <preference name="UIWebViewBounce" value="false" />
-    <preference name="DisallowOverscroll" value="true" />
-    <preference name="BackupWebStorage" value="none" />
-    <preference name="SplashScreenDelay" value="7000" />
-    <preference name="SplashScreen" value="screen" />
-    <preference name="Orientation" value="default" />
-    <preference name="EnableViewportScale" value="true" />
-    <icon src="build/images/icon/default.png" />
+    <preference name="AllowInlineMediaPlayback" value="false" />
+    <preference name="BackupWebStorage" value="cloud" />
+    <preference name="DisallowOverscroll" value="false" />
+    <preference name="EnableViewportScale" value="false" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="true" />
+    <preference name="MediaPlaybackRequiresUserAction" value="false" />
+    <preference name="SuppressesIncrementalRendering" value="false" />
+    <preference name="SuppressesLongPressGesture" value="false" />
+    <preference name="Suppresses3DTouchGesture" value="false" />
+    <preference name="GapBetweenPages" value="0" />
+    <preference name="PageLength" value="0" />
+    <preference name="PaginationBreakingMode" value="page" />
+    <preference name="PaginationMode" value="unpaginated" />
+    <preference name="StatusBarOverlaysWebView" value="true" />
+    <preference name="StatusBarStyle" value="lightcontent" />
+    <preference name="Orientation" value="all" />
 </widget>

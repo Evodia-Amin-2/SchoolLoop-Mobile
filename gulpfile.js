@@ -156,3 +156,12 @@ gulp.task('default', function () {
     gulp.start('app-tmpl');
     gulp.start('vendor-js');
 });
+
+gulp.task('images', function () {
+    return gulp.src(srcPath + '/translations/**/*.po')
+        .pipe(gettext.compile({
+            // options to pass to angular-gettext-tools...
+        }))
+        .pipe(gulp.dest('tmp'));
+});
+

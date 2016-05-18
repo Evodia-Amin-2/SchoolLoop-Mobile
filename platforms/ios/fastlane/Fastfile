@@ -1,0 +1,144 @@
+fastlane_version "1.89.0"
+
+default_platform :ios
+
+platform :ios do
+  # Run this before doing anything else
+  # before_all do
+
+  #   # If the GIT status is not clean, abort. We won't want to include junk in the build
+  #   ensure_git_status_clean
+
+  # end
+
+
+  ######################### PUBLIC LANES ##########################
+  desc "Build and upload a new build to Apple TestFlight"
+  lane :beta do
+    match(app_identifier: "com.schoolloop.mobileloop.app", type: "adhoc")
+    build_app(
+      # Not a production release, so add build number and do the color modulation of the icons
+      release:false,
+
+      # Modulate the colors of the icons by these degrees
+      modulation:66.6,
+
+      # Change the app name
+      app_name:"School Loop Beta",
+
+      # Set the app id
+      app_identifier:"com.schoolloop.mobileloop.app",
+
+      project_name:"MobileLoop",
+
+      output_name: "SchoolLoopBeta",
+
+      # What configuration to use, usefull for keeping different API keys etc between environments
+      configuration:"Release",
+
+      # the scheme to build
+      scheme:"MobileLoop",
+
+      # the build number to use, we use the build number from Jenkins
+      build_number: ENV["BUILD_NUMBER"]
+    )
+  end
+
+  desc "Build mirror"
+  lane :mirror do
+    match(app_identifier: "com.schoolloop.mobileloop.mirror", type: "adhoc")
+    build_app(
+      # Not a production release, so add build number and do the color modulation of the icons
+      release:false,
+
+      # Modulate the colors of the icons by these degrees
+      modulation:166.6,
+
+      # Change the app name
+      app_name:"Mirror Loop",
+
+      # Set the app id
+      app_identifier:"com.schoolloop.mobileloop.mirror",
+
+      project_name:"MobileLoop",
+  
+      output_name: "MirrorLoop",
+
+      # What configuration to use, usefull for keeping different API keys etc between environments
+      configuration:"Release",
+
+      # the scheme to build
+      scheme:"MobileLoop",
+
+      # the build number to use, we use the build number from Jenkins
+      build_number: ENV["BUILD_NUMBER"]
+    )
+  end
+
+  ######################### PRIVATE LANES #########################
+  private_lane :build_app do |options|
+
+    # Update the app name
+    app_name(
+      plist_path: "#{options[:project_name]}/#{options[:project_name]}-Info.plist",
+      app_name: options[:app_name]
+    )
+
+    # Update the app identifier
+    update_app_identifier(
+      xcodeproj: "#{options[:project_name]}.xcodeproj",
+      plist_path: "#{options[:project_name]}/#{options[:project_name]}-Info.plist",
+      app_identifier: options[:app_identifier]
+    )
+
+    # Version bump
+    increment_build_number(
+      build_number: options[:build_number]
+    )
+
+    # This part is done only when the app is not for the "production" environment
+    if not options[:release]
+        version = "#{get_version_number}-#{get_build_number}"
+        badge(dark: true, shield: "#{version}-blue")
+    end
+
+    # Build the app
+    gym(
+      scheme: "#{options[:scheme]}",
+      configuration: options[:configuration],
+      output_name: options[:output_name],
+      output_directory: "build"
+    )
+
+  end
+
+  # After all the steps have completed succesfully, run this.
+  after_all do |lane|
+
+    # # Remove all build artifacts, but keep mobileprovisioning profiles since they are stored in GIT
+    # clean_build_artifacts(
+    #   exclude_pattern: ".*\.mobileprovision"
+    # )
+
+    # # Reset all changes to the git checkout
+    # reset_git_repo(
+    #   force: true
+    # )
+
+  end
+
+  # If there was an error, run this
+  error do |lane, exception|
+
+    # # Remove all build artifacts, but keep mobileprovisioning profiles since they are stored in GIT
+    # clean_build_artifacts(
+    #   exclude_pattern: ".*\.mobileprovision"
+    # )
+
+    # # Reset all changes to the git checkout
+    # reset_git_repo(
+    #   force: true
+    # )
+
+  end
+end

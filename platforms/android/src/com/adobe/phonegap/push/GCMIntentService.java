@@ -16,6 +16,8 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
+import android.support.v4.app.NotificationCompat.WearableExtender;
 import android.text.Html;
 import android.util.Log;
 
@@ -196,9 +198,11 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
         // Send a notification if there is a message or title, otherwise just send data
         String message = extras.getString(MESSAGE);
         String title = extras.getString(TITLE);
+        String contentAvailable = extras.getString(CONTENT_AVAILABLE);
 
         Log.d(LOG_TAG, "message =[" + message + "]");
         Log.d(LOG_TAG, "title =[" + title + "]");
+        Log.d(LOG_TAG, "contentAvailable =[" + contentAvailable + "]");
 
         if ((message != null && message.length() != 0) ||
                 (title != null && title.length() != 0)) {
@@ -206,7 +210,9 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
             Log.d(LOG_TAG, "create notification");
 
             createNotification(context, extras);
-        } else {
+        }
+
+        if ("1".equals(contentAvailable)) {
             Log.d(LOG_TAG, "send notification event");
             PushPlugin.sendExtras(extras);
         }
@@ -318,29 +324,52 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
         /*
          * Notification add actions
          */
-        createActions(extras, mBuilder, resources, packageName);
+        createActions(extras, mBuilder, resources, packageName, notId);
 
         mNotificationManager.notify(appName, notId, mBuilder.build());
     }
 
-    private void createActions(Bundle extras, NotificationCompat.Builder mBuilder, Resources resources, String packageName) {
+    private void createActions(Bundle extras, NotificationCompat.Builder mBuilder, Resources resources, String packageName, int notId) {
         Log.d(LOG_TAG, "create actions");
         String actions = extras.getString(ACTIONS);
         if (actions != null) {
             try {
                 JSONArray actionsArray = new JSONArray(actions);
+                ArrayList<NotificationCompat.Action> wActions = new ArrayList<NotificationCompat.Action>();
                 for (int i=0; i < actionsArray.length(); i++) {
                     Log.d(LOG_TAG, "adding action");
                     JSONObject action = actionsArray.getJSONObject(i);
                     Log.d(LOG_TAG, "adding callback = " + action.getString(CALLBACK));
-                    Intent intent = new Intent(this, PushHandlerActivity.class);
-                    intent.putExtra(CALLBACK, action.getString(CALLBACK));
-                    intent.putExtra(PUSH_BUNDLE, extras);
-                    PendingIntent pIntent = PendingIntent.getActivity(this, i, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-                    mBuilder.addAction(resources.getIdentifier(action.getString(ICON), DRAWABLE, packageName),
+                    boolean foreground = action.optBoolean(FOREGROUND, true);
+                    Intent intent = null;
+                    PendingIntent pIntent = null;
+                    if (foreground) {
+                        intent = new Intent(this, PushHandlerActivity.class);
+                        intent.putExtra(CALLBACK, action.getString(CALLBACK));
+                        intent.putExtra(PUSH_BUNDLE, extras);
+                        intent.putExtra(FOREGROUND, foreground);
+                        intent.putExtra(NOT_ID, notId);
+                        pIntent = PendingIntent.getActivity(this, i, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    } else {
+                        intent = new Intent(this, BackgroundActionButtonHandler.class);
+                        intent.putExtra(CALLBACK, action.getString(CALLBACK));
+                        intent.putExtra(PUSH_BUNDLE, extras);
+                        intent.putExtra(FOREGROUND, foreground);
+                        intent.putExtra(NOT_ID, notId);
+                        pIntent = PendingIntent.getBroadcast(this, i, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    }
+                    NotificationCompat.Action wAction =
+                    new NotificationCompat.Action.Builder(resources.getIdentifier(action.optString(ICON, ""), DRAWABLE, packageName),
+                            action.getString(TITLE), pIntent)
+                            .build();
+                    wActions.add(wAction);
+                    mBuilder.addAction(resources.getIdentifier(action.optString(ICON, ""), DRAWABLE, packageName),
                             action.getString(TITLE), pIntent);
+                    wAction = null;
+                    pIntent = null;
                 }
+                mBuilder.extend(new WearableExtender().addActions(wActions));
+                wActions.clear();
             } catch(JSONException e) {
                 // nope
             }
@@ -364,7 +393,7 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
             long[] results = new long[items.length];
             for (int i = 0; i < items.length; i++) {
                 try {
-                    results[i] = Long.parseLong(items[i]);
+                    results[i] = Long.parseLong(items[i].trim());
                 } catch (NumberFormatException nfe) {}
             }
             mBuilder.setVibrate(results);
@@ -453,7 +482,9 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
         if (soundname == null) {
             soundname = extras.getString(SOUND);
         }
-        if (soundname != null && !soundname.contentEquals(SOUND_DEFAULT)) {
+        if (SOUND_RINGTONE.equals(soundname)) {
+            mBuilder.setSound(android.provider.Settings.System.DEFAULT_RINGTONE_URI);
+        } else if (soundname != null && !soundname.contentEquals(SOUND_DEFAULT)) {
             Uri sound = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE
                     + "://" + context.getPackageName() + "/raw/" + soundname);
             Log.d(LOG_TAG, sound.toString());
@@ -471,7 +502,7 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
             int[] results = new int[items.length];
             for (int i = 0; i < items.length; i++) {
                 try {
-                    results[i] = Integer.parseInt(items[i]);
+                    results[i] = Integer.parseInt(items[i].trim());
                 } catch (NumberFormatException nfe) {}
             }
             if (results.length == 4) {
@@ -500,7 +531,7 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
 
     private void setNotificationLargeIcon(Bundle extras, String packageName, Resources resources, NotificationCompat.Builder mBuilder) {
         String gcmLargeIcon = extras.getString(IMAGE); // from gcm
-        if (gcmLargeIcon != null) {
+        if (gcmLargeIcon != null && !"".equals(gcmLargeIcon)) {
             if (gcmLargeIcon.startsWith("http://") || gcmLargeIcon.startsWith("https://")) {
                 mBuilder.setLargeIcon(getBitmapFromURL(gcmLargeIcon));
                 Log.d(LOG_TAG, "using remote large-icon from gcm");
@@ -530,11 +561,11 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
     private void setNotificationSmallIcon(Context context, Bundle extras, String packageName, Resources resources, NotificationCompat.Builder mBuilder, String localIcon) {
         int iconId = 0;
         String icon = extras.getString(ICON);
-        if (icon != null) {
+        if (icon != null && !"".equals(icon)) {
             iconId = resources.getIdentifier(icon, DRAWABLE, packageName);
             Log.d(LOG_TAG, "using icon from plugin options");
         }
-        else if (localIcon != null) {
+        else if (localIcon != null && !"".equals(localIcon)) {
             iconId = resources.getIdentifier(localIcon, DRAWABLE, packageName);
             Log.d(LOG_TAG, "using icon from plugin options");
         }
@@ -547,14 +578,14 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
 
     private void setNotificationIconColor(String color, NotificationCompat.Builder mBuilder, String localIconColor) {
         int iconColor = 0;
-        if (color != null) {
+        if (color != null && !"".equals(color)) {
             try {
                 iconColor = Color.parseColor(color);
             } catch (IllegalArgumentException e) {
                 Log.e(LOG_TAG, "couldn't parse color from android options");
             }
         }
-        else if (localIconColor != null) {
+        else if (localIconColor != null && !"".equals(localIconColor)) {
             try {
                 iconColor = Color.parseColor(localIconColor);
             } catch (IllegalArgumentException e) {
@@ -580,7 +611,7 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
         }
     }
 
-    private static String getAppName(Context context) {
+    public static String getAppName(Context context) {
         CharSequence appName =  context.getPackageManager().getApplicationLabel(context.getApplicationInfo());
         return (String)appName;
     }

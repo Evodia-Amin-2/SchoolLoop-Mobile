@@ -19,3 +19,6 @@ platforms/ios/www
 rob.xcuserdatad
 tombu.xcuserdatad
 loopy.xcuserdatad
+platforms/ios/fastlane/metadata
+platforms/ios/fastlane/screenshots
+report.xml

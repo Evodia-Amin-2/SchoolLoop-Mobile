@@ -1,47 +1,8 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
-        "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
-        "id": "cordova-plugin-x-toast.Toast",
-        "pluginId": "cordova-plugin-x-toast",
-        "clobbers": [
-            "window.plugins.toast"
-        ]
-    },
-    {
-        "file": "plugins/cordova-plugin-x-toast/test/tests.js",
-        "id": "cordova-plugin-x-toast.tests",
-        "pluginId": "cordova-plugin-x-toast"
-    },
-    {
-        "file": "plugins/hu.dpal.phonegap.plugins.SpinnerDialog/www/spinner.js",
-        "id": "hu.dpal.phonegap.plugins.SpinnerDialog.SpinnerDialog",
-        "pluginId": "hu.dpal.phonegap.plugins.SpinnerDialog",
-        "merges": [
-            "window.plugins.spinnerDialog"
-        ]
-    },
-    {
-        "file": "plugins/ionic-plugin-keyboard/www/android/keyboard.js",
-        "id": "ionic-plugin-keyboard.keyboard",
-        "pluginId": "ionic-plugin-keyboard",
-        "clobbers": [
-            "cordova.plugins.Keyboard"
-        ],
-        "runs": true
-    },
-    {
-        "file": "plugins/phonegap-plugin-push/www/push.js",
-        "id": "phonegap-plugin-push.PushNotification",
-        "pluginId": "phonegap-plugin-push",
-        "clobbers": [
-            "PushNotification"
-        ]
-    },
-    {
         "file": "plugins/cordova-plugin-device/www/device.js",
         "id": "cordova-plugin-device.device",
-        "pluginId": "cordova-plugin-device",
         "clobbers": [
             "device"
         ]
@@ -49,7 +10,6 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-dialogs/www/notification.js",
         "id": "cordova-plugin-dialogs.notification",
-        "pluginId": "cordova-plugin-dialogs",
         "merges": [
             "navigator.notification"
         ]
@@ -57,7 +17,6 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
         "id": "cordova-plugin-dialogs.notification_android",
-        "pluginId": "cordova-plugin-dialogs",
         "merges": [
             "navigator.notification"
         ]
@@ -65,7 +24,6 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-globalization/www/GlobalizationError.js",
         "id": "cordova-plugin-globalization.GlobalizationError",
-        "pluginId": "cordova-plugin-globalization",
         "clobbers": [
             "window.GlobalizationError"
         ]
@@ -73,7 +31,6 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-globalization/www/globalization.js",
         "id": "cordova-plugin-globalization.globalization",
-        "pluginId": "cordova-plugin-globalization",
         "clobbers": [
             "navigator.globalization"
         ]
@@ -81,7 +38,6 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
         "id": "cordova-plugin-inappbrowser.inappbrowser",
-        "pluginId": "cordova-plugin-inappbrowser",
         "clobbers": [
             "cordova.InAppBrowser.open",
             "window.open"
@@ -90,7 +46,6 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
         "id": "cordova-plugin-screen-orientation.screenorientation",
-        "pluginId": "cordova-plugin-screen-orientation",
         "clobbers": [
             "cordova.plugins.screenorientation"
         ]
@@ -98,7 +53,6 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.android.js",
         "id": "cordova-plugin-screen-orientation.screenorientation.android",
-        "pluginId": "cordova-plugin-screen-orientation",
         "merges": [
             "cordova.plugins.screenorientation"
         ]
@@ -106,7 +60,6 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
         "id": "cordova-plugin-splashscreen.SplashScreen",
-        "pluginId": "cordova-plugin-splashscreen",
         "clobbers": [
             "navigator.splashscreen"
         ]
@@ -114,7 +67,6 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
         "id": "cordova-plugin-statusbar.statusbar",
-        "pluginId": "cordova-plugin-statusbar",
         "clobbers": [
             "window.StatusBar"
         ]
@@ -122,41 +74,70 @@ module.exports = [
     {
         "file": "plugins/cordova-plugin-vibration/www/vibration.js",
         "id": "cordova-plugin-vibration.notification",
-        "pluginId": "cordova-plugin-vibration",
         "merges": [
             "navigator.notification",
             "navigator"
         ]
     },
     {
-        "file": "plugins/cordova-plugin-whitelist/whitelist.js",
-        "id": "cordova-plugin-whitelist.whitelist",
-        "pluginId": "cordova-plugin-whitelist",
+        "file": "plugins/com.cmackay.plugins.googleanalytics/www/analytics.js",
+        "id": "com.cmackay.plugins.googleanalytics.GoogleAnalytics",
+        "clobbers": [
+            "navigator.analytics"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
+        "id": "cordova-plugin-x-toast.Toast",
+        "clobbers": [
+            "window.plugins.toast"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-x-toast/test/tests.js",
+        "id": "cordova-plugin-x-toast.tests"
+    },
+    {
+        "file": "plugins/cordova-plugin-spinner-dialog/www/spinner.js",
+        "id": "cordova-plugin-spinner-dialog.SpinnerDialog",
+        "merges": [
+            "window.plugins.spinnerDialog"
+        ]
+    },
+    {
+        "file": "plugins/ionic-plugin-keyboard/www/android/keyboard.js",
+        "id": "ionic-plugin-keyboard.keyboard",
+        "clobbers": [
+            "cordova.plugins.Keyboard"
+        ],
         "runs": true
     },
     {
-        "file": "plugins/com.cmackay.plugins.googleanalytics/www/analytics.js",
-        "id": "com.cmackay.plugins.googleanalytics.GoogleAnalytics",
-        "pluginId": "com.cmackay.plugins.googleanalytics",
+        "file": "plugins/phonegap-plugin-push/www/push.js",
+        "id": "phonegap-plugin-push.PushNotification",
         "clobbers": [
-            "navigator.analytics"
+            "PushNotification"
         ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
-    "cordova-plugin-console": "1.0.2",
-    "cordova-plugin-device": "1.1.0",
-    "cordova-plugin-dialogs": "1.2.0",
-    "cordova-plugin-globalization": "1.0.2",
-    "cordova-plugin-inappbrowser": "1.1.0",
+    "cordova-plugin-whitelist": "1.2.2",
+    "cordova-plugin-console": "1.0.3",
+    "cordova-plugin-device": "1.1.2",
+    "cordova-plugin-dialogs": "1.2.1",
+    "cordova-plugin-globalization": "1.0.3",
+    "cordova-plugin-inappbrowser": "1.4.0",
     "cordova-plugin-screen-orientation": "1.4.0",
-    "cordova-plugin-splashscreen": "3.0.0",
-    "cordova-plugin-statusbar": "2.0.0",
-    "cordova-plugin-vibration": "2.0.0",
-    "cordova-plugin-whitelist": "1.2.0",
-    "com.cmackay.plugins.googleanalytics": "0.1.22"
-}
+    "cordova-plugin-splashscreen": "3.2.2",
+    "cordova-plugin-statusbar": "2.1.3",
+    "cordova-plugin-vibration": "2.1.1",
+    "com.cmackay.plugins.googleanalytics": "0.1.22",
+    "cordova-plugin-x-toast": "2.5.1",
+    "cordova-plugin-spinner-dialog": "1.3.1",
+    "ionic-plugin-keyboard": "2.2.0",
+    "phonegap-plugin-push": "1.6.3"
+};
 // BOTTOM OF METADATA
 });
