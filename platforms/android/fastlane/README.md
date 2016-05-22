@@ -5,15 +5,15 @@ fastlane documentation
 sudo gem install fastlane
 ```
 # Available Actions
-## iOS
-### ios beta
+## Android
+### android beta
 ```
-fastlane ios beta
+fastlane android beta
 ```
 Build app beta
-### ios mirror
+### android mirror
 ```
-fastlane ios mirror
+fastlane android mirror
 ```
 Build mirror
 

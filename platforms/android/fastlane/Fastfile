@@ -1,0 +1,116 @@
+# Customise this file, documentation can be found here:
+# https://github.com/fastlane/fastlane/tree/master/fastlane/docs
+# All available actions: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md
+# can also be listed using the `fastlane actions` command
+
+# Change the syntax highlighting to Ruby
+# All lines starting with a # are ignored when running `fastlane`
+
+# If you want to automatically update fastlane if a new version is available:
+# update_fastlane
+
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+fastlane_version "1.83.0"
+
+default_platform :android
+
+platform :android do
+  before_all do
+    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
+  end
+
+  desc "Build app beta"
+  lane :beta do
+    build_app(
+      release:false,
+      app_name:"School Loop Beta",
+      app_identifier:"com.schoolloop.mobileloop.app",
+      project_name:"MobileLoop",
+      output_name: "SchoolLoopBeta",
+      configuration:"Release",
+      scheme:"MobileLoop",
+      version: "2.0.0",
+      build_number: ENV["BUILD_NUMBER"]
+    )
+  end
+
+  desc "Build mirror"
+  lane :mirror do
+    build_app(
+      release:false,
+      app_name:"Mirror Loop",
+      app_identifier:"com.schoolloop.mobileloop.mirror",
+      project_name:"MobileLoop",
+      output_name: "MirrorLoop",
+      configuration:"Release",
+      scheme:"MobileLoop",
+      version: "2.0.0",
+      build_number: ENV["BUILD_NUMBER"]
+    )
+  end
+
+  ######################### PRIVATE LANES #########################
+  private_lane :build_app do |options|
+
+    # Update the app name
+    #app_name(
+    #  plist_path: "#{options[:project_name]}/#{options[:project_name]}-Info.plist",
+    #  app_name: options[:app_name]
+    #)
+
+    # Update the app identifier
+    #update_app_identifier(
+    #  xcodeproj: "#{options[:project_name]}.xcodeproj",
+    #  plist_path: "#{options[:project_name]}/#{options[:project_name]}-Info.plist",
+    #  app_identifier: options[:app_identifier]
+    #)
+
+    # Version bump
+    increment_build_number(
+      build_number: options[:build_number]
+    )
+
+    # This part is done only when the app is not for the "production" environment
+    if not options[:release]
+        badge(no_badge: true, shield: "#{options[:version]}-#{options[:build_number]}-blue", glob: "/res/*/ic_launcher.png")
+    end
+
+    gradle(
+      task: 'assemble',
+      build_type: 'Release',
+      properties: { 'versionCode' => options[:build_number] }
+    )
+
+    # Build the app
+    #gym(
+    #  scheme: "#{options[:scheme]}",
+    #  configuration: options[:configuration],
+    #  output_name: options[:output_name],
+    #  output_directory: "build"
+    #)
+
+  end
+
+  after_all do |lane|
+    # This block is called, only if the executed lane was successful
+
+    # slack(
+    #   message: "Successfully deployed new App Update."
+    # )
+  end
+
+  error do |lane, exception|
+    # slack(
+    #   message: exception.message,
+    #   success: false
+    # )
+  end
+end
+
+
+# More information about multiple platforms in fastlane: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Platforms.md
+# All available actions: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Actions.md
+
+# fastlane reports which actions are used
+# No personal data is sent or shared. Learn more at https://github.com/fastlane/enhancer

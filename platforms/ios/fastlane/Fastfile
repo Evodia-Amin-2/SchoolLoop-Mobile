@@ -11,32 +11,19 @@ platform :ios do
 
   # end
 
-
   ######################### PUBLIC LANES ##########################
   desc "Build app beta"
   lane :beta do
     match(app_identifier: "com.schoolloop.mobileloop.app", type: "adhoc")
     build_app(
-      # Not a production release, so add build number and do the color modulation of the icons
       release:false,
-
-      # Change the app name
       app_name:"School Loop Beta",
-
-      # Set the app id
       app_identifier:"com.schoolloop.mobileloop.app",
-
       project_name:"MobileLoop",
-
       output_name: "SchoolLoopBeta",
-
-      # What configuration to use, usefull for keeping different API keys etc between environments
       configuration:"Release",
-
-      # the scheme to build
       scheme:"MobileLoop",
-
-      # the build number to use, we use the build number from Jenkins
+      version: "2.0.0",
       build_number: ENV["BUILD_NUMBER"]
     )
   end
@@ -45,26 +32,14 @@ platform :ios do
   lane :mirror do
     match(app_identifier: "com.schoolloop.mobileloop.mirror", type: "adhoc")
     build_app(
-      # Not a production release, so add build number and do the color modulation of the icons
       release:false,
-
-      # Change the app name
       app_name:"Mirror Loop",
-
-      # Set the app id
       app_identifier:"com.schoolloop.mobileloop.mirror",
-
       project_name:"MobileLoop",
-  
       output_name: "MirrorLoop",
-
-      # What configuration to use, usefull for keeping different API keys etc between environments
       configuration:"Release",
-
-      # the scheme to build
       scheme:"MobileLoop",
-
-      # the build number to use, we use the build number from Jenkins
+      version: "2.0.0",
       build_number: ENV["BUILD_NUMBER"]
     )
   end
@@ -85,15 +60,9 @@ platform :ios do
       app_identifier: options[:app_identifier]
     )
 
-    # Version bump
-    increment_build_number(
-      build_number: options[:build_number]
-    )
-
     # This part is done only when the app is not for the "production" environment
     if not options[:release]
-        version = "#{get_version_number}-#{get_build_number}"
-        badge(dark: true, shield: "#{version}-blue")
+        badge(no_badge: true, shield: "#{options[:version]}-#{options[:build_number]}-blue", glob: "/res/*/ic_launcher.png")
     end
 
     # Build the app
