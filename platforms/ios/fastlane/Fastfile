@@ -13,15 +13,12 @@ platform :ios do
 
 
   ######################### PUBLIC LANES ##########################
-  desc "Build and upload a new build to Apple TestFlight"
+  desc "Build app beta"
   lane :beta do
     match(app_identifier: "com.schoolloop.mobileloop.app", type: "adhoc")
     build_app(
       # Not a production release, so add build number and do the color modulation of the icons
       release:false,
-
-      # Modulate the colors of the icons by these degrees
-      modulation:66.6,
 
       # Change the app name
       app_name:"School Loop Beta",
@@ -50,9 +47,6 @@ platform :ios do
     build_app(
       # Not a production release, so add build number and do the color modulation of the icons
       release:false,
-
-      # Modulate the colors of the icons by these degrees
-      modulation:166.6,
 
       # Change the app name
       app_name:"Mirror Loop",

@@ -76,41 +76,10 @@
     <allow-intent href="geo:*" />
     <allow-intent href="itms:*" />
     <allow-intent href="itms-apps:*" />
-    <icon height="40" src="build/images/icon/ios/Icon-40.png" width="40" />
-    <icon height="80" src="build/images/icon/ios/Icon-40@2x.png" width="80" />
-    <icon height="120" src="build/images/icon/ios/Icon-40@3x.png" width="120" />
-    <icon height="120" src="build/images/icon/ios/Icon-60@2x.png" width="120" />
-    <icon height="180" src="build/images/icon/ios/Icon-60@3x.png" width="180" />
-    <icon height="72" src="build/images/icon/ios/Icon-72.png" width="72" />
-    <icon height="144" src="build/images/icon/ios/Icon-72@2x.png" width="144" />
-    <icon height="76" src="build/images/icon/ios/Icon-76.png" width="76" />
-    <icon height="152" src="build/images/icon/ios/Icon-76@2x.png" width="152" />
-    <icon height="167" src="build/images/icon/ios/Icon-83.5@2x.png" width="167" />
-    <icon height="50" src="build/images/icon/ios/Icon-Small-50.png" width="50" />
-    <icon height="100" src="build/images/icon/ios/Icon-Small-50@2x.png" width="100" />
-    <icon height="29" src="build/images/icon/ios/Icon-Small.png" width="29" />
-    <icon height="58" src="build/images/icon/ios/Icon-Small@2x.png" width="58" />
-    <icon height="87" src="build/images/icon/ios/Icon-Small@3x.png" width="87" />
-    <icon height="57" src="build/images/icon/ios/Icon.png" width="57" />
-    <icon height="114" src="build/images/icon/ios/Icon@2x.png" width="114" />
-    <splash height="960" src="build/images/splash/ios/Default@2x~iphone.png" width="640" />
-    <splash height="1136" src="build/images/splash/ios/Default-568h@2x~iphone.png" width="640" />
-    <splash height="1334" src="build/images/splash/ios/Default-667h.png" width="750" />
-    <splash height="2208" src="build/images/splash/ios/Default-736h.png" width="1242" />
-    <splash height="1536" src="build/images/splash/ios/Default-Landscape@2x~ipad.png" width="2048" />
-    <splash height="640" src="build/images/splash/ios/Default-Landscape@2x~iphone.png" width="960" />
-    <splash height="750" src="build/images/splash/ios/Default-Landscape-667h.png" width="1334" />
-    <splash height="1242" src="build/images/splash/ios/Default-Landscape-736h.png" width="2208" />
-    <splash height="768" src="build/images/splash/ios/Default-Landscape~ipad.png" width="1024" />
-    <splash height="320" src="build/images/splash/ios/Default-Landscape~iphone.png" width="480" />
-    <splash height="2048" src="build/images/splash/ios/Default-Portrait@2x~ipad.png" width="1536" />
-    <splash height="640" src="build/images/splash/ios/Default-Portrait-568h@2x~iphone.png" width="1136" />
-    <splash height="1024" src="build/images/splash/ios/Default-Portrait~ipad.png" width="768" />
-    <splash height="480" src="build/images/splash/ios/Default~iphone.png" width="320" />
     <preference name="AllowInlineMediaPlayback" value="false" />
-    <preference name="BackupWebStorage" value="cloud" />
+    <preference name="BackupWebStorage" value="none" />
     <preference name="DisallowOverscroll" value="false" />
-    <preference name="EnableViewportScale" value="false" />
+    <preference name="EnableViewportScale" value="true" />
     <preference name="KeyboardDisplayRequiresUserAction" value="true" />
     <preference name="MediaPlaybackRequiresUserAction" value="false" />
     <preference name="SuppressesIncrementalRendering" value="false" />
@@ -122,5 +91,7 @@
     <preference name="PaginationMode" value="unpaginated" />
     <preference name="StatusBarOverlaysWebView" value="true" />
     <preference name="StatusBarStyle" value="lightcontent" />
+    <preference name="SplashScreenDelay" value="5000" />
+    <preference name="SplashScreen" value="screen" />
     <preference name="Orientation" value="all" />
 </widget>

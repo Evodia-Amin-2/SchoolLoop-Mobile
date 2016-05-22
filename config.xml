@@ -19,61 +19,16 @@
     <platform name="android">
         <allow-intent href="market:*" />
         <preference name="KeepRunning" value="false" />
-        <icon density="ldpi" src="build/images/icon/android/mipmap-ldpi/ic_launcher.png" />
-        <icon density="mdpi" src="build/images/icon/android/mipmap-mdpi/ic_launcher.png" />
-        <icon density="hdpi" src="build/images/icon/android/mipmap-hdpi/ic_launcher.png" />
-        <icon density="xhdpi" src="build/images/icon/android/mipmap-xhdpi/ic_launcher.png" />
-        <icon density="xxhdpi" src="build/images/icon/android/mipmap-xxhdpi/ic_launcher.png" />
-        <icon density="xxxhdpi" src="build/images/icon/android/mipmap-xxxhdpi/ic_launcher.png" />
-        <splash density="land-hdpi" src="build/images/splash/android/land-hdpi.png" />
-        <splash density="land-ldpi" src="build/images/splash/android/land-ldpi.png" />
-        <splash density="land-mdpi" src="build/images/splash/android/land-mdpi.png" />
-        <splash density="land-xhdpi" src="build/images/splash/android/land-xhdpi.png" />
-        <splash density="land-xxhdpi" src="build/images/splash/android/land-xxhdpi.png" />
-        <splash density="land-xxxhdpi" src="build/images/splash/android/land-xxxhdpi.png" />
-        <splash density="port-hdpi" src="build/images/splash/android/port-hdpi.png" />
-        <splash density="port-ldpi" src="build/images/splash/android/port-ldpi.png" />
-        <splash density="port-mdpi" src="build/images/splash/android/port-mdpi.png" />
-        <splash density="port-xhdpi" src="build/images/splash/android/port-xhdpi.png" />
-        <splash density="port-xxhdpi" src="build/images/splash/android/port-xxhdpi.png" />
-        <splash density="port-xxxhdpi" src="build/images/splash/android/port-xxxhdpi.png" />
     </platform>
     <platform name="ios">
         <preference name="Orientation" value="all" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
-        <icon height="40" src="build/images/icon/ios/Icon-40.png" width="40" />
-        <icon height="80" src="build/images/icon/ios/Icon-40@2x.png" width="80" />
-        <icon height="120" src="build/images/icon/ios/Icon-40@3x.png" width="120" />
-        <icon height="120" src="build/images/icon/ios/Icon-60@2x.png" width="120" />
-        <icon height="180" src="build/images/icon/ios/Icon-60@3x.png" width="180" />
-        <icon height="72" src="build/images/icon/ios/Icon-72.png" width="72" />
-        <icon height="144" src="build/images/icon/ios/Icon-72@2x.png" width="144" />
-        <icon height="76" src="build/images/icon/ios/Icon-76.png" width="76" />
-        <icon height="152" src="build/images/icon/ios/Icon-76@2x.png" width="152" />
-        <icon height="167" src="build/images/icon/ios/Icon-83.5@2x.png" width="167" />
-        <icon height="50" src="build/images/icon/ios/Icon-Small-50.png" width="50" />
-        <icon height="100" src="build/images/icon/ios/Icon-Small-50@2x.png" width="100" />
-        <icon height="29" src="build/images/icon/ios/Icon-Small.png" width="29" />
-        <icon height="58" src="build/images/icon/ios/Icon-Small@2x.png" width="58" />
-        <icon height="87" src="build/images/icon/ios/Icon-Small@3x.png" width="87" />
-        <icon height="57" src="build/images/icon/ios/Icon.png" width="57" />
-        <icon height="114" src="build/images/icon/ios/Icon@2x.png" width="114" />
-        <splash height="960" src="build/images/splash/ios/Default@2x~iphone.png" width="640" />
-        <splash height="1136" src="build/images/splash/ios/Default-568h@2x~iphone.png" width="640" />
-        <splash height="1334" src="build/images/splash/ios/Default-667h.png" width="750" />
-        <splash height="2208" src="build/images/splash/ios/Default-736h.png" width="1242" />
-        <splash height="1536" src="build/images/splash/ios/Default-Landscape@2x~ipad.png" width="2048" />
-        <splash height="640" src="build/images/splash/ios/Default-Landscape@2x~iphone.png" width="960" />
-        <splash height="750" src="build/images/splash/ios/Default-Landscape-667h.png" width="1334" />
-        <splash height="1242" src="build/images/splash/ios/Default-Landscape-736h.png" width="2208" />
-        <splash height="768" src="build/images/splash/ios/Default-Landscape~ipad.png" width="1024" />
-        <splash height="320" src="build/images/splash/ios/Default-Landscape~iphone.png" width="480" />
-        <splash height="2048" src="build/images/splash/ios/Default-Portrait@2x~ipad.png" width="1536" />
-        <splash height="640" src="build/images/splash/ios/Default-Portrait-568h@2x~iphone.png" width="1136" />
-        <splash height="1024" src="build/images/splash/ios/Default-Portrait~ipad.png" width="768" />
-        <splash height="480" src="build/images/splash/ios/Default~iphone.png" width="320" />
     </platform>
+    <preference name="BackupWebStorage" value="none" />
+    <preference name="SplashScreenDelay" value="5000" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="EnableViewportScale" value="true" />
     <engine name="ios" spec="~4.1.1" />
     <engine name="android" spec="~5.1.1" />
     <engine name="browser" spec="~4.1.0" />

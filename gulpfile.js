@@ -155,13 +155,23 @@ gulp.task('default', function () {
     gulp.start('app-html');
     gulp.start('app-tmpl');
     gulp.start('vendor-js');
+    gulp.start('images');
+});
+
+gulp.task('images-android', function () {
+    var imageId = flags["id"] || "app";
+    return gulp.src([srcPath + '/images/' + imageId + "/android/**"])
+        .pipe(gulp.dest('platforms/android/res/'));
+});
+
+gulp.task('images-ios', function () {
+    var imageId = flags["id"] || "app";
+    return gulp.src([srcPath + '/images/' + imageId + "/ios/**"])
+        .pipe(gulp.dest('platforms/ios/MobileLoop/Images.xcassets/'));
 });
 
 gulp.task('images', function () {
-    return gulp.src(srcPath + '/translations/**/*.po')
-        .pipe(gettext.compile({
-            // options to pass to angular-gettext-tools...
-        }))
-        .pipe(gulp.dest('tmp'));
+    gulp.start('images-android');
+    gulp.start('images-ios');
 });
 
