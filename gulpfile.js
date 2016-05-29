@@ -47,6 +47,26 @@ gulp.task('init', function() {
     runSequence('init-config', ['init-android', 'init-ios', 'init-merges', 'init-version', 'images']);
 });
 
+// Default task
+gulp.task('default', function () {
+    gulp.start('app-assets');
+    gulp.start('app-css');
+    gulp.start('app-js');
+    gulp.start('app-html');
+    gulp.start('app-tmpl');
+    gulp.start('vendor-js');
+});
+
+gulp.task('watch', function() {
+    gulp.watch('config.json', ['app-config', 'app-js']);
+    gulp.watch(srcPath + '/css/**/*.*', ['app-config', 'app-css']);
+    gulp.watch(srcPath + '/js/**/*.js', ['app-config', 'app-js']);
+    gulp.watch(srcPath + '/templates/**/*.html', ['app-config', 'app-tmpl']);
+    gulp.watch(srcPath + '/templates/**/*.html', ['app-config', 'browser-tmpl']);
+    gulp.watch(srcPath + '/html/**/*.html', ['app-config', 'app-html']);
+    gulp.watch(srcPath + '/html/**/*.html', ['app-config', 'browser-html']);
+});
+
 gulp.task('init-config', function () {
     return gulp.src('./app/config.xml')
         .pipe(plumber({ errorHandler: gutil.log }))
@@ -255,26 +275,6 @@ gulp.task('ios', shell.task([
 gulp.task('browser', shell.task([
     'cordova run browser'
 ]));
-
-gulp.task('watch', function() {
-    gulp.watch('config.json', ['app-config', 'app-js']);
-    gulp.watch(srcPath + '/css/**/*.*', ['app-config', 'app-css']);
-    gulp.watch(srcPath + '/js/**/*.js', ['app-config', 'app-js']);
-    gulp.watch(srcPath + '/templates/**/*.html', ['app-config', 'app-tmpl']);
-    gulp.watch(srcPath + '/templates/**/*.html', ['app-config', 'browser-tmpl']);
-    gulp.watch(srcPath + '/html/**/*.html', ['app-config', 'app-html']);
-    gulp.watch(srcPath + '/html/**/*.html', ['app-config', 'browser-html']);
-});
-
-// Default task
-gulp.task('default', function () {
-    gulp.start('app-assets');
-    gulp.start('app-css');
-    gulp.start('app-js');
-    gulp.start('app-html');
-    gulp.start('app-tmpl');
-    gulp.start('vendor-js');
-});
 
 gulp.task('images-android', function () {
     return gulp.src([srcPath + '/images/' + appId + "/android/**"])

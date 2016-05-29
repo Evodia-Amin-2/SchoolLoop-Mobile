@@ -18,6 +18,6 @@ bower install
 rm -rf tmp/*.js
 ./release/create-app "$ID"
 gulp init --id "$ID" --name "$NAME" --version "${VERSION}" --build "${BUILD}"
-gulp --id "$ID" --name "$NAME" --version "${VERSION}" --build "${BUILD}"
+gulp default --id "$ID" --name "$NAME" --version "${VERSION}" --build "${BUILD}"
 cd ./app
-cordova prepare
+cordova prepare --verbose

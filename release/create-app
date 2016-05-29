@@ -19,7 +19,7 @@ if [ ! -d "app" ]; then
     cordova plugin add com.cmackay.plugins.googleanalytics@0.1.22 --save
     cordova plugin add cordova-plugin-x-toast@2.5.1 --save
     cordova plugin add cordova-plugin-spinner-dialog@1.3.1 --save
-    cordova plugin add ionic-plugin-keyboard@2.2.9 --save
+    cordova plugin add ionic-plugin-keyboard@2.2.0 --save
     cordova plugin add phonegap-plugin-push@1.6.3 --variable SENDER_ID="497458348283" --save
     rm -rf platforms/android/res/drawable-*/icon.png
     rm -rf platforms/android/res/drawable*-ldpi

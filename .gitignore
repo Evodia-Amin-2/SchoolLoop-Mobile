@@ -26,3 +26,4 @@ platforms/android/res/drawable-*/notification.png
 platforms/android/res/mipmap-*/*.png
 platforms/ios/MobileLoop/Images.xcassets/AppIcon.appiconset/*.png
 platforms/android/fastlane/metadata
+/app/*
