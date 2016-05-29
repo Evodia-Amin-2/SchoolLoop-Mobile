@@ -13,14 +13,11 @@ NAME=$2
 VERSION=$3
 BUILD=$4
 
-echo "Installing build tools"
 npm install
-echo "Installing libraries"
 bower install
 rm -rf tmp/*.js
-echo "Creating app with id: $ID"
-./create-app "$ID"
-echo "Initializing app: $ID"
+./release/create-app "$ID"
 gulp init --id "$ID" --name "$NAME" --version "${VERSION}" --build "${BUILD}"
 gulp --id "$ID" --name "$NAME" --version "${VERSION}" --build "${BUILD}"
+cd ./app
 cordova prepare
