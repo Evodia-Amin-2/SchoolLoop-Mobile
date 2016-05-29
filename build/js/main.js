@@ -12,7 +12,7 @@
                 main.school = undefined;
                 main.currentStudent = undefined;
                 main.version = config.version;
-                main.release = config.release;
+                main.build = config.build;
                 main.isTeacher = false;
 
                 StatusBar.overlaysWebView(true);

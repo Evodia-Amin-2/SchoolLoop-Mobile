@@ -1,2 +1,0 @@
-json_key_file "fastlane/Google Play Android Developer-9cc23679284b.json" # Path to the json secret file - Follow https://github.com/fastlane/supply#setup to get one
-package_name "com.schoolloop.mobileloop.app" # e.g. com.krausefx.app

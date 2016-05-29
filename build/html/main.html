@@ -9,7 +9,7 @@
                     <div class="item-block user-info"><div class="item-label" translate>Signed in as:</div>{{main.user.fullName}}</div>
                     <div class="item-block school-info">
                         <div><span translate>School:</span>&nbsp;{{main.school.name}}</div>
-                        <div><span translate>Version:</span>&nbsp;{{main.version}}<span ng-show="main.release">&nbsp;{{main.release}}</span></div>
+                        <div><span translate>Version:</span>&nbsp;{{main.version}}<span ng-show="main.build">&nbsp;({{main.build}})</span></div>
                     </div>
                 </div>
                 <div class="slide-item clickable" ng-if="main.user.isParent == 'true'" ng-click="main.addStudent()">

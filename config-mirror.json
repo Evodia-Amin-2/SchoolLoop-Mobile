@@ -3,7 +3,7 @@
     "id": "mirror",
     "api": "https://api.mirror.schoolloop.com",
     "version":"{version}",
-    "release":"{release}",
+    "build":"{build}",
     "gakey":"UA-45985950-1",
     "senderId":"497458348283"
   }

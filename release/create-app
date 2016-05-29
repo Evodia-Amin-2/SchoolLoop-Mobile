@@ -1,0 +1,30 @@
+#!/bin/bash
+
+APP_ID=$1
+
+if [ ! -d "app" ]; then
+    cordova create app com.schoolloop.mobileloop.$APP_ID MobileLoop
+    cd app
+    cordova platform add ios android browser --save
+    cordova plugin add cordova-plugin-console@1.0.3 --save
+    cordova plugin add cordova-plugin-device@1.1.2 --save
+    cordova plugin add cordova-plugin-dialogs@1.2.1 --save
+    cordova plugin add cordova-plugin-globalization@1.0.3 --save
+    cordova plugin add cordova-plugin-inappbrowser@1.4.0 --save
+    cordova plugin add cordova-plugin-screen-orientation@1.4.2 --save
+    cordova plugin add cordova-plugin-splashscreen@3.2.2 --save
+    cordova plugin add cordova-plugin-statusbar@2.1.3 --save
+    cordova plugin add cordova-plugin-vibration@2.1.1 --save
+    cordova plugin add cordova-plugin-whitelist@1.2.2 --save
+    cordova plugin add com.cmackay.plugins.googleanalytics@0.1.22 --save
+    cordova plugin add cordova-plugin-x-toast@2.5.1 --save
+    cordova plugin add cordova-plugin-spinner-dialog@1.3.1 --save
+    cordova plugin add ionic-plugin-keyboard@2.2.9 --save
+    cordova plugin add phonegap-plugin-push@1.6.3 --variable SENDER_ID="497458348283" --save
+    rm -rf platforms/android/res/drawable-*/icon.png
+    rm -rf platforms/android/res/drawable*-ldpi
+    rm -rf platforms/ios/MobileLoop/Images.xcassets/*/*.*
+    cp ../build.json .
+else
+    echo "MobileLoop project already exists"
+fi

@@ -1,14 +1,7 @@
-/*!
- * gulp
- * npm install gulp-jshint gulp-concat  gulp-rename gulp-stylus gulp-plumber gulp-util --save-dev
- */
-
-var destPath = "www";
-var srcPath = "build";
-var browserPath = "platforms/browser/www";
-// Load plugins
 var gulp = require('gulp');
+
 var jshint = require('gulp-jshint');
+var cheerio = require('gulp-cheerio');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var stylus = require('gulp-stylus');
@@ -23,11 +16,115 @@ var replace = require('gulp-replace');
 var gettext = require('gulp-angular-gettext');
 var addsrc = require('gulp-add-src');
 var templateCache = require('gulp-angular-templatecache');
+var runSequence = require('run-sequence');
+var fs = require('fs');
+var peditor = require('gulp-plist');
+var chalk = require('chalk');
 
-var configFile = "config.json";
-if(flags["config"] && flags["config"].length > 0) {
-    configFile = "config-" + flags["config"] + ".json";
+var destPath = "app/www";
+var srcPath = "build";
+var platformsPath = "app/platforms";
+var browserPath = "app/platforms/browser/www";
+
+var appId = flags["id"] || "app";
+var version = flags["version"] || '2.2.0';
+if(appId && appId.length > 0) {
+    configFile = "config-" + appId + ".json";
 }
+
+var buildData = JSON.parse(fs.readFileSync('./build-data.json'));
+var appData = buildData[appId];
+if(appData === undefined) {
+    gutil.log(chalk.red("build-data.json does not have any info for app: "), chalk.magenta(appId));
+    return;
+}
+var build = flags["build"];
+if(build) {
+    buildData.index = build;
+}
+
+gulp.task('init', function() {
+    runSequence('init-config', ['init-android', 'init-ios', 'init-merges', 'init-version', 'images']);
+});
+
+gulp.task('init-config', function () {
+    return gulp.src('./app/config.xml')
+        .pipe(plumber({ errorHandler: gutil.log }))
+        .pipe(cheerio({
+            run: function ($) {
+                var author = $('author').text();
+                if(author === "School Loop Team") {
+                    return;
+                }
+                $('author').text("School Loop Team");
+                $('author').attr("email", "rob@schoolloop.com");
+                $('author').attr("href", "http://www.schoolloop.com");
+                $('description').text("Mobile App for School Loop.");
+
+                $("platform[name=android]").append('    <preference name="KeepRunning" value="false" />\n    ');
+                $("platform[name=ios]").append('    <preference name="Orientation" value="all" />\n    ');
+
+                $("widget").append('    <preference name="BackupWebStorage" value="none" />\n');
+                $("widget").append('    <preference name="SplashScreenDelay" value="5000" />\n');
+                $("widget").append('    <preference name="SplashScreen" value="screen" />\n');
+                $("widget").append('    <preference name="EnableViewportScale" value="true" />\n');
+
+            },
+            parserOptions: {
+                xmlMode: true
+            }
+        }))
+        .pipe(gulp.dest("./app"));
+});
+
+gulp.task('init-ios', function () {
+    return gulp.src('./app/platforms/ios/MobileLoop/MobileLoop-info.plist')
+        .pipe(plumber({ errorHandler: gutil.log }))
+        .pipe(peditor({
+            "CFBundleDisplayName": appData.displayName,
+            "CFBundleVersion": buildData.index
+        }))
+        .pipe(gulp.dest('./app/platforms/ios/MobileLoop/'));
+});
+
+gulp.task('init-android', function () {
+    return gulp.src('./app/platforms/android/AndroidManifest.xml')
+        .pipe(plumber({ errorHandler: gutil.log }))
+        .pipe(cheerio({
+            run: function ($) {
+                var application = $("application");
+                application.attr('android:icon', '@mipmap/ic_launcher');
+                application.attr('android:label', appData.displayName);
+                var activity = application.children().get(0);
+                $(activity).attr('android:label', appData.displayName);
+                var intent = $(activity).children("intent-filter").get(0);
+                $(intent).attr('android:label', appData.displayName);
+            },
+            parserOptions: {
+                xmlMode: true
+            }
+        }))
+        .pipe(gulp.dest("./app/platforms/android/"));
+});
+
+gulp.task('init-merges', function () {
+    return gulp.src(['./merges/**'])
+        .pipe(gulp.dest('./app/merges/'))
+});
+
+gulp.task('init-version', function () {
+    return gulp.src('./app/config.xml')
+        .pipe(plumber({ errorHandler: gutil.log }))
+        .pipe(cheerio({
+            run: function ($) {
+                $('widget').attr('version', version);
+            },
+            parserOptions: {
+                xmlMode: true
+            }
+        }))
+        .pipe(gulp.dest("./app"));
+});
 
 gulp.task('app-assets', function () {
     return gulp.src([srcPath + '/assets/**/*.*'])
@@ -35,33 +132,51 @@ gulp.task('app-assets', function () {
         .pipe(gulp.dest(browserPath));
 });
 
-gulp.task('app-config', function () {
+gulp.task('app-config', ['set-build'], function () {
     del(['tmp/config.js']);
 
-    var appVersion = flags["app-version"];
+    var appVersion = flags["version"];
     if(!appVersion || appVersion.length === 0) {
         appVersion = "2.2.0";
     }
-    var appRelease = flags["app-release"];
-    if(!appRelease || appRelease.length === 0) {
-        var d = String(new Date());
-        var tokens = d.split(" ");
-        appRelease = "(" + tokens[1] + " " + tokens[2] + " - " + tokens[4] + ")";
+    var appBuild = flags["build"];
+    if(!appBuild || appBuild.length === 0) {
+        appBuild = buildData.index;
+        buildData.index++;
+        fs.writeFileSync('./build-data.json', JSON.stringify(buildData, null, '  '));
+
     }
-    console.log("appVersion=" + appVersion + " appRelease=" + appRelease + " configFile=" + configFile);
+    gutil.log(chalk.cyan("version=")+ chalk.blue(appVersion), chalk.cyan("build=") + chalk.blue(appBuild), chalk.cyan("config=")+ chalk.blue(configFile));
 
     return gulp.src(configFile)
+        .pipe(plumber({ errorHandler: gutil.log }))
         .pipe(replace('{version}', appVersion))
-        .pipe(replace('{release}', appRelease))
+        .pipe(replace('{build}', appBuild))
         .pipe(config('app.config'))
         .pipe(rename('config.js'))
         .pipe(gulp.dest('tmp'));
 });
 
+
+gulp.task('set-build', function () {
+    return gulp.src('./app/config.xml')
+        .pipe(plumber({ errorHandler: gutil.log }))
+        .pipe(cheerio({
+            run: function ($) {
+                $('widget').attr('android-versionCode', buildData.index);
+                $('widget').attr('ios-CFBundleVersion', buildData.index);
+            },
+            parserOptions: {
+                xmlMode: true
+            }
+        }))
+        .pipe(gulp.dest("./app"));
+});
+
 gulp.task('app-css', function () {
     return gulp.src([srcPath + '/css/**/*.*',
-            'bower_components/ng-mobile-menu/dist/ng-mobile-menu.min.css'
-        ])
+        'bower_components/ng-mobile-menu/dist/ng-mobile-menu.min.css'
+    ])
         .pipe(plumber({ errorHandler: gutil.log }))
         .pipe(stylus())
         .pipe(concat('app.css'))
@@ -125,6 +240,10 @@ gulp.task('translations', function () {
         .pipe(gulp.dest('tmp'));
 });
 
+gulp.task('build', ['default'], shell.task([
+    'cordova build'
+], {'cwd': './app'}));
+
 gulp.task('android', shell.task([
     'cordova run android'
 ]));
@@ -155,23 +274,19 @@ gulp.task('default', function () {
     gulp.start('app-html');
     gulp.start('app-tmpl');
     gulp.start('vendor-js');
-    gulp.start('images');
 });
 
 gulp.task('images-android', function () {
-    var imageId = flags["id"] || "app";
-    return gulp.src([srcPath + '/images/' + imageId + "/android/**"])
-        .pipe(gulp.dest('platforms/android/res/'));
+    return gulp.src([srcPath + '/images/' + appId + "/android/**"])
+        .pipe(gulp.dest(platformsPath + '/android/res/'));
 });
 
 gulp.task('images-ios', function () {
-    var imageId = flags["id"] || "app";
-    return gulp.src([srcPath + '/images/' + imageId + "/ios/**"])
-        .pipe(gulp.dest('platforms/ios/MobileLoop/Images.xcassets/'));
+    return gulp.src([srcPath + '/images/' + appId + "/ios/**"])
+        .pipe(gulp.dest(platformsPath + '/ios/MobileLoop/Images.xcassets/'));
 });
 
 gulp.task('images', function () {
     gulp.start('images-android');
     gulp.start('images-ios');
 });
-
