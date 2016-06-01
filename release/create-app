@@ -24,7 +24,20 @@ if [ ! -d "app" ]; then
     rm -rf platforms/android/res/drawable-*/icon.png
     rm -rf platforms/android/res/drawable*-ldpi
     rm -rf platforms/ios/MobileLoop/Images.xcassets/*/*.*
-    cp ../build.json .
+    cd ..
+    cp -r custom/xcshareddata app/platforms/ios/MobileLoop.xcodeproj/
+    cp custom/build.json app/
+    printf '%s\n' /LastUpgradeCheck/a '        TargetAttributes = {
+          1D6058900D05DD3D006BFB54 = {
+            DevelopmentTeam = 4HK36Z99TA;
+            SystemCapabilities = {
+              com.apple.Push = {
+                enabled = 1;
+              };
+            };
+          };
+        };' . w q | ex -s app/platforms/ios/MobileLoop.xcodeproj/project.pbxproj
+
 else
     echo "MobileLoop project already exists"
 fi

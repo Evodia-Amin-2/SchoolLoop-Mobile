@@ -60,6 +60,7 @@
 
         function doPushRegister(deviceToken) {
             console.log("attempting to register: " + deviceToken);
+            config.deviceToken = deviceToken;
 
             var params = {
                 "version": parseVersion(config.version),

@@ -32,19 +32,27 @@ if(appId && appId.length > 0) {
     configFile = "config-" + appId + ".json";
 }
 
+var profile = flags["profile"] || "app";
+
 var buildData = JSON.parse(fs.readFileSync('./build-data.json'));
 var appData = buildData[appId];
 if(appData === undefined) {
     gutil.log(chalk.red("build-data.json does not have any info for app: "), chalk.magenta(appId));
     return;
 }
+
 var build = flags["build"];
-if(build) {
+if(build && build.length > 0) {
     buildData.index = build;
 }
 
+var name = flags["name"];
+if(name && name.length > 0) {
+    appData.displayName = name;
+}
+
 gulp.task('init', function() {
-    runSequence('init-config', ['init-android', 'init-ios', 'init-merges', 'init-version', 'images']);
+    runSequence('init-config', ['init-android', 'init-ios', 'init-merges', 'images']);
 });
 
 // Default task
@@ -128,22 +136,8 @@ gulp.task('init-android', function () {
 });
 
 gulp.task('init-merges', function () {
-    return gulp.src(['./merges/**'])
+    return gulp.src(['./build/merges/**'])
         .pipe(gulp.dest('./app/merges/'))
-});
-
-gulp.task('init-version', function () {
-    return gulp.src('./app/config.xml')
-        .pipe(plumber({ errorHandler: gutil.log }))
-        .pipe(cheerio({
-            run: function ($) {
-                $('widget').attr('version', version);
-            },
-            parserOptions: {
-                xmlMode: true
-            }
-        }))
-        .pipe(gulp.dest("./app"));
 });
 
 gulp.task('app-assets', function () {
@@ -177,12 +171,12 @@ gulp.task('app-config', ['set-build'], function () {
         .pipe(gulp.dest('tmp'));
 });
 
-
 gulp.task('set-build', function () {
     return gulp.src('./app/config.xml')
         .pipe(plumber({ errorHandler: gutil.log }))
         .pipe(cheerio({
             run: function ($) {
+                $('widget').attr('version', version);
                 $('widget').attr('android-versionCode', buildData.index);
                 $('widget').attr('ios-CFBundleVersion', buildData.index);
             },
@@ -277,12 +271,12 @@ gulp.task('browser', shell.task([
 ]));
 
 gulp.task('images-android', function () {
-    return gulp.src([srcPath + '/images/' + appId + "/android/**"])
+    return gulp.src([srcPath + '/images/' + profile + "/android/**"])
         .pipe(gulp.dest(platformsPath + '/android/res/'));
 });
 
 gulp.task('images-ios', function () {
-    return gulp.src([srcPath + '/images/' + appId + "/ios/**"])
+    return gulp.src([srcPath + '/images/' + profile + "/ios/**"])
         .pipe(gulp.dest(platformsPath + '/ios/MobileLoop/Images.xcassets/'));
 });
 

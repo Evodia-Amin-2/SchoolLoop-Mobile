@@ -1,0 +1,89 @@
+fastlane_version "1.89.0"
+
+default_platform :ios
+
+platform :ios do
+  # Run this before doing anything else
+  # before_all do
+
+  #   # If the GIT status is not clean, abort. We won't want to include junk in the build
+  #   ensure_git_status_clean
+
+  # end
+
+  ######################### PUBLIC LANES ##########################
+  desc "Build School Loop Beta"
+  lane :beta do
+    match(app_identifier: "com.schoolloop.mobileloop.app", type: "adhoc")
+    pem(app_identifier: "com.schoolloop.mobileloop.app", output_path:"release")
+    build_app(
+      project_name:"MobileLoop",
+      configuration:"Release",
+      scheme:"MobileLoop"
+    )
+  end
+
+  desc "Build School Loop"
+  lane :app do
+    match(app_identifier: "com.schoolloop.mobileloop.app", type: "appstore")
+    pem(app_identifier: "com.schoolloop.mobileloop.app", output_path:"release")
+    build_app(
+      project_name:"MobileLoop",
+      configuration:"Release",
+      scheme:"MobileLoop"
+    )
+  end
+
+  desc "Build Mirror Loop"
+  lane :mirror do
+    match(app_identifier: "com.schoolloop.mobileloop.mirror", type: "adhoc")
+    pem(app_identifier: "com.schoolloop.mobileloop.mirror", output_path:"release")
+    build_app(
+      project_name:"MobileLoop",
+      configuration:"Release",
+      scheme:"MobileLoop"
+    )
+  end
+
+  ######################### PRIVATE LANES #########################
+  private_lane :build_app do |options|
+
+    # Build the app
+    gym(
+      scheme: "#{options[:scheme]}",
+      configuration: options[:configuration],
+      output_directory: "tmp"
+    )
+
+  end
+
+  # After all the steps have completed succesfully, run this.
+  after_all do |lane|
+
+    # # Remove all build artifacts, but keep mobileprovisioning profiles since they are stored in GIT
+    # clean_build_artifacts(
+    #   exclude_pattern: ".*\.mobileprovision"
+    # )
+
+    # # Reset all changes to the git checkout
+    # reset_git_repo(
+    #   force: true
+    # )
+
+  end
+
+  # If there was an error, run this
+  error do |lane, exception|
+
+    # # Remove all build artifacts, but keep mobileprovisioning profiles since they are stored in GIT
+    # clean_build_artifacts(
+    #   exclude_pattern: ".*\.mobileprovision"
+    # )
+
+    # # Reset all changes to the git checkout
+    # reset_git_repo(
+    #   force: true
+    # )
+
+  end
+end
