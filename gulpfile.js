@@ -34,21 +34,25 @@ if(appId && appId.length > 0) {
 
 var profile = flags["profile"] || "app";
 
-var buildData = JSON.parse(fs.readFileSync('./build-data.json'));
-var appData = buildData[appId];
-if(appData === undefined) {
-    gutil.log(chalk.red("build-data.json does not have any info for app: "), chalk.magenta(appId));
-    return;
-}
+var buildData = {};
+buildData[appId] = {};
 
 var build = flags["build"];
 if(build && build.length > 0) {
     buildData.index = build;
+} else {
+    buildData = JSON.parse(fs.readFileSync('./build-data.json'));
+    var appData = buildData[appId];
+    if(appData === undefined) {
+        gutil.log(chalk.red("build-data.json does not have any info for app: "), chalk.magenta(appId));
+        return;
+    }
+
 }
 
 var name = flags["name"];
 if(name && name.length > 0) {
-    appData.displayName = name;
+    buildData[appId].displayName = name;
 }
 
 gulp.task('init', function() {
@@ -109,7 +113,7 @@ gulp.task('init-ios', function () {
     return gulp.src('./app/platforms/ios/MobileLoop/MobileLoop-info.plist')
         .pipe(plumber({ errorHandler: gutil.log }))
         .pipe(peditor({
-            "CFBundleDisplayName": appData.displayName,
+            "CFBundleDisplayName": buildData[appId].displayName,
             "CFBundleVersion": buildData.index
         }))
         .pipe(gulp.dest('./app/platforms/ios/MobileLoop/'));
@@ -122,11 +126,11 @@ gulp.task('init-android', function () {
             run: function ($) {
                 var application = $("application");
                 application.attr('android:icon', '@mipmap/ic_launcher');
-                application.attr('android:label', appData.displayName);
+                application.attr('android:label', buildData[appId].displayName);
                 var activity = application.children().get(0);
-                $(activity).attr('android:label', appData.displayName);
+                $(activity).attr('android:label', buildData[appId].displayName);
                 var intent = $(activity).children("intent-filter").get(0);
-                $(intent).attr('android:label', appData.displayName);
+                $(intent).attr('android:label', buildData[appId].displayName);
             },
             parserOptions: {
                 xmlMode: true
