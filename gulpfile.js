@@ -41,11 +41,14 @@ var build = flags["build"];
 if(build && build.length > 0) {
     buildData.index = build;
 } else {
-    buildData = JSON.parse(fs.readFileSync('./build-data.json'));
-    var appData = buildData[appId];
-    if(appData === undefined) {
-        gutil.log(chalk.red("build-data.json does not have any info for app: "), chalk.magenta(appId));
-        return;
+    try {
+        buildData = JSON.parse(fs.readFileSync('./build-data.json'));
+        var appData = buildData[appId];
+        if(appData === undefined) {
+            gutil.log(chalk.red("build-data.json does not have any info for app: "), chalk.magenta(appId));
+            return;
+        }
+    } catch(e) {
     }
 
 }
