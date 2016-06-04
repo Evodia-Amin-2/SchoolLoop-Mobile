@@ -42,13 +42,15 @@ if(build && build.length > 0) {
     buildData.index = build;
 } else {
     try {
-        buildData = JSON.parse(fs.readFileSync('./build-data.json'));
-        var appData = buildData[appId];
+        var dataFile = JSON.parse(fs.readFileSync('./build-data.json'));
+        var appData = dataFile[appId];
         if(appData === undefined) {
             gutil.log(chalk.red("build-data.json does not have any info for app: "), chalk.magenta(appId));
             return;
         }
+        buildData = dataFile;
     } catch(e) {
+        buildData.index = 1;
     }
 
 }
@@ -59,7 +61,7 @@ if(name && name.length > 0) {
 }
 
 gulp.task('init', function() {
-    runSequence('init-config', ['init-android', 'init-ios', 'init-merges', 'images']);
+    runSequence('init-config', 'init-android', 'init-ios', 'init-merges', 'images');
 });
 
 // Default task
@@ -113,6 +115,8 @@ gulp.task('init-config', function () {
 });
 
 gulp.task('init-ios', function () {
+    gutil.log(chalk.cyan("app=")+ chalk.blue(appId), chalk.cyan("build=") + chalk.blue(buildData.index), chalk.cyan("name=")+ chalk.blue(buildData[appId].displayName));
+
     return gulp.src('./app/platforms/ios/MobileLoop/MobileLoop-info.plist')
         .pipe(plumber({ errorHandler: gutil.log }))
         .pipe(peditor({
@@ -160,19 +164,19 @@ gulp.task('app-config', ['set-build'], function () {
     if(!appVersion || appVersion.length === 0) {
         appVersion = "2.2.0";
     }
-    var appBuild = flags["build"];
-    if(!appBuild || appBuild.length === 0) {
-        appBuild = buildData.index;
+    var buildNumber = flags["build"];
+    if(!buildNumber || buildNumber.length === 0) {
+        buildNumber = buildData.index;
         buildData.index++;
         fs.writeFileSync('./build-data.json', JSON.stringify(buildData, null, '  '));
 
     }
-    gutil.log(chalk.cyan("version=")+ chalk.blue(appVersion), chalk.cyan("build=") + chalk.blue(appBuild), chalk.cyan("config=")+ chalk.blue(configFile));
+    gutil.log(chalk.cyan("version=")+ chalk.blue(appVersion), chalk.cyan("build=") + chalk.blue(buildNumber), chalk.cyan("config=")+ chalk.blue(configFile));
 
     return gulp.src(configFile)
         .pipe(plumber({ errorHandler: gutil.log }))
         .pipe(replace('{version}', appVersion))
-        .pipe(replace('{build}', appBuild))
+        .pipe(replace('{build}', buildNumber))
         .pipe(config('app.config'))
         .pipe(rename('config.js'))
         .pipe(gulp.dest('tmp'));
