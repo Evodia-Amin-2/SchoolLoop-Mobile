@@ -115,7 +115,7 @@ gulp.task('init-config', function () {
 });
 
 gulp.task('init-ios', function () {
-    gutil.log(chalk.cyan("app=")+ chalk.blue(appId), chalk.cyan("build=") + chalk.blue(buildData.index), chalk.cyan("name=")+ chalk.blue(buildData[appId].displayName));
+    gutil.log(chalk.cyan("app=")+ chalk.yellow(appId), chalk.cyan("build=") + chalk.yellow(buildData.index), chalk.cyan("name=")+ chalk.yellow(buildData[appId].displayName));
 
     return gulp.src('./app/platforms/ios/MobileLoop/MobileLoop-info.plist')
         .pipe(plumber({ errorHandler: gutil.log }))
@@ -171,7 +171,7 @@ gulp.task('app-config', ['set-build'], function () {
         fs.writeFileSync('./build-data.json', JSON.stringify(buildData, null, '  '));
 
     }
-    gutil.log(chalk.cyan("version=")+ chalk.blue(appVersion), chalk.cyan("build=") + chalk.blue(buildNumber), chalk.cyan("config=")+ chalk.blue(configFile));
+    gutil.log(chalk.cyan("version=")+ chalk.yellow(appVersion), chalk.cyan("build=") + chalk.yellow(buildNumber), chalk.cyan("config=")+ chalk.yellow(configFile));
 
     return gulp.src(configFile)
         .pipe(plumber({ errorHandler: gutil.log }))

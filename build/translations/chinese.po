@@ -166,7 +166,7 @@ msgstr "協助"
 
 #: support.js:43
 msgid "Help ticket has been submitted"
-msgstr "Help ticket has been submitted"
+msgstr "已發出技術援助要求"
 
 #: forgot.html:9
 msgid ""
@@ -267,7 +267,7 @@ msgstr "現時沒有資訊"
 
 #: no-schedule.html:7
 msgid "No Schedule"
-msgstr "No Schedule"
+msgstr "沒有課程安排"
 
 #: courses-detail.html:13 courses-detail.html:86
 msgid "No Scores"
@@ -419,10 +419,7 @@ msgid ""
 "Sorry. The school is not reporting a current schedule of classes for the "
 "student associated with this account. Please contact school administration "
 "if you believe there is an error."
-msgstr ""
-"Sorry. The school is not reporting a current schedule of classes for the "
-"student associated with this account. Please contact school administration "
-"if you believe there is an error."
+msgstr "學校仍未匯報你孩子的課程安排。若你不同意，請聯絡其學校行政人員。"
 
 #: reset.js:12
 msgid "Spaces are not allowed"
@@ -471,7 +468,7 @@ msgstr "加入以下的學生："
 
 #: support.js:49
 msgid "There was a problem sending the help ticket"
-msgstr "There was a problem sending the help ticket"
+msgstr "有问题,请再试一次."
 
 #: services/loopmail-service.js:83
 msgid ""
@@ -481,7 +478,7 @@ msgstr "信息遞送障礙。信息目前存放在發送信箱稍後再次自動
 
 #: main.js:186
 msgid "There was a problem signing out. Please try again."
-msgstr "There was a problem signing out. Please try again."
+msgstr "有问题,请再试一次."
 
 #: invalid.html:7
 msgid ""
@@ -557,9 +554,8 @@ msgid ""
 "follow district protocol for resetting your password. In some cases, this "
 "can be done online. Visit your district website for more information."
 msgstr ""
-"Your username and password are managed by your school district. Please "
-"follow district protocol for resetting your password. In some cases, this "
-"can be done online. Visit your district website for more information."
+"您的用户名和密码是由你的学区管理。请遵循区协议用于重置您的密码。在某些情况"
+"下，这可以在线完成。你区的网站，为更多的信息。"
 
 #: courses-detail.html:17 courses-detail.html:69
 msgid "Zero"
