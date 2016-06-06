@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.8.8\n"
 
 #: add-student.html:105
 msgid "{{adder.addedStudent.name}} has been added"
@@ -57,8 +57,8 @@ msgstr "Documentos adjuntos:"
 msgid "Brief Subject:"
 msgstr "Tema breve:"
 
-#: forgot.html:21 navbar.html:5 reset.html:18 reset.js:39
-#: services/notification-service.js:91
+#: forgot.html:21 navbar.html:5 reset.html:18 reset.js:43
+#: services/notification-service.js:92
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -70,7 +70,7 @@ msgstr "Puntajes por categoría"
 msgid "CC:"
 msgstr "Con copia a:"
 
-#: forgot.js:35 invalid.html:13 no-schedule.html:16 not-started.html:13
+#: forgot.js:46 invalid.html:13 no-schedule.html:16 not-started.html:13
 #: services/loopmail-service.js:84 unverified.html:13
 msgid "Close"
 msgstr "Cerrar"
@@ -141,7 +141,7 @@ msgstr ""
 "su escuela para obtener información respecto a las normas de aprobación y "
 "los procedimientos."
 
-#: forgot.js:22
+#: forgot.js:27
 msgid "Forgot Password"
 msgstr "Olvidé la contraseña"
 
@@ -187,11 +187,11 @@ msgstr ""
 msgid "Inbox"
 msgstr "Recibidos"
 
-#: reset.js:37
+#: reset.js:41
 msgid "Info"
 msgstr "Información"
 
-#: login.js:150
+#: login.js:154
 msgid "Invalid Login"
 msgstr "Credenciales de ingreso no válidas"
 
@@ -203,11 +203,11 @@ msgstr "Cargando…"
 msgid "Logging in..."
 msgstr "Iniciando sesión"
 
-#: add-student.html:38 forgot.js:28 login.html:19
+#: add-student.html:38 forgot.js:33 login.html:19
 msgid "Login"
 msgstr "Login"
 
-#: add-student.js:106 login.js:157
+#: add-student.js:106 login.js:161
 msgid "Login Incorrect!"
 msgstr "¡Se inició la sesión incorrectamente!"
 
@@ -219,7 +219,7 @@ msgstr "Nombre de usuario"
 msgid "Login Name or Email"
 msgstr "Correo electrónico"
 
-#: add-student.js:111 login.js:164
+#: add-student.js:111 login.js:168
 msgid "Login Name Required!"
 msgstr "¡Se requiere el nombre del usuario!"
 
@@ -283,7 +283,7 @@ msgstr "No hay resultados"
 msgid "No Zeros"
 msgstr "No hay ceros"
 
-#: services/notification-service.js:89
+#: services/notification-service.js:90
 msgid "Notification"
 msgstr "Notificación"
 
@@ -299,30 +299,30 @@ msgstr "Aprobación de cuentas para padres"
 msgid "Password"
 msgstr "Contraseña"
 
-#: add-student.js:112 login.js:165 reset.js:67 reset.js:71
+#: add-student.js:112 login.js:169 reset.js:74 reset.js:78
 msgid "Password Required!"
 msgstr "¡Se requiere la contraseña!"
 
-#: reset.js:15
+#: reset.js:16
 msgid "Passwords do not match"
 msgstr "Las contraseñas no coinciden"
 
-#: reset.js:62
+#: reset.js:68
 msgid "Passwords don't match"
 msgstr "Las contraseñas no coinciden"
 
-#: reset.js:14
+#: reset.js:15
 msgid "Passwords must be at least 6 characters"
 msgstr "Las contraseñas deben tener al menos 6 dígitos o letras"
 
-#: forgot.js:27
+#: forgot.js:32
 msgid ""
 "Please check your email for your password and try to login again.  Thanks!"
 msgstr ""
 "Por favor revise su correo electrónico para ver su contraseña temporal y "
 "trate de ingresar nuevamente. ¡Gracias!"
 
-#: forgot.js:38 forgot.js:42
+#: forgot.js:52 forgot.js:58
 msgid "Please enter email!"
 msgstr "¡Ingrese su correo electrónico!"
 
@@ -422,6 +422,11 @@ msgstr "Salida"
 msgid "Signed in as:"
 msgstr "Ingresó como:"
 
+#: not-started.html:7
+msgid ""
+"Sorry. Account access will not be available until the first day of school."
+msgstr ""
+
 #: no-schedule.html:10
 msgid ""
 "Sorry. The school is not reporting a current schedule of classes for the "
@@ -432,7 +437,7 @@ msgstr ""
 "horarios de clases para su estudiante. Si cree que esto es un error, por "
 "favor comuníquese con la administración escolar."
 
-#: reset.js:12
+#: reset.js:13
 msgid "Spaces are not allowed"
 msgstr "No se permiten espacios"
 
@@ -455,16 +460,6 @@ msgstr "¡Éxito! Enviamos un LoopMail."
 #: assignment-detail.html:30
 msgid "Teacher Unknown"
 msgstr "Se desconoce al maestro"
-
-#: not-started.html:7
-msgid ""
-"Thank you for logging on to your School Loop Account. Full account access "
-"will not be available until the first day of school. Please check back on "
-"that date. Have a great summer!"
-msgstr ""
-"Gracias por iniciar sesión en su cuenta School Loop.  El acceso a la cuenta "
-"completa no estará disponible hasta el primer día de clases. Por favor, "
-"vuelva en esa fecha.¡Que tenga un excelente verano!"
 
 #: add-student.html:58
 msgid "The following students have been added:"
@@ -490,7 +485,7 @@ msgstr ""
 "Hubo un problema al enviar el mensaje. Se guardó en su bandeja de salida y "
 "se intentará renviarlo automáticamente."
 
-#: main.js:186
+#: main.js:195
 msgid "There was a problem signing out. Please try again."
 msgstr "Hubo un problema, por favor intente de nuevo."
 
@@ -526,7 +521,7 @@ msgstr "Hoy:"
 msgid "Tomorrow:"
 msgstr "Mañana:"
 
-#: forgot.js:34
+#: forgot.js:44
 msgid "Unable to send email to that address. Please try again!"
 msgstr ""
 "No fue posible enviar un correo a esa dirección, ¡por favor inténtelo de "
@@ -544,7 +539,7 @@ msgstr "Códigos de evaluación"
 msgid "Version:"
 msgstr "Versión:"
 
-#: services/notification-service.js:90
+#: services/notification-service.js:91
 msgid "View"
 msgstr "Ver"
 
@@ -564,11 +559,15 @@ msgstr "¿Cuál es la primera letra del nombre del estudiante?"
 msgid "What is the first letter of this student's last name?"
 msgstr "¿Cuál es la primera letra del apellido del estudiante?"
 
-#: reset.js:13
+#: reset.js:14
 msgid "You must include at least one digit"
 msgstr "Debe incluir al menos un dígito"
 
-#: reset.js:38
+#: login.js:150
+msgid "Your access to this account has been blocked by a school administrator."
+msgstr ""
+
+#: forgot.js:42 reset.js:42
 msgid ""
 "Your username and password are managed by your school district. Please "
 "follow district protocol for resetting your password. In some cases, this "
@@ -586,6 +585,15 @@ msgstr "Cero"
 #: courses-detail.html:18 courses-detail.html:53
 msgid "Zeros"
 msgstr "Ceros"
+
+#~ msgid ""
+#~ "Thank you for logging on to your School Loop Account. Full account access "
+#~ "will not be available until the first day of school. Please check back on "
+#~ "that date. Have a great summer!"
+#~ msgstr ""
+#~ "Gracias por iniciar sesión en su cuenta School Loop.  El acceso a la "
+#~ "cuenta completa no estará disponible hasta el primer día de clases. Por "
+#~ "favor, vuelva en esa fecha.¡Que tenga un excelente verano!"
 
 #~ msgid ""
 #~ "Your username and password are managed by your school district. Please "

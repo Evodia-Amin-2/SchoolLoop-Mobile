@@ -59,8 +59,8 @@ msgstr ""
 #: forgot.html:21
 #: navbar.html:5
 #: reset.html:18
-#: reset.js:39
-#: services/notification-service.js:91
+#: reset.js:43
+#: services/notification-service.js:92
 msgid "Cancel"
 msgstr ""
 
@@ -75,7 +75,7 @@ msgstr ""
 msgid "CC:"
 msgstr ""
 
-#: forgot.js:35
+#: forgot.js:46
 #: invalid.html:13
 #: no-schedule.html:16
 #: not-started.html:13
@@ -141,7 +141,7 @@ msgstr ""
 msgid "For the protection of your child, parent accounts need to be approved by a school staff member to view grades. Please allow a reasonable period of time for your account to be approved. If you have questions, please contact your school for approval policies and procedures."
 msgstr ""
 
-#: forgot.js:22
+#: forgot.js:27
 msgid "Forgot Password"
 msgstr ""
 
@@ -183,11 +183,11 @@ msgstr ""
 msgid "Inbox"
 msgstr ""
 
-#: reset.js:37
+#: reset.js:41
 msgid "Info"
 msgstr ""
 
-#: login.js:150
+#: login.js:154
 msgid "Invalid Login"
 msgstr ""
 
@@ -200,13 +200,13 @@ msgid "Logging in..."
 msgstr ""
 
 #: add-student.html:38
-#: forgot.js:28
+#: forgot.js:33
 #: login.html:19
 msgid "Login"
 msgstr ""
 
 #: add-student.js:106
-#: login.js:157
+#: login.js:161
 msgid "Login Incorrect!"
 msgstr ""
 
@@ -219,7 +219,7 @@ msgid "Login Name or Email"
 msgstr ""
 
 #: add-student.js:111
-#: login.js:164
+#: login.js:168
 msgid "Login Name Required!"
 msgstr ""
 
@@ -287,7 +287,7 @@ msgstr ""
 msgid "No Zeros"
 msgstr ""
 
-#: services/notification-service.js:89
+#: services/notification-service.js:90
 msgid "Notification"
 msgstr ""
 
@@ -304,30 +304,30 @@ msgid "Password"
 msgstr ""
 
 #: add-student.js:112
-#: login.js:165
-#: reset.js:67
-#: reset.js:71
+#: login.js:169
+#: reset.js:74
+#: reset.js:78
 msgid "Password Required!"
 msgstr ""
 
-#: reset.js:15
+#: reset.js:16
 msgid "Passwords do not match"
 msgstr ""
 
-#: reset.js:62
+#: reset.js:68
 msgid "Passwords don't match"
 msgstr ""
 
-#: reset.js:14
+#: reset.js:15
 msgid "Passwords must be at least 6 characters"
 msgstr ""
 
-#: forgot.js:27
+#: forgot.js:32
 msgid "Please check your email for your password and try to login again.  Thanks!"
 msgstr ""
 
-#: forgot.js:38
-#: forgot.js:42
+#: forgot.js:52
+#: forgot.js:58
 msgid "Please enter email!"
 msgstr ""
 
@@ -437,11 +437,15 @@ msgstr ""
 msgid "Signed in as:"
 msgstr ""
 
+#: not-started.html:7
+msgid "Sorry. Account access will not be available until the first day of school."
+msgstr ""
+
 #: no-schedule.html:10
 msgid "Sorry. The school is not reporting a current schedule of classes for the student associated with this account. Please contact school administration if you believe there is an error."
 msgstr ""
 
-#: reset.js:12
+#: reset.js:13
 msgid "Spaces are not allowed"
 msgstr ""
 
@@ -466,10 +470,6 @@ msgstr ""
 
 #: assignment-detail.html:30
 msgid "Teacher Unknown"
-msgstr ""
-
-#: not-started.html:7
-msgid "Thank you for logging on to your School Loop Account. Full account access will not be available until the first day of school. Please check back on that date. Have a great summer!"
 msgstr ""
 
 #: add-student.html:58
@@ -525,7 +525,7 @@ msgstr ""
 msgid "Tomorrow:"
 msgstr ""
 
-#: forgot.js:34
+#: forgot.js:44
 msgid "Unable to send email to that address. Please try again!"
 msgstr ""
 
@@ -542,7 +542,7 @@ msgstr ""
 msgid "Version:"
 msgstr ""
 
-#: services/notification-service.js:90
+#: services/notification-service.js:91
 msgid "View"
 msgstr ""
 
@@ -562,11 +562,16 @@ msgstr ""
 msgid "What is the first letter of this student's last name?"
 msgstr ""
 
-#: reset.js:13
+#: reset.js:14
 msgid "You must include at least one digit"
 msgstr ""
 
-#: reset.js:38
+#: login.js:150
+msgid "Your access to this account has been blocked by a school administrator."
+msgstr ""
+
+#: forgot.js:42
+#: reset.js:42
 msgid "Your username and password are managed by your school district. Please follow district protocol for resetting your password. In some cases, this can be done online. Visit your district website for more information."
 msgstr ""
 

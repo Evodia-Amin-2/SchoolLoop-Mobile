@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.8.8\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: add-student.html:105
@@ -56,8 +56,8 @@ msgstr "附加文件 :"
 msgid "Brief Subject:"
 msgstr "簡短主題"
 
-#: forgot.html:21 navbar.html:5 reset.html:18 reset.js:39
-#: services/notification-service.js:91
+#: forgot.html:21 navbar.html:5 reset.html:18 reset.js:43
+#: services/notification-service.js:92
 msgid "Cancel"
 msgstr "取消"
 
@@ -69,7 +69,7 @@ msgstr "類別得分"
 msgid "CC:"
 msgstr "加添收信人:"
 
-#: forgot.js:35 invalid.html:13 no-schedule.html:16 not-started.html:13
+#: forgot.js:46 invalid.html:13 no-schedule.html:16 not-started.html:13
 #: services/loopmail-service.js:84 unverified.html:13
 msgid "Close"
 msgstr "關閉"
@@ -136,7 +136,7 @@ msgstr ""
 "為了保障您的子女，家長的戶口必須首先獲得學校職員批准方可查閱成績。請允許適量"
 "的等候時間。如有任何疑問，請與學校查詢批准的條例和程序。"
 
-#: forgot.js:22
+#: forgot.js:27
 msgid "Forgot Password"
 msgstr "忘記密碼"
 
@@ -181,11 +181,11 @@ msgstr ""
 msgid "Inbox"
 msgstr "收件匣"
 
-#: reset.js:37
+#: reset.js:41
 msgid "Info"
 msgstr "信息"
 
-#: login.js:150
+#: login.js:154
 msgid "Invalid Login"
 msgstr "登入錯誤"
 
@@ -197,11 +197,11 @@ msgstr "加載中…"
 msgid "Logging in..."
 msgstr "現正登入"
 
-#: add-student.html:38 forgot.js:28 login.html:19
+#: add-student.html:38 forgot.js:33 login.html:19
 msgid "Login"
 msgstr "登入"
 
-#: add-student.js:106 login.js:157
+#: add-student.js:106 login.js:161
 msgid "Login Incorrect!"
 msgstr "登入錯誤"
 
@@ -213,7 +213,7 @@ msgstr "登入名稱"
 msgid "Login Name or Email"
 msgstr "電郵"
 
-#: add-student.js:111 login.js:164
+#: add-student.js:111 login.js:168
 msgid "Login Name Required!"
 msgstr "必須輸入登記名字 !"
 
@@ -277,7 +277,7 @@ msgstr "沒有分數"
 msgid "No Zeros"
 msgstr "沒有零分"
 
-#: services/notification-service.js:89
+#: services/notification-service.js:90
 msgid "Notification"
 msgstr "通知"
 
@@ -293,28 +293,28 @@ msgstr "家長必須查核"
 msgid "Password"
 msgstr "密碼"
 
-#: add-student.js:112 login.js:165 reset.js:67 reset.js:71
+#: add-student.js:112 login.js:169 reset.js:74 reset.js:78
 msgid "Password Required!"
 msgstr "必須輸入密碼 !"
 
-#: reset.js:15
+#: reset.js:16
 msgid "Passwords do not match"
 msgstr "密碼前後不符"
 
-#: reset.js:62
+#: reset.js:68
 msgid "Passwords don't match"
 msgstr "密碼前後不符"
 
-#: reset.js:14
+#: reset.js:15
 msgid "Passwords must be at least 6 characters"
 msgstr "密碼需至少6個字母"
 
-#: forgot.js:27
+#: forgot.js:32
 msgid ""
 "Please check your email for your password and try to login again.  Thanks!"
 msgstr "請查看您的電子郵件內臨時密碼然後再次登入"
 
-#: forgot.js:38 forgot.js:42
+#: forgot.js:52 forgot.js:58
 msgid "Please enter email!"
 msgstr "請輸入電子郵件 !"
 
@@ -414,6 +414,11 @@ msgstr "登出"
 msgid "Signed in as:"
 msgstr "簽署人："
 
+#: not-started.html:7
+msgid ""
+"Sorry. Account access will not be available until the first day of school."
+msgstr ""
+
 #: no-schedule.html:10
 msgid ""
 "Sorry. The school is not reporting a current schedule of classes for the "
@@ -421,7 +426,7 @@ msgid ""
 "if you believe there is an error."
 msgstr "學校仍未匯報你孩子的課程安排。若你不同意，請聯絡其學校行政人員。"
 
-#: reset.js:12
+#: reset.js:13
 msgid "Spaces are not allowed"
 msgstr "不允許留空格"
 
@@ -445,15 +450,6 @@ msgstr "成功！Loop郵件已遞送"
 msgid "Teacher Unknown"
 msgstr "沒有此教師"
 
-#: not-started.html:7
-msgid ""
-"Thank you for logging on to your School Loop Account. Full account access "
-"will not be available until the first day of school. Please check back on "
-"that date. Have a great summer!"
-msgstr ""
-"多謝登入你的家校通戶口。你須待至開學第一天才可全面使用戶口功能。請在當天再次"
-"登入查看。祝你有個愉快暑假！"
-
 #: add-student.html:58
 msgid "The following students have been added:"
 msgstr "以下的學生已加入："
@@ -476,7 +472,7 @@ msgid ""
 "and an attempt to send again will automatically occur."
 msgstr "信息遞送障礙。信息目前存放在發送信箱稍後再次自動發送"
 
-#: main.js:186
+#: main.js:195
 msgid "There was a problem signing out. Please try again."
 msgstr "有问题,请再试一次."
 
@@ -508,7 +504,7 @@ msgstr "今天 :"
 msgid "Tomorrow:"
 msgstr "明天 :"
 
-#: forgot.js:34
+#: forgot.js:44
 msgid "Unable to send email to that address. Please try again!"
 msgstr "信息不能遞送至該電子郵件地址。請再常試！"
 
@@ -524,7 +520,7 @@ msgstr "評分值（教師用）"
 msgid "Version:"
 msgstr "版本"
 
-#: services/notification-service.js:90
+#: services/notification-service.js:91
 msgid "View"
 msgstr "閱覽郵件"
 
@@ -544,11 +540,15 @@ msgstr "學生名字的第一個字母是什麼？"
 msgid "What is the first letter of this student's last name?"
 msgstr "學生姓氏的第一個字母是什麼 ?"
 
-#: reset.js:13
+#: reset.js:14
 msgid "You must include at least one digit"
 msgstr "必須至少包括一位數字"
 
-#: reset.js:38
+#: login.js:150
+msgid "Your access to this account has been blocked by a school administrator."
+msgstr ""
+
+#: forgot.js:42 reset.js:42
 msgid ""
 "Your username and password are managed by your school district. Please "
 "follow district protocol for resetting your password. In some cases, this "
@@ -564,6 +564,14 @@ msgstr "零分"
 #: courses-detail.html:18 courses-detail.html:53
 msgid "Zeros"
 msgstr "零分"
+
+#~ msgid ""
+#~ "Thank you for logging on to your School Loop Account. Full account access "
+#~ "will not be available until the first day of school. Please check back on "
+#~ "that date. Have a great summer!"
+#~ msgstr ""
+#~ "多謝登入你的家校通戶口。你須待至開學第一天才可全面使用戶口功能。請在當天再"
+#~ "次登入查看。祝你有個愉快暑假！"
 
 #~ msgid ""
 #~ "Your username and password are managed by your school district. Please "

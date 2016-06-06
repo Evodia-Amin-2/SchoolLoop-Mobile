@@ -36,8 +36,13 @@
                                 $state.go("login");
                             }, title, button);
                         },
-                        function() {
-                            message = gettextCatalog.getString("Unable to send email to that address. Please try again!");
+                        function(response) {
+                            var message;
+                            if(response.data === "ERROR: err_external_user_forgot_msg") {
+                                message = gettextCatalog.getString("Your username and password are managed by your school district. Please follow district protocol for resetting your password. In some cases, this can be done online. Visit your district website for more information.");
+                            } else {
+                                message = gettextCatalog.getString("Unable to send email to that address. Please try again!");
+                            }
                             button = gettextCatalog.getString("Close");
                             navigator.notification.alert(message, function() {
                                 $scope.$apply(function() {

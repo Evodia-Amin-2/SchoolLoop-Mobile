@@ -146,6 +146,10 @@
                             if (isCredError === false) {
                                 window.plugins.toast.showLongBottom(error.data);
                                 console.log(error.data);
+                            } else if(error.data.toLowerCase().startsWith("error 5:")) {
+                                var message = gettextCatalog.getString("Your access to this account has been blocked by a school administrator.");
+                                window.plugins.toast.showLongBottom(message);
+                                console.log(message);
                             } else {
                                 var message = gettextCatalog.getString("Invalid Login");
                                 window.plugins.toast.showLongBottom(message);
