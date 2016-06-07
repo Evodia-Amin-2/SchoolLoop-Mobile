@@ -37,7 +37,8 @@
                 main.school = domain.school;
                 main.user = domain.user;
 
-                if(main.user.isParent === 'true') {
+                if(main.user.isParent === 'true' || main.user.isParent === true) {
+                    main.user.isParent = true;
                     main.students = storageService.getStudents();
                     main.selectedStudent = storageService.getSelectedStudentIndex();
                     setCurrentStudent();

@@ -12,12 +12,12 @@
                         <div><span translate>Version:</span>&nbsp;{{main.version}}<span ng-show="main.build">&nbsp;({{main.build}})</span></div>
                     </div>
                 </div>
-                <div class="slide-item clickable" ng-if="main.user.isParent == 'true'" ng-click="main.addStudent()">
+                <div class="slide-item clickable" ng-if="main.user.isParent === true" ng-click="main.addStudent()">
                     <span class="icon-plus-circle large"></span><div class="item-text" translate>Add Student</div>
                 </div>
             </div>
             <div class="slide-middle overthrow">
-                <div ng-if="main.user.isParent == 'true'">
+                <div ng-if="main.user.isParent === true">
                     <ul class="students list">
                         <li ng-repeat="student in main.students" class="clickable" ng-class="{selected:main.isSelected(student)}" ng-click="main.selectStudent(student)">
                             <div class="user-name">{{student.name}}</div>
