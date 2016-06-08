@@ -38,7 +38,7 @@ var buildData = {};
 buildData[appId] = {};
 
 var build = flags["build"];
-if(build && build.length > 0) {
+if(build && build > 0) {
     buildData.index = build;
 } else {
     try {
@@ -52,7 +52,6 @@ if(build && build.length > 0) {
     } catch(e) {
         buildData.index = 1;
     }
-
 }
 
 var name = flags["name"];
@@ -165,7 +164,7 @@ gulp.task('app-config', ['set-build'], function () {
         appVersion = "2.2.0";
     }
     var buildNumber = flags["build"];
-    if(!buildNumber || buildNumber.length === 0) {
+    if(!buildNumber) {
         buildNumber = buildData.index;
         buildData.index++;
         fs.writeFileSync('./build-data.json', JSON.stringify(buildData, null, '  '));
