@@ -3,7 +3,7 @@ PATH=$PATH:/usr/local/bin:~/Library/Android/sdk/platform-tools:~/Library/Android
 export ANDROID_HOME=~/Library/Android/sdk
 
 if [[ $# -eq 0 ]] ; then
-    echo '    usage:  build {id} {appName} {version} {build} {profile}'
+    echo '    usage:  build {id} {appName} {version} {build}'
     echo '  example:  build "app"  "School Loop" "2.0.0" "1999" "beta"'
     exit 1
 fi
@@ -12,12 +12,7 @@ ID=$1
 NAME=$2
 VERSION=$3
 BUILD=$4
-PROFILE=$5
 FILENAME="$(echo -e "${NAME}" | tr -d '[[:space:]]')"
-
-if [ -z "$PROFILE" ]; then
-    PROFILE=$ID
-fi
 
 if [ ! -d "node_modules" ]; then
     npm install
@@ -26,16 +21,16 @@ fi
 bower install
 rm -rf tmp/*.js
 ./release/create-app "$ID"
-gulp init --id "$ID" --name "$NAME" --profile "$PROFILE"
-gulp default --id "$ID" --name "$NAME" --version "${VERSION}" --build "${BUILD}" --profile "$PROFILE"
+gulp init --id "$ID" --name "$NAME"  --version "${VERSION}" --build "${BUILD}" --profile "$ID"
+gulp default --id "$ID" --name "$NAME" --version "${VERSION}" --build "${BUILD}" --profile "$ID"
 cd ./app
 cordova prepare ios --verbose
 cordova build android --release --verbose
 cd ..
-fastlane ios "$PROFILE"
+fastlane ios "$ID"
 
 cp app/platforms/android/build/outputs/apk/android-release.apk tmp/${FILENAME}-${VERSION}-${BUILD}.apk
 mv tmp/MobileLoop.ipa tmp/${FILENAME}-${VERSION}-${BUILD}.ipa
 mv tmp/MobileLoop.app.dSYM.zip tmp/${FILENAME}-${VERSION}-${BUILD}-dSYM.zip
-cp tmp/${FILENAME}-*-*.{apk,ipa} ~/Downloads/builds/${PROFILE}/
+cp tmp/${FILENAME}-*-*.{apk,ipa} ~/Downloads/builds/${ID}/
 rm -f tmp/${FILENAME}-*-*.{apk,ipa,zip}

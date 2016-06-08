@@ -62,8 +62,7 @@ platform :ios do
     gym(
       scheme: "#{options[:scheme]}",
       configuration: options[:configuration],
-      output_directory: "tmp",
-      skip_build_archive: true
+      output_directory: "tmp"
     )
 
   end
