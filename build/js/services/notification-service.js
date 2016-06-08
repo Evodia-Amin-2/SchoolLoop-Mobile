@@ -63,6 +63,7 @@
             config.deviceToken = deviceToken;
 
             var params = {
+                "appId": config.id,
                 "version": parseVersion(config.version),
                 "devToken": deviceToken,
                 "uuid": device.uuid,
