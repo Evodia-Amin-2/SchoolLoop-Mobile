@@ -14,9 +14,11 @@ platform :ios do
   ######################### PUBLIC LANES ##########################
   desc "Build School Loop Beta"
   lane :beta do
-    match(app_identifier: "com.schoolloop.mobileloop.app", type: "adhoc")
-    pem(app_identifier: "com.schoolloop.mobileloop.app", output_path:"release")
     build_app(
+      app_identifier: "com.schoolloop.mobileloop.beta",
+      app_name: "School Loop Beta",
+      type: "adhoc",
+      pem_path: "release/beta",
       project_name:"MobileLoop",
       configuration:"Release",
       scheme:"MobileLoop"
@@ -25,9 +27,11 @@ platform :ios do
 
   desc "Build School Loop"
   lane :app do
-    match(app_identifier: "com.schoolloop.mobileloop.app", type: "appstore")
-    pem(app_identifier: "com.schoolloop.mobileloop.app", output_path:"release")
     build_app(
+      app_identifier: "com.schoolloop.mobileloop.app",
+      app_name: "School Loop",
+      type: "appstore",
+      pem_path: "release/app",
       project_name:"MobileLoop",
       configuration:"Release",
       scheme:"MobileLoop"
@@ -36,9 +40,11 @@ platform :ios do
 
   desc "Build Mirror Loop"
   lane :mirror do
-    match(app_identifier: "com.schoolloop.mobileloop.mirror", type: "adhoc")
-    pem(app_identifier: "com.schoolloop.mobileloop.mirror", output_path:"release")
     build_app(
+      app_identifier: "com.schoolloop.mobileloop.mirror",
+      app_name: "Mirror Loop",
+      type: "adhoc",
+      pem_path: "release/mirror",
       project_name:"MobileLoop",
       configuration:"Release",
       scheme:"MobileLoop"
@@ -47,6 +53,10 @@ platform :ios do
 
   ######################### PRIVATE LANES #########################
   private_lane :build_app do |options|
+
+    produce(app_identifier: options[:app_identifier], app_name: options[:app_name])
+    match(app_identifier: options[:app_identifier], type: options[:type])
+    pem(app_identifier: options[:app_identifier], output_path: options[:pem_path])
 
     # Build the app
     gym(
