@@ -57,7 +57,6 @@ platform :ios do
     produce(app_identifier: options[:app_identifier], app_name: options[:app_name])
     match(app_identifier: options[:app_identifier], type: options[:type])
     pem(app_identifier: options[:app_identifier], output_path: options[:release_path])
-    sigh(app_identifier: options[:app_identifier], output_path: options[:release_path])
 
     # Build the app
     gym(
