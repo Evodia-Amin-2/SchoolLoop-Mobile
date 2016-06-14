@@ -18,7 +18,7 @@ platform :ios do
       app_identifier: "com.schoolloop.mobileloop.beta",
       app_name: "School Loop Beta",
       type: "adhoc",
-      pem_path: "release/beta",
+      release_path: "release/beta",
       project_name:"MobileLoop",
       configuration:"Release",
       scheme:"MobileLoop"
@@ -31,7 +31,7 @@ platform :ios do
       app_identifier: "com.schoolloop.mobileloop.app",
       app_name: "School Loop",
       type: "appstore",
-      pem_path: "release/app",
+      release_path: "release/app",
       project_name:"MobileLoop",
       configuration:"Release",
       scheme:"MobileLoop"
@@ -44,7 +44,7 @@ platform :ios do
       app_identifier: "com.schoolloop.mobileloop.mirror",
       app_name: "Mirror Loop",
       type: "adhoc",
-      pem_path: "release/mirror",
+      release_path: "release/mirror",
       project_name:"MobileLoop",
       configuration:"Release",
       scheme:"MobileLoop"
@@ -56,7 +56,8 @@ platform :ios do
 
     produce(app_identifier: options[:app_identifier], app_name: options[:app_name])
     match(app_identifier: options[:app_identifier], type: options[:type])
-    pem(app_identifier: options[:app_identifier], output_path: options[:pem_path])
+    pem(app_identifier: options[:app_identifier], output_path: options[:release_path])
+    sigh(app_identifier: options[:app_identifier], output_path: options[:release_path])
 
     # Build the app
     gym(
