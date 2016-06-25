@@ -71,6 +71,10 @@
 
                 document.addEventListener("resume", function () {
                     $rootScope.$broadcast("hardware.resume");
+
+                    window.chcp.fetchUpdate(function() {
+
+                    });
                 }, false);
 
                 document.addEventListener("online", function () {
@@ -79,6 +83,16 @@
 
                 document.addEventListener("offline", function () {
                     $rootScope.$broadcast("hardware.offline");
+                }, false);
+
+                document.addEventListener('chcp_updateIsReadyToInstall', function(eventData) {
+                    var msg = gettextCatalog.getString("A new version is ready to be installed. The application will automatically restart.");
+                    var update = gettextCatalog.getString("Update");
+                    navigator.notification.alert(msg, function() {
+                        window.chcp.installUpdate();
+                    }, update);
+
+                    console.log(JSON.stringify(eventData));
                 }, false);
 
                 window.addEventListener("orientationchange", function() {

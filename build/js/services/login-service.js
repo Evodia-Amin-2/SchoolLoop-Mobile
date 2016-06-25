@@ -21,7 +21,7 @@
 
             var params = {
                 "version": parseVersion(config.version),
-                "devToken": device.uuid || "",
+                "uuid": device.uuid || "",
                 "devOS": device.platform,
                 "year": new Date().getFullYear()
             };

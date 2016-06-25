@@ -29,7 +29,7 @@ var browserPath = "app/platforms/browser/www";
 var appId = flags["id"] || "app";
 var version = flags["version"] || '2.2.0';
 if(appId && appId.length > 0) {
-    configFile = "config-" + appId + ".json";
+    configFile = "build/versions/" + appId + "/config.json";
 }
 
 var profile = flags["profile"] || "app";
@@ -105,6 +105,7 @@ gulp.task('init-config', function () {
                 $("widget").append('    <preference name="SplashScreen" value="screen" />\n');
                 $("widget").append('    <preference name="EnableViewportScale" value="true" />\n');
 
+                $("widget").append('    <chcp><config-file url="https://s3-us-west-2.amazonaws.com/schoolloop-hotpush/' + appId + '/chcp.json"/><auto-install enabled="false" /></chcp>\n');
             },
             parserOptions: {
                 xmlMode: true
