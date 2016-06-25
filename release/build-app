@@ -30,6 +30,7 @@ cd ..
 fastlane ios "$ID"
 cd ./app
 cordova-hcp build
+cordova-hcp deploy
 cd ..
 cp app/platforms/android/build/outputs/apk/android-release.apk tmp/${FILENAME}-${VERSION}-${BUILD}.apk
 mv tmp/MobileLoop.ipa tmp/${FILENAME}-${VERSION}-${BUILD}.ipa
