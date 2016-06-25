@@ -21,7 +21,7 @@
 
             var params = {
                 "version": parseVersion(config.version),
-                "uuid": device.uuid || "",
+                "uuid": device.uuid || "test-" + storageService.getSelectedSchool().domainName,
                 "devOS": device.platform,
                 "year": new Date().getFullYear()
             };
