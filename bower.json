@@ -15,29 +15,18 @@
   ],
   "dependencies": {
     "jquery": "~2.1.3",
-    "flot": "~0.8.3",
-    "angular": "~1.3.19",
-    "angular-ui-router": "~0.2.15",
-    "angular-gettext": "~2.0.1",
-    "angular-animate": "~1.3.19",
-    "angular-resource": "~1.3.19",
-    "angular-touch": "~1.3.19",
-    "angular-sanitize": "~1.3.19",
-    "underscore": "~1.7.0",
-    "sjcl": "~1.0.0",
-    "ng-mobile-menu": "~0.2.0",
-    "scroller": "~1.2.2",
-    "angular-flot": "~0.0.6",
-    "moment": "~2.10.6",
-    "moment-timezone": "~0.4.1"
-  },
-  "resolutions": {
-    "angular": "~1.3.19"
+    "angular": "1.4.9",
+    "angular-route": "1.4.9",
+    "angular-sanitize": "1.4.9",
+    "onsenui": "2.0.0-rc.16",
+    "angular-gettext": "2.3.4",
+    "lodash": "4.13.1",
+    "moment": "2.14.1",
+    "moment-timezone": "0.5.4",
+    "flot": "0.8.3",
+    "angular-flot": "0.0.16"
   },
   "overrides": {
-    "ng-mobile-menu": {
-      "main": "./dist/ng-mobile-menu.min.js"
-    },
     "jquery": {
       "main": "./dist/jquery.min.js"
     },
@@ -48,11 +37,11 @@
         "jquery.flot.resize.js"
       ]
     },
-    "scroller": {
+    "onsenui": {
       "main": [
-        "./src/Animate.js",
-        "./src/Scroller.js"
+        "./js/onsenui.js"
       ]
     }
+
   }
 }

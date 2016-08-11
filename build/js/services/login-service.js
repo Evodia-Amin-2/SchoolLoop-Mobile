@@ -3,11 +3,11 @@
     'use strict';
 
     angular.module('app.services')
-        .factory('LoginService', ['$http', '$q', 'Base64', 'config', 'StorageService', LoginService])
+        .factory('LoginService', ['$http', '$q', 'config', 'StorageService', 'DataService', LoginService])
     ;
 
-    function LoginService($http, $q, Base64, config, storageService) {
-        function doLogin(url, username, password) {
+    function LoginService($http, $q, config, storageService, dataService) {
+        function login(url, username, password) {
             if(config.data) {
                 var data = config.data.login;
                 if(data) {
@@ -18,15 +18,31 @@
                     return dataDeferred.promise;
                 }
             }
+            var school = storageService.getSchool();
+            if(_.isUndefined(school) === true) {
+                return;
+            }
+
+            if(_.isUndefined(url) === true) {
+                url = school.domainName;
+            }
+
+            var hashed = false;
+            if(_.isUndefined(username) === true) {
+                var domain = storageService.getDomain(url);
+                username = domain.user.userName;
+                password = domain.user.hashedPassword;
+                // hashed = true;
+            }
 
             var params = {
                 "version": parseVersion(config.version),
-                "uuid": device.uuid || "test-" + storageService.getSelectedSchool().domainName,
+                "uuid": device.uuid || "test-" + school.domainName,
                 "devOS": device.platform,
                 "year": new Date().getFullYear()
             };
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode(username + ':' + password);
 
+            dataService.setupAuthHeaders(username, password, params, hashed);
             var endpoint = "https://" + url + "/mapi/login";
             console.log(endpoint + " params=" + JSON.stringify(params));
 
@@ -37,14 +53,14 @@
             return $http.get(endpoint, parameters);
         }
 
-        function doLogout() {
+        function logout() {
             var url = storageService.getSelectedSchool().domainName;
             var endpoint = "https://" + url + "/mapi/logout";
             return $http.get(endpoint);
         }
 
-        return {"login": doLogin,
-            "logout": doLogout};
+        return {"login": login,
+            "logout": logout};
     }
 
     function parseVersion(version) {

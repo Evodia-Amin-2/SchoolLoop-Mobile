@@ -2,72 +2,64 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('LoopMailController', ['$rootScope', '$scope', '$timeout', '$state', 'DataService', 'DataType', 'StatusService',
-            'LoopmailService', 'StorageService', 'NavbarService', 'gettextCatalog', LoopMailController])
-        .controller('LoopMailDetailController', ['$rootScope', '$scope', '$window', '$state', '$stateParams', '$sce', '$filter',
-            'StorageService', 'DataService', 'DataType', 'StatusService', 'NavbarService', 'gettextCatalog', LoopMailDetailController])
+        .controller('LoopMailController', ['$rootScope', '$scope', '$timeout', '$location', 'DataService', 'DataType', 'StatusService',
+            'LoopmailService', 'StorageService', 'gettextCatalog', LoopMailController])
+        .controller('LoopMailDetailController', ['$rootScope', '$scope', '$window', '$location', '$sce', '$filter',
+            'StorageService', 'DataService', 'DataType', 'StatusService', 'gettextCatalog', LoopMailDetailController])
     ;
 
-    function LoopMailController($rootScope, $scope, $timeout, $state, dataService, DataType, statusService,
-                                loopmailService, storageService, navbarService, gettextCatalog) {
+    function LoopMailController($rootScope, $scope, $timeout, $location, dataService, DataType, statusService,
+                                loopmailService, storageService, gettextCatalog) {
+        var mailCtrl = this;
 
         navigator.analytics.sendAppView('LoopMail');
 
-        $scope.loading = false;
-        $scope.pageLoaded = false;
-        $scope.loopmail = [];
-        $scope.mailbox = dataService.getFolderId();
+        mailCtrl.loading = false;
+        mailCtrl.pageLoaded = false;
+        mailCtrl.loopmail = [];
+        mailCtrl.mailbox = dataService.getFolderId();
 
-        navbarService.setTitle(gettextCatalog.getString("LoopMail"));
-
-        $scope.noMailMessage = "";
+        mailCtrl.noMailMessage = "";
         if(dataService.getFolderId() === 1) {
-            $scope.loopmail = dataService.list(DataType.LOOPMAIL);
+            mailCtrl.loopmail = dataService.list(DataType.LOOPMAIL);
             setMessage();
         } else if(dataService.getFolderId() === 2) {
             dataService.getLoopmail().then(function(response) {
-                $scope.loopmail = response;
+                mailCtrl.loopmail = response;
                 setMessage();
             });
         } else {
-            $scope.loopmail = storageService.getOutgoingMail();
-            $scope.noMailMessage = gettextCatalog.getString("All Mail Delivered");
+            mailCtrl.loopmail = storageService.getOutgoingMail();
+            mailCtrl.noMailMessage = gettextCatalog.getString("All Mail Delivered");
         }
         var page = 1;
 
-        navbarService.reset();
-        navbarService.setLoopMenuEnabled(true);
-//        if(isTeacher()) {
-            navbarService.setMailEnabled(true);
-//        }
-
-        $scope.parentScope = $scope;
-
         $timeout(function() {
-            $scope.pageLoaded = true;
+            mailCtrl.pageLoaded = true;
         }, 250);
 
-        $scope.pullRefresh = function() {
+        mailCtrl.load = function($done) {
             page = 1;
             if(dataService.getFolderId() === 1) {
                 return dataService.refresh(DataType.LOOPMAIL).then(function(result) {
-                    $scope.loopmail = result;
-                    return result;
+                    mailCtrl.loopmail = result;
+                    $done();
                 }, function(error) {
-                    return error;
+                    $done();
                 });
             } else if(dataService.getFolderId() === 2) {
                 dataService.getLoopmail().then(function(response) {
-                    $scope.loopmail = response;
+                    mailCtrl.loopmail = response;
+                    $done();
                 });
             }
         };
 
-        $scope.removeOutgoing = function (message) {
-            $scope.loopmail = storageService.removeOutgoingMail(message);
+        mailCtrl.removeOutgoing = function (message) {
+            mailCtrl.loopmail = storageService.removeOutgoingMail(message);
         };
 
-        $scope.sender = function(message) {
+        mailCtrl.sender = function(message) {
             if(dataService.getFolderId() === 2) {
                 return gettextCatalog.getString("To:") + " " + message.shortRecipientString;
             } else if(dataService.getFolderId() === 1) {
@@ -84,20 +76,20 @@
             }
         };
 
-        $scope.isNew = function(message) {
+        mailCtrl.isNew = function(message) {
             return message.read === 'false' || message.read === 'null';
         };
 
-        $scope.showMessage = function(message) {
+        mailCtrl.showMessage = function(message) {
             if(dataService.getFolderId() > 0) {
                 statusService.showLoading();
-                $state.go("main.tabs.loopmail-detail", {loopmailId: message.ID});
+                $location.path("main.tabs.loopmail-detail", {loopmailId: message.ID});
             }
         };
 
         $scope.$watch("loopmail.length", function() {
-            if($scope.loopmail) {
-                $scope.needsMore = ($scope.loopmail.length % 20 === 0) && ($scope.loopmail.length > 0);
+            if(mailCtrl.loopmail) {
+                mailCtrl.needsMore = (mailCtrl.loopmail.length % 20 === 0) && (mailCtrl.loopmail.length > 0);
 
                 $timeout(function() {
                     $rootScope.$broadcast("scroll.refresh");
@@ -105,17 +97,17 @@
             }
         });
 
-        $scope.scrollListener = function(data) {
-            if($scope.loading === true) {
+        mailCtrl.scrollListener = function(data) {
+            if(mailCtrl.loading === true) {
                 return;
             }
 
             var end = (data.max - data.top) < 100;
-            if(end === true && $scope.needsMore === true) {
-                $scope.loading = true;
+            if(end === true && mailCtrl.needsMore === true) {
+                mailCtrl.loading = true;
                 dataService.getLoopmail(page).then(function(response) {
-                    $scope.loading = false;
-                    $scope.loopmail = $scope.loopmail.concat(response);
+                    mailCtrl.loading = false;
+                    mailCtrl.loopmail = mailCtrl.loopmail.concat(response);
                     page++;
                 });
             }
@@ -123,31 +115,31 @@
 
         $scope.$on("loopmail.sent", function() {
             if(dataService.getFolderId() < 0) {
-                $scope.loopmail = storageService.getOutgoingMail();
-                $scope.noMailMessage = gettextCatalog.getString("All Mail Delivered");
+                mailCtrl.loopmail = storageService.getOutgoingMail();
+                mailCtrl.noMailMessage = gettextCatalog.getString("All Mail Delivered");
             }
 
         });
 
         $scope.$on("menu.loopmail", function() {
             loopmailService.setRecipients(undefined);
-            $state.go("main.compose");
+            $location.path("main.compose");
         });
 
         $scope.$on("menu.dropdown", function(event, data) {
             var index = data.index;
-            $scope.loopmail = undefined;
+            mailCtrl.loopmail = undefined;
             dataService.setLoopmailFolder(index);
-            $scope.mailbox = dataService.getFolderId();
+            mailCtrl.mailbox = dataService.getFolderId();
             if(dataService.getFolderId() < 0) {
-                $scope.loopmail = storageService.getOutgoingMail();
-                $scope.noMailMessage = gettextCatalog.getString("All Mail Delivered");
+                mailCtrl.loopmail = storageService.getOutgoingMail();
+                mailCtrl.noMailMessage = gettextCatalog.getString("All Mail Delivered");
                 return;
             }
 
             statusService.showLoading();
             dataService.getLoopmail().then(function(response) {
-                $scope.loopmail = response;
+                mailCtrl.loopmail = response;
                 setMessage();
                 statusService.hideWait(500);
             }, function() {
@@ -158,24 +150,25 @@
 
         $scope.$on('notify.loopmail', function() {
             if(dataService.getFolderId() === 1) {
-                $scope.pullRefresh();
+                mailCtrl.pullRefresh();
             }
         });
 
         function setMessage() {
-            $scope.noMailMessage = "";
-            if($scope.loopmail && $scope.loopmail.length === 0) {
-                $scope.noMailMessage = gettextCatalog.getString("No Mail Currently");
+            mailCtrl.noMailMessage = "";
+            if(mailCtrl.loopmail && mailCtrl.loopmail.length === 0) {
+                mailCtrl.noMailMessage = gettextCatalog.getString("No Mail Currently");
             }
         }
     }
 
-    function LoopMailDetailController($rootScope, $scope, $window, $state, $stateParams, $sce, $filter, storageService,
-                                      dataService, DataType, statusService, navbarService, gettextCatalog) {
-        var loopmailId = $stateParams.loopmailId;
+    function LoopMailDetailController($rootScope, $scope, $window, $location, $sce, $filter, storageService,
+                                      dataService, DataType, statusService, gettextCatalog) {
+        var mailDetail = this;
+
+        mailDetail.loopmail = $scope.courseNavigator.topPage.pushedOptions.loopmail;
+
         $scope.loaded = false;
-        navbarService.reset();
-        navbarService.setReplyEnabled(true);
 
         dataService.getMessage(loopmailId).then(function(response) {
 
@@ -195,8 +188,6 @@
             $scope.loopmail = loopmail;
             $scope.trustedMessage = "";
             if(loopmail) {
-                navbarService.setTitle(loopmail.subject);
-                navbarService.setBackEnabled(true);
 
                 if(loopmail.message) {
                     message = $filter('replaceUrlFilter')(loopmail.message);
@@ -205,8 +196,6 @@
             }
             $rootScope.$broadcast("scroll.refresh");
         }, function(response) {
-            navbarService.setTitle("Error");
-            navbarService.setBackEnabled(true);
             $scope.loaded = true;
             statusService.hideWait(500);
             $scope.loopmail = {};
@@ -256,9 +245,9 @@
         $scope.$on("menu.dropdown", function(event, data) {
             var index = data.index;
             if(index === 0) { // reply
-                $state.go("main.reply", {loopmailId: $scope.loopmail.ID, replyAll: false});
+                $location.path("main.reply", {loopmailId: $scope.loopmail.ID, replyAll: false});
             } else if(index === 1) { // replay all
-                $state.go("main.reply", {loopmailId: $scope.loopmail.ID, replyAll: true});
+                $location.path("main.reply", {loopmailId: $scope.loopmail.ID, replyAll: true});
             }
         });
 

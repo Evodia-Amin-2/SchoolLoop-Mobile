@@ -9,10 +9,10 @@
             "LOOPMAIL": "mail_messages",
             "NEWS": "news"
         })
-        .factory('DataService', ['$http', '$q', '$state', 'Base64', 'StorageService', 'DataType', 'config', DataService])
+        .factory('DataService', ['$http', '$q', 'Base64', 'StorageService', 'DataType', 'config', DataService])
     ;
 
-    function DataService($http, $q, $state, Base64, storageService, DataType, config) {
+    function DataService($http, $q, Base64, storageService, DataType, config) {
         var cache = cache || {};
 
         var courseTitle = "";
@@ -33,20 +33,14 @@
         function checkDataLoaded() {
             if(isTeacher()) {
                 if(!cache.mail_messages || !cache.news) {
-                    $state.go("start");
                     return false;
                 }
             } else {
                 if(!cache.assignments || !cache.report_card || !cache.mail_messages || !cache.news) {
-                    $state.go("start");
                     return false;
                 }
             }
             return true;
-        }
-
-        function getRequest(action, params) {
-            return doGet($q, $http, Base64, config, action, params, defaultParams, storageService);
         }
 
         function isTeacher() {
@@ -54,6 +48,7 @@
             return (domain.user.role !== 'student' && domain.user.role !== 'parent');
         }
 
+        var params = {};
         var service = {
             clearCache: function() {
                 cache = {};
@@ -64,13 +59,13 @@
             },
             load: function() {
                 var requests = [];
-                var loopmail = getRequest(DataType.LOOPMAIL);
-                var news = getRequest(DataType.NEWS);
+                var loopmail = doGet($q, $http, config, DataType.LOOPMAIL, params, defaultParams, storageService, service);
+                var news = doGet($q, $http, config, DataType.NEWS, params, defaultParams, storageService, service);
                 if(isTeacher() === true) {
                     requests = [loopmail, news];
                 } else {
-                    var assignments = getRequest(DataType.ASSIGNMENT);
-                    var courses = getRequest(DataType.COURSE, {trim: true});
+                    var assignments = doGet($q, $http, config, DataType.ASSIGNMENT, params, defaultParams, storageService, service);
+                    var courses = doGet($q, $http, config, DataType.COURSE, {trim: true}, defaultParams, storageService, service);
                     requests = [assignments, courses, loopmail, news];
                 }
 
@@ -97,8 +92,8 @@
             },
             update: function() {
 
-                var loopmail = getRequest(DataType.LOOPMAIL);
-                var news = getRequest(DataType.NEWS);
+                var loopmail = doGet($q, $http, config, DataType.LOOPMAIL, params, defaultParams, storageService, service);
+                var news = doGet($q, $http, config, DataType.NEWS, params, defaultParams, storageService, service);
 
                 return $q.all([loopmail, news]).then(function(result) {
                     var tmp = {};
@@ -121,7 +116,7 @@
                 });
             },
             refresh: function(type) {
-                return getRequest(type).then(function(result) {
+                return doGet($q, $http, config, type, params, defaultParams, storageService, service).then(function(result) {
                     cache[type] = result;
                     return result;
                 });
@@ -138,7 +133,7 @@
                 if(cache.message && cache.message.ID === id) {
                     return cachedResult("message");
                 }
-                return getRequest(DataType.LOOPMAIL, {"ID": id}).then(function(response) {
+                return doGet($q, $http, config, DataType.LOOPMAIL, {"ID": id}, defaultParams, storageService, service).then(function(response) {
                     cache.message = response;
                     return response;
                 });
@@ -147,7 +142,7 @@
                 if(cache.progress_report && cache.progress_report.periodID === periodID) {
                     return cachedResult("progress_report");
                 }
-                return getRequest("progress_report", {"periodID": periodID, trim: true}).then(
+                return doGet($q, $http, config, "progress_report", {"periodID": periodID, trim: true}, defaultParams, storageService, service).then(
                     function(response) {
                         cache.progress_report = response;
                         return response;
@@ -158,14 +153,14 @@
                 cache.progress_report = undefined;
             },
             getAssignment: function(assignmentID, score) {
-                return getRequest(DataType.ASSIGNMENT, {"assignmentID": assignmentID, "score": score});
+                return doGet($q, $http, config, DataType.ASSIGNMENT, {"assignmentID": assignmentID, "score": score}, defaultParams, storageService, service);
             },
             getAssignmentsByCourse: function(periodID) {
-                return getRequest(DataType.ASSIGNMENT, {"periodID": periodID});
+                return doGet($q, $http, config, DataType.ASSIGNMENT, {"periodID": periodID}, defaultParams, storageService, service);
             },
             getLoopmail: function(page) {
                 page = page || 0;
-                return getRequest(DataType.LOOPMAIL, {"folderID": folderId, "start": (page * 20), "max": 20});
+                return doGet($q, $http, config, DataType.LOOPMAIL, {"folderID": folderId, "start": (page * 20), "max": 20}, defaultParams, storageService, service);
             },
             setCourseTitle: function(title) {
                 courseTitle = title;
@@ -186,13 +181,13 @@
                 if(cache.student_loop) {
                     return cachedResult("student_loop");
                 }
-                return getRequest("student_loop").then(function(response) {
+                return doGet($q, $http, config, "student_loop", defaultParams, storageService, service).then(function(response) {
                     cache.student_loop = response;
                     return response;
                 });
             },
             addStudent: function(params) {
-                return getRequest("add_student", params);
+                return doGet($q, $http, config, "add_student", params, defaultParams, storageService, service);
             },
             sendLoopMail: function(toList, ccList, subject, body) {
                 var params = {
@@ -202,25 +197,25 @@
                     message: body
                 };
 
-                return doPost($q, $http, Base64, "mail_messages", params, storageService);
+                return doPost($q, $http, "mail_messages", params, storageService, service);
             },
             resetPassword: function(password) {
                 var params = {
                     'new': password
                 };
-                return doPost($q, $http, Base64, "reset", params, storageService);
+                return doPost($q, $http, "reset", params, storageService, service);
             },
             sendForgetEmail: function(params) {
-                return getRequest("forgot", params);
+                return doGet($q, $http, config, "forgot", params, defaultParams, storageService, service);
             },
             registerDevice: function(params) {
-                return getRequest("register", params);
+                return doGet($q, $http, config, "register", params, defaultParams, storageService, service);
             },
             accept: function() {
-                return getRequest("accept_agreement");
+                return doGet($q, $http, config, "accept_agreement", defaultParams, storageService, service);
             },
             getContacts: function(query) {
-                return getRequest("contacts", { "q":query, "max":25 });
+                return doGet($q, $http, config, "contacts", { "q":query, "max":25 }, defaultParams, storageService, service);
             },
             supportTicket: function(name, subject, details, email, cc) {
                 var params = {
@@ -232,7 +227,14 @@
                     'email': email,
                     'cc': cc
                 };
-                return doPost($q, $http, Base64, "help", params, storageService);
+                return doPost($q, $http, "help", params, storageService, service);
+            },
+            setupAuthHeaders: function(username, password, params, hashed) {
+                $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode(username + ':' + password);
+                if(hashed === true) {
+                    $http.defaults.headers.common['SL_HASH'] = 'true';
+                    params["hash"] = 'true';
+                }
             }
         };
         return service;
@@ -260,7 +262,7 @@
         return d;
     }
 
-    function doGet($q, $http, Base64, config, action, params, defaultParams, storageService) {
+    function doGet($q, $http, config, action, params, defaultParams, storageService, dataService) {
 
         if(config.data) {
             var data = config.data[action];
@@ -286,9 +288,10 @@
             url = storageService.getSelectedSchool().domainName;
 
         }
+
         var domain = storageService.getDomain(url);
         if(_.isUndefined(domain) === false && _.isNull(domain) === false) {
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode(domain.user.userName + ':' + domain.password);
+            dataService.setupAuthHeaders(domain.user.userName, domain.user.hashedPassword, params, false);
         }
 
         if(_.isUndefined(params["studentID"]) === true) {
@@ -318,12 +321,12 @@
         return deferred.promise;
     }
 
-    function doPost($q, $http, Base64, action, params, storageService) {
+    function doPost($q, $http, action, params, storageService, dataService) {
 
         var url = storageService.getSelectedSchool().domainName;
         var domain = storageService.getDomain(url);
         if(_.isUndefined(domain) === false && _.isNull(domain) === false) {
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode(domain.user.userName + ':' + domain.password);
+            dataService.setupAuthHeaders(domain.user.userName, domain.user.hashedPassword, params, false);
         }
 
         var endpoint = "https://" + url + "/mapi/" + action;

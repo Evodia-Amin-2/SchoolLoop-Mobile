@@ -1,0 +1,65 @@
+<ons-page class="menu">
+    <ons-list class="menu-header">
+        <ons-list-item modifier="nodivider">
+            <div class="left">
+                <ons-icon icon="ion-android-person" size="20px"></ons-icon>
+            </div>
+            <div class="center">
+                <div class="menu-header-text">{{menu.user.fullName}}</div>
+                <div class="menu-header-subtext">{{menu.school.name}}</div>
+            </div>
+        </ons-list-item>
+    </ons-list>
+    <div class="menu-content">
+        <ons-list>
+            <ons-list-item ng-if="menu.user.isParent === true" ng-repeat="student in menu.students" modifier="nodivider" tappable>
+                <div class="left">
+                    <ons-icon class="menu-content-icon" icon="ion-android-person" size="20px"></ons-icon>
+                </div>
+                <div class="center">
+                    <div class="menu-content-text">{{student.name}}</div>
+                    <div class="menu-content-subtext">{{student.school.name}}</div>
+                </div>
+            </ons-list-item>
+            <ons-list-item modifier="nodivider" class="menu-action" tappable>
+                <div class="left">
+                    <ons-icon icon="ion-ios-plus-outline" size="20px"></ons-icon>
+                </div>
+                <div class="center" translate>Add Student</div>
+            </ons-list-item>
+            <ons-list-item modifier="nodivider" tappable>
+                <div class="left">&nbsp;</div>
+                <div class="center" translate>Contact Help</div>
+            </ons-list-item>
+            <ons-list-item modifier="nodivider" tappable>
+                <div class="left">&nbsp;</div>
+                <div class="center" translate>User Agreement</div>
+            </ons-list-item>
+            <ons-list-item modifier="nodivider" tappable>
+                <div class="left">&nbsp;</div>
+                <div class="center" translate>Privacy Policy</div>
+            </ons-list-item>
+            <ons-list-item modifier="nodivider" tappable>
+                <div class="left">&nbsp;</div>
+                <div class="center" translate>Security</div>
+            </ons-list-item>
+            <ons-list-item modifier="nodivider">
+                <div class="left">&nbsp;</div>
+                <div class="center menu-version"><span translate>Version:</span>&nbsp;{{menu.version}} ({{menu.build}})</div>
+            </ons-list-item>
+        </ons-list>
+    </div>
+
+    <div class="menu-footer">
+        <ons-list>
+            <ons-list-item tappable ng-click="menu.logout()" modifier="nodivider">
+                <div class="left">
+                    <ons-icon icon="ion-android-exit" size="20px"></ons-icon>
+                </div>
+                <div class="center">
+                    <div class="item-text" translate>Sign out</div>
+                </div>
+            </ons-list-item>
+        </ons-list>
+    </div>
+</ons-page>

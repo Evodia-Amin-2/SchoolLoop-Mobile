@@ -70,6 +70,7 @@ gulp.task('default', function () {
     gulp.start('app-js');
     gulp.start('app-html');
     gulp.start('app-tmpl');
+    gulp.start('lib-js');
     gulp.start('vendor-js');
 });
 
@@ -100,10 +101,31 @@ gulp.task('init-config', function () {
                 $("platform[name=android]").append('    <preference name="KeepRunning" value="false" />\n    ');
                 $("platform[name=ios]").append('    <preference name="Orientation" value="all" />\n    ');
 
-                $("widget").append('    <preference name="BackupWebStorage" value="none" />\n');
-                $("widget").append('    <preference name="SplashScreenDelay" value="5000" />\n');
-                $("widget").append('    <preference name="SplashScreen" value="screen" />\n');
-                $("widget").append('    <preference name="EnableViewportScale" value="true" />\n');
+                $("widget").append('    <preference name="DisallowOverscroll" value="true" />\n' +
+                    '    <preference name="Orientation" value="default" />\n' +
+                    '    <preference name="loglevel" value="DEBUG" />\n' +
+                    '    <preference name="AndroidLaunchMode" value="singleTop" />\n' +
+                    '    <preference name="ErrorUrl" value="" />\n' +
+                    '    <preference name="Fullscreen" value="false" />\n' +
+                    '    <preference name="KeepRunning" value="true" />\n' +
+                    '    <preference name="SplashScreen" value="screen" />\n' +
+                    '    <preference name="SplashScreenDelay" value="1000" />\n' +
+                    '    <preference name="AllowInlineMediaPlayback" value="false" />\n' +
+                    '    <preference name="AutoHideSplashScreen" value="true" />\n' +
+                    '    <preference name="BackupWebStorage" value="none"/>\n' +
+                    '    <preference name="EnableViewportScale" value="false" />\n' +
+                    '    <preference name="FadeSplashScreen" value="true" />\n' +
+                    '    <preference name="FadeSplashScreenDuration" value="250" />\n' +
+                    '    <preference name="KeyboardDisplayRequiresUserAction" value="true" />\n' +
+                    '    <preference name="MediaPlaybackRequiresUserAction" value="false" />\n' +
+                    '    <preference name="ShowSplashScreenSpinner" value="false" />\n' +
+                    '    <preference name="SuppressesIncrementalRendering" value="false" />\n' +
+                    '    <preference name="TopActivityIndicator" value="gray" />\n' +
+                    '    <preference name="GapBetweenPages" value="0" />\n' +
+                    '    <preference name="PageLength" value="0" />\n' +
+                    '    <preference name="PaginationBreakingMode" value="page" />\n' +
+                    '    <preference name="PaginationMode" value="unpaginated" />\n' +
+                    '    <preference name="BackupWebStorage" value="none" />\n');
 
                 $("widget").append('    <chcp><config-file url="https://s3-us-west-2.amazonaws.com/schoolloop-hotpush/' + appId + '/chcp.json"/><auto-install enabled="false" /></chcp>\n');
             },
@@ -152,7 +174,12 @@ gulp.task('init-merges', function () {
 });
 
 gulp.task('app-assets', function () {
-    return gulp.src([srcPath + '/assets/**/*.*'])
+    return gulp.src([srcPath + '/assets/**/*.*',
+            'bower_components/onsenui/**/*/css/*.min.css',
+            'bower_components/onsenui/**/*/fonts/*',
+            'bower_components/onsenui/**/onsen-css-components.css',
+            'bower_components/onsenui/**/onsenui.css'
+        ])
         .pipe(gulp.dest(destPath))
         .pipe(gulp.dest(browserPath));
 });
@@ -199,8 +226,8 @@ gulp.task('set-build', function () {
 });
 
 gulp.task('app-css', function () {
-    return gulp.src([srcPath + '/css/**/*.*',
-        'bower_components/ng-mobile-menu/dist/ng-mobile-menu.min.css'
+    return gulp.src([
+        srcPath + '/css/**/*.*'
     ])
         .pipe(plumber({ errorHandler: gutil.log }))
         .pipe(stylus())
@@ -242,8 +269,29 @@ gulp.task('browser-tmpl', function () {
         .pipe(gulp.dest(browserPath + '/js'));
 });
 
+gulp.task('lib-js', function () {
+    return gulp.src([
+        'bower_components/angular/angular.min.js',
+        'bower_components/onsenui/js/onsenui.js',
+        'bower_components/onsenui/js/angular-onsenui.js'
+    ])
+        .pipe(gulp.dest(destPath + '/lib'))
+        .pipe(gulp.dest(browserPath + '/lib'));
+});
+
+
 gulp.task('vendor-js', function () {
-    return gulp.src(bowerFiles())
+    var files = bowerFiles();
+    var allowedFiles = [];
+    var i;
+    for(i = 0; i < files.length; i++) {
+        var file = files[i];
+        if(file.includes("angular.js") === true || file.includes("onsenui.js") === true ) {
+            continue;
+        }
+        allowedFiles.push(file);
+    }
+    return gulp.src(allowedFiles)
         .pipe(concat('vendor.js'))
         .pipe(gulp.dest(destPath + '/js'))
         .pipe(gulp.dest(browserPath + '/js'));

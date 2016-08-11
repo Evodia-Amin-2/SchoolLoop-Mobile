@@ -1,42 +1,64 @@
 .lookup {
     width: 100%;
-    margin: auto;
-}
-
-.lookup-search {
     position: relative;
 }
 
-.lookup-content {
-    border: 1px solid #d0d0d0;
-    height: 155px;
-    border-radius: 4px 4px 4px 4px;
-    padding: 4px;
-    text-align: justify;
-    background: #fff;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
-.lookup-item {
-    padding: 4px;
-    background-color: #fafaff;
-    margin-bottom: 4px;
-    border: 1px solid #d9d9d9;
-}
-
-.lookup-item div {
-    padding: 1px;
-}
-
-.lookup-content .district {
-    color: #777;
-}
-
-.lookup i {
-    color: #0088CC;
-    font-size: 1.7em;
+.lookup-icon-close, .lookup-icon-search {
     position: absolute;
-    right: 4px;
-    top: 4px;
+    color: grey;
+    z-index: 1;
+}
+
+.lookup-icon-close {
+    top: 22px;
+    right: 3px;
+    cursor: pointer;
+}
+
+.lookup-icon-search {
+    top: 21px;
+    left: 3px;
+}
+
+.ion-ios-search {
+    top: 27px;
+}
+
+.ion-ios-close-empty {
+    top: 27px;
+}
+
+.lookup-input input {
+    padding-right: 22px;
+    padding-left: 22px;
+}
+
+.lookup-input .text-input__label {
+    margin-left: 22px;
+}
+.text-input--material__label--active {
+    margin-left: 0px !important;
+}
+
+.lookup-list {
+    position: absolute !important;
+    border: 1px solid #eee !important;
+    z-index: 1;
+    margin: 0;
+    background-color: #f9f9f9;
+    padding: 0;
+    right: 2px;
+    left: 2px;
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    max-height: 255px;
+    bottom: 42px;
+}
+
+.lookup-text {
+    width: 100%;
+}
+
+.lookup-subtext {
+    color: #777;
 }

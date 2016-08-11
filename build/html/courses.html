@@ -1,29 +1,33 @@
-<div ng-controller="CoursesController">
-    <div class="courses" scroller="">
-        <div class="empty-list" ng-show="courses.length == 0">
-            <p translate>No Courses Currently</p>
-        </div>
-        <ul class="list-view">
-            <li class="list-view-item" ng-repeat="item in courses">
-                <div class="item-content clearfix">
-                    <div class="item-row">
-                        <div ng-click="showCourse(item)">
-                            <div class="course-period">{{item.period}}</div>
-                            <div class="course-row">
-                                <div class="item-title">{{item.courseName}}</div>
-                                <div class="item-subtitle">{{item.teacherName}}<span ng-show="hasCoTeacher(item)"><span class="seperator"> - </span>{{item.coTeacherName}}</span></div>
-                            </div>
-                            <div class="course-grades">
-                                <div ng-show="hasGrade(item)">{{item.grade}}</div>
-                                <div ng-show="!hasGrade(item)">&nbsp;</div>
-                                <div ng-show="hasScore(item)">{{item.score}}</div>
-                                <div ng-show="!hasScore(item)">&nbsp;</div>
-                            </div>
-                        </div>
-                    </div>
-                    <list-nav></list-nav>
+<ons-navigator var="courseNavigator">
+    <ons-page ng-controller="CoursesController as courseCtrl">
+        <ons-toolbar>
+            <div class="left">
+                <ons-toolbar-button ng-click="page.openMenu()">
+                    <ons-icon icon="md-menu"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+            <div class="center" translate>Courses</div>
+        </ons-toolbar>
+        <ons-list class="course-view">
+            <ons-list-item class="course-item" modifier="longdivider" tappable ng-repeat="item in courseCtrl.courses"
+                           ng-click="courseNavigator.pushPage('course-detail.html', {animation: 'lift', course: item})">
+                <div class="left">
+                    <div class="course-color" ng-class="courseCtrl.courseColor(item)">&nbsp;</div>
+                    <div class="period">{{item.period}}</div>
                 </div>
-            </li>
-        </ul>
-    </div>
-</div>
+                <div class="center">
+                    <div class="title">{{item.courseName}}</div>
+                    <div class="category">{{item.teacherName}}<span ng-show="courseCtrl.hasCoTeacher(item)"><span class="seperator"> - </span>{{item.coTeacherName}}</span></div>
+                </div>
+                <div class="right">
+                    <div class="course-grades">
+                        <div class="course-grade" ng-show="courseCtrl.hasGrade(item)">{{item.grade}}</div>
+                        <div class="course-grade" ng-show="!courseCtrl.hasGrade(item)">&nbsp;</div>
+                        <div class="course-score" ng-show="courseCtrl.hasScore(item)">{{item.score}}</div>
+                        <div class="course-score" ng-show="!courseCtrl.hasScore(item)">&nbsp;</div>
+                    </div>
+                </div>
+            </ons-list-item>
+        </ons-list>
+    </ons-page>
+</ons-navigator>

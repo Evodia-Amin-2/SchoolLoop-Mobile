@@ -1,0 +1,10 @@
+{
+  "name": "mobileloop",
+  "s3bucket": "schoolloop-hotpush",
+  "s3prefix": "dev/",
+  "s3region": "us-west-2",
+  "ios_identifier": "",
+  "android_identifier": "",
+  "update": "now",
+  "content_url": "https://s3-us-west-2.amazonaws.com/schoolloop-hotpush/dev/"
+}

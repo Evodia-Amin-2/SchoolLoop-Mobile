@@ -1,87 +1,75 @@
-.course-row {
-    font-size: 1.1em;
-    margin-right: 75px;
-    margin-left: 15px;
-    padding-top: 5px;
+.course-view {
+    border-bottom: 1px #eee solid;
 }
 
-.course-period {
-    float: left;
-    font-size: 1.2em;
-    margin-top: 10px;
-}
-
-.course-grades {
-    width: 70px;
-    font-size: 1.1em !important;
-}
-
-.courses .item-row {
-    min-height: 60px !important;
-}
-
-.course-summary {
-    border-bottom: 1px solid #ddd;
-    background: #ececec;
-}
-
-.course-header {
-    float: left;
-    font-size: 1.2em;
-    margin-left: 10px;
-    font-weight: normal;
-}
-
-.course-header > .teacher {
-    margin-top: 3px;
-    font-size: 1.0em;
-}
-
-.course-header > .date {
-    color: #666;
-    font-size: .85em;
-    margin-top: 5px;
-}
-
-.teacher .seperator {
-    padding-left: 5px;
-    padding-right: 5px;
-    color: #999;
-}
-
-.course-summary .grade-info {
-    float: right;
-    font-size: 1.2em;
-    padding: 2px;
-    margin: 1px;
-    margin-right: 5px;
-    text-align: center;
-    min-width: 45px;
-    min-height: 46px;
-    background: #faf6da;
-}
-
-.grade-info .grade {
-    margin: 0 5px;
-}
-
-.grade-info .score {
-    margin: 2px 5px;
-}
-
-.zero {
-    background: #ffb7b3 !important;
+.course-view .list__item__left {
+    padding: 0;
     min-width: 60px;
 }
 
-.grade-hidden {
-    float: right;
-    font-size: 1.2em;
-    text-align: right;
+.course-item .list__item__right {
+    min-width: 70px;
+    padding: 0;
+}
+
+.course-view .list__item {
+    padding: 0;
+}
+
+.course-summary {
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+    margin: 2px -1px;
+    background: #fff;
+}
+
+.course-header {
+    padding: 10px;
+}
+
+.course-grades {
+    margin-top: 12px;
+    margin-left: 10px;
     height: 100%;
-    margin-right: 5px;
-    width: 90px;
-    color: grey;
+    width: 100%;
+    text-align: center;
+}
+
+.course-grade {
+    display: block;
+    font-size: 2.1em;
+    font-weight: bold;
+    color: #666;
+    margin-top: 5px;
+}
+
+.course-detail {
+    padding: 0 10px;
+}
+
+.course-detail-grade {
+    display: block;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #666;
+}
+
+.course-score {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #aaa;
+}
+
+.course-color {
+    position: absolute;
+    width: 8px;
+    top: 0;
+    bottom: 0;
+}
+
+.due-date {
+    font-size: 0.9em;
+    color: #777;
 }
 
 .chart-holder {
@@ -110,113 +98,56 @@
     .flot-chart {
         height: 340px;
     }
-
 }
 
-.progress-report.course-row {
-    font-size: 0.9em;
-    margin-left: 3px;
-    margin-right: 95px;
-}
-
-.progress-report.course-row.grade {
-    margin-right: 150px;
-}
-
-.progress-report .item-subtitle {
-    margin-left: 0;
-}
-
-.progress-report.course-grades {
-    width: 80px;
-    min-height: 55px;
-    font-size: 0.95em !important;
-}
-
-.progress-report.course-grades.grade{
-    width: 50px;
-    right: 95px;
-}
-
-.progress-report.course-grades div {
-    padding: 2px 0;
-}
-
-.progress-report .grade {
-    font-weight: bold;
-    font-size: 0.95em;
-}
-
-.course-scores {
-    position: relative;
-}
-
-.show-course-info {
-    display: inline-block;
-    background-color: #88aacc;
-    border-radius: 22px;
-    margin-left: 5px;
-    width: 22px;
-    height: 22px;
-    padding-top: 2px;
+.grade-info {
+    display: inline-table;
     text-align: center;
-    font-family: monospace;
-    font-size: 17px;
-    color: white;
-    font-weight: bold;
-}
-
-.course-info-holder {
+    float: right;
     margin-top: 10px;
-    margin-bottom: 10px;
-    background-color: white;
+    padding: 0 15px;
 }
 
-.course-info-section {
-    margin-left: 10px;
-    margin-right: 15px;
-    margin-bottom: 10px;
+.teacher {
+    font-size: 1em;
+    color: #333;
 }
 
-.course-info-section h3 {
-    margin-bottom: 5px;
-}
-
-.course-info-section .section-content {
-    padding: 5px;
-}
-
-.course-info-section table {
-    max-width: 400px;
-}
-
-.course-info-section table th {
-    font-weight: normal;
+.teacher .ons-icon {
+    margin-right: 8px;
     color: #666;
 }
 
-.course-info-section table {
-    margin: 5px;
+.grade, .zero {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background: #666;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 2em;
+    line-height: 1.5em;
+    color: white;
+    margin: 0 auto;
 }
 
-.info-percent {
-    text-align: right;
-    min-width: 60px;
-    vertical-align: top;
+.zero, .zero-grade {
+    background-color: #c43E4e;
 }
 
-.grade-name {
-    min-width: 27px;
-    display: inline-block;
+.zero-grade, .zero-grade div {
+    color: white;
 }
 
-.course-assignments {
+.score {
+    margin-top: 2px;
+    font-size: 0.9em;
+    color: #777;
+}
+
+.nav-indicator {
+    margin-left: 4px;
     position: relative;
-}
-
-.course-assignments .spinner-small {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    margin-left: -25px;
+    top: -2px;
+    color: #777;
 }

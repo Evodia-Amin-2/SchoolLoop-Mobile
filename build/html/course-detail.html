@@ -1,0 +1,61 @@
+<ons-page class="card-view" ng-controller="CourseDetailController as courseDetail">
+    <ons-toolbar ng-class="courseDetail.courseColor()">
+        <div class="left"><ons-back-button translate>Back</ons-back-button></div>
+        <div class="center">{{::courseDetail.course.courseName}}</div>
+    </ons-toolbar>
+    <div class="course-summary">
+        <ons-row>
+            <ons-col>
+                <div class="course-header">
+                    <div class="teacher"><ons-icon icon="ion-ios-email" size="32px"></ons-icon>{{courseDetail.progress.teacher.name}}<span ng-show="courseDetail.progress.coTeacher"><span class="seperator"> - </span>{{courseDetail.progress.coTeacher.name}}</span></div>
+                    <div class="category" translate>Last Progress Report:</div>
+                    <div class="category">{{courseDetail.progress.date|date:"MMM d, y" : "UTC"}}</div>
+                </div>
+            </ons-col>
+            <ons-col width="175px">
+                <div class="grade-info" ng-if="courseDetail.loaded && (courseDetail.hasGrade() === true || courseDetail.hasScore() === true)">
+                    <div class="grade" ng-if="courseDetail.hasGrade() === true">{{courseDetail.getGrade()}}</div>
+                    <div class="score" ng-if="courseDetail.hasScore() === true">{{courseDetail.getScore()}}<ons-icon class="nav-indicator" icon="ion-chevron-right" size="12px"></ons-icon></div>
+                </div>
+                <div class="grade-info" ng-if="courseDetail.loaded && (!courseDetail.progress.grades || courseDetail.progress.grades.length === 0)">
+                    <div class="title"><p translate>No Scores</p></div>
+                </div>
+                <div class="grade-info" ng-if="courseDetail.zeros.length > 0">
+                    <div class="zero">{{courseDetail.zeros.length}}</div>
+                    <div class="score" ng-show="courseDetail.zeros.length == 1" translate>Zero<ons-icon class="nav-indicator" icon="ion-chevron-right" size="12px"></ons-icon></div>
+                    <div class="score" ng-show="courseDetail.zeros.length > 1" translate>Zeros<ons-icon class="nav-indicator" icon="ion-chevron-right" size="12px"></ons-icon></div>
+                </div>
+            </ons-col>
+        </ons-row>
+
+        <div class="chart-holder" ng-show="courseDetail.progress.trendScores.length > 0">
+            <flot class="flot-chart" dataset="courseDetail.chartData" options="courseDetail.options" height="100%"></flot>
+        </div>
+    </div>
+    <ons-list>
+        <ons-list-header>
+            Recent Scores
+        </ons-list-header>
+        <div class="card">
+            <ons-list-item class="card-item course-detail" ng-class="{'zero-grade': item.zero}" modifier="longdivider" tappable ng-repeat="item in courseDetail.progress.grades">
+                <div class="center">
+                    <div class="progress-report course-row">
+                        <div class="title">{{item.assignment.title}}</div>
+                        <div class="category">{{item.assignment.categoryName}}</div>
+                        <div class="due-date">
+                            <span translate>Due:</span> {{item.assignment.dueDate|truncate:10|date:medium}}
+                            <span class="seperator" ng-show="hasComment(item)">-</span>
+                            <span class="comment" ng-show="hasComment(item)"><span class="icon-comment"></span>{{item.comment}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="course-grades">
+                        <div class="course-detail-grade">{{item.percentScore}}</div>
+                        <div class="course-score">{{item.score}}</div>
+                    </div>
+                </div>
+            </ons-list-item>
+        </div>
+    </ons-list>
+</ons-page>

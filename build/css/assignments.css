@@ -1,128 +1,49 @@
-.assignment-row {
-    margin-right: 75px;
+.course, .title, .category {
+    display: block;
+    width: 100%;
+    padding: 1px 0;
 }
 
-.assignment-points, .course-grades {
-    background: #faf6da;
-    font-size: 1.3em;
-    padding: 6px 2px;
+.course {
+    font-size: 0.7em;
+    color: #777;
+}
+
+.title {
+    font-size: 1.1em;
+}
+
+.category {
+    font-size: 0.8em;
+    color: #777;
+}
+
+.assignment-points {
+    min-width: 60px;
     text-align: center;
-    width: 50px;
-    position: absolute;
-    right: 17px;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
 }
 
-.assignment-points > div {
-    font-size: 0.65em;
+.points-max {
+    font-size: 2em;
     color: #aaa;
 }
 
-
-.assignment-detail {
-    padding: 5px;
-    padding-top: 10px;
+.points-label {
+    color: #ccc;
+    font-size: 0.8em;
+    text-align: center;
+    margin-top: 5px;
+    margin-left: 2px;
 }
 
-.assignment-detail .course {
-    float: left;
-    color: #999;
+.period {
+    width: 100%;
+    font-size: 2em;
+    color: #aaaaaa;
+    text-align: center;
 }
 
-.assignment-detail .teacher {
-    float: left;
-    color: #333;
-}
-
-.assignment-detail .due-date {
-    float: right;
-    color: #999;
-    margin-right: 5px;
-}
-
-.assignment-detail .due-date > span {
-    background: #faf6da;
-    padding: 4px 15px;
-    border-radius: 2px;
-    color: black;
-}
-
-.assignment-detail .due-date > span.today {
-    background: #fec052 !important;
-}
-
-.assignment-title {
-    font-size: 1.4em;
-    font-weight: normal;
-    padding: 5px;
-}
-
-.assignment-score, .assignment-category {
-    color: #999;
-    padding: 1px 3px;
-    font-size: 0.95em;
-}
-
-.assignment-score {
-    color: #666;
-    margin-left: 5px;
-    background: #faf6da;
-}
-
-.assignment-score span {
-    color: #333;
-    font-weight: bold;
-    margin-right: 6px;
-}
-
-.assignment-links, .news-links {
-    margin: 0;
-    line-height: normal;
-    list-style: none outside;
-    padding: 10px;
-    padding-top: 3px;
-}
-
-.assignment-links li, .news-links li {
-    margin: 0;
-    padding: 0;
-    line-height: normal;
-    list-style: none outside;
-    margin-left: 10px;
-    margin-top: 15px;
-}
-
-.assignment-date {
-    padding: 8px;
-    background: #f0f0f0;
-    font-size: 1.3em;
-}
-
-.assignment-date.today {
-    background: #fec152;
-}
-
-.assignment-desc, .loopmail-message {
-    font-size: 1.1em;
-    margin: 5px;
-    min-height: 150px;
-}
-
-.icon-comment {
-    display: inline-block;
-    width: 20px;
-    margin-left: 5px;
-    font-size: 16px;
-    color: #5d8dc5;
-    vertical-align: top;
-}
-
-.comments {
-    display: inline-block;
-}
-
-.comments li {
-    padding: 5px;
+.assignment-item .list__item__right {
+    padding-right: 0;
+    min-width: 70px;
 }

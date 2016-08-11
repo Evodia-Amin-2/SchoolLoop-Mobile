@@ -1,0 +1,48 @@
+.ons-input, ons-input {
+    width: 100%;
+    margin: 20px 0 4px;
+}
+
+page--material .link {
+    color: #009688;
+    cursor: pointer;
+}
+
+.button--quiet {
+    padding: 0px 8px;
+    margin: -3px 0 0 0;
+}
+
+.button--material--flat {
+    padding: 0px 4px;
+    margin: -2px 0 0 0;
+}
+
+.button {
+    min-width: 120px;
+}
+
+.list__item:first-child {
+    margin-top: -1px !important;
+}
+
+.tab-bar--material {
+    background-color: transparent;
+}
+
+:checked + .tab-bar--material__button {
+    background-color: transparent;
+    color: #009688;
+}
+
+.tab-bar--material__button {
+    color: #999;
+}
+
+.tab-bar {
+    height: 59px;
+}
+
+.tab-bar__content {
+    bottom: 59px;
+}

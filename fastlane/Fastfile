@@ -51,6 +51,19 @@ platform :ios do
     )
   end
 
+  desc "Build Dev Loop"
+  lane :dev do
+    build_app(
+      app_identifier: "com.schoolloop.mobileloop.dev",
+      app_name: "Dev Loop",
+      type: "adhoc",
+      release_path: "release/dev",
+      project_name:"MobileLoop",
+      configuration:"Release",
+      scheme:"MobileLoop"
+    )
+  end
+
   ######################### PRIVATE LANES #########################
   private_lane :build_app do |options|
 

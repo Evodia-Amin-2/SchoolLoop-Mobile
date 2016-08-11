@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('app.services')
-        .factory('NotificationService', ['$rootScope', '$state', 'DataService', 'StorageService', 'DataType', 'config', 'gettextCatalog', NotificationService])
+        .factory('NotificationService', ['$rootScope', '$location', 'DataService', 'StorageService', 'DataType', 'config', 'gettextCatalog', NotificationService])
     ;
 
-    function NotificationService($rootScope, $state, dataService, storageService, DataType, config, gettextCatalog) {
+    function NotificationService($rootScope, $location, dataService, storageService, DataType, config, gettextCatalog) {
         var notificationData;
         var pushNotification;
 
@@ -27,7 +27,7 @@
 
                 if(storageService.isLoggedIn() === false) {
                     notificationData = data;
-                    $state.go('login');
+                    $location.path('/login');
                     return;
                 }
 
@@ -116,7 +116,7 @@
             var payload = data.payload;
             dataService.update().then(
                 function() {
-                    $state.go("main.tabs.loopmail-detail", {loopmailId: payload.messageid});
+                    $location.path("main.tabs.loopmail-detail", {loopmailId: payload.messageid});
                 }
             );
         });
@@ -137,7 +137,7 @@
                 if(course.periodID === payload.periodid) {
                     dataService.clearProgressReport();
                     dataService.setCourseTitle(course.period + " - " + course.courseName);
-                    $state.go("main.tabs.courses-detail", {periodID: course.periodID});
+                    $location.path("main.tabs.courses-detail", {periodID: course.periodID});
                 }
             }
         }
@@ -170,7 +170,7 @@
             var payload = data.payload;
             dataService.refresh(DataType.ASSIGNMENT).then(
                 function() {
-                    $state.go("main.tabs.assignments-detail", {assignmentId: payload.assignmentid});
+                    $location.path("main.tabs.assignments-detail", {assignmentId: payload.assignmentid});
                 }
             );
         }

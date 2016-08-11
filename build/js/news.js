@@ -2,55 +2,51 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('NewsController', ['$scope', '$state', 'DataService', 'DataType', 'NavbarService', 'StorageService', NewsController])
-        .controller('NewsDetailController', ['$rootScope', '$scope', '$window', '$stateParams', '$sce', '$filter', 'StorageService',
-            'DataService', 'DataType', 'NavbarService', NewsDetailController])
+        .controller('NewsController', ['$scope', '$location', 'DataService', 'DataType', 'StorageService', NewsController])
+        .controller('NewsDetailController', ['$scope', '$window', '$sce', '$filter', 'StorageService',
+            'DataService', 'DataType', NewsDetailController])
     ;
 
-    function NewsController($scope, $state, dataService, DataType, navbarService, storageService) {
+    function NewsController($scope, $location, dataService, DataType, storageService) {
+        var newsCtrl = this;
 
         navigator.analytics.sendAppView('News');
 
-        $scope.news = dataService.list(DataType.NEWS);
+        newsCtrl.news = dataService.list(DataType.NEWS);
 
-        $scope.parentScope = $scope;
-
-        navbarService.reset();
-
-        $scope.pullRefresh = function() {
+        newsCtrl.load = function($done) {
             return dataService.refresh(DataType.NEWS).then(function(result) {
-                $scope.news = result;
+                newsCtrl.news = result;
                 storageService.setNews(result);
-                return result;
-            }, function(error) {
-                return error;
+                $done();
+            }, function() {
+                $done();
             });
         };
 
-        $scope.isNew = function(item) {
+        newsCtrl.isNew = function(item) {
             return item.isNew === true;
         };
 
-        $scope.showNews = function(newsItem) {
-            $state.go("main.tabs.news-detail", {newsId: newsItem.iD});
+        newsCtrl.showNews = function(newsItem) {
+            $location.path("main.tabs.news-detail", {newsId: newsItem.iD});
         };
 
     }
 
-    function NewsDetailController($rootScope, $scope, $window, $stateParams, $sce, $filter, storageService, dataService, DataType, navbarService) {
-        var newsId = $stateParams.newsId;
+    function NewsDetailController($scope, $window, $sce, $filter, storageService, dataService, DataType) {
+        var newsDetail = this;
+
+        newsDetail.newsItem = $scope.newsNavigator.topPage.pushedOptions.newsItem;
+
+        var newsId = newsDetail.newsItem.newsId;
         var news = dataService.list(DataType.NEWS);
 
         var newsItem = _.findWhere(news, {iD: newsId});
         $scope.newsItem = newsItem;
         $scope.trustedDescription = "";
 
-        navbarService.reset();
-        navbarService.setBackEnabled(true);
-
         if(newsItem) {
-            navbarService.setTitle(newsItem.title);
-
             storageService.setVisited(newsItem);
 
             if(newsItem.description) {

@@ -23,7 +23,6 @@
                             deferred.resolve(response.data);
                         },
                         function(response) {
-                            console.log("Loading schools failed: " + response.data);
                             deferred.reject(response);
                         }
                     );

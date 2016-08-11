@@ -2,23 +2,18 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('CoursesController', ['$scope', '$state', 'DataService', 'DataType', 'StorageService', 'StatusService', 'NavbarService', 'LoopmailService', CoursesController])
-        .controller('CourseDetailController', ['$rootScope', '$scope', '$window', '$timeout', '$filter', '$state', '$stateParams',
-            'DataService', 'StatusService', 'NavbarService', 'LoopmailService', 'gettextCatalog', CourseDetailController])
+        .controller('CoursesController', ['$scope', '$location', 'DataService', 'DataType', 'StatusService', 'LoopmailService', CoursesController])
+        .controller('CourseDetailController', ['$scope', '$timeout', 'DataService', 'StatusService', CourseDetailController])
     ;
 
-    function CoursesController($scope, $state, dataService, DataType, storageService, statusService, navbarService, loopmailService) {
+    function CoursesController($scope, $location, dataService, DataType, statusService, loopmailService) {
+        var courseCtrl = this;
 
         navigator.analytics.sendAppView('Courses');
 
-        $scope.courses = dataService.list(DataType.COURSE);
+        courseCtrl.courses = dataService.list(DataType.COURSE);
 
-        $scope.parentScope = $scope;
-
-        navbarService.reset();
-        navbarService.setMailEnabled(true);
-
-        $scope.pullRefresh = function() {
+        courseCtrl.pullRefresh = function() {
             return dataService.refresh(DataType.COURSE).then(function(result) {
                 $scope.courses = result;
                 return result;
@@ -27,92 +22,84 @@
             });
         };
 
-        $scope.hasGrade = function(course) {
+        courseCtrl.hasGrade = function(course) {
             return !(course.grade === 'null' || course.grade === 'hidden');
         };
 
-        $scope.hasScore = function(course) {
+        courseCtrl.hasScore = function(course) {
             return !(course.score === 'null' || course.score === 'hidden');
         };
 
-        $scope.showCourse = function(course) {
+        courseCtrl.showCourse = function(course) {
             statusService.showLoading();
             dataService.setCourseTitle(course.period + " - " + course.courseName);
-            $state.go("main.tabs.courses-detail", {periodID: course.periodID});
+            $location.path("main.tabs.courses-detail", {periodID: course.periodID});
         };
 
-        $scope.hasCoTeacher = function(item) {
-            return _.isUndefined(item.coTeacherName) === false && item.coTeacherName !== 'null';
+        courseCtrl.hasCoTeacher = function(item) {
+            return _.isUndefined(item.coTeacherName) === false && item.coTeacherName !== null;
+        };
+
+        courseCtrl.courseColor = function(item) {
+            var period = item.period;
+            return "period-" + period;
         };
 
         $scope.$on("menu.loopmail", function() {
             loopmailService.setRecipients(undefined);
-            $state.go("main.compose");
+            $location.path("main.compose");
         });
     }
 
-    function CourseDetailController($rootScope, $scope, $window, $timeout, $filter, $state, $stateParams,
-                                    dataService, statusService, navbarService, loopmailService, gettextCatalog) {
-        var periodID;
+    function CourseDetailController($scope, $timeout, dataService, statusService) {
+        var courseDetail = this;
 
-        $scope.loaded = false;
-        $scope.assignmentsLoaded = false;
-        $scope.progress = {};
-        $scope.assignments = [];
-        $scope.zeros = [];
-        $scope.courseInfo = false;
+        courseDetail.course = $scope.courseNavigator.topPage.pushedOptions.course;
 
-        $scope.zeroCollapse = true;
-        $scope.assignCollapse = true;
-        $scope.scoresCollapse = false;
-        $scope.chartHeight = "100%";
-        if(isAndroid2() === true) {
-            $scope.chartHeight = "180px";
-        }
+        courseDetail.loaded = false;
+        courseDetail.assignmentsLoaded = false;
+        courseDetail.progress = {};
+        courseDetail.assignments = [];
+        courseDetail.zeros = [];
+        courseDetail.courseInfo = false;
 
-        navbarService.reset();
-        navbarService.setMailEnabled(true);
-        navbarService.setBackEnabled(true);
+        courseDetail.hasScore = function() {
+            return _.isUndefined(courseDetail.progress.score) === false && courseDetail.progress.score !== "null";
+        };
 
-        var courseTitle = dataService.getCourseTitle();
-        navbarService.setTitle(courseTitle);
+        courseDetail.hasGrade = function() {
+            return _.isUndefined(courseDetail.progress.grade) === false && courseDetail.progress.grade !== "null";
+        };
 
-        $scope.$on('notify.assignment grade update', function(event, data) {
-            var payload = data.payload;
-            loadProgressReport(payload.periodid);
-        });
+        courseDetail.getScore = function() {
+            return roundWithPrecision(courseDetail.progress.score * 100, courseDetail.progress.precision) + "%";
+        };
 
-        $scope.$on('notify.letter grade update', function(event, data) {
-            var payload = data.payload;
-            loadProgressReport(payload.periodid);
-        });
+        courseDetail.getGrade = function() {
+            return courseDetail.progress.grade;
+        };
 
-        loadProgressReport($stateParams.periodID);
+        courseDetail.courseColor = function() {
+            return "period-" + courseDetail.course.period;
+        };
 
-        function loadProgressReport(id) {
-            periodID = id;
+        loadProgressReport(courseDetail.course.periodID);
 
+        function loadProgressReport(periodID) {
             dataService.getProgressReport(periodID).then(function(response) {
-
-                $scope.loaded = true;
+                courseDetail.loaded = true;
                 statusService.hideWait(500);
 
-                $scope.progress = response[0];
-                if($scope.progress.hasScore === 'false') {
-                    $scope.progress.grades = [];
-                    navbarService.setMailEnabled(false);
-                    $timeout($scope.toggleAssign);
-                    return;
-                }
+                courseDetail.progress = response[0];
 
-                $scope.progress.grades = _.sortBy($scope.progress.grades, function(o) { return o.assignment.dueDate; }).reverse();
+                courseDetail.progress.grades = _.sortBy(courseDetail.progress.grades, function(o) { return o.assignment.dueDate; }).reverse();
 
                 var total = 0;
-                for (var i = 0, len = $scope.progress.grades.length; i < len; i++) {
-                    var grade = $scope.progress.grades[i];
-                    if (grade.zero === "true") {
+                for (var i = 0, len = courseDetail.progress.grades.length; i < len; i++) {
+                    var grade = courseDetail.progress.grades[i];
+                    if (grade.zero === "true" || grade.zero === true) {
                         total += 1;
-                        $scope.zeros.push(grade);
+                        courseDetail.zeros.push(grade);
                     }
                 }
 
@@ -121,9 +108,9 @@
                 function loadChart() {
                     var min = 100;
                     var max = 0;
-                    $scope.chartData = [];
+                    courseDetail.chartData = [];
                     var series = [];
-                    var scores = $scope.progress.trendScores;
+                    var scores = courseDetail.progress.trendScores;
                     var minTime = Number.MAX_VALUE;
                     var maxTime = 0;
                     if (_.isUndefined(scores) === false) {
@@ -151,12 +138,12 @@
                         max = (max < 100 ? 100 : max);
                         min -= 5;
                     } else {
-                        series.push([$scope.progress.date, 0]);
+                        series.push([courseDetail.progress.date, 0]);
                         min = 0;
                         max = 100;
                     }
 
-                    $scope.chartData.push(series);
+                    courseDetail.chartData.push(series);
 
                     var ONE_DAY = (1000 * 60 * 60 * 24);
                     var ONE_WEEK = ONE_DAY * 7;
@@ -178,14 +165,18 @@
                         tickType = "day";
                     }
 
-                    $scope.options = {
+                    var periodColors = ["#0084b1", "#159501", "#673AB7", "#9C27B0", "#EAB102",
+                        "#B96113", "#99CEE0", "#A1D59A", "#C2B0E2", "#D7A9DF"];
+
+
+                    courseDetail.options = {
                         lines: {
                             show: true
                         },
                         series: {
-                            lines: { show: true, fill: 0.2, fillColor: false, zero: false }
+                            lines: { show: true, fill: 0.7, fillColor: false, zero: false, lineWidth: 5 }
                         },
-                        colors: ["#6197CD"],
+                        colors: [periodColors[(courseDetail.course.period - 1) % 10]],
                         xaxis: {
                             mode: "time",
                             minTickSize: [tickSize, tickType],
@@ -201,199 +192,12 @@
                             borderColor: {bottom: "#333333", top: "#d9d9d9", right: "#d9d9d9", left: "#333333"}
                         }
                     };
-
-                    $rootScope.$broadcast("scroll.refresh");
                 }
 
             });
 
         }
 
-        $scope.calcPercent = function (item) {
-
-            if($scope.isExtraCredit(item)) {
-                return "";
-            }
-            if(item.score === '') {
-                return 'null';
-            }
-            if (isNaN(item.score)) {
-                var defs = $scope.progress.gradeDefinitions;
-                for (var i = 0, len = defs.length; i < len; i++) {
-                    var def = defs[i];
-                    if (def.key.startsWith(item.score)) {
-                        return def.value;
-                    }
-                }
-            } else {
-                if (item.assignment.maxPoints > 0) {
-                    return $filter('percent')((item.score / item.assignment.maxPoints), 2);
-                }
-            }
-            return "-";
-        };
-
-        $scope.parentScope = $scope;
-
-        $scope.showAssignment = function (assignment) {
-            $state.go("main.tabs.assignments-detail", {assignmentId: assignment.iD});
-        };
-
-        $scope.showGradedAssignment = function (grade) {
-            $state.go("main.tabs.assignments-detail", {assignmentId: grade.assignment.systemID, score: grade.score, comment: grade.comment});
-        };
-
-
-        $scope.isExcused = function (item) {
-            return item.score === "E" || item.percentScore === "E";
-        };
-
-        $scope.isZero = function (item) {
-            return item.zero === "true";
-        };
-
-        $scope.isExtraCredit = function (item) {
-            return item.assignment.categoryName === "Extra Credit";
-        };
-
-        $scope.hasScore = function() {
-            return _.isUndefined($scope.progress.score) === false && $scope.progress.score !== "null";
-        };
-
-        $scope.hasGrade = function() {
-            return _.isUndefined($scope.progress.grade) === false && $scope.progress.grade !== "null";
-        };
-
-        $scope.hasAssignmentGrade = function (item) {
-            return _.isUndefined(item.grade) === false && item.grade.length > 0;
-        };
-
-        $scope.getScore = function() {
-            return roundWithPrecision($scope.progress.score * 100, $scope.progress.precision) + "%";
-        };
-
-        $scope.getGrade = function() {
-            return $scope.progress.grade;
-        };
-
-        $scope.isGradeHidden = function () {
-            return ($scope.progress.grade === 'hidden' || $scope.progress.grade === 'Hidden');
-        };
-
-        $scope.showCourseInfo = function(event) {
-            navbarService.reset();
-            navbarService.setTitle(gettextCatalog.getString('Course Info'));
-            navbarService.setMailEnabled(false);
-            navbarService.setEditMode(true);
-            navbarService.setDoneEnabled(true);
-
-            if(_.isUndefined($scope.progress.GradingScale) === false) {
-                var cutoffs = $scope.progress.GradingScale.Cutoffs || [];
-                var mid = Math.ceil(cutoffs.length / 2);
-                $scope.scale = [];
-                for(var i = 0; i < mid; i++) {
-                    var value = cutoffs[i];
-                    var list = [];
-                    list.push({"name": value.Name, "start": value.Start});
-
-                    value = cutoffs[mid + i];
-                    if(value !== undefined) {
-                        list.push({"name": value.Name, "start": value.Start});
-                    } else {
-                        list.push(undefined);
-                    }
-
-                    $scope.scale.push(list);
-                }
-            }
-
-            $scope.definitions = $scope.progress.gradeDefinitions || [];
-            $scope.courseInfo = true;
-            $rootScope.$broadcast("scroll.refresh");
-
-            event.stopPropagation();
-        };
-
-        $scope.infoDone = function() {
-            $scope.courseInfo = false;
-
-            navbarService.reset();
-            navbarService.setMailEnabled(true);
-            var courseTitle = dataService.getCourseTitle();
-            navbarService.setTitle(courseTitle);
-            navbarService.setBackEnabled(true);
-
-            $rootScope.$broadcast("scroll.refresh");
-        };
-
-        $scope.$on("menu.done", function() {
-            $scope.infoDone();
-        });
-
-        $scope.$on("menu.cancel", function() {
-            $scope.infoDone();
-        });
-
-        $scope.hasComment = function (grade) {
-            return _.isUndefined(grade.comment) === false && grade.comment !== "null" && grade.comment.length > 0;
-        };
-
-        $scope.$on('menu.back', function() {
-            if($scope.courseInfo === true) {
-                $scope.infoDone();
-            } else {
-                $window.history.back();
-            }
-        });
-
-        $scope.toggleAssign = function () {
-            $scope.assignCollapse = !$scope.assignCollapse;
-            if($scope.assignCollapse === false && $scope.assignments.length === 0) {
-                $scope.assignmentsLoaded = false;
-                dataService.getAssignmentsByCourse(periodID).then(function(response) {
-                    $scope.assignments = response;
-                    _.sortBy($scope.assignments.reverse(), function(o) { return o.dueDate; });
-                    $scope.assignmentsLoaded = true;
-                });
-            }
-        };
-
-
-        $scope.toggleZero = function () {
-            $scope.zeroCollapse = !$scope.zeroCollapse;
-        };
-
-        $scope.toggleScores = function () {
-            $scope.scoresCollapse = !$scope.scoresCollapse;
-        };
-
-        $scope.swipeLeft = function() {
-            $window.history.back();
-        };
-
-        $scope.swipeRight = function() {
-            $window.history.back();
-        };
-
-        $scope.$on("menu.loopmail", function() {
-            var teacher = $scope.progress.teacher;
-            var coTeacher = $scope.progress.coTeacher;
-            var recipients = [];
-            recipients.push({name: teacher.name, id: teacher.systemID});
-            if(_.isUndefined(coTeacher) === false) {
-                recipients.push({name: coTeacher.name, id: coTeacher.systemID});
-            }
-            loopmailService.setRecipients(recipients);
-            $state.go("main.compose");
-        });
-    }
-
-    function isAndroid2() {
-        var isAndroid = device.platform.toLowerCase() === "android";
-        if(isAndroid === false) {
-            return false;
-        }
-        return device.version.startsWith("2");
     }
 
     function roundWithPrecision(x, p) {

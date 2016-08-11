@@ -1,0 +1,19 @@
+.news-title {
+    font-size: 1em;
+    width: 100%;
+}
+
+.news-date {
+    font-size: 0.9em;
+    width: 100%;
+    color: #777;
+}
+
+.new {
+    font-weight: bold !important;
+}
+
+.news-item .left {
+    min-width: 45px;
+    padding: 10px 0;
+}

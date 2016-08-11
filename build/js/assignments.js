@@ -2,24 +2,25 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('AssignmentsController', ['$rootScope', '$scope', '$state', '$timeout', 'NavbarService', 'LoopmailService', 'DataService', 'DataType', 'gettextCatalog', AssignmentsController])
-        .controller('AssignmentDetailController', ['$scope', '$window', '$state', '$stateParams', '$sce', '$filter', 'StorageService',
-                                                    'StatusService', 'LoopmailService', 'DataService', 'DataType', 'NavbarService', AssignmentDetailController])
+        .controller('AssignmentsController', ['$rootScope', '$scope', '$location', '$sce', '$timeout', 'LoopmailService',
+                        'DataService', 'DataType', 'gettextCatalog', AssignmentsController])
+        .controller('AssignmentDetailController', ['$scope', '$window', '$location', '$routeParams', '$sce', '$filter', 'StorageService',
+                        'StatusService', 'LoopmailService', 'DataService', 'DataType', AssignmentDetailController])
+        .filter('period', [PeriodFilter])
     ;
 
-    function AssignmentsController($rootScope, $scope, $state, $timeout, navbarService, loopmailService, dataService, DataType, gettextCatalog) {
+    function AssignmentsController($rootScope, $scope, $location, $sce, $timeout, loopmailService, dataService, DataType, gettextCatalog) {
+        var assCtrl = this;
 
         navigator.analytics.sendAppView('Assignments');
 
         var assignments = dataService.list(DataType.ASSIGNMENT);
+        if(_.isUndefined(assignments) === true) {
+            $location.path("/start");
+        }
+
         getTimeZone(assignments);
-        $scope.assignments = groupAssignments(assignments, $scope);
-
-        $scope.parentScope = $scope;
-
-        navbarService.reset();
-        navbarService.setMailEnabled(true);
-        navbarService.setTitle(gettextCatalog.getString("Assignments"));
+        assCtrl.assignments = groupAssignments(assignments, $scope);
 
         $scope.pullRefresh = function() {
             return dataService.refresh(DataType.ASSIGNMENT).then(function(result) {
@@ -31,21 +32,30 @@
             });
         };
 
-        $scope.isToday = function (itemDate, timeZone) {
+        assCtrl.isToday = function (itemDate, timeZone) {
             return isToday(itemDate, timeZone);
         };
 
-        $scope.isTomorrow = function (itemDate, timeZone) {
+        assCtrl.isTomorrow = function (itemDate, timeZone) {
             return isTomorrow(itemDate, timeZone);
         };
 
-        $scope.showAssignment = function (assignment) {
-            $state.go("main.tabs.assignments-detail", {assignmentId: assignment.iD});
+        assCtrl.showAssignment = function (assignment) {
+            $location.path("main.tabs.assignments-detail", {assignmentId: assignment.iD});
+        };
+
+        assCtrl.getDescription = function(assignment) {
+            return $sce.trustAsHtml(assignment.description);
+        };
+
+        assCtrl.courseColor = function(assignment) {
+            var period = assignment.courseName.split(" Period ")[1];
+            return "period-" + period;
         };
 
         $scope.$on("menu.loopmail", function() {
             loopmailService.setRecipients(undefined);
-            $state.go("main.compose");
+            $location.path("main.compose");
         });
 
         $timeout(function() {
@@ -61,17 +71,14 @@
 
     }
 
-    function AssignmentDetailController($scope, $window, $state, $stateParams, $sce, $filter, storageService, statusService,
-                                        loopmailService, dataService, DataType, navbarService) {
-        navbarService.reset();
-        navbarService.setBackEnabled(true);
-        navbarService.setMailEnabled(true);
+    function AssignmentDetailController($scope, $window, $location, $routeParams, $sce, $filter, storageService, statusService,
+                                        loopmailService, dataService, DataType) {
 
         var assignments = dataService.list(DataType.ASSIGNMENT);
 
-        $scope.comment = $stateParams.comment;
-        var assignmentId = $stateParams.assignmentId;
-        var score = $stateParams.score;
+        $scope.comment = $routeParams.comment;
+        var assignmentId = $routeParams.assignmentId;
+        var score = $routeParams.score;
         var assignment = _.findWhere(assignments, {iD: assignmentId});
         if(!assignment) {
             statusService.showLoading();
@@ -137,7 +144,7 @@
             recipients.push({name: $scope.assignment.teacherName, id: $scope.assignment.teacherID});
             recipients.push({name: $scope.assignment.coTeacherName, id: $scope.assignment.coTeacherID});
             loopmailService.setRecipients(recipients);
-            $state.go("main.compose");
+            $location.path("/main.compose");
         });
 
         function setAssignment(assignment) {
@@ -145,7 +152,6 @@
             $scope.trustedDescription = "";
 
             if(assignment) {
-                navbarService.setTitle(assignment.title);
 
                 if(assignment.description) {
                     var description = $filter('replaceUrlFilter')(assignment.description);
@@ -195,5 +201,14 @@
             assignments.push(object);
         }
         return assignments;
+    }
+
+    function PeriodFilter() {
+        return function(input) {
+            if(_.isUndefined(input) === false) {
+                return input.split(" Period ")[1];
+            }
+            return input;
+        };
     }
 })();

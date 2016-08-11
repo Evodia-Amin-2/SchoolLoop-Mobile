@@ -1,29 +1,32 @@
-<div ng-controller="LoopMailController">
-    <div class="loopmail" scroller="">
-        <div class="empty-list" ng-show="loopmail && loopmail.length == 0">
-            <p>{{noMailMessage}}</p>
-        </div>
-        <div ng-show="loopmail.length > 0">
-            <ul class="list-view">
-                <li class="list-view-item" ng-repeat="item in loopmail">
-                    <div class="item-content clearfix">
-                        <div class="item-row">
-                            <div class="loopmail-row" ng-class="{outgoing: mailbox < 0}" ng-click="showMessage(item)">
-                                <div class="item-title" ng-class="{new:isNew(item)}">{{item.subject}}</div>
-                                <div class="item-subtitle">{{sender(item)}}</div>
-                                <div class="item-subtitle">{{item.date|date:"MMM d, y hh:mm a"}}</div>
-                            </div>
-                        </div>
-                        <list-nav ng-show="mailbox > 0"></list-nav>
-                        <div class="item-nav" ng-show="mailbox < 0">
-                            <button ng-click="removeOutgoing(item)" class="button button-blue" type="button" translate>Remove</button>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <div ng-show="needsMore" class="spinner-holder">
-                <div ng-show="loading" class="spinner-small"></div>
+<ons-navigator var="loopmailNavigator">
+    <ons-page ng-controller="LoopMailController as mailCtrl">
+        <ons-pull-hook ng-action="mailCtrl.load($done)" var="loader">
+            <span ng-switch="loader.state">
+              <span ng-switch-when="initial" translate><ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon>Pull down to refresh</span>
+              <span ng-switch-when="preaction" translate><ons-icon size="35px" icon="ion-arrow-up-a"></ons-icon>Release to refresh</span>
+              <span ng-switch-when="action" translate><ons-icon size="35px" spin="true" icon="ion-load-d"></ons-icon>Loading data...</span>
+            </span>
+        </ons-pull-hook>
+        <ons-toolbar>
+            <div class="left">
+                <ons-toolbar-button ng-click="page.openMenu()">
+                    <ons-icon icon="md-menu"></ons-icon>
+                </ons-toolbar-button>
             </div>
-        </div>
-    </div>
-</div>
+            <div class="center" translate>LoopMail</div>
+        </ons-toolbar>
+        <ons-list class="loopmail-view">
+            <ons-list-item class="loopmail-item" modifier="longdivider" tappable ng-repeat="item in mailCtrl.loopmail"
+                           ng-click="loopmailNavigator.pushPage('loopmail-detail.html', {animation: 'lift', loopmail: item})">
+                <div class="left">
+                    <ons-icon icon="ion-ios-email" size="32px"></ons-icon>
+                </div>
+                <div class="center">
+                    <div class="loopmail-subject">{{item.subject}}</div>
+                    <div class="loopmail-sender">{{mailCtrl.sender(item)}}</div>
+                    <div class="loopmail-date">{{item.date|date:"MMM d, y hh:mm a"}}</div>
+                </div>
+            </ons-list-item>
+        </ons-list>
+    </ons-page>
+</ons-navigator>

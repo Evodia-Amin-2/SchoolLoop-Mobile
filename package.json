@@ -10,7 +10,7 @@
     "gulp": "^3.9.1",
     "gulp-add-src": "^0.2.0",
     "gulp-angular-gettext": "^2.1.0",
-    "gulp-angular-templatecache": "^1.8.0",
+    "gulp-angular-templatecache": "2.0.0",
     "gulp-cheerio": "^0.6.2",
     "gulp-clean": "^0.3.2",
     "gulp-concat": "^2.6.0",

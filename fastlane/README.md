@@ -21,6 +21,11 @@ Build School Loop
 fastlane ios mirror
 ```
 Build Mirror Loop
+### ios dev
+```
+fastlane ios dev
+```
+Build Dev Loop
 
 ----
 

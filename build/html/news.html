@@ -1,20 +1,28 @@
-<div ng-controller="NewsController">
-    <div class="news" scroller="">
-        <div class="empty-list" ng-show="news.length == 0">
-            <p translate>No News Currently</p>
-        </div>
-        <ul class="list-view">
-            <li class="list-view-item" ng-repeat="item in news">
-                <div class="item-content clearfix">
-                    <div class="item-row">
-                        <div class="news-row" ng-click="showNews(item)">
-                            <div class="item-title" ng-class="{new:isNew(item)}">{{item.title}}</div>
-                            <div class="item-subtitle">{{item.createdDate|date:"MMM d, y"}}<span ng-show="item.authorName != 'null'"> - {{item.authorName|isEmpty:""}}</span></div>
-                        </div>
-                    </div>
-                    <list-nav></list-nav>
+<ons-navigator var="newsNavigator">
+    <ons-page ng-controller="NewsController as newsCtrl">
+        <ons-pull-hook ng-action="newsCtrl.load($done)" var="loader">
+            <span ng-switch="loader.state">
+              <span ng-switch-when="initial" translate><ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon>Pull down to refresh</span>
+              <span ng-switch-when="preaction" translate><ons-icon size="35px" icon="ion-arrow-up-a"></ons-icon>Release to refresh</span>
+              <span ng-switch-when="action" translate><ons-icon size="35px" spin="true" icon="ion-load-d"></ons-icon>Loading data...</span>
+            </span>
+        </ons-pull-hook>
+        <ons-toolbar>
+            <div class="left">
+                <ons-toolbar-button ng-click="page.openMenu()">
+                    <ons-icon icon="md-menu"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+            <div class="center" translate>News</div>
+        </ons-toolbar>
+        <ons-list class="news-view">
+            <ons-list-item class="news-item" modifier="longdivider" tappable ng-repeat="item in newsCtrl.news"
+                           ng-click="newsNavigator.pushPage('news-detail.html', {animation: 'lift', news: item})">
+                <div class="center">
+                    <div class="news-title" ng-class="{new:isNew(item)}">{{item.title}}</div>
+                    <div class="news-date">{{item.createdDate|date:"MMM d, y"}}</div>
                 </div>
-            </li>
-        </ul>
-    </div>
-</div>
+            </ons-list-item>
+        </ons-list>
+    </ons-page>
+</ons-navigator>

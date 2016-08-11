@@ -1,0 +1,10 @@
+{
+  "config": {
+    "id": "dev",
+    "api": "https://api.mirror.schoolloop.com",
+    "version":"{version}",
+    "build":"{build}",
+    "gakey":"UA-45985950-1",
+    "senderId":"497458348283"
+  }
+}

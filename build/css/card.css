@@ -1,0 +1,35 @@
+.card-view .page__background, .card-view .list__header {
+    background-color: #f0f2f4 !important;
+    box-shadow: none !important;
+}
+
+.card-view .list__header {
+    padding-bottom: 0 !important;
+    padding-top: 15px !important;
+}
+
+.card-view .list {
+    border: none;
+}
+
+.card-view .list__header {
+    border: none;
+}
+
+.card {
+    background-color: #fafafa;
+    border-radius: 3px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+    margin: 5px 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+.card-item {
+    padding-left: 0;
+}
+
+.card-item .list__item__left {
+    padding: 0;
+    min-width: 52px;
+}

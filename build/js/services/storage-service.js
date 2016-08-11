@@ -17,15 +17,14 @@
             },
             isLoggedIn: function() {
                 var domain = service.getDefaultDomain();
-                return _.isUndefined(service.getPassword(domain)) === false;
+                return _.isUndefined(domain) === false && _.isUndefined(domain.user.hashedPassword) === false;
             },
             getPassword: function(domain) {
                 var password;
-                if (_.isUndefined(domain) === false && _.isNull(domain) === false && _.isUndefined(domain.encrypted) === false) {
+                if (_.isUndefined(domain) === false && _.isNull(domain) === false) {
                     try {
-                        var data = domain.encrypted;
-                        data = sjcl.json.encode(data);
-                        password = sjcl.decrypt(domain.user.userID, data);
+                        domain.encrypted = undefined;
+                        password = domain.user.hashedPassword;
                     } catch (err) {
                         console.log("Password error: " + err);
                         password = undefined;
@@ -41,8 +40,8 @@
                     domain.user = user;
                 }
                 if (_.isUndefined(domain) === false && _.isNull(domain) === false) {
-                    var data = sjcl.encrypt(domain.user.userID, password);
-                    domain.encrypted = sjcl.json.decode(data);
+                    // var data = sjcl.encrypt(domain.user.userID, password);
+                    // domain.encrypted = sjcl.json.decode(data);
                     saveDomainMap(domainMap);
                 }
             },
@@ -50,8 +49,8 @@
                 var domain = service.getDefaultDomain();
                 if (_.isUndefined(domain) === false && _.isNull(domain) === false) {
                     if(domain.user.userName === username) {
-                        var data = sjcl.encrypt(domain.user.userID, password);
-                        domain.encrypted = sjcl.json.decode(data);
+                        // var data = sjcl.encrypt(domain.user.userID, password);
+                        // domain.encrypted = sjcl.json.decode(data);
                         saveDomainMap(currentMap);
                     } else {
                         // different user - clear user and password
@@ -73,9 +72,9 @@
             getDomain: function(domainName) {
                 var domainMap = loadDomainMap();
                 var domain = domainMap[domainName];
-                if (_.isUndefined(domain) === false && _.isNull(domain) === false) {
-                    domain.password = service.getPassword(domain);
-                }
+                // if (_.isUndefined(domain) === false && _.isNull(domain) === false) {
+                //     domain.password = service.getPassword(domain);
+                // }
                 return domain;
             },
             getDefaultDomain: function() {
@@ -100,15 +99,19 @@
                 domain.school = school;
                 domain.user = JSON.parse(JSON.stringify(user)); // make a copy
                 delete domain.user.students;
+
+                console.log("******* Overriding hashedPassword ******");
+                domain.user.hashedPassword = password;
+
                 domainMap[school.domainName] = domain;
                 saveDomainMap(domainMap);
-                if(password !== null) {
-                    service.setPassword(school.domainName, user, password);
-                }
             },
             setSchool: function(school) {
                 console.log("setting school: " + JSON.stringify(school));
                 storage.setItem("school", JSON.stringify(school));
+            },
+            getSchool: function() {
+                return JSON.parse(storage.getItem("school"));
             },
             getSelectedSchool: function() {
                 var students = loadStudents();
@@ -171,7 +174,7 @@
                     var currentStudents = loadStudents();
                     for (var i = 0, len1 = students.length; i < len1; i++) {
                         student = students[i];
-                        result = _.findWhere(currentStudents, {studentID: student.studentID});
+                        result = _.find(currentStudents, {studentID: student.studentID});
                         if (_.isUndefined(result) === true) {
                             currentStudents.push(student);
                         }
@@ -181,7 +184,7 @@
                         var valid = [];
                         for (i = 0, len1 = currentStudents.length; i < len1; i++) {
                             student = currentStudents[i];
-                            result = _.findWhere(students, {studentID: student.studentID});
+                            result = _.find(students, {studentID: student.studentID});
                             if (_.isUndefined(result) === false) {
                                 valid.push(student);
                             } else if (student.school.domainName !== school.domainName) {
@@ -255,7 +258,7 @@
             },
             removeOutgoingMail: function(mail) {
                 var outgoingMail = loadOutgoingMail();
-                outgoingMail = _.without(outgoingMail, _.findWhere(outgoingMail, {date: mail.date}));
+                outgoingMail = _.without(outgoingMail, _.find(outgoingMail, {date: mail.date}));
                 setOutgoingMail(outgoingMail);
                 return outgoingMail;
             }

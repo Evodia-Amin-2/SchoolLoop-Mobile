@@ -3,88 +3,162 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('LoginController', ['$rootScope', '$scope', '$timeout', '$window', '$state', 'SchoolService', 'StorageService',
-                    'StatusService', 'LoginService', 'gettextCatalog', LoginController])
+        .controller('LoginController', ['$scope', '$timeout', '$window', '$location', 'StorageService',
+                    'StatusService', 'LoginService', 'SchoolService', 'gettextCatalog', LoginController])
         ;
 
-    function LoginController($rootScope, $scope, $timeout, $window, $state, schoolService, storageService,
-                             statusService, loginService, gettextCatalog) {
-        var login = this;
+    function LoginController($scope, $timeout, $window, $location, storageService,
+                             statusService, loginService, schoolService, gettextCatalog) {
+        var page = this;
 
-        login.email = undefined;
-        login.selectedSchool = [];
-        login.error = undefined;
-        login.year = new Date().getFullYear();
-        login.loaded = false;
+        page.email = undefined;
+        page.selectedSchool = undefined;
+        page.error = undefined;
+        page.year = new Date().getFullYear();
+        page.loaded = false;
+
+        page.placeholder = {};
+        page.placeholder.username = gettextCatalog.getString("User Name");
+        page.placeholder.password = gettextCatalog.getString("Password");
+        page.placeholder.school = gettextCatalog.getString("School Name");
+
+        page.lookup = {};
+        page.lookup.expanded = false;
+        page.lookup.currentPage = 0;
+        page.lookup.itemsPerPage = 20;
+        page.lookup.displaySet = [];
 
         StatusBar.overlaysWebView(true);
         StatusBar.styleDefault();
-        StatusBar.backgroundColorByHexString("#ffffff");
         StatusBar.show();
 
-        function hideStatus() {
-            if(login.loaded === true) {
-                statusService.hideNoWait();
-                navigator.splashscreen.hide();
-            } else {
-                $timeout(hideStatus, 250);
+        schoolService.list().then(
+            function(data) {
+                page.schoolList = data;
             }
+        );
+
+        page.selectSchool = function(school) {
+            if(isSchoolDefined(school) === true) {
+                storageService.setSchool(school);
+                page.selectedSchool = school;
+                page.searchParam = school.name;
+            } else {
+                storageService.clear();
+                page.selectedSchool = undefined;
+                page.searchParam = "";
+                page.username = "";
+                page.password = "";
+                $scope.login_form.submitted = false;
+                $scope.login_form.$dirty = false;
+                $scope.login_form.$pristine = true;
+            }
+            page.lookup.expanded = false;
+        };
+
+        page.expand = function() {
+            clearDisplaySet();
+            loadData();
+            page.lookup.expanded = true;
+        };
+
+        page.clear = function() {
+            page.selectSchool();
+        };
+
+        page.showClear = function() {
+            return _.isUndefined(page.selectedSchool) === false || isSearchDefined() || page.lookup.expanded === true;
+        };
+
+        page.change = function() {
+            console.log("calling change: " + page.searchParam);
+            page.lookup.expanded = (page.searchParam && page.searchParam.length > 0);
+            clearDisplaySet();
+            loadData();
+        };
+
+        function loadData() {
+            if(_.isUndefined(page.schoolList) === true) {
+                return;
+            }
+            var start = page.lookup.currentPage * page.lookup.itemsPerPage;
+            var end = start + page.lookup.itemsPerPage;
+            var results = page.schoolList;
+            var i, len, item, queryRegExp = null;
+            if(isSearchDefined()) {
+                results = [];
+                queryRegExp = RegExp(page.searchParam, 'i'); //'i' -> case insensitive
+                for(i = start, len = page.schoolList.length; i < len; i++) {
+                    item = page.schoolList[i];
+                    if(item.name.match(queryRegExp) || item.districtName.match(queryRegExp)) {
+                        results.push(item);
+                    }
+                    if(results.length > end) {
+                        break;
+                    }
+                }
+            }
+            for(i = start, len = results.length; i < len && i < end; i++) {
+                item = results[i];
+                page.lookup.displaySet.push(item);
+            }
+            // if(page.lookup.displaySet.length === 1) {
+            //     page.selectSchool(page.lookup.displaySet[0]);
+            // }
         }
 
-        $timeout(hideStatus, 100);
+        function isSearchDefined() {
+            return _.isUndefined(page.searchParam) === false && page.searchParam.length > 0;
+        }
+
+        function clearDisplaySet() {
+            page.lookup.displaySet = [];
+            page.lookup.currentPage = 0;
+            //$('.lookup-content').scrollTop(0);
+        }
 
         var school = storageService.getSelectedSchool();
-        if (_.isUndefined(school) === false && _.isNull(school) === false && _.isUndefined(school.domainName) === false) {
-            login.selectedSchool[0] = school;
+        if(isSchoolDefined(school) === true) {
+            page.selectedSchool = school;
+            page.searchParam = school.name;
         }
+
+
+
+
+        page.inputStyle = "text-input text-input--underbar";
+        if(window.ons.platform.isAndroid()) {
+            page.inputStyle += " text-input--material";
+        }
+
+        // StatusBar.overlaysWebView(true);
+        // StatusBar.styleDefault();
+        // StatusBar.show();
+
+        $timeout(function() {
+            statusService.hideNoWait();
+            navigator.splashscreen.hide();
+        }, 750);
 
         var domain = storageService.getDefaultDomain();
         if (_.isUndefined(domain) === false && _.isNull(domain) === false) {
-            login.username = domain.user.userName;
-            login.password = domain.password;
+            page.username = domain.user.userName;
+            page.password = domain.password;
         }
 
-        login.isSchoolSelected = function () {
-            var selected = login.selectedSchool;
-            var result = (_.isUndefined(selected) === false && selected.length > 0 && _.isUndefined(selected[0]) === false);
-            return result;
+        page.isSchoolSelected = function () {
+            return isSchoolDefined(page.selectedSchool) === true;
         };
 
-        login.schoolLookup = {
-            load: function(lookup) {
-                schoolService.list().then(
-                    function(data) {
-                        lookup.data = data;
-                        login.loaded = true;
-                    }
-                );
-            }
+        function isSchoolDefined(school) {
+            return _.isUndefined(school) === false && _.isNull(school) === false && _.isUndefined(school.domainName) === false;
+        }
+
+        page.privacy = function () {
+            page.auth();
         };
 
-        $scope.$watch('login.selectedSchool', function (newValue, oldValue) {
-            if (newValue !== oldValue && newValue) {
-                if (newValue.length > 0) {
-                    var school = newValue[0];
-                    storageService.setSchool(school);
-                } else {
-                    storageService.clear();
-                    login.username = undefined;
-                    login.password = undefined;
-                    $scope.login_form.submitted = false;
-                    $scope.login_form.$dirty = false;
-                    $scope.login_form.$pristine = true;
-                }
-
-                $scope.login_form.username.placeholder = "Login Name";
-                $scope.login_form.password.placeholder = "Password";
-            }
-        }, true);
-
-        login.privacy = function () {
-            login.auth();
-        };
-
-        login.auth = function () {
+        page.login = function () {
             if ($scope.login_form.$valid) {
                 if(cordova.plugins.Keyboard) {
                     cordova.plugins.Keyboard.close();
@@ -93,21 +167,21 @@
                 statusService.showLogin();
 
                 var data;
-                loginService.login(login.selectedSchool[0].domainName, login.username, login.password).then(
+                loginService.login(page.selectedSchool.domainName, page.username, page.password).then(
                     function(message) {
                         data = message.data;
-                        storageService.addDomain(login.selectedSchool[0], data, login.password);
+                        storageService.addDomain(page.selectedSchool, data, page.password);
                         if(data.isUnverifiedParent === 'true') {
-                            storageService.clearPassword(login.selectedSchool[0].domainName);
-                            login.password = undefined;
+                            storageService.clearPassword(page.selectedSchool.domainName);
+                            page.password = undefined;
                             $scope.unverified('Parent');
                         } else {
-                            storageService.addStudents(login.selectedSchool[0], data.students, true);
+                            storageService.addStudents(page.selectedSchool, data.students, true);
                             if (data.acceptedAgreement === 'false') {
                                 var languageCode = storageService.getLanguageCode();
-                                $state.go('agreement-' + languageCode);
+                                $location.path('/agreement-' + languageCode);
                             } else {
-                                $state.go('start');
+                                $location.path('/start');
                             }
                         }
                     },
@@ -118,27 +192,27 @@
                             return;
                         }
                         if (error.status === 401 && error.data.toLowerCase().startsWith("error 3:")) {
-                            data = {"userName": login.username};
-                            storageService.addDomain(login.selectedSchool[0], data, null);
-                            login.unverified('Student');
-                            storageService.clearPassword(login.selectedSchool[0].domainName);
-                            login.password = "";
+                            data = {"userName": page.username};
+                            storageService.addDomain(page.selectedSchool, data, null);
+                            page.unverified('Student');
+                            storageService.clearPassword(page.selectedSchool.domainName);
+                            page.password = "";
                         } else if(error.status === 400 && error.data.toLowerCase().startsWith("invalid version")) {
-                            $state.go('invalid');
+                            $location.path('/invalid');
                             return;
                         } else if(error.status === 400 && error.data.toLowerCase().startsWith("error 6")) {
-                            $state.go('notstarted');
+                            $location.path('/notstarted');
                             return;
                         } else if(error.status === 401 && error.data.toLowerCase().startsWith("error 7")) { // reset
-                            storageService.setSchool(login.selectedSchool[0]);
+                            storageService.setSchool(page.selectedSchool);
                             var user = {};
                             user.userID = "-999999999";  // temporary user id until an actual login occurs
-                            user.userName = login.username;
-                            storageService.setPassword(login.selectedSchool[0].domainName, user, login.password);
-                            $state.go('reset');
+                            user.userName = page.username;
+                            storageService.setPassword(page.selectedSchool.domainName, user, page.password);
+                            $location.path('/reset');
                             return;
                         } else if(error.status === 401 && error.data.toLowerCase().startsWith("error 8")) {
-                            $state.go('noschedule');
+                            $location.path('/noschedule');
                             return;
                         } else {
                             var message;
@@ -156,11 +230,11 @@
                                 window.plugins.toast.showLongBottom(message);
                                 console.log(message);
                             }
-                            storageService.clearPassword(login.selectedSchool[0].domainName);
+                            storageService.clearPassword(page.selectedSchool.domainName);
                             $scope.login_form.submitted = true;
                             $scope.login_form.password.$invalid = true;
                             $scope.login_form.password.placeholder = gettextCatalog.getString("Login Incorrect!");
-                            login.password = "";
+                            page.password = "";
                         }
                     }
                 );
@@ -171,29 +245,29 @@
             }
         };
 
-        login.unverified = function() {
-            $state.go('unverified');
+        page.unverified = function() {
+            $location.path('/unverified');
         };
 
-        login.forgot = function() {
-            $state.go('forgot');
+        page.forgot = function() {
+            $location.path('/forgot');
         };
 
-        login.privacy = function () {
+        page.privacy = function () {
             var code = storageService.getLanguageCode();
             var url = "http://api.schoolloop.com/mobile/app_privacy?force_language=" + code;
             $window.open(url, '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
         };
 
-        login.agreement = function () {
+        page.agreement = function () {
             var code = storageService.getLanguageCode();
             var url = "http://api.schoolloop.com/mobile/app_agreement?force_language=" + code;
             $window.open(url, '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
         };
 
-        login.register = function () {
+        page.register = function () {
             var code = storageService.getLanguageCode();
-            var url = "http://" + login.selectedSchool[0].domainName + "/mobile/app_register?force_language=" + code;
+            var url = "http://" + page.selectedSchool.domainName + "/mobile/app_register?force_language=" + code;
             $window.open(url, '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
         };
 
