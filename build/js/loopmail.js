@@ -15,7 +15,6 @@
         navigator.analytics.sendAppView('LoopMail');
 
         mailCtrl.loading = false;
-        mailCtrl.pageLoaded = false;
         mailCtrl.loopmail = [];
         mailCtrl.mailbox = dataService.getFolderId();
 
@@ -34,25 +33,23 @@
         }
         var page = 1;
 
-        $timeout(function() {
-            mailCtrl.pageLoaded = true;
-        }, 250);
-
         mailCtrl.load = function($done) {
             page = 1;
-            if(dataService.getFolderId() === 1) {
-                return dataService.refresh(DataType.LOOPMAIL).then(function(result) {
-                    mailCtrl.loopmail = result;
-                    $done();
-                }, function(error) {
-                    $done();
-                });
-            } else if(dataService.getFolderId() === 2) {
-                dataService.getLoopmail().then(function(response) {
-                    mailCtrl.loopmail = response;
-                    $done();
-                });
-            }
+            $timeout(function() {
+                if(dataService.getFolderId() === 1) {
+                    return dataService.refresh(DataType.LOOPMAIL).then(function(result) {
+                        mailCtrl.loopmail = result;
+                        $done();
+                    }, function() {
+                        $done();
+                    });
+                } else if(dataService.getFolderId() === 2) {
+                    dataService.getLoopmail().then(function(response) {
+                        mailCtrl.loopmail = response;
+                        $done();
+                    });
+                }
+            }, 1000);
         };
 
         mailCtrl.removeOutgoing = function (message) {

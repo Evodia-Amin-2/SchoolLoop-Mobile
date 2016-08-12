@@ -1,13 +1,13 @@
 <ons-navigator var="loopmailNavigator">
     <ons-page ng-controller="LoopMailController as mailCtrl">
-        <ons-pull-hook ng-action="mailCtrl.load($done)" var="loader">
-            <span ng-switch="loader.state">
+        <ons-pull-hook ng-action="mailCtrl.load($done)" var="lloader">
+            <span ng-switch="lloader.state">
               <span ng-switch-when="initial" translate><ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon>Pull down to refresh</span>
               <span ng-switch-when="preaction" translate><ons-icon size="35px" icon="ion-arrow-up-a"></ons-icon>Release to refresh</span>
               <span ng-switch-when="action" translate><ons-icon size="35px" spin="true" icon="ion-load-d"></ons-icon>Loading data...</span>
             </span>
         </ons-pull-hook>
-        <ons-toolbar>
+        <ons-toolbar class="default-toolbar">
             <div class="left">
                 <ons-toolbar-button ng-click="page.openMenu()">
                     <ons-icon icon="md-menu"></ons-icon>
@@ -17,7 +17,7 @@
         </ons-toolbar>
         <ons-list class="loopmail-view">
             <ons-list-item class="loopmail-item" modifier="longdivider" tappable ng-repeat="item in mailCtrl.loopmail"
-                           ng-click="loopmailNavigator.pushPage('loopmail-detail.html', {animation: 'lift', loopmail: item})">
+                           ng-click="loopmailNavigator.pushPage('loopmail-detail.html', {animation: 'slide', loopmail: item})">
                 <div class="left">
                     <ons-icon icon="ion-ios-email" size="32px"></ons-icon>
                 </div>

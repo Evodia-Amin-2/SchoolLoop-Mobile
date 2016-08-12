@@ -1,13 +1,13 @@
 <ons-navigator var="newsNavigator">
     <ons-page ng-controller="NewsController as newsCtrl">
-        <ons-pull-hook ng-action="newsCtrl.load($done)" var="loader">
-            <span ng-switch="loader.state">
+        <ons-pull-hook ng-action="newsCtrl.load($done)" var="nloader">
+            <span ng-switch="nloader.state">
               <span ng-switch-when="initial" translate><ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon>Pull down to refresh</span>
               <span ng-switch-when="preaction" translate><ons-icon size="35px" icon="ion-arrow-up-a"></ons-icon>Release to refresh</span>
               <span ng-switch-when="action" translate><ons-icon size="35px" spin="true" icon="ion-load-d"></ons-icon>Loading data...</span>
             </span>
         </ons-pull-hook>
-        <ons-toolbar>
+        <ons-toolbar class="default-toolbar">
             <div class="left">
                 <ons-toolbar-button ng-click="page.openMenu()">
                     <ons-icon icon="md-menu"></ons-icon>
@@ -17,7 +17,7 @@
         </ons-toolbar>
         <ons-list class="news-view">
             <ons-list-item class="news-item" modifier="longdivider" tappable ng-repeat="item in newsCtrl.news"
-                           ng-click="newsNavigator.pushPage('news-detail.html', {animation: 'lift', news: item})">
+                           ng-click="newsNavigator.pushPage('news-detail.html', {animation: 'slide', news: item})">
                 <div class="center">
                     <div class="news-title" ng-class="{new:isNew(item)}">{{item.title}}</div>
                     <div class="news-date">{{item.createdDate|date:"MMM d, y"}}</div>

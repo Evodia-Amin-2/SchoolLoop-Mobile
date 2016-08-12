@@ -28,10 +28,6 @@ cordova prepare ios --verbose
 cordova build android --release --verbose
 cd ..
 fastlane ios "$ID"
-cd ./app
-cordova-hcp build
-cordova-hcp deploy
-cd ..
 cp app/platforms/android/build/outputs/apk/android-release.apk tmp/${FILENAME}-${VERSION}-${BUILD}.apk
 mv tmp/MobileLoop.ipa tmp/${FILENAME}-${VERSION}-${BUILD}.ipa
 mv tmp/MobileLoop.app.dSYM.zip tmp/${FILENAME}-${VERSION}-${BUILD}-dSYM.zip

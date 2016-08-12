@@ -46,3 +46,19 @@ page--material .link {
 .tab-bar__content {
     bottom: 59px;
 }
+
+.default-toolbar {
+    background-color: #009688;
+}
+
+.default-toolbar .ons-icon {
+    color: white;
+}
+
+.navigation-bar__title {
+    color: white;
+}
+
+.back-button {
+    color: white !important;
+}

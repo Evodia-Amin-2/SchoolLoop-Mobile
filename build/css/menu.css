@@ -90,3 +90,7 @@
     font-size: 0.9em;
     color: #aaa;
 }
+
+.menu .page__background {
+    background-color: #009688;
+}

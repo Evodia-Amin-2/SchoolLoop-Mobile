@@ -13,14 +13,14 @@
                 </div>
             </ons-col>
             <ons-col width="175px">
-                <div class="grade-info" ng-if="courseDetail.loaded && (courseDetail.hasGrade() === true || courseDetail.hasScore() === true)">
-                    <div class="grade" ng-if="courseDetail.hasGrade() === true">{{courseDetail.getGrade()}}</div>
-                    <div class="score" ng-if="courseDetail.hasScore() === true">{{courseDetail.getScore()}}<ons-icon class="nav-indicator" icon="ion-chevron-right" size="12px"></ons-icon></div>
+                <div class="grade-info" ng-show="courseDetail.hasGrade() === true || courseDetail.hasScore() === true">
+                    <div class="grade" ng-show="courseDetail.hasGrade() === true">{{courseDetail.getGrade()}}</div>
+                    <div class="score" ng-show="courseDetail.hasScore() === true">{{courseDetail.getScore()}}<ons-icon class="nav-indicator" icon="ion-chevron-right" size="12px"></ons-icon></div>
                 </div>
-                <div class="grade-info" ng-if="courseDetail.loaded && (!courseDetail.progress.grades || courseDetail.progress.grades.length === 0)">
+                <div class="grade-info" ng-show="!courseDetail.progress.grades || courseDetail.progress.grades.length === 0">
                     <div class="title"><p translate>No Scores</p></div>
                 </div>
-                <div class="grade-info" ng-if="courseDetail.zeros.length > 0">
+                <div class="grade-info" ng-show="courseDetail.zeros.length > 0">
                     <div class="zero">{{courseDetail.zeros.length}}</div>
                     <div class="score" ng-show="courseDetail.zeros.length == 1" translate>Zero<ons-icon class="nav-indicator" icon="ion-chevron-right" size="12px"></ons-icon></div>
                     <div class="score" ng-show="courseDetail.zeros.length > 1" translate>Zeros<ons-icon class="nav-indicator" icon="ion-chevron-right" size="12px"></ons-icon></div>
@@ -37,7 +37,7 @@
             Recent Scores
         </ons-list-header>
         <div class="card">
-            <ons-list-item class="card-item course-detail" ng-class="{'zero-grade': item.zero}" modifier="longdivider" tappable ng-repeat="item in courseDetail.progress.grades">
+            <ons-list-item class="card-item course-detail" ng-class="{'zero-grade': courseDetail.isZero(item)}" modifier="longdivider" tappable ng-repeat="item in courseDetail.progress.grades">
                 <div class="center">
                     <div class="progress-report course-row">
                         <div class="title">{{item.assignment.title}}</div>

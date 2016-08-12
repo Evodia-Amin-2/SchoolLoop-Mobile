@@ -2,32 +2,34 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('CoursesController', ['$scope', '$location', 'DataService', 'DataType', 'StatusService', 'LoopmailService', CoursesController])
-        .controller('CourseDetailController', ['$scope', '$timeout', 'DataService', 'StatusService', CourseDetailController])
+        .controller('CoursesController', ['$scope', '$timeout', '$location', 'DataService', 'DataType', 'StatusService', 'LoopmailService', 'Utils', CoursesController])
+        .controller('CourseDetailController', ['$scope', '$timeout', 'DataService', 'StatusService', 'Utils', CourseDetailController])
     ;
 
-    function CoursesController($scope, $location, dataService, DataType, statusService, loopmailService) {
+    function CoursesController($scope, $timeout, $location, dataService, DataType, statusService, loopmailService, utils) {
         var courseCtrl = this;
 
         navigator.analytics.sendAppView('Courses');
 
         courseCtrl.courses = dataService.list(DataType.COURSE);
 
-        courseCtrl.pullRefresh = function() {
-            return dataService.refresh(DataType.COURSE).then(function(result) {
-                $scope.courses = result;
-                return result;
-            }, function(error) {
-                return error;
-            });
+        courseCtrl.load = function($done) {
+            $timeout(function() {
+                return dataService.refresh(DataType.COURSE).then(function(result) {
+                    courseCtrl.courses = result;
+                    $done();
+                }, function() {
+                    $done();
+                });
+            }, 1000);
         };
 
         courseCtrl.hasGrade = function(course) {
-            return !(course.grade === 'null' || course.grade === 'hidden');
+            return !(utils.isNull(course.grade) === true || course.grade === 'hidden');
         };
 
         courseCtrl.hasScore = function(course) {
-            return !(course.score === 'null' || course.score === 'hidden');
+            return !(utils.isNull(course.score) === true || course.score === 'hidden');
         };
 
         courseCtrl.showCourse = function(course) {
@@ -37,38 +39,51 @@
         };
 
         courseCtrl.hasCoTeacher = function(item) {
-            return _.isUndefined(item.coTeacherName) === false && item.coTeacherName !== null;
+            return _.isUndefined(item.coTeacherName) === false && utils.isNull(item.coTeacherName) === false;
         };
 
         courseCtrl.courseColor = function(item) {
-            var period = item.period;
-            return "period-" + period;
+            var periodIndex = ((item.period - 1) % 10) + 1;
+            return "period-" + periodIndex;
         };
 
         $scope.$on("menu.loopmail", function() {
             loopmailService.setRecipients(undefined);
             $location.path("main.compose");
         });
+
+        $scope.courseNavigator.on("prepop", function() {
+            StatusBar.overlaysWebView(true);
+            StatusBar.styleLightContent();
+            StatusBar.backgroundColorByHexString("#009688");
+            StatusBar.show();
+        });
     }
 
-    function CourseDetailController($scope, $timeout, dataService, statusService) {
+    function CourseDetailController($scope, $timeout, dataService, statusService, utils) {
         var courseDetail = this;
+
+        var periodColors = ["#0084b1", "#159501", "#673AB7", "#9C27B0", "#EAB102",
+            "#B96113", "#99CEE0", "#A1D59A", "#C2B0E2", "#D7A9DF"];
 
         courseDetail.course = $scope.courseNavigator.topPage.pushedOptions.course;
 
-        courseDetail.loaded = false;
-        courseDetail.assignmentsLoaded = false;
+        StatusBar.styleLightContent();
+        var periodIndex = (courseDetail.course.period - 1) % 10;
+        StatusBar.backgroundColorByHexString(periodColors[periodIndex]);
+        StatusBar.show();
+
         courseDetail.progress = {};
         courseDetail.assignments = [];
         courseDetail.zeros = [];
         courseDetail.courseInfo = false;
 
         courseDetail.hasScore = function() {
-            return _.isUndefined(courseDetail.progress.score) === false && courseDetail.progress.score !== "null";
+            return _.isUndefined(courseDetail.progress.score) === false && utils.isNull(courseDetail.progress.score) === false;
         };
 
         courseDetail.hasGrade = function() {
-            return _.isUndefined(courseDetail.progress.grade) === false && courseDetail.progress.grade !== "null";
+            return _.isUndefined(courseDetail.progress.grade) === false && utils.isNull(courseDetail.progress.grade) === false;
         };
 
         courseDetail.getScore = function() {
@@ -79,15 +94,19 @@
             return courseDetail.progress.grade;
         };
 
+        courseDetail.isZero = function(item) {
+            return utils.isTrue(item.zero);
+        };
+
         courseDetail.courseColor = function() {
-            return "period-" + courseDetail.course.period;
+            var periodIndex = ((courseDetail.course.period - 1) % 10) + 1;
+            return "period-" + periodIndex;
         };
 
         loadProgressReport(courseDetail.course.periodID);
 
-        function loadProgressReport(periodID) {
-            dataService.getProgressReport(periodID).then(function(response) {
-                courseDetail.loaded = true;
+        function loadProgressReport(periodId) {
+            dataService.getProgressReport(periodId).then(function(response) {
                 statusService.hideWait(500);
 
                 courseDetail.progress = response[0];
@@ -97,7 +116,7 @@
                 var total = 0;
                 for (var i = 0, len = courseDetail.progress.grades.length; i < len; i++) {
                     var grade = courseDetail.progress.grades[i];
-                    if (grade.zero === "true" || grade.zero === true) {
+                    if (utils.isTrue(grade.zero) === true) {
                         total += 1;
                         courseDetail.zeros.push(grade);
                     }
@@ -164,10 +183,6 @@
                         tickSize = 15;
                         tickType = "day";
                     }
-
-                    var periodColors = ["#0084b1", "#159501", "#673AB7", "#9C27B0", "#EAB102",
-                        "#B96113", "#99CEE0", "#A1D59A", "#C2B0E2", "#D7A9DF"];
-
 
                     courseDetail.options = {
                         lines: {

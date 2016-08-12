@@ -63,7 +63,7 @@
         main.isTeacher = false;
 
         StatusBar.overlaysWebView(true);
-        StatusBar.styleDefault();
+        StatusBar.styleLightContent();
         StatusBar.backgroundColorByHexString("#009688");
         StatusBar.show();
 

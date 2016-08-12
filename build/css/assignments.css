@@ -47,3 +47,9 @@
     padding-right: 0;
     min-width: 70px;
 }
+
+.status-message {
+    padding: 30px;
+    text-align: center;
+    width: 100%;
+}

@@ -1,5 +1,12 @@
 <ons-page class="card-view" ng-controller="AssignmentsController as assCtrl">
-    <ons-toolbar>
+    <ons-pull-hook ng-action="assCtrl.load($done)" var="aloader">
+            <span ng-switch="aloader.state">
+              <span ng-switch-when="initial" translate><ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon>Pull down to refresh</span>
+              <span ng-switch-when="preaction" translate><ons-icon size="35px" icon="ion-arrow-up-a"></ons-icon>Release to refresh</span>
+              <span ng-switch-when="action" translate><ons-icon size="35px" spin="true" icon="ion-load-d"></ons-icon>Loading data...</span>
+            </span>
+    </ons-pull-hook>
+    <ons-toolbar class="default-toolbar">
         <div class="left">
             <ons-toolbar-button ng-click="page.openMenu()">
                 <ons-icon icon="md-menu"></ons-icon>
@@ -7,6 +14,16 @@
         </div>
         <div class="center" translate>Assignments</div>
     </ons-toolbar>
+
+    <ons-list ng-show="assCtrl.assignments.length === 0">
+        <div class="card">
+            <ons-list-item class="card-item assignment-item" modifier="longdivider">
+                <div class="center">
+                    <div class="status-message" translate>No Assignments Currently</div>
+                </div>
+            </ons-list-item>
+        </div>
+    </ons-list>
     <ons-list ng-repeat="item in assCtrl.assignments">
         <ons-list-header>
             <strong>

@@ -3,13 +3,13 @@
 
     angular.module('mobileloop')
         .controller('AssignmentsController', ['$rootScope', '$scope', '$location', '$sce', '$timeout', 'LoopmailService',
-                        'DataService', 'DataType', 'gettextCatalog', AssignmentsController])
+                        'DataService', 'DataType', AssignmentsController])
         .controller('AssignmentDetailController', ['$scope', '$window', '$location', '$routeParams', '$sce', '$filter', 'StorageService',
                         'StatusService', 'LoopmailService', 'DataService', 'DataType', AssignmentDetailController])
         .filter('period', [PeriodFilter])
     ;
 
-    function AssignmentsController($rootScope, $scope, $location, $sce, $timeout, loopmailService, dataService, DataType, gettextCatalog) {
+    function AssignmentsController($rootScope, $scope, $location, $sce, $timeout, loopmailService, dataService, DataType) {
         var assCtrl = this;
 
         navigator.analytics.sendAppView('Assignments');
@@ -22,14 +22,16 @@
         getTimeZone(assignments);
         assCtrl.assignments = groupAssignments(assignments, $scope);
 
-        $scope.pullRefresh = function() {
-            return dataService.refresh(DataType.ASSIGNMENT).then(function(result) {
-                getTimeZone(result);
-                $scope.assignments = groupAssignments(result, $scope);
-                return result;
-            }, function(error) {
-                return error;
-            });
+        assCtrl.load = function($done) {
+            $timeout(function() {
+                return dataService.refresh(DataType.ASSIGNMENT).then(function(result) {
+                    getTimeZone(result);
+                    assCtrl.assignments = groupAssignments(result, $scope);
+                    $done();
+                }, function() {
+                    $done();
+                });
+            }, 1000);
         };
 
         assCtrl.isToday = function (itemDate, timeZone) {
@@ -50,7 +52,8 @@
 
         assCtrl.courseColor = function(assignment) {
             var period = assignment.courseName.split(" Period ")[1];
-            return "period-" + period;
+            var periodIndex = ((period - 1) % 10) + 1;
+            return "period-" + periodIndex;
         };
 
         $scope.$on("menu.loopmail", function() {

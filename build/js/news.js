@@ -2,12 +2,12 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('NewsController', ['$scope', '$location', 'DataService', 'DataType', 'StorageService', NewsController])
+        .controller('NewsController', ['$scope', '$timeout', '$location', 'DataService', 'DataType', 'StorageService', NewsController])
         .controller('NewsDetailController', ['$scope', '$window', '$sce', '$filter', 'StorageService',
             'DataService', 'DataType', NewsDetailController])
     ;
 
-    function NewsController($scope, $location, dataService, DataType, storageService) {
+    function NewsController($scope, $timeout, $location, dataService, DataType, storageService) {
         var newsCtrl = this;
 
         navigator.analytics.sendAppView('News');
@@ -15,13 +15,15 @@
         newsCtrl.news = dataService.list(DataType.NEWS);
 
         newsCtrl.load = function($done) {
-            return dataService.refresh(DataType.NEWS).then(function(result) {
-                newsCtrl.news = result;
-                storageService.setNews(result);
-                $done();
-            }, function() {
-                $done();
-            });
+            $timeout(function() {
+                return dataService.refresh(DataType.NEWS).then(function(result) {
+                    newsCtrl.news = result;
+                    storageService.setNews(result);
+                    $done();
+                }, function() {
+                    $done();
+                });
+            }, 1000);
         };
 
         newsCtrl.isNew = function(item) {

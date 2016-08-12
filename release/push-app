@@ -1,0 +1,3 @@
+cd ./app
+cordova-hcp build
+cordova-hcp deploy

@@ -1,12 +1,21 @@
-<ons-page>
-    <ons-toolbar>
-        <div class="left">
-            <ons-toolbar-button ng-click="page.openMenu()">
-                <ons-icon icon="md-menu"></ons-icon>
-            </ons-toolbar-button>
-        </div>
-        <div class="center">
-            Calendar
-        </div>
-    </ons-toolbar>
-</ons-page>
+<ons-navigator var="newsNavigator">
+    <ons-page ng-controller="NewsController as newsCtrl">
+        <ons-pull-hook ng-action="newsCtrl.load($done)" var="nloader">
+            <span ng-switch="nloader.state">
+              <span ng-switch-when="initial" translate><ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon>Pull down to refresh</span>
+              <span ng-switch-when="preaction" translate><ons-icon size="35px" icon="ion-arrow-up-a"></ons-icon>Release to refresh</span>
+              <span ng-switch-when="action" translate><ons-icon size="35px" spin="true" icon="ion-load-d"></ons-icon>Loading data...</span>
+            </span>
+        </ons-pull-hook>
+        <ons-toolbar class="default-toolbar">
+            <div class="left">
+                <ons-toolbar-button ng-click="page.openMenu()">
+                    <ons-icon icon="md-menu"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+            <div class="center" translate>Calendar</div>
+        </ons-toolbar>
+        <ons-list class="calendar-view">
+        </ons-list>
+    </ons-page>
+</ons-navigator>
