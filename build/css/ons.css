@@ -62,3 +62,8 @@ page--material .link {
 .back-button {
     color: white !important;
 }
+
+.list--material {
+    border-bottom: 1px solid #eee;
+    margin-bottom: -1px;
+}

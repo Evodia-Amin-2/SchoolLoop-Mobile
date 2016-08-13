@@ -95,6 +95,12 @@
         //     }
         // }
 
+        var tabbar = document.querySelector("ons-tabbar");
+        tabbar.addEventListener("prechange", function() {
+            StatusBar.backgroundColorByHexString("#009688");
+            StatusBar.show();
+        });
+
         $scope.getMailCount = function() {
             var loopmailList = dataService.listNoReload(DataType.LOOPMAIL);
             if(loopmailList) {

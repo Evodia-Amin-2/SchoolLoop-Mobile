@@ -1,56 +1,59 @@
-<ons-page class="card-view" ng-controller="AssignmentsController as assCtrl">
-    <ons-pull-hook ng-action="assCtrl.load($done)" var="aloader">
-            <span ng-switch="aloader.state">
-              <span ng-switch-when="initial" translate><ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon>Pull down to refresh</span>
-              <span ng-switch-when="preaction" translate><ons-icon size="35px" icon="ion-arrow-up-a"></ons-icon>Release to refresh</span>
-              <span ng-switch-when="action" translate><ons-icon size="35px" spin="true" icon="ion-load-d"></ons-icon>Loading data...</span>
-            </span>
-    </ons-pull-hook>
-    <ons-toolbar class="default-toolbar">
-        <div class="left">
-            <ons-toolbar-button ng-click="page.openMenu()">
-                <ons-icon icon="md-menu"></ons-icon>
-            </ons-toolbar-button>
-        </div>
-        <div class="center" translate>Assignments</div>
-    </ons-toolbar>
+<ons-navigator var="assNavigator">
+    <ons-page class="card-view" ng-controller="AssignmentsController as assCtrl">
+        <ons-pull-hook ng-action="assCtrl.load($done)" var="aloader">
+                <span ng-switch="aloader.state">
+                  <span ng-switch-when="initial" translate><ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon>Pull down to refresh</span>
+                  <span ng-switch-when="preaction" translate><ons-icon size="35px" icon="ion-arrow-up-a"></ons-icon>Release to refresh</span>
+                  <span ng-switch-when="action" translate><ons-icon size="35px" spin="true" icon="ion-load-d"></ons-icon>Loading data...</span>
+                </span>
+        </ons-pull-hook>
+        <ons-toolbar class="default-toolbar">
+            <div class="left">
+                <ons-toolbar-button ng-click="page.openMenu()">
+                    <ons-icon icon="md-menu"></ons-icon>
+                </ons-toolbar-button>
+            </div>
+            <div class="center" translate>Assignments</div>
+        </ons-toolbar>
 
-    <ons-list ng-show="assCtrl.assignments.length === 0">
-        <div class="card">
-            <ons-list-item class="card-item assignment-item" modifier="longdivider">
-                <div class="center">
-                    <div class="status-message" translate>No Assignments Currently</div>
-                </div>
-            </ons-list-item>
-        </div>
-    </ons-list>
-    <ons-list ng-repeat="item in assCtrl.assignments">
-        <ons-list-header>
-            <strong>
-                <span ng-show="assCtrl.isToday(item.date, timeZone)" translate>Today</span>
-                <span ng-show="!assCtrl.isToday(item.date, timeZone) && assCtrl.isTomorrow(item.date, timeZone)" translate>Tomorrow</span>
-                <span ng-show="!assCtrl.isToday(item.date, timeZone) && !assCtrl.isTomorrow(item.date, timeZone)">{{item.date | momentTz:"dddd":timeZone}}</span>
-                <span ng-show="assCtrl.showDate()">{{item.date | momentTz:"MMM D, YYYY":timeZone}}</span>
-            </strong>
-        </ons-list-header>
-        <div class="card">
-            <ons-list-item class="card-item assignment-item" modifier="longdivider" tappable ng-repeat="assignment in item.list">
-                <div class="left">
-                    <div class="course-color" ng-class="assCtrl.courseColor(assignment)">&nbsp;</div>
-                    <div class="period">{{assignment.courseName|period}}</div>
-                </div>
-                <div class="center">
-                    <div class="course">{{assignment.courseName}}</div>
-                    <div class="title">{{assignment.title}}</div>
-                    <div class="category">{{assignment.categoryName}}</div>
-                </div>
-                <div class="right">
-                    <div class="assignment-points">
-                        <div class="points-max">{{assignment.maxPoints}}</div>
-                        <div class="points-label" translate>PTS</div>
+        <ons-list ng-show="assCtrl.assignments.length === 0">
+            <div class="card">
+                <ons-list-item class="card-item assignment-item" modifier="longdivider">
+                    <div class="center">
+                        <div class="status-message" translate>No Assignments Currently</div>
                     </div>
-                </div>
-            </ons-list-item>
-        </div>
-    </ons-list>
-</ons-page>
+                </ons-list-item>
+            </div>
+        </ons-list>
+        <ons-list ng-repeat="item in assCtrl.assignments">
+            <ons-list-header>
+                <strong>
+                    <span ng-show="assCtrl.isToday(item.date, timeZone)" translate>Today</span>
+                    <span ng-show="!assCtrl.isToday(item.date, timeZone) && assCtrl.isTomorrow(item.date, timeZone)" translate>Tomorrow</span>
+                    <span ng-show="!assCtrl.isToday(item.date, timeZone) && !assCtrl.isTomorrow(item.date, timeZone)">{{item.date | momentTz:"dddd":timeZone}}</span>
+                    <span ng-show="assCtrl.showDate()">{{item.date | momentTz:"MMM D, YYYY":timeZone}}</span>
+                </strong>
+            </ons-list-header>
+            <div class="card">
+                <ons-list-item class="card-item assignment-item" modifier="longdivider" tappable ng-repeat="item in item.list"
+                               ng-click="assNavigator.pushPage('assignment-detail.html', {animation: 'slide', assignment: item})">
+                    <div class="left">
+                        <div class="course-color" ng-class="assCtrl.courseColor(item)">&nbsp;</div>
+                        <div class="period">{{item.courseName|period}}</div>
+                    </div>
+                    <div class="center">
+                        <div class="course">{{item.courseName}}</div>
+                        <div class="title">{{item.title}}</div>
+                        <div class="category">{{item.categoryName}}</div>
+                    </div>
+                    <div class="right">
+                        <div class="assignment-points">
+                            <div class="points-max">{{item.maxPoints}}</div>
+                            <div class="points-label" translate>PTS</div>
+                        </div>
+                    </div>
+                </ons-list-item>
+            </div>
+        </ons-list>
+    </ons-page>
+</ons-navigator>

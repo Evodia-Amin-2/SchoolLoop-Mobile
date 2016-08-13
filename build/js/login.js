@@ -28,7 +28,6 @@
         page.lookup.itemsPerPage = 20;
         page.lookup.displaySet = [];
 
-        StatusBar.overlaysWebView(true);
         StatusBar.styleDefault();
         StatusBar.show();
 

@@ -19,10 +19,11 @@
             <ons-list-item class="loopmail-item" modifier="longdivider" tappable ng-repeat="item in mailCtrl.loopmail"
                            ng-click="loopmailNavigator.pushPage('loopmail-detail.html', {animation: 'slide', loopmail: item})">
                 <div class="left">
-                    <ons-icon icon="ion-ios-email" size="32px"></ons-icon>
+                    <ons-icon icon="fa-envelope" size="24px" ng-show="mailCtrl.isNew(item)" class="new"></ons-icon>
+                    <ons-icon icon="fa-envelope-o" size="24px" ng-show="!mailCtrl.isNew(item)"></ons-icon>
                 </div>
                 <div class="center">
-                    <div class="loopmail-subject">{{item.subject}}</div>
+                    <div class="loopmail-subject" ng-class="{new:mailCtrl.isNew(item)}">{{item.subject}}</div>
                     <div class="loopmail-sender">{{mailCtrl.sender(item)}}</div>
                     <div class="loopmail-date">{{item.date|date:"MMM d, y hh:mm a"}}</div>
                 </div>

@@ -3,7 +3,7 @@
 
     angular.module('mobileloop')
         .controller('CoursesController', ['$scope', '$timeout', '$location', 'DataService', 'DataType', 'StatusService', 'LoopmailService', 'Utils', CoursesController])
-        .controller('CourseDetailController', ['$scope', '$timeout', 'DataService', 'StatusService', 'Utils', CourseDetailController])
+        .controller('CourseDetailController', ['$scope', '$timeout', 'DataService', 'StatusService', 'Utils', 'CourseColors', CourseDetailController])
     ;
 
     function CoursesController($scope, $timeout, $location, dataService, DataType, statusService, loopmailService, utils) {
@@ -53,24 +53,26 @@
         });
 
         $scope.courseNavigator.on("prepop", function() {
-            StatusBar.overlaysWebView(true);
-            StatusBar.styleLightContent();
             StatusBar.backgroundColorByHexString("#009688");
             StatusBar.show();
         });
+
+        var tabbar = document.querySelector("ons-tabbar");
+        tabbar.addEventListener("prechange", function() {
+            var pages = $scope.courseNavigator.pages;
+            if(pages.length > 1) {
+                $scope.courseNavigator.popPage();
+            }
+        });
     }
 
-    function CourseDetailController($scope, $timeout, dataService, statusService, utils) {
+    function CourseDetailController($scope, $timeout, dataService, statusService, utils, CourseColors) {
         var courseDetail = this;
-
-        var periodColors = ["#0084b1", "#159501", "#673AB7", "#9C27B0", "#EAB102",
-            "#B96113", "#99CEE0", "#A1D59A", "#C2B0E2", "#D7A9DF"];
 
         courseDetail.course = $scope.courseNavigator.topPage.pushedOptions.course;
 
-        StatusBar.styleLightContent();
         var periodIndex = (courseDetail.course.period - 1) % 10;
-        StatusBar.backgroundColorByHexString(periodColors[periodIndex]);
+        StatusBar.backgroundColorByHexString(CourseColors[periodIndex]);
         StatusBar.show();
 
         courseDetail.progress = {};
@@ -191,7 +193,7 @@
                         series: {
                             lines: { show: true, fill: 0.7, fillColor: false, zero: false, lineWidth: 5 }
                         },
-                        colors: [periodColors[(courseDetail.course.period - 1) % 10]],
+                        colors: [CourseColors[(courseDetail.course.period - 1) % 10]],
                         xaxis: {
                             mode: "time",
                             minTickSize: [tickSize, tickType],

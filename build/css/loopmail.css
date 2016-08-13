@@ -17,11 +17,12 @@
 
 .new {
     font-weight: bold !important;
+    color: black !important;
 }
 
-.loopmail-view .ons-icon--ion {
+.loopmail-view .ons-icon {
     height: 100%;
-    color: #777;
+    color: #999;
 }
 
 .loopmail-item .left {

@@ -1,0 +1,37 @@
+<ons-page ng-controller="AssignmentDetailController as assignDetail">
+    <ons-toolbar ng-class="assignDetail.courseColor()">
+        <div class="left"><ons-back-button translate>Back</ons-back-button></div>
+        <div class="center">{{::assignDetail.assignment.categoryName}}</div>
+    </ons-toolbar>
+    <ons-list-item modifier="longdivider" class="assignment-detail-header">
+        <div class="left">
+            <div class="period">{{assignDetail.assignment.courseName|period}}</div>
+        </div>
+        <div class="center">
+            <div class="course">{{assignDetail.assignment.courseName}}</div>
+            <div class="title">{{assignDetail.assignment.title}}</div>
+            <div class="category">{{assignDetail.assignment.categoryName}}</div>
+        </div>
+        <div class="right">
+            <div class="assignment-points">
+                <div class="points-max">{{assignDetail.assignment.maxPoints}}</div>
+                <div class="points-label" translate>PTS</div>
+            </div>
+        </div>
+    </ons-list-item>
+    <div class="assignment-detail">
+        <div class="due-date"><span translate>Due:</span> {{assignDetail.assignment.dueDate| momentTz:"MMM D, YYYY":assignDetail.assignment.timeZone}}</div>
+
+        <div class="assignment-desc" ng-show="assignDetail.assignment.description && assignDetail.assignment.description != 'null'" ng-bind-html="assignDetail.getDescription()"></div>
+        <ul ng-if="assignDetail.assignment.links" class="assignment-links"><span translate>Attachments:</span>
+            <li ng-repeat="link in assignDetail.assignment.links">
+                <a ng-href="" ng-click="openURL(link)">{{link.Title}}</a>
+            </li>
+        </ul>
+
+    </div>
+    <div class="assignment-detail-footer">
+        <div class="teacher"><ons-icon icon="ion-ios-email" size="32px"></ons-icon>{{assignDetail.assignment.teacherName}}<span ng-show="assignDetail.assignment.coTeacherName"><span class="seperator"> - </span>{{assignDetail.assignment.coTeacherName}}</span></div>
+        <div class="category"><span translate>Assigned:</span> {{assignDetail.assignment.assignedDate| momentTz:"MMM D, YYYY":assignDetail.assignment.timeZone}}</div>
+    </div>
+</ons-page>

@@ -2,15 +2,15 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('AssignmentsController', ['$rootScope', '$scope', '$location', '$sce', '$timeout', 'LoopmailService',
+        .controller('AssignmentsController', ['$scope', '$location', '$sce', '$timeout',
                         'DataService', 'DataType', AssignmentsController])
-        .controller('AssignmentDetailController', ['$scope', '$window', '$location', '$routeParams', '$sce', '$filter', 'StorageService',
-                        'StatusService', 'LoopmailService', 'DataService', 'DataType', AssignmentDetailController])
+        .controller('AssignmentDetailController', ['$scope', '$window', '$sce', '$filter', 'StorageService',
+                        'StatusService', 'DataService', 'DataType', 'Utils', 'CourseColors', AssignmentDetailController])
         .filter('period', [PeriodFilter])
     ;
 
-    function AssignmentsController($rootScope, $scope, $location, $sce, $timeout, loopmailService, dataService, DataType) {
-        var assCtrl = this;
+    function AssignmentsController($scope, $location, $sce, $timeout, dataService, DataType) {
+        var assignCtrl = this;
 
         navigator.analytics.sendAppView('Assignments');
 
@@ -20,13 +20,13 @@
         }
 
         getTimeZone(assignments);
-        assCtrl.assignments = groupAssignments(assignments, $scope);
+        assignCtrl.assignments = groupAssignments(assignments, $scope);
 
-        assCtrl.load = function($done) {
+        assignCtrl.load = function($done) {
             $timeout(function() {
                 return dataService.refresh(DataType.ASSIGNMENT).then(function(result) {
                     getTimeZone(result);
-                    assCtrl.assignments = groupAssignments(result, $scope);
+                    assignCtrl.assignments = groupAssignments(result, $scope);
                     $done();
                 }, function() {
                     $done();
@@ -34,36 +34,19 @@
             }, 1000);
         };
 
-        assCtrl.isToday = function (itemDate, timeZone) {
+        assignCtrl.isToday = function (itemDate, timeZone) {
             return isToday(itemDate, timeZone);
         };
 
-        assCtrl.isTomorrow = function (itemDate, timeZone) {
+        assignCtrl.isTomorrow = function (itemDate, timeZone) {
             return isTomorrow(itemDate, timeZone);
         };
 
-        assCtrl.showAssignment = function (assignment) {
-            $location.path("main.tabs.assignments-detail", {assignmentId: assignment.iD});
-        };
-
-        assCtrl.getDescription = function(assignment) {
-            return $sce.trustAsHtml(assignment.description);
-        };
-
-        assCtrl.courseColor = function(assignment) {
+        assignCtrl.courseColor = function(assignment) {
             var period = assignment.courseName.split(" Period ")[1];
             var periodIndex = ((period - 1) % 10) + 1;
             return "period-" + periodIndex;
         };
-
-        $scope.$on("menu.loopmail", function() {
-            loopmailService.setRecipients(undefined);
-            $location.path("main.compose");
-        });
-
-        $timeout(function() {
-            $rootScope.$broadcast("scroll.refresh");
-        }, 500);
 
         function getTimeZone(assignments) {
             if(assignments && assignments.length > 0) {
@@ -72,47 +55,49 @@
             }
         }
 
+        $scope.assNavigator.on("prepop", function() {
+            StatusBar.backgroundColorByHexString("#009688");
+            StatusBar.show();
+        });
+
+        var tabbar = document.querySelector("ons-tabbar");
+        tabbar.addEventListener("prechange", function() {
+            var pages = $scope.assNavigator.pages;
+            if(pages.length > 1) {
+                $scope.assNavigator.popPage();
+            }
+        });
     }
 
-    function AssignmentDetailController($scope, $window, $location, $routeParams, $sce, $filter, storageService, statusService,
-                                        loopmailService, dataService, DataType) {
+    function AssignmentDetailController($scope, $window, $sce, $filter, storageService, statusService,
+                                        dataService, DataType, utils, CourseColors) {
+        var assignDetail = this;
 
-        var assignments = dataService.list(DataType.ASSIGNMENT);
+        assignDetail.assignment = $scope.assNavigator.topPage.pushedOptions.assignment;
 
-        $scope.comment = $routeParams.comment;
-        var assignmentId = $routeParams.assignmentId;
-        var score = $routeParams.score;
-        var assignment = _.findWhere(assignments, {iD: assignmentId});
-        if(!assignment) {
-            statusService.showLoading();
-            dataService.getAssignment(assignmentId, score).then(function(response) {
-                setAssignment(response);
-                statusService.hideWait(500);
-            });
-        } else {
-            setAssignment(assignment);
-        }
+        var courseName = assignDetail.assignment.courseName;
+        var period = $filter('period')(courseName);
+        var periodIndex = (period - 1) % 10;
+        StatusBar.backgroundColorByHexString(CourseColors[periodIndex]);
+        StatusBar.show();
 
-        $scope.calcPercent = function () {
-            if (_.isUndefined($scope.assignment) === true) {
-                return;
-            }
-            var assignment = $scope.assignment;
-            if (assignment.maxPoints > 0) {
-                return $filter('percent')((assignment.score / assignment.maxPoints), 2);
-            }
-            return "-";
+        assignDetail.courseColor = function() {
+            return "period-" + (periodIndex + 1);
         };
 
-        $scope.isToday = function (itemDate, timeZone) {
+        assignDetail.getDescription = function() {
+            return $sce.trustAsHtml(assignDetail.assignment.description);
+        };
+
+        assignDetail.isToday = function (itemDate, timeZone) {
             return isToday(itemDate, timeZone);
         };
 
-        $scope.isTomorrow = function (itemDate, timeZone) {
+        assignDetail.isTomorrow = function (itemDate, timeZone) {
             return isTomorrow(itemDate, timeZone);
         };
 
-        $scope.openURL = function (link) {
+        assignDetail.openURL = function (link) {
             var url = link.URL;
             if(url.toLowerCase().startsWith("http") === false) {
                 var school = storageService.getSelectedSchool().domainName;
@@ -122,48 +107,13 @@
 
         };
 
-        $scope.hasDiscussion = function () {
-            if (_.isUndefined($scope.assignment) === false) {
-                return $scope.assignment.numMessages > 0;
+        assignDetail.hasDiscussion = function () {
+            if (_.isUndefined(assignDetail.assignment) === false) {
+                return assignDetail.assignment.numMessages > 0;
             } else {
                 return false;
             }
         };
-
-        $scope.$on("menu.back", function() {
-            $window.history.back();
-        });
-
-        $scope.swipeLeft = function() {
-            $window.history.back();
-        };
-
-        $scope.swipeRight = function() {
-            $window.history.back();
-        };
-
-        $scope.$on("menu.loopmail", function() {
-            var recipients = [];
-            recipients.push({name: $scope.assignment.teacherName, id: $scope.assignment.teacherID});
-            recipients.push({name: $scope.assignment.coTeacherName, id: $scope.assignment.coTeacherID});
-            loopmailService.setRecipients(recipients);
-            $location.path("/main.compose");
-        });
-
-        function setAssignment(assignment) {
-            $scope.assignment = assignment;
-            $scope.trustedDescription = "";
-
-            if(assignment) {
-
-                if(assignment.description) {
-                    var description = $filter('replaceUrlFilter')(assignment.description);
-                    var school = storageService.getSelectedSchool().domainName;
-                    description = $filter('replaceSrcFilter')(description, school);
-                    $scope.trustedDescription = $sce.trustAsHtml(description);
-                }
-            }
-        }
     }
 
     function isToday(source, timeZone) {

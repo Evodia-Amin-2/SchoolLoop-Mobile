@@ -21,6 +21,7 @@
 .assignment-points {
     min-width: 60px;
     text-align: center;
+    margin-top: 15px;
 }
 
 .points-max {
@@ -52,4 +53,25 @@
     padding: 30px;
     text-align: center;
     width: 100%;
+}
+
+.assignment-detail-header {
+    border-bottom: 1px #eee solid !important;
+}
+
+.assignment-detail-footer {
+    border-top: 1px #eee solid !important;
+    background-color: white;
+    padding: 10px 44px;
+}
+
+.assignment-detail-header .list__item--material__left {
+    padding: 12px 14px 12px 0;
+    min-width: 20px;
+}
+
+.assignment-detail {
+    background-color: white;
+    padding: 10px 44px;
+    padding-bottom: 30px;
 }
