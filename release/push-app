@@ -1,3 +1,4 @@
+#!/bin/bash
 cd ./app
 /usr/local/bin/cordova-hcp build
 /usr/local/bin/cordova-hcp deploy
