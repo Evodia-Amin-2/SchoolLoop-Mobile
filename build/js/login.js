@@ -47,6 +47,12 @@
                 storageService.setSchool(school);
                 page.selectedSchool = school;
                 page.searchParam = school.name;
+
+                var $username = $("#username");
+                var $input = $username.find(":input");
+                $timeout(function() {
+                    $input.focus();
+                });
             } else {
                 storageService.clear();
                 page.selectedSchool = undefined;
@@ -103,9 +109,9 @@
                 item = results[i];
                 page.lookup.displaySet.push(item);
             }
-            // if(page.lookup.displaySet.length === 1) {
-            //     page.selectSchool(page.lookup.displaySet[0]);
-            // }
+            if(page.lookup.displaySet.length === 1) {
+                page.selectSchool(page.lookup.displaySet[0]);
+            }
         }
 
         function isSearchDefined() {
@@ -138,14 +144,6 @@
         if (_.isUndefined(domain) === false && _.isNull(domain) === false) {
             page.username = domain.user.userName;
             page.password = domain.password || "";
-        }
-
-        page.isSchoolSelected = function () {
-            return isSchoolDefined(page.selectedSchool) === true;
-        };
-
-        function isSchoolDefined(school) {
-            return _.isUndefined(school) === false && _.isNull(school) === false && _.isUndefined(school.domainName) === false;
         }
 
         page.privacy = function () {
@@ -233,7 +231,7 @@
                 );
             } else {
                 page.submitted = true;
-                if(_.isUndefined(page.selectedSchool) === true) {
+                if(page.isSchoolSelected(page.selectedSchool) === false) {
                     page.error.school = gettextCatalog.getString("School Required!");
                 }
                 if(page.username.length === 0) {
@@ -248,6 +246,14 @@
         page.hasFieldError = function(field) {
             return (page.submitted === true && field.length === 0);
         };
+
+        page.isSchoolSelected = function () {
+            return isSchoolDefined(page.selectedSchool) === true;
+        };
+
+        function isSchoolDefined(school) {
+            return _.isUndefined(school) === false && _.isNull(school) === false && _.isUndefined(school.domainName) === false;
+        }
 
         function isFormValid() {
             clearErrors();

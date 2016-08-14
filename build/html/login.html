@@ -3,7 +3,7 @@
         <img alt="" src="img/circle-logo.png">
         <div class="lookup">
             <ons-icon class="lookup-icon-search" tappable icon="ion-ios-search, material:ion-android-search" size="20px"></ons-icon>
-            <ons-icon ng-click="page.clear()" ng-show="page.selectedSchool" class="lookup-icon-close" tappable icon="ion-ios-close-empty, material:ion-android-close" size="20px"></ons-icon>
+            <ons-icon ng-click="page.clear()" ng-show="page.isSchoolSelected(page.selectedSchool)" class="lookup-icon-close" tappable icon="ion-ios-close-empty, material:ion-android-close" size="20px"></ons-icon>
 
             <ons-input class="lookup-input" input-top="" id="lookup" modifier="underbar" placeholder="{{page.placeholder.school}}" ng-model="page.searchParam" ng-change="page.change()" autocomplete="off"></ons-input>
             <ons-list class="lookup-list" ng-show="page.lookup.expanded">
@@ -13,9 +13,9 @@
                 </ons-list-item>
             </ons-list>
         </div>
-        <div class="field-error" ng-show="!page.selectedSchool && page.error.school.length > 0">{{page.error.school}}</div>
+        <div class="field-error" ng-show="!page.isSchoolSelected(page.selectedSchool) && page.error.school.length > 0">{{page.error.school}}</div>
 
-        <ons-input name="username" modifier="underbar" placeholder="{{page.placeholder.username}}" float ng-model="page.username"
+        <ons-input id="username" name="username" modifier="underbar" placeholder="{{page.placeholder.username}}" float ng-model="page.username"
                    ng-class="{error: page.hasFieldError(page.username)}"
                    ng-enter="page.login()" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
         </ons-input>
