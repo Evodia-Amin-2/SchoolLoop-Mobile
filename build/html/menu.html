@@ -12,7 +12,9 @@
     </ons-list>
     <div class="menu-content">
         <ons-list>
-            <ons-list-item ng-if="menu.user.isParent === true" ng-repeat="student in menu.students" modifier="nodivider" tappable>
+            <ons-list-item ng-if="menu.user.isParent === true" modifier="nodivider" ng-repeat="student in menu.students"
+                           ng-class="{selected: menu.isSelected(student)}" tappable
+                           ng-click="menu.selectStudent(student)">
                 <div class="left">
                     <ons-icon class="menu-content-icon" icon="ion-android-person" size="20px"></ons-icon>
                 </div>

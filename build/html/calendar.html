@@ -1,6 +1,6 @@
-<ons-navigator var="newsNavigator">
-    <ons-page ng-controller="NewsController as newsCtrl">
-        <ons-pull-hook ng-action="newsCtrl.load($done)" var="nloader">
+<ons-navigator var="calendarNavigator">
+    <ons-page ng-controller="CalendarController as calendarCtrl">
+        <ons-pull-hook ng-action="calendarCtrl.load($done)" var="nloader">
             <span ng-switch="nloader.state">
               <span ng-switch-when="initial" translate><ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon>Pull down to refresh</span>
               <span ng-switch-when="preaction" translate><ons-icon size="35px" icon="ion-arrow-up-a"></ons-icon>Release to refresh</span>

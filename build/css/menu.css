@@ -28,8 +28,13 @@
     overflow: auto;
 }
 
+.menu-content .selected {
+    background-color: #b2dfdb !important;
+}
+
 .menu-content .list {
     border-bottom: none;
+    margin-top: 5px;
 }
 
 .menu-content .list__item {

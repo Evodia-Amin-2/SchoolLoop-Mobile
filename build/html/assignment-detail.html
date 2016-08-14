@@ -8,7 +8,7 @@
             <div class="period">{{assignDetail.assignment.courseName|period}}</div>
         </div>
         <div class="center">
-            <div class="course">{{assignDetail.assignment.courseName}}</div>
+            <div class="course">{{assignDetail.assignment.courseName|course}}</div>
             <div class="title">{{assignDetail.assignment.title}}</div>
             <div class="category">{{assignDetail.assignment.categoryName}}</div>
         </div>
@@ -22,16 +22,25 @@
     <div class="assignment-detail">
         <div class="due-date"><span translate>Due:</span> {{assignDetail.assignment.dueDate| momentTz:"MMM D, YYYY":assignDetail.assignment.timeZone}}</div>
 
-        <div class="assignment-desc" ng-show="assignDetail.assignment.description && assignDetail.assignment.description != 'null'" ng-bind-html="assignDetail.getDescription()"></div>
-        <ul ng-if="assignDetail.assignment.links" class="assignment-links"><span translate>Attachments:</span>
-            <li ng-repeat="link in assignDetail.assignment.links">
-                <a ng-href="" ng-click="openURL(link)">{{link.Title}}</a>
-            </li>
-        </ul>
+        <div class="assignment-desc" ng-bind-html="assignDetail.getDescription()"></div>
 
+        <ons-list class="attachements-view" ng-if="assignDetail.assignment.links">
+            <ons-list-item modifier="longdivider" tappable ng-repeat="link in assignDetail.assignment.links"
+                           ng-click="openURL(link)">
+                <div class="left">
+                    <ons-icon icon="md-attachment" class="ons-icon zmdi zmdi-attachment" size="20px"></ons-icon>
+                </div>
+                <div class="center">
+                    <div class="title">{{link.Title}}</div>
+                </div>
+            </ons-list-item>
+        </ons-list>
     </div>
     <div class="assignment-detail-footer">
-        <div class="teacher"><ons-icon icon="ion-ios-email" size="32px"></ons-icon>{{assignDetail.assignment.teacherName}}<span ng-show="assignDetail.assignment.coTeacherName"><span class="seperator"> - </span>{{assignDetail.assignment.coTeacherName}}</span></div>
+        <div class="teacher" tappable>
+            <ons-ripple color="rgba(156, 156, 156, 0.20)"></ons-ripple>
+            <ons-icon icon="ion-ios-email" size="32px"></ons-icon>{{assignDetail.assignment.teacherName}}<span ng-show="assignDetail.assignment.coTeacherName"> - {{assignDetail.assignment.coTeacherName}}</span>
+        </div>
         <div class="category"><span translate>Assigned:</span> {{assignDetail.assignment.assignedDate| momentTz:"MMM D, YYYY":assignDetail.assignment.timeZone}}</div>
     </div>
 </ons-page>

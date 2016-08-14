@@ -3,8 +3,7 @@
 
     angular.module('mobileloop')
         .controller('NewsController', ['$scope', '$timeout', '$location', 'DataService', 'DataType', 'StorageService', NewsController])
-        .controller('NewsDetailController', ['$scope', '$window', '$sce', '$filter', 'StorageService',
-            'DataService', 'DataType', NewsDetailController])
+        .controller('NewsDetailController', ['$scope', '$window', '$sce', '$filter', 'StorageService', 'Utils', NewsDetailController])
     ;
 
     function NewsController($scope, $timeout, $location, dataService, DataType, storageService) {
@@ -34,31 +33,48 @@
             $location.path("main.tabs.news-detail", {newsId: newsItem.iD});
         };
 
+        $scope.$on("refresh.all", function() {
+            newsCtrl.news = dataService.list(DataType.NEWS);
+        });
+
+        var tabbar = document.querySelector("ons-tabbar");
+        tabbar.addEventListener("prechange", function() {
+            var pages = $scope.newsNavigator.pages;
+            if(pages.length > 1) {
+                $scope.newsNavigator.popPage();
+            }
+        });
+
     }
 
-    function NewsDetailController($scope, $window, $sce, $filter, storageService, dataService, DataType) {
+    function NewsDetailController($scope, $window, $sce, $filter, storageService, utils) {
         var newsDetail = this;
 
-        newsDetail.newsItem = $scope.newsNavigator.topPage.pushedOptions.newsItem;
+        newsDetail.newsItem = $scope.newsNavigator.topPage.pushedOptions.news;
 
-        var newsId = newsDetail.newsItem.newsId;
-        var news = dataService.list(DataType.NEWS);
+        newsDetail.trustedDescription = "";
 
-        var newsItem = _.findWhere(news, {iD: newsId});
-        $scope.newsItem = newsItem;
-        $scope.trustedDescription = "";
+        if(newsDetail.newsItem) {
+            storageService.setVisited(newsDetail.newsItem);
 
-        if(newsItem) {
-            storageService.setVisited(newsItem);
-
-            if(newsItem.description) {
-                var description = $filter('replaceUrlFilter')(newsItem.description);
+            if(newsDetail.newsItem.description) {
+                var description = $filter('replaceUrlFilter')(newsDetail.newsItem.description);
                 var school = storageService.getSelectedSchool().domainName;
                 description = $filter('replaceSrcFilter')(description, school);
-                $scope.trustedDescription = $sce.trustAsHtml(description);
-
+                newsDetail.trustedDescription = $sce.trustAsHtml(description);
             }
         }
+
+        newsDetail.getDescription = function() {
+            if(utils.isNull(newsDetail.newsItem.description) === false) {
+                var description = $filter('replaceUrlFilter')(newsDetail.newsItem.description);
+                var school = storageService.getSelectedSchool().domainName;
+                description = $filter('replaceSrcFilter')(description, school);
+                return $sce.trustAsHtml(description);
+            }
+            return "";
+        };
+
 
         $scope.openURL = function (link) {
             var url = link.URL;
@@ -68,18 +84,6 @@
             }
             $window.open(url, '_system', 'location=no,clearcache=yes,clearsessioncache=yes');
 
-        };
-
-        $scope.$on('menu.back', function() {
-            $window.history.back();
-        });
-
-        $scope.swipeLeft = function() {
-            $window.history.back();
-        };
-
-        $scope.swipeRight = function() {
-            $window.history.back();
         };
     }
 

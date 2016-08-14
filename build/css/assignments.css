@@ -21,7 +21,7 @@
 .assignment-points {
     min-width: 60px;
     text-align: center;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .points-max {
@@ -74,4 +74,21 @@
     background-color: white;
     padding: 10px 44px;
     padding-bottom: 30px;
+}
+
+.attachements-view {
+    margin-top: 20px;
+}
+
+.attachements-view .list__item {
+    background-color: #dbe6f4;
+    margin-top: 10px;
+}
+
+.attachements-view .list__item--material__left {
+    min-width: 36px;
+}
+
+.teacher .ion-ios-email {
+    color: #777 !important;
 }

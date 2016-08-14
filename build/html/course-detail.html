@@ -7,7 +7,10 @@
         <ons-row>
             <ons-col>
                 <div class="course-header">
-                    <div class="teacher"><ons-icon icon="ion-ios-email" size="32px"></ons-icon>{{courseDetail.progress.teacher.name}}<span ng-show="courseDetail.progress.coTeacher"><span class="seperator"> - </span>{{courseDetail.progress.coTeacher.name}}</span></div>
+                    <div class="teacher" tappable>
+                        <ons-ripple color="rgba(156, 156, 156, 0.20)"></ons-ripple>
+                        <ons-icon icon="ion-ios-email" size="32px"></ons-icon>{{courseDetail.progress.teacher.name}}<span ng-show="courseDetail.progress.coTeacher"> - {{courseDetail.progress.coTeacher.name}}</span>
+                    </div>
                     <div class="category" translate>Last Progress Report:</div>
                     <div class="category">{{courseDetail.progress.date|date:"MMM d, y" : "UTC"}}</div>
                 </div>

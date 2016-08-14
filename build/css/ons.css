@@ -67,3 +67,9 @@ page--material .link {
     border-bottom: 1px solid #eee;
     margin-bottom: -1px;
 }
+
+.navigation-bar__title {
+    text-overflow: ellipsis;
+    overflow: hidden !important;
+    white-space: nowrap;
+}

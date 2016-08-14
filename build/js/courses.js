@@ -52,6 +52,10 @@
             $location.path("main.compose");
         });
 
+        $scope.$on("refresh.all", function() {
+            courseCtrl.courses = dataService.list(DataType.COURSE);
+        });
+
         $scope.courseNavigator.on("prepop", function() {
             StatusBar.backgroundColorByHexString("#009688");
             StatusBar.show();
@@ -81,11 +85,15 @@
         courseDetail.courseInfo = false;
 
         courseDetail.hasScore = function() {
-            return _.isUndefined(courseDetail.progress.score) === false && utils.isNull(courseDetail.progress.score) === false;
+            return _.isUndefined(courseDetail.progress.score) === false &&
+                utils.isNull(courseDetail.progress.score) === false &&
+                courseDetail.progress.score.length > 0;
         };
 
         courseDetail.hasGrade = function() {
-            return _.isUndefined(courseDetail.progress.grade) === false && utils.isNull(courseDetail.progress.grade) === false;
+            return _.isUndefined(courseDetail.progress.grade) === false &&
+                utils.isNull(courseDetail.progress.grade) === false &&
+                courseDetail.progress.grade.length > 0;
         };
 
         courseDetail.getScore = function() {

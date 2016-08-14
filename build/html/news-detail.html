@@ -1,0 +1,27 @@
+<ons-page ng-controller="NewsDetailController as newsDetail" class="news-detail">
+    <ons-toolbar class="default-toolbar">
+        <div class="left"><ons-back-button translate>Back</ons-back-button></div>
+        <div class="center">{{::newsDetail.newsItem.title}}</div>
+    </ons-toolbar>
+    <div class="news-content">
+        <div class="news-title">{{newsDetail.newsItem.title}}</div>
+        <div class="news-date">{{newsDetail.newsItem.createdDate|date:"MMM d, y" : "UTC"}}</div>
+
+        <div class="news-desc" ng-bind-html="newsDetail.getDescription()"></div>
+
+        <ons-list class="attachements-view" ng-if="newsDetail.newsItem.links">
+            <ons-list-item modifier="longdivider" tappable ng-repeat="link in newsDetail.newsItem.links"
+                           ng-click="openURL(link)">
+                <div class="left">
+                    <ons-icon icon="md-attachment" class="ons-icon zmdi zmdi-attachment" size="20px"></ons-icon>
+                </div>
+                <div class="center">
+                    <div class="title">{{link.Title}}</div>
+                </div>
+            </ons-list-item>
+        </ons-list>
+    </div>
+    <div class="news-detail-footer">
+        <div class="news-author"><span translate>Posted By:</span> {{newsDetail.newsItem.authorName}}</div>
+    </div>
+</ons-page>

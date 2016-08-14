@@ -48,7 +48,6 @@
             return (domain.user.role !== 'student' && domain.user.role !== 'parent');
         }
 
-        var params = {};
         var service = {
             clearCache: function() {
                 cache = {};
@@ -58,6 +57,7 @@
                 return cache;
             },
             load: function() {
+                var params = undefined;
                 var requests = [];
                 var loopmail = doGet($q, $http, config, DataType.LOOPMAIL, params, defaultParams, storageService, service);
                 var news = doGet($q, $http, config, DataType.NEWS, params, defaultParams, storageService, service);
@@ -91,7 +91,7 @@
                 });
             },
             update: function() {
-
+                var params = undefined;
                 var loopmail = doGet($q, $http, config, DataType.LOOPMAIL, params, defaultParams, storageService, service);
                 var news = doGet($q, $http, config, DataType.NEWS, params, defaultParams, storageService, service);
 
@@ -116,6 +116,7 @@
                 });
             },
             refresh: function(type) {
+                var params = undefined;
                 return doGet($q, $http, config, type, params, defaultParams, storageService, service).then(function(result) {
                     cache[type] = result;
                     return result;

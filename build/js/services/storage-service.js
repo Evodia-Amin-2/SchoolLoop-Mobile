@@ -32,7 +32,7 @@
                 }
                 return password;
             },
-            setPassword: function(domainName, user, password) {
+            setPassword: function(domainName, user/*, password*/) {
                 var domainMap = loadDomainMap();
                 var domain = domainMap[domainName];
                 if(user.userName !== domain.user.userName || _.isUndefined(domain.user.userID) === true) {
@@ -40,17 +40,13 @@
                     domain.user = user;
                 }
                 if (_.isUndefined(domain) === false && _.isNull(domain) === false) {
-                    // var data = sjcl.encrypt(domain.user.userID, password);
-                    // domain.encrypted = sjcl.json.decode(data);
                     saveDomainMap(domainMap);
                 }
             },
-            resetPassword: function(username, password) {
+            resetPassword: function(username/*, password*/) {
                 var domain = service.getDefaultDomain();
                 if (_.isUndefined(domain) === false && _.isNull(domain) === false) {
                     if(domain.user.userName === username) {
-                        // var data = sjcl.encrypt(domain.user.userID, password);
-                        // domain.encrypted = sjcl.json.decode(data);
                         saveDomainMap(currentMap);
                     } else {
                         // different user - clear user and password
@@ -72,9 +68,6 @@
             getDomain: function(domainName) {
                 var domainMap = loadDomainMap();
                 var domain = domainMap[domainName];
-                // if (_.isUndefined(domain) === false && _.isNull(domain) === false) {
-                //     domain.password = service.getPassword(domain);
-                // }
                 return domain;
             },
             getDefaultDomain: function() {

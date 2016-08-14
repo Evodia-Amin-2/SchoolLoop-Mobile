@@ -7,6 +7,7 @@
         .controller('AssignmentDetailController', ['$scope', '$window', '$sce', '$filter', 'StorageService',
                         'StatusService', 'DataService', 'DataType', 'Utils', 'CourseColors', AssignmentDetailController])
         .filter('period', [PeriodFilter])
+        .filter('course', [CourseFilter])
     ;
 
     function AssignmentsController($scope, $location, $sce, $timeout, dataService, DataType) {
@@ -14,13 +15,7 @@
 
         navigator.analytics.sendAppView('Assignments');
 
-        var assignments = dataService.list(DataType.ASSIGNMENT);
-        if(_.isUndefined(assignments) === true) {
-            $location.path("/start");
-        }
-
-        getTimeZone(assignments);
-        assignCtrl.assignments = groupAssignments(assignments, $scope);
+        initialize();
 
         assignCtrl.load = function($done) {
             $timeout(function() {
@@ -55,6 +50,10 @@
             }
         }
 
+        $scope.$on("refresh.all", function() {
+            initialize();
+        });
+
         $scope.assNavigator.on("prepop", function() {
             StatusBar.backgroundColorByHexString("#009688");
             StatusBar.show();
@@ -67,6 +66,16 @@
                 $scope.assNavigator.popPage();
             }
         });
+
+        function initialize() {
+            var assignments = dataService.list(DataType.ASSIGNMENT);
+            if(_.isUndefined(assignments) === true) {
+                $location.path("/start");
+            }
+
+            getTimeZone(assignments);
+            assignCtrl.assignments = groupAssignments(assignments, $scope);
+        }
     }
 
     function AssignmentDetailController($scope, $window, $sce, $filter, storageService, statusService,
@@ -86,7 +95,10 @@
         };
 
         assignDetail.getDescription = function() {
-            return $sce.trustAsHtml(assignDetail.assignment.description);
+            if(utils.isNull(assignDetail.assignment.description) === false) {
+                return $sce.trustAsHtml(assignDetail.assignment.description);
+            }
+            return "";
         };
 
         assignDetail.isToday = function (itemDate, timeZone) {
@@ -160,6 +172,15 @@
         return function(input) {
             if(_.isUndefined(input) === false) {
                 return input.split(" Period ")[1];
+            }
+            return input;
+        };
+    }
+
+    function CourseFilter() {
+        return function(input) {
+            if(_.isUndefined(input) === false) {
+                return input.split(" Period ")[0];
             }
             return input;
         };

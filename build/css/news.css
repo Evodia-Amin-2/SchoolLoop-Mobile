@@ -1,3 +1,7 @@
+.news-detail .page__background {
+    background-color: white !important;
+}
+
 .news-title {
     font-size: 1em;
     width: 100%;
@@ -9,7 +13,27 @@
     color: #777;
 }
 
-.news-item .left {
-    min-width: 45px;
-    padding: 10px 0;
+.news-author {
+    font-size: 0.9em;
+    width: 100%;
+    color: #777;
 }
+
+.news-desc {
+    margin-top: 20px;
+}
+
+.news-content {
+    margin: 20px 30px;
+    background-color: white;
+}
+
+.news-detail-footer {
+    border-top: 1px #eee solid !important;
+    background-color: white;
+    padding: 10px 30px;
+    margin-top: 30px;
+    padding-top: 30px;
+    margin-bottom: 30px;
+}
+
