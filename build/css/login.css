@@ -26,3 +26,17 @@
 .login-footer {
     margin-top: 60px;
 }
+
+.error .text-input--underbar {
+    border-bottom: 1px red solid;
+}
+.error .text-input--material {
+    background-image: linear-gradient(to top, transparent 1px, #ff0000 1px);
+    border-bottom: none !important;
+}
+
+.field-error {
+    font-size: 0.9em;
+    text-align: left;
+    color: red;
+}

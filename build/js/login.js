@@ -11,22 +11,25 @@
                              statusService, loginService, schoolService, gettextCatalog) {
         var page = this;
 
-        page.email = undefined;
         page.selectedSchool = undefined;
-        page.error = undefined;
         page.year = new Date().getFullYear();
-        page.loaded = false;
 
         page.placeholder = {};
         page.placeholder.username = gettextCatalog.getString("User Name");
         page.placeholder.password = gettextCatalog.getString("Password");
         page.placeholder.school = gettextCatalog.getString("School Name");
 
+        page.error = {};
+        clearErrors();
+
         page.lookup = {};
         page.lookup.expanded = false;
         page.lookup.currentPage = 0;
         page.lookup.itemsPerPage = 20;
         page.lookup.displaySet = [];
+
+        page.username = "";
+        page.password = "";
 
         StatusBar.styleDefault();
         StatusBar.show();
@@ -38,6 +41,8 @@
         );
 
         page.selectSchool = function(school) {
+            clearErrors();
+
             if(isSchoolDefined(school) === true) {
                 storageService.setSchool(school);
                 page.selectedSchool = school;
@@ -48,9 +53,7 @@
                 page.searchParam = "";
                 page.username = "";
                 page.password = "";
-                $scope.login_form.submitted = false;
-                $scope.login_form.$dirty = false;
-                $scope.login_form.$pristine = true;
+                page.submitted = false;
             }
             page.lookup.expanded = false;
         };
@@ -70,7 +73,6 @@
         };
 
         page.change = function() {
-            console.log("calling change: " + page.searchParam);
             page.lookup.expanded = (page.searchParam && page.searchParam.length > 0);
             clearDisplaySet();
             loadData();
@@ -122,27 +124,20 @@
             page.searchParam = school.name;
         }
 
-
-
-
         page.inputStyle = "text-input text-input--underbar";
         if(window.ons.platform.isAndroid()) {
             page.inputStyle += " text-input--material";
         }
 
-        // StatusBar.overlaysWebView(true);
-        // StatusBar.styleDefault();
-        // StatusBar.show();
-
         $timeout(function() {
             statusService.hideNoWait();
             navigator.splashscreen.hide();
-        }, 750);
+        }, 500);
 
         var domain = storageService.getDefaultDomain();
         if (_.isUndefined(domain) === false && _.isNull(domain) === false) {
             page.username = domain.user.userName;
-            page.password = domain.password;
+            page.password = domain.password || "";
         }
 
         page.isSchoolSelected = function () {
@@ -158,7 +153,7 @@
         };
 
         page.login = function () {
-            if ($scope.login_form.$valid) {
+            if(isFormValid()) {
                 if(cordova.plugins.Keyboard) {
                     cordova.plugins.Keyboard.close();
                 }
@@ -172,7 +167,7 @@
                         storageService.addDomain(page.selectedSchool, data, page.password);
                         if(data.isUnverifiedParent === 'true') {
                             storageService.clearPassword(page.selectedSchool.domainName);
-                            page.password = undefined;
+                            page.password = "";
                             $scope.unverified('Parent');
                         } else {
                             storageService.addStudents(page.selectedSchool, data.students, true);
@@ -230,19 +225,40 @@
                                 console.log(message);
                             }
                             storageService.clearPassword(page.selectedSchool.domainName);
-                            $scope.login_form.submitted = true;
-                            $scope.login_form.password.$invalid = true;
-                            $scope.login_form.password.placeholder = gettextCatalog.getString("Login Incorrect!");
+                            page.submitted = true;
+                            page.error.password = gettextCatalog.getString("Login Incorrect!");
                             page.password = "";
                         }
                     }
                 );
             } else {
-                $scope.login_form.submitted = true;
-                $scope.login_form.username.placeholder = gettextCatalog.getString("Login Name Required!");
-                $scope.login_form.password.placeholder = gettextCatalog.getString("Password Required!");
+                page.submitted = true;
+                if(_.isUndefined(page.selectedSchool) === true) {
+                    page.error.school = gettextCatalog.getString("School Required!");
+                }
+                if(page.username.length === 0) {
+                    page.error.username = gettextCatalog.getString("Login Name Required!");
+                }
+                if(page.password.length === 0) {
+                    page.error.password = gettextCatalog.getString("Password Required!");
+                }
             }
         };
+
+        page.hasFieldError = function(field) {
+            return (page.submitted === true && field.length === 0);
+        };
+
+        function isFormValid() {
+            clearErrors();
+            return _.isUndefined(page.selectedSchool) === false && page.username.length > 0 && page.password.length > 0;
+        }
+
+        function clearErrors() {
+            page.error.school = "";
+            page.error.username = "";
+            page.error.password = "";
+        }
 
         page.unverified = function() {
             $location.path('/unverified');

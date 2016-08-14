@@ -1,30 +1,34 @@
 <ons-page ng-controller="LoginController as page">
     <div class="login-panel">
         <img alt="" src="img/circle-logo.png">
-        <form name="login_form" novalidate>
-            <div class="lookup">
-                <ons-icon class="lookup-icon-search" tappable icon="ion-ios-search, material:ion-android-search" size="20px"></ons-icon>
-                <ons-icon ng-click="page.clear()" class="lookup-icon-close" tappable icon="ion-ios-close-empty, material:ion-android-close" size="20px"></ons-icon>
+        <div class="lookup">
+            <ons-icon class="lookup-icon-search" tappable icon="ion-ios-search, material:ion-android-search" size="20px"></ons-icon>
+            <ons-icon ng-click="page.clear()" ng-show="page.selectedSchool" class="lookup-icon-close" tappable icon="ion-ios-close-empty, material:ion-android-close" size="20px"></ons-icon>
 
-                <ons-input class="lookup-input" id="lookup" modifier="underbar" placeholder="{{page.placeholder.school}}" ng-model="page.searchParam" ng-change="page.change()" autocomplete="off"></ons-input>
-                <ons-list class="lookup-list" ng-show="page.lookup.expanded">
-                    <ons-list-item ng-repeat="item in page.lookup.displaySet" tappable ng-click="page.selectSchool(item)" modifier="longdivider">
-                        <div class="lookup-text">{{item.name}}</div>
-                        <div class="lookup-subtext">{{item.districtName}}</div>
-                    </ons-list-item>
-                </ons-list>
-            </div>
-            <ons-input name="username" modifier="underbar" placeholder="{{page.placeholder.username}}" float ng-model="page.username"
-                       ng-class="{error: login_form.username.$invalid && login_form.submitted}"
-                       ng-enter="page.login()" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" ng-required>
-            </ons-input>
-            <ons-input name="password" modifier="underbar" type="password" placeholder="{{page.placeholder.password}}" float ng-model="page.password"
-                       ng-class="{error: login_form.password.$invalid && login_form.submitted}"
-                       ng-enter="page.login()" ng-required>
-            </ons-input>
-            <div class="right-link"><ons-button ng-click="page.forgot()" modifier="quiet" translate>Forgot Password?</ons-button></div>
+            <ons-input class="lookup-input" input-top="" id="lookup" modifier="underbar" placeholder="{{page.placeholder.school}}" ng-model="page.searchParam" ng-change="page.change()" autocomplete="off"></ons-input>
+            <ons-list class="lookup-list" ng-show="page.lookup.expanded">
+                <ons-list-item ng-repeat="item in page.lookup.displaySet" tappable ng-click="page.selectSchool(item)" modifier="longdivider">
+                    <div class="lookup-text">{{item.name}}</div>
+                    <div class="lookup-subtext">{{item.districtName}}</div>
+                </ons-list-item>
+            </ons-list>
+        </div>
+        <div class="field-error" ng-show="!page.selectedSchool && page.error.school.length > 0">{{page.error.school}}</div>
+
+        <ons-input name="username" modifier="underbar" placeholder="{{page.placeholder.username}}" float ng-model="page.username"
+                   ng-class="{error: page.hasFieldError(page.username)}"
+                   ng-enter="page.login()" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+        </ons-input>
+        <div class="field-error" ng-show="page.username.length == 0 && page.error.username.length > 0">{{page.error.username}}</div>
+
+        <ons-input name="password" modifier="underbar" type="password" placeholder="{{page.placeholder.password}}" float ng-model="page.password"
+                   ng-class="{error: page.hasFieldError(page.password)}"
+                   ng-enter="page.login()" ng-required>
+        </ons-input>
+        <div class="field-error" ng-show="page.password.length == 0 && page.error.password.length > 0">{{page.error.password}}</div>
+
+        <div class="right-link"><ons-button ng-click="page.forgot()" modifier="quiet" translate>Forgot Password?</ons-button></div>
             <ons-button ng-click="page.login()" class="login-button" translate>Log In</ons-button>
-        </form>
         <div class="login-footer" translate><span class="login-prompt">Don't have an account?</span>
             <ons-button ng-click="page.register()" modifier="quiet" translate>Register</ons-button></div>
     </div>

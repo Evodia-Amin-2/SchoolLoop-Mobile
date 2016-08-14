@@ -10,7 +10,7 @@
 }
 
 .lookup-icon-close {
-    top: 22px;
+    top: 21px;
     right: 3px;
     cursor: pointer;
 }
@@ -21,11 +21,12 @@
 }
 
 .ion-ios-search {
-    top: 27px;
+    top: 26px;
 }
 
 .ion-ios-close-empty {
-    top: 27px;
+    top: 26px;
+    font-size: 28px !important;
 }
 
 .lookup-input input {
@@ -37,7 +38,7 @@
     margin-left: 22px;
 }
 .text-input--material__label--active {
-    margin-left: 0px !important;
+    margin-left: 0 !important;
 }
 
 .lookup-list {
@@ -51,8 +52,9 @@
     left: 2px;
     overflow: auto !important;
     -webkit-overflow-scrolling: touch !important;
-    max-height: 255px;
-    bottom: 42px;
+    max-height: 244px;
+    top: 46px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.37);
 }
 
 .lookup-text {
