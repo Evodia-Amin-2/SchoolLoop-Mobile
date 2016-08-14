@@ -26,6 +26,11 @@
         }
         menu.isTeacher = (menu.user.role !== 'student' && menu.user.role !== 'parent');
 
+        menu.action = function(page) {
+            menu.closeMenu();
+            $scope.mainNavigator.pushPage(page);
+        };
+
         menu.closeMenu = function() {
             $scope.mainSplitter.left.close();
         };
@@ -34,7 +39,6 @@
             storageService.setSelectedStudentId(student.studentID);
             dataService.clearCache();
 
-            // var current = $location.current;
             statusService.showLoading();
             dataService.load().then(function() {
                 statusService.hideWait(1000);

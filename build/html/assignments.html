@@ -1,4 +1,4 @@
-<ons-navigator var="assNavigator">
+<ons-navigator var="asgnNavigator">
     <ons-page class="card-view" ng-controller="AssignmentsController as assCtrl">
         <ons-pull-hook ng-action="assCtrl.load($done)" var="aloader">
                 <span ng-switch="aloader.state">
@@ -36,7 +36,7 @@
             </ons-list-header>
             <div class="card">
                 <ons-list-item class="card-item assignment-item" modifier="longdivider" tappable ng-repeat="item in item.list"
-                               ng-click="assNavigator.pushPage('assignment-detail.html', {animation: 'slide', assignment: item})">
+                               ng-click="asgnNavigator.pushPage('assignment-detail.html', {animation: 'slide', assignment: item})">
                     <div class="left">
                         <div class="course-color" ng-class="assCtrl.courseColor(item)">&nbsp;</div>
                         <div class="period">{{item.courseName|period}}</div>

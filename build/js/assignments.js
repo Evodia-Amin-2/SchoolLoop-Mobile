@@ -54,16 +54,16 @@
             initialize();
         });
 
-        $scope.assNavigator.on("prepop", function() {
+        $scope.asgnNavigator.on("prepop", function() {
             StatusBar.backgroundColorByHexString("#009688");
             StatusBar.show();
         });
 
         var tabbar = document.querySelector("ons-tabbar");
         tabbar.addEventListener("prechange", function() {
-            var pages = $scope.assNavigator.pages;
+            var pages = $scope.asgnNavigator.pages;
             if(pages.length > 1) {
-                $scope.assNavigator.popPage();
+                $scope.asgnNavigator.popPage();
             }
         });
 
@@ -82,7 +82,7 @@
                                         dataService, DataType, utils, CourseColors) {
         var assignDetail = this;
 
-        assignDetail.assignment = $scope.assNavigator.topPage.pushedOptions.assignment;
+        assignDetail.assignment = $scope.asgnNavigator.topPage.pushedOptions.assignment;
 
         var courseName = assignDetail.assignment.courseName;
         var period = $filter('period')(courseName);

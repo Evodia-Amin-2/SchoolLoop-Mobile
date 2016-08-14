@@ -23,25 +23,25 @@
                     <div class="menu-content-subtext">{{student.school.name}}</div>
                 </div>
             </ons-list-item>
-            <ons-list-item modifier="nodivider" class="menu-action" tappable>
+            <ons-list-item modifier="nodivider" class="menu-action" tappable  ng-click="menu.action('add-student.html')">
                 <div class="left">
                     <ons-icon icon="ion-ios-plus-outline" size="20px"></ons-icon>
                 </div>
                 <div class="center" translate>Add Student</div>
             </ons-list-item>
-            <ons-list-item modifier="nodivider" tappable>
+            <ons-list-item modifier="nodivider" tappable ng-click="menu.action('help.html')">
                 <div class="left">&nbsp;</div>
                 <div class="center" translate>Contact Help</div>
             </ons-list-item>
-            <ons-list-item modifier="nodivider" tappable>
+            <ons-list-item modifier="nodivider" tappable ng-click="menu.action('agreement.html')">
                 <div class="left">&nbsp;</div>
                 <div class="center" translate>User Agreement</div>
             </ons-list-item>
-            <ons-list-item modifier="nodivider" tappable>
+            <ons-list-item modifier="nodivider" tappable ng-click="menu.action('privacy.html')">
                 <div class="left">&nbsp;</div>
                 <div class="center" translate>Privacy Policy</div>
             </ons-list-item>
-            <ons-list-item modifier="nodivider" tappable>
+            <ons-list-item modifier="nodivider" tappable ng-click="menu.action('security.html')">
                 <div class="left">&nbsp;</div>
                 <div class="center" translate>Security</div>
             </ons-list-item>
