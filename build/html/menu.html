@@ -23,7 +23,7 @@
                     <div class="menu-content-subtext">{{student.school.name}}</div>
                 </div>
             </ons-list-item>
-            <ons-list-item modifier="nodivider" class="menu-action" tappable  ng-click="menu.action('add-student.html')">
+            <ons-list-item modifier="nodivider" ng-if="menu.user.isParent === true" class="menu-action" tappable  ng-click="menu.action('add-student.html')">
                 <div class="left">
                     <ons-icon icon="ion-ios-plus-outline" size="20px"></ons-icon>
                 </div>
