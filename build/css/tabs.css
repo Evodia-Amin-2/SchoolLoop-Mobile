@@ -1,0 +1,16 @@
+.tab-bar__icon .ion-ios-email-outline {
+    font-size: 36px;
+    position: relative;
+    top: -5px;
+}
+.tab-bar__icon .ion-ios-book-outline {
+    font-size: 32px;
+    position: relative;
+    top: -3px;
+}
+
+.tab-bar__icon .zmdi-calendar {
+    font-size: 28px;
+    position: relative;
+    top: 0;
+}

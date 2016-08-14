@@ -57,7 +57,7 @@
                 return cache;
             },
             load: function() {
-                var params = undefined;
+                var params;
                 var requests = [];
                 var loopmail = doGet($q, $http, config, DataType.LOOPMAIL, params, defaultParams, storageService, service);
                 var news = doGet($q, $http, config, DataType.NEWS, params, defaultParams, storageService, service);
@@ -91,7 +91,7 @@
                 });
             },
             update: function() {
-                var params = undefined;
+                var params;
                 var loopmail = doGet($q, $http, config, DataType.LOOPMAIL, params, defaultParams, storageService, service);
                 var news = doGet($q, $http, config, DataType.NEWS, params, defaultParams, storageService, service);
 
@@ -116,7 +116,7 @@
                 });
             },
             refresh: function(type) {
-                var params = undefined;
+                var params;
                 return doGet($q, $http, config, type, params, defaultParams, storageService, service).then(function(result) {
                     cache[type] = result;
                     return result;
@@ -169,11 +169,8 @@
             getCourseTitle: function() {
                 return courseTitle;
             },
-            setLoopmailFolder: function(index) {
-                folderId = index + 1;
-                if(folderId === 3) {
-                    folderId = -1;
-                }
+            setLoopmailFolder: function(id) {
+                folderId = id;
             },
             getFolderId: function() {
                 return folderId;

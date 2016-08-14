@@ -1,3 +1,7 @@
+.loopmail-detail .page__background {
+    background-color: white !important;
+}
+
 .loopmail-subject {
     font-size: 1em;
     width: 100%;
@@ -30,3 +34,37 @@
     padding: 10px 0;
 }
 
+.menu-popover {
+    position: absolute;
+    top: 64px;
+    left: 90px;
+    right: 90px;
+    height: 160px;
+}
+
+.popover__arrow {
+    left: 50% !important;
+}
+
+.popover-mask--material {
+    background-color: rgba(128, 128, 128,0.2) !important;
+}
+
+.loopmail-content {
+    margin: 20px 30px;
+    background-color: white;
+}
+
+.loopmail-detail-header, .loopmail-detail-subheader {
+    border-bottom: 1px #eee solid !important;
+    background-color: white;
+    padding: 10px 30px;
+}
+
+.loopmail-detail-subheader {
+    padding-left: 60px;
+}
+
+.loopmail-detail-header > div, .loopmail-detail-subheader > div {
+    padding: 4px 0;
+}

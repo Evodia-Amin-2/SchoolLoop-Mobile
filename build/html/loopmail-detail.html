@@ -1,0 +1,29 @@
+<ons-page ng-controller="LoopMailDetailController as loopmailDetail" class="loopmail-detail">
+    <ons-toolbar class="default-toolbar">
+        <div class="left"><ons-back-button translate>Back</ons-back-button></div>
+        <div class="center">{{::loopmailDetail.loopmail.subject}}</div>
+    </ons-toolbar>
+    <div class="loopmail-detail-header">
+        <div class="loopmail-sender"><span translate>From:</span> {{loopmailDetail.loopmail.sender.name}}</div>
+        <div class="loopmail-sender"><span translate>To:</span> {{loopmailDetail.loopmail.shortRecipientString}}</div>
+    </div>
+    <div class="loopmail-detail-subheader">
+        <div class="loopmail-subject">{{loopmailDetail.loopmail.subject}}</div>
+        <div class="loopmail-date">{{loopmailDetail.loopmail.date|date:"MMM d, y" : "UTC"}}</div>
+    </div>
+    <div class="loopmail-content">
+        <div class="loopmail-desc" ng-bind-html="loopmailDetail.trustedMessage"></div>
+
+        <ons-list class="attachements-view" ng-if="loopmailDetail.loopmail.links">
+            <ons-list-item modifier="longdivider" tappable ng-repeat="link in loopmailDetail.loopmail.links"
+                           ng-click="openURL(link)">
+                <div class="left">
+                    <ons-icon icon="md-attachment" class="ons-icon zmdi zmdi-attachment" size="20px"></ons-icon>
+                </div>
+                <div class="center">
+                    <div class="title">{{link.Title}}</div>
+                </div>
+            </ons-list-item>
+        </ons-list>
+    </div>
+</ons-page>
