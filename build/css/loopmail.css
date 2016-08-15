@@ -39,9 +39,13 @@
     top: 64px;
     left: 90px;
     right: 90px;
-    height: 160px;
+    height: 2px;
 }
 
+.popover__content--material {
+    top: 55px !important;
+    left: 60px !important;
+}
 .popover__arrow {
     left: 50% !important;
 }

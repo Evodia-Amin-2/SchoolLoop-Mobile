@@ -1,16 +1,15 @@
 <ons-navigator var="loopmailNavigator" ng-controller="LoopMailController as mailCtrl">
-    <div class="menu-popover">
-        <ons-popover direction="down" cancelable var="popover">
-            <ons-list>
-                <ons-list-item modifier="longdivider" tappable ng-repeat="mailbox in mailCtrl.mailboxes"
-                               ng-click="mailCtrl.selectMailbox(mailbox)">
-                    <div class="center">
-                        <div class="loopmail-subject">{{mailbox.label}}</div>
-                    </div>
-                </ons-list-item>
-            </ons-list>
-        </ons-popover>
-    </div>
+    <ons-popover direction="down" cancelable var="popover">
+        <ons-list>
+            <ons-list-item modifier="longdivider" tappable ng-repeat="mailbox in mailCtrl.mailboxes"
+                           ng-click="mailCtrl.selectMailbox(mailbox)">
+                <div class="center">
+                    <div class="loopmail-subject">{{mailbox.label}}</div>
+                </div>
+            </ons-list-item>
+        </ons-list>
+    </ons-popover>
+    <div class="menu-popover"></div>
     <ons-page>
         <ons-pull-hook ng-action="mailCtrl.load($done)" var="lloader">
             <span ng-switch="lloader.state">
