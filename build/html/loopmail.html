@@ -1,5 +1,17 @@
-<ons-navigator var="loopmailNavigator">
-    <ons-page ng-controller="LoopMailController as mailCtrl">
+<ons-navigator var="loopmailNavigator" ng-controller="LoopMailController as mailCtrl">
+    <div class="menu-popover">
+        <ons-popover direction="down" cancelable var="popover">
+            <ons-list>
+                <ons-list-item modifier="longdivider" tappable ng-repeat="mailbox in mailCtrl.mailboxes"
+                               ng-click="mailCtrl.selectMailbox(mailbox)">
+                    <div class="center">
+                        <div class="loopmail-subject">{{mailbox.label}}</div>
+                    </div>
+                </ons-list-item>
+            </ons-list>
+        </ons-popover>
+    </div>
+    <ons-page>
         <ons-pull-hook ng-action="mailCtrl.load($done)" var="lloader">
             <span ng-switch="lloader.state">
               <span ng-switch-when="initial" translate><ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon>Pull down to refresh</span>
@@ -15,18 +27,6 @@
             </div>
             <div class="center" ng-click="mailCtrl.showMenu()">{{mailCtrl.mailbox.label}} <ons-icon icon="fa-caret-down" size="18px"></ons-icon></div>
         </ons-toolbar>
-        <div class="menu-popover">
-            <ons-popover direction="down" cancelable var="popover">
-                <ons-list>
-                    <ons-list-item modifier="longdivider" tappable ng-repeat="mailbox in mailCtrl.mailboxes"
-                                   ng-click="mailCtrl.selectMailbox(mailbox)">
-                        <div class="center">
-                            <div class="loopmail-subject">{{mailbox.label}}</div>
-                        </div>
-                    </ons-list-item>
-                </ons-list>
-            </ons-popover>
-        </div>
         <ons-list class="loopmail-view">
             <ons-list-item class="loopmail-item" modifier="longdivider" tappable ng-repeat="item in mailCtrl.loopmail"
                            ng-click="loopmailNavigator.pushPage('loopmail-detail.html', {animation: 'slide', loopmail: item})">

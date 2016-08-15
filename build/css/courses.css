@@ -27,8 +27,6 @@
 }
 
 .course-grades {
-    margin-top: 12px;
-    margin-left: 10px;
     height: 100%;
     width: 100%;
     text-align: center;
@@ -39,6 +37,10 @@
     font-size: 2.1em;
     font-weight: bold;
     color: #666;
+    margin-top: 15px;
+}
+
+.list__item--material__right .course-grade {
     margin-top: 10px;
 }
 
