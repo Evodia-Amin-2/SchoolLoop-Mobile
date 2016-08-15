@@ -1,17 +1,3 @@
-.forgot-page .page__background {
-    background-color: white;
-}
-
 .forgot-panel {
     margin: 30px;
-}
-
-.button-bar {
-    margin-top: 80px;
-    text-align: center;
-    width: 100%;
-}
-
-.button-bar .button {
-    margin: 10px;
 }

@@ -1,0 +1,19 @@
+<ons-page ng-controller="InvalidController as page" class="full-page">
+    <ons-toolbar class="default-toolbar">
+        <div class="left" tappable ng-click="page.cancel()"><ons-icon size="24px" class="dialog-close" icon="md-close"></ons-icon></div>
+        <div class="center" translate>Attention</div>
+    </ons-toolbar>
+    <div class="login-panel">
+        <img alt="" src="img/circle-logo.png">
+
+        <p class="message-text" translate>
+            For the protection of your child, parent accounts need to be approved by a school staff member to view grades.
+            Please allow a reasonable period of time for your account to be approved.
+            If you have questions, please contact your school for approval policies and procedures.
+        </p>
+
+        <div class="button-bar">
+            <ons-button ng-click="page.close()" translate>Close</ons-button>
+        </div>
+    </div>
+</ons-page>

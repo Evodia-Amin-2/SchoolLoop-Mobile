@@ -1,0 +1,21 @@
+<ons-page ng-controller="InvalidController as page" class="full-page">
+    <ons-toolbar class="default-toolbar">
+        <div class="left" tappable ng-click="page.close()"><ons-icon size="24px" class="dialog-close" icon="md-close"></ons-icon></div>
+        <div class="center" translate>Attention</div>
+    </ons-toolbar>
+    <div class="login-panel">
+        <img alt="" src="img/circle-logo.png">
+
+        <p class="message-text" translate>
+            No Schedule
+        </p>
+
+        <p class="message-text" translate>
+            Sorry. The school is not reporting a current schedule of classes for the student associated with this account. Please contact school administration if you believe there is an error.
+        </p>
+
+        <div class="button-bar">
+            <ons-button ng-click="page.close()" translate>Close</ons-button>
+        </div>
+    </div>
+</ons-page>

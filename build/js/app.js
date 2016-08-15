@@ -32,6 +32,14 @@
             .when('/login', {templateUrl: "login.html" })
             .when('/main', {templateUrl: "main.html" })
             .when('/forgot', {templateUrl: "forgot.html" })
+            .when('/unverified', {templateUrl: "unverified.html" })
+            .when('/invalid', {templateUrl: "invalid.html" })
+            .when('/reset', {templateUrl: "reset.html" })
+            .when('/notstarted', {templateUrl: "not-started.html" })
+            .when('/noschedule', {templateUrl: "no-schedule.html" })
+            .when('/agreement-en', {templateUrl: "agreement-en.html" })
+            .when('/agreement-es', {templateUrl: "agreement-es.html" })
+            .when('/agreement-zh', {templateUrl: "agreement-zh.html" })
             .otherwise({redirectTo:'/start'});
 
     }
