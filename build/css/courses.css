@@ -42,6 +42,23 @@
     margin-top: 10px;
 }
 
+.course-info-grade, .course-info-score {
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: 10px;
+    font-size: 1.6em;
+    color: #666;
+}
+
+.course-info-grade {
+    font-weight: bold;
+    font-size: 1.75em;
+}
+
+.course-info-score {
+    color: #777;
+}
+
 .course-detail {
     padding: 0 10px;
 }
@@ -100,12 +117,16 @@
     }
 }
 
-.grade-info {
+.grade-info, .course-info {
     display: inline-table;
     text-align: center;
     float: right;
     margin-top: 10px;
     padding: 0 15px;
+}
+
+.course-info {
+    margin-top: 0;
 }
 
 .teacher {
@@ -150,4 +171,73 @@
     position: relative;
     top: -2px;
     color: #777;
+}
+
+.course-category {
+    margin-top: 5px;
+}
+
+.course-category th {
+    background-color: #999;
+    color: white;
+    padding: 6px;
+    font-size: 0.9em;
+}
+
+.course-category th:first-child {
+    padding-left: 20px;
+}
+
+.course-category td {
+    padding: 10px 20px;
+}
+
+.course-def th {
+    font-size: 0.9em;
+    font-weight: normal;
+    padding: 3px;
+}
+
+.course-def td {
+    font-size: 0.9em;
+    padding: 3px;
+}
+
+.course-info-section {
+    margin-bottom: 15px;
+    border-bottom: 1px #eee solid;
+    padding-bottom: 15px;
+}
+
+.course-info-section-last {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+}
+
+.section-inset {
+    margin: 20px;
+}
+
+.grade-name {
+    min-width: 50px;
+    display: inline-block;
+}
+
+.scale {
+    padding: 5px 15px;
+    font-size: 0.9em;
+}
+
+.grade-label {
+    font-size: 0.9em;
+}
+
+.stripe {
+    background-color: #f9f9f9;
+}
+
+.grade-range {
+    min-width: 50px;
+    text-align: right;
+    display: inline-block;
 }

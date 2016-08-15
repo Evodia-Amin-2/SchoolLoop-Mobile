@@ -47,11 +47,6 @@
             return "period-" + periodIndex;
         };
 
-        $scope.$on("menu.loopmail", function() {
-            loopmailService.setRecipients(undefined);
-            $location.path("main.compose");
-        });
-
         $scope.$on("refresh.all", function() {
             courseCtrl.courses = dataService.list(DataType.COURSE);
         });
@@ -74,15 +69,15 @@
         var courseDetail = this;
 
         courseDetail.course = $scope.courseNavigator.topPage.pushedOptions.course;
+        courseDetail.progress = $scope.courseNavigator.topPage.pushedOptions.progress;
 
         var periodIndex = (courseDetail.course.period - 1) % 10;
         StatusBar.backgroundColorByHexString(CourseColors[periodIndex]);
         StatusBar.show();
 
-        courseDetail.progress = {};
-        courseDetail.assignments = [];
-        courseDetail.zeros = [];
+        courseDetail.zeroCount = 0;
         courseDetail.courseInfo = false;
+        courseDetail.limit = 4;
 
         courseDetail.hasScore = function() {
             return _.isUndefined(courseDetail.progress.score) === false &&
@@ -113,7 +108,55 @@
             return "period-" + periodIndex;
         };
 
-        loadProgressReport(courseDetail.course.periodID);
+        courseDetail.viewAll = function() {
+            courseDetail.limit = 1000000;
+        };
+
+
+        if(_.isUndefined(courseDetail.progress) === true) {
+            courseDetail.progress = {};
+            loadProgressReport(courseDetail.course.periodID);
+        } else {
+            processProgressReport();
+            processCourseInfo();
+        }
+
+        function processProgressReport() {
+            courseDetail.progress.grades = _.sortBy(courseDetail.progress.grades, function(o) { return o.assignment.dueDate; }).reverse();
+
+            courseDetail.zeroCount = 0;
+            for (var i = 0, len = courseDetail.progress.grades.length; i < len; i++) {
+                var grade = courseDetail.progress.grades[i];
+                if (utils.isTrue(grade.zero) === true) {
+                    courseDetail.zeroCount += 1;
+                }
+            }
+        }
+
+        function processCourseInfo() {
+            if(_.isUndefined(courseDetail.progress.GradingScale) === false) {
+                var cutoffs = courseDetail.progress.GradingScale.Cutoffs || [];
+                var mid = Math.ceil(cutoffs.length / 2);
+                courseDetail.scale = [];
+                for(var i = 0; i < mid; i++) {
+                    var value = cutoffs[i];
+                    var list = [];
+                    list.push({"name": value.Name, "start": value.Start});
+
+                    value = cutoffs[mid + i];
+                    if(value !== undefined) {
+                        list.push({"name": value.Name, "start": value.Start});
+                    } else {
+                        list.push(undefined);
+                    }
+
+                    courseDetail.scale.push(list);
+                }
+            }
+
+            courseDetail.definitions = courseDetail.progress.gradeDefinitions || [];
+        }
+
 
         function loadProgressReport(periodId) {
             dataService.getProgressReport(periodId).then(function(response) {
@@ -121,16 +164,7 @@
 
                 courseDetail.progress = response[0];
 
-                courseDetail.progress.grades = _.sortBy(courseDetail.progress.grades, function(o) { return o.assignment.dueDate; }).reverse();
-
-                var total = 0;
-                for (var i = 0, len = courseDetail.progress.grades.length; i < len; i++) {
-                    var grade = courseDetail.progress.grades[i];
-                    if (utils.isTrue(grade.zero) === true) {
-                        total += 1;
-                        courseDetail.zeros.push(grade);
-                    }
-                }
+                processProgressReport();
 
                 $timeout(loadChart, 100);
 
