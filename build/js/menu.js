@@ -2,11 +2,11 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('MenuController', ['$rootScope', '$scope', '$location', 'DataService', 'StorageService', 'LoginService',
+        .controller('MenuController', ['$rootScope', '$scope', '$location', '$window', 'DataService', 'StorageService', 'LoginService',
             'StatusService', 'NotificationService', 'gettextCatalog', 'config', 'Utils', MenuController])
     ;
 
-    function MenuController($rootScope, $scope, $location, dataService, storageService, loginService,
+    function MenuController($rootScope, $scope, $location, $window, dataService, storageService, loginService,
                             statusService, notificationService, gettextCatalog, config, utils) {
         var menu = this;
 
@@ -72,6 +72,27 @@
                     logoutError();
                 }
             );
+        };
+
+        menu.agreement = function () {
+            menu.closeMenu();
+            var code = storageService.getLanguageCode();
+            var url = "http://api.schoolloop.com/mobile/app_agreement?force_language=" + code;
+            $window.open(url, '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
+        };
+
+        menu.privacy = function () {
+            menu.closeMenu();
+            var code = storageService.getLanguageCode();
+            var url = "http://api.schoolloop.com/mobile/app_privacy?force_language=" + code;
+            $window.open(url, '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
+        };
+
+        menu.security = function () {
+            menu.closeMenu();
+            var code = storageService.getLanguageCode();
+            var url = "http://api.schoolloop.com/mobile/app_security?force_language=" + code;
+            $window.open(url, '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
         };
 
         function logoutError() {

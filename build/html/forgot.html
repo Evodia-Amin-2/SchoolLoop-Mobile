@@ -1,0 +1,27 @@
+<ons-page ng-controller="ForgotController as page" class="forgot-page">
+    <ons-toolbar class="default-toolbar">
+        <div class="left" tappable ng-click="page.cancel()"><ons-icon size="24px" class="dialog-close" icon="md-close"></ons-icon></div>
+        <div class="center" translate>Reset Password</div>
+    </ons-toolbar>
+    <div class="forgot-panel">
+
+        <p class="message-text" translate>
+            To help you login, we will send an email to the address you used to register.
+        </p>
+
+        <p class="message-text" translate>
+            If you did not use an email address to register, have changed your email address, or need help, please ask a school staff member to reset your password.
+        </p>
+
+        <ons-input name="email" modifier="underbar" placeholder="{{page.placeholder.email}}" float ng-model="page.email"
+                   ng-class="{error: page.hasFieldError(page.email)}"
+                   ng-enter="page.reset()" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+        </ons-input>
+        <div class="field-error" ng-show="page.email.length == 0 && page.error.email.length > 0">{{page.error.email}}</div>
+
+        <div class="button-bar">
+            <ons-button ng-click="page.cancel()" translate>Cancel</ons-button>
+            <ons-button ng-click="page.reset()" translate>Reset Password</ons-button>
+        </div>
+    </div>
+</ons-page>

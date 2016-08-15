@@ -31,6 +31,7 @@
             .when('/start', {templateUrl: "start.html" })
             .when('/login', {templateUrl: "login.html" })
             .when('/main', {templateUrl: "main.html" })
+            .when('/forgot', {templateUrl: "forgot.html" })
             .otherwise({redirectTo:'/start'});
 
     }

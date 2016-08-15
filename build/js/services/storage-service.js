@@ -61,6 +61,7 @@
                 var domainMap = loadDomainMap();
                 var domain = domainMap[domainName];
                 if (_.isUndefined(domain) === false && _.isNull(domain) === false) {
+                    domain.user.hashedPassword = undefined;
                     domain.encrypted = undefined;
                     saveDomainMap(domainMap);
                 }
