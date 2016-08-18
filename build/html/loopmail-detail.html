@@ -16,7 +16,7 @@
 
         <ons-list class="attachements-view" ng-if="loopmailDetail.loopmail.links">
             <ons-list-item modifier="longdivider" tappable ng-repeat="link in loopmailDetail.loopmail.links"
-                           ng-click="openURL(link)">
+                           ng-click="loopmailDetail.openURL(link)">
                 <div class="left">
                     <ons-icon icon="md-attachment" class="ons-icon zmdi zmdi-attachment" size="20px"></ons-icon>
                 </div>

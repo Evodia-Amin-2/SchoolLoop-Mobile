@@ -76,7 +76,7 @@
         };
 
 
-        $scope.openURL = function (link) {
+        newsDetail.openURL = function (link) {
             var url = link.URL;
             if(url.toLowerCase().startsWith("http") === false) {
                 var school = storageService.getSelectedSchool().domainName;

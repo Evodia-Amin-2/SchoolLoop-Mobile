@@ -11,7 +11,7 @@
 
         <ons-list class="attachements-view" ng-if="newsDetail.newsItem.links">
             <ons-list-item modifier="longdivider" tappable ng-repeat="link in newsDetail.newsItem.links"
-                           ng-click="openURL(link)">
+                           ng-click="newsDetail.openURL(link)">
                 <div class="left">
                     <ons-icon icon="md-attachment" class="ons-icon zmdi zmdi-attachment" size="20px"></ons-icon>
                 </div>
