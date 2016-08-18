@@ -38,7 +38,7 @@
         };
 
         assignCtrl.courseColor = function(assignment) {
-            var period = assignment.courseName.split(" Period ")[1];
+            var period = assignment.periodNumber;
             var periodIndex = ((period - 1) % 10) + 1;
             return "period-" + periodIndex;
         };
@@ -84,8 +84,7 @@
 
         assignDetail.assignment = $scope.asgnNavigator.topPage.pushedOptions.assignment;
 
-        var courseName = assignDetail.assignment.courseName;
-        var period = $filter('period')(courseName);
+        var period = assignDetail.assignment.periodNumber;
         var periodIndex = (period - 1) % 10;
         StatusBar.backgroundColorByHexString(CourseColors[periodIndex]);
         StatusBar.show();

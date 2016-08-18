@@ -39,10 +39,10 @@
                                ng-click="asgnNavigator.pushPage('assignment-detail.html', {animation: 'slide', assignment: item})">
                     <div class="left">
                         <div class="course-color" ng-class="assCtrl.courseColor(item)">&nbsp;</div>
-                        <div class="period">{{item.courseName|period}}</div>
+                        <div class="period">{{item.periodNumber}}</div>
                     </div>
                     <div class="center">
-                        <div class="course">{{item.courseName|course}}</div>
+                        <div class="course">{{item.courseName}}</div>
                         <div class="title">{{item.title}}</div>
                         <div class="category">{{item.categoryName}}</div>
                     </div>
