@@ -7,8 +7,7 @@
         <ons-row>
             <ons-col>
                 <div class="course-header">
-                    <div class="teacher" tappable
-                         ng-click="courseNavigator.pushPage('compose.html', {animation: 'slide', navigator: courseNavigator})">
+                    <div class="teacher" tappable ng-click="courseDetail.compose()">
                         <ons-ripple color="rgba(156, 156, 156, 0.20)"></ons-ripple>
                         <ons-icon icon="ion-ios-email" size="32px"></ons-icon>{{courseDetail.progress.teacher.name}}<span ng-show="courseDetail.progress.coTeacher"> - {{courseDetail.progress.coTeacher.name}}</span>
                     </div>

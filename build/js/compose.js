@@ -8,10 +8,8 @@
         function ComposeController($scope, $window, dataService, storageService, gettextCatalog) {
             var compose = this;
 
-            compose.navigator = $scope.courseNavigator.topPage.pushedOptions.navigator;
-
             compose.back = function() {
-                compose.navigator.popPage();
+                $scope.mainNavigator.popPage();
             };
 
             compose.send = function() {

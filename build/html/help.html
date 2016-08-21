@@ -1,6 +1,10 @@
-<ons-page ng-controller="SupportController as page">
+<ons-page ng-controller="HelpController as help">
     <ons-toolbar class="default-toolbar">
-        <div class="left" tappable ng-click="mainNavigator.popPage()"><ons-icon size="24px" class="dialog-close" icon="md-close"></ons-icon></div>
+        <div class="left" ng-click="mainNavigator.popPage()">
+            <ons-toolbar-button>
+                <ons-icon size="24px" icon="md-close"></ons-icon>
+            </ons-toolbar-button>
+        </div>
         <div class="center" translate>Contact Help</div>
     </ons-toolbar>
 </ons-page>

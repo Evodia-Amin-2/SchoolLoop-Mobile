@@ -138,6 +138,23 @@
             return "period-" + periodIndex;
         };
 
+        courseDetail.compose = function() {
+            $scope.mainNavigator.pushPage('compose.html', {animation: 'slide'});
+        };
+
+        $scope.mainNavigator.on("prepop", function(event) {
+            var navigator = event.navigator;
+            if(navigator.pages.length === 2) {
+                var page = navigator.pages[1];
+                if(page.name === "compose.html") {
+                    $timeout(function() {
+                        console.log($scope.courseNavigator.pages[1].backButton);
+                        $scope.courseNavigator.pages[1].backButton.style.display = "block";
+                    });
+                }
+            }
+        });
+
         if(_.isUndefined(courseDetail.progress) === true) {
             courseDetail.progress = {};
             loadProgressReport(courseDetail.course.periodID);
@@ -181,7 +198,6 @@
 
             courseDetail.definitions = courseDetail.progress.gradeDefinitions || [];
         }
-
 
         function loadProgressReport(periodId) {
             dataService.getProgressReport(periodId).then(function(response) {
