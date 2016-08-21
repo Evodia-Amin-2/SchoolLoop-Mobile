@@ -42,3 +42,18 @@
 .message-text {
     text-align: left;
 }
+
+.icon-count {
+    position: absolute;
+    top: 3px;
+    left: 50%;
+    color: white;
+    background: #009688;
+    max-width: 24px;
+    min-width: 16px;
+    text-align: center;
+    border-radius: 50%;
+    padding: 2px;
+    font-size: 0.8em;
+    margin-left: 15px;
+}

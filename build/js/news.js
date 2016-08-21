@@ -2,11 +2,11 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('NewsController', ['$scope', '$timeout', '$location', 'DataService', 'DataType', 'StorageService', NewsController])
-        .controller('NewsDetailController', ['$scope', '$window', '$sce', '$filter', 'StorageService', 'Utils', NewsDetailController])
+        .controller('NewsController', ['$rootScope', '$scope', '$timeout', '$location', 'DataService', 'DataType', 'StorageService', NewsController])
+        .controller('NewsDetailController', ['$rootScope', '$scope', '$window', '$sce', '$filter', 'StorageService', 'Utils', NewsDetailController])
     ;
 
-    function NewsController($scope, $timeout, $location, dataService, DataType, storageService) {
+    function NewsController($rootScope, $scope, $timeout, $location, dataService, DataType, storageService) {
         var newsCtrl = this;
 
         navigator.analytics.sendAppView('News');
@@ -18,6 +18,7 @@
                 return dataService.refresh(DataType.NEWS).then(function(result) {
                     newsCtrl.news = result;
                     storageService.setNews(result);
+                    $rootScope.$broadcast("update.counter");
                     $done();
                 }, function() {
                     $done();
@@ -47,7 +48,7 @@
 
     }
 
-    function NewsDetailController($scope, $window, $sce, $filter, storageService, utils) {
+    function NewsDetailController($rootScope, $scope, $window, $sce, $filter, storageService, utils) {
         var newsDetail = this;
 
         newsDetail.newsItem = $scope.newsNavigator.topPage.pushedOptions.news;
@@ -56,6 +57,7 @@
 
         if(newsDetail.newsItem) {
             storageService.setVisited(newsDetail.newsItem);
+            $rootScope.$broadcast("update.counter");
 
             if(newsDetail.newsItem.description) {
                 var description = $filter('replaceUrlFilter')(newsDetail.newsItem.description);

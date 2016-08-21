@@ -4,7 +4,7 @@
     angular.module('mobileloop')
         .controller('AssignmentsController', ['$scope', '$location', '$sce', '$timeout',
                         'DataService', 'DataType', AssignmentsController])
-        .controller('AssignmentDetailController', ['$scope', '$window', '$sce', '$filter', 'StorageService',
+        .controller('AssignmentDetailController', ['$scope', '$window', '$sce', 'StorageService',
                         'StatusService', 'DataService', 'DataType', 'Utils', 'CourseColors', AssignmentDetailController])
         .filter('period', [PeriodFilter])
         .filter('course', [CourseFilter])
@@ -54,6 +54,48 @@
             initialize();
         });
 
+        $scope.$on('notify.test tomorrow', function(event, data) {
+            assignmentNotification(data);
+        });
+
+        $scope.$on('notify.assignment tomorrow', function(event, data) {
+            assignmentNotification(data);
+        });
+
+        $scope.$on('notify.assignment due', function(event, data) {
+            assignmentNotification(data);
+        });
+
+        $scope.$on('notify.assignment assigned', function(event, data) {
+            assignmentNotification(data);
+        });
+
+        $scope.$on('notify.test assigned', function(event, data) {
+            assignmentNotification(data);
+        });
+
+        $scope.$on('notify.test due', function(event, data) {
+            assignmentNotification(data);
+        });
+
+        function assignmentNotification(data) {
+            if(data.view === false) {
+                return;
+            }
+            var payload = data.payload;
+            dataService.refresh(DataType.ASSIGNMENT).then(
+                function(result) {
+                    $scope.tabbar.setActiveTab(1);
+                    getTimeZone(result);
+                    assignCtrl.assignments = groupAssignments(result, $scope);
+                    var assignment = _.findWhere(assignCtrl.assignments, {iD: payload.assignmentid});
+                    if(assignment) {
+                        $scope.asgnNavigator.pushPage('assignment-detail.html', {animation: 'slide', assignment: assignment});
+                    }
+                }
+            );
+        }
+
         $scope.asgnNavigator.on("prepop", function() {
             StatusBar.backgroundColorByHexString("#009688");
             StatusBar.show();
@@ -78,7 +120,7 @@
         }
     }
 
-    function AssignmentDetailController($scope, $window, $sce, $filter, storageService, statusService,
+    function AssignmentDetailController($scope, $window, $sce, storageService, statusService,
                                         dataService, DataType, utils, CourseColors) {
         var assignDetail = this;
 

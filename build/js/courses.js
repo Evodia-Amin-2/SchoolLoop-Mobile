@@ -34,7 +34,6 @@
 
         courseCtrl.showCourse = function(course) {
             statusService.showLoading();
-            dataService.setCourseTitle(course.period + " - " + course.courseName);
             $location.path("main.tabs.courses-detail", {periodID: course.periodID});
         };
 
@@ -50,6 +49,36 @@
         $scope.$on("refresh.all", function() {
             courseCtrl.courses = dataService.list(DataType.COURSE);
         });
+
+        $scope.$on('notify.assignment grade update', function(event, data) {
+            courseNotification(data);
+        });
+
+        $scope.$on('notify.letter grade update', function(event, data) {
+            courseNotification(data);
+        });
+
+        function courseNotification(data) {
+            if(data.view === false) {
+                return;
+            }
+
+            dataService.refresh(DataType.COURSE).then(function(result) {
+                courseCtrl.courses = result;
+                var payload = data.payload;
+                for(var i = 0, len = courseCtrl.courses.length; i < len; i++) {
+                    var course = courseCtrl.courses[i];
+                    if(course.periodID === payload.periodid) {
+                        dataService.clearProgressReport();
+                        $scope.tabbar.setActiveTab(1);
+                        var pages = $scope.courseNavigator.pages;
+                        if(pages.length === 1) { // top page
+                            $scope.courseNavigator.pushPage('course-detail.html', {animation: 'slide', course: course});
+                        }
+                    }
+                }
+            });
+        }
 
         $scope.courseNavigator.on("prepop", function() {
             StatusBar.backgroundColorByHexString("#009688");

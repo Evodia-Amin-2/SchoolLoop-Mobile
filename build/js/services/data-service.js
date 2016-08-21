@@ -15,7 +15,6 @@
     function DataService($http, $q, Base64, storageService, DataType, config) {
         var cache = cache || {};
 
-        var courseTitle = "";
         var folderId = 1;
 
         var defaultParams = {};
@@ -51,7 +50,6 @@
         var service = {
             clearCache: function() {
                 cache = {};
-                courseTitle = "";
             },
             cache: function() {
                 return cache;
@@ -162,12 +160,6 @@
             getLoopmail: function(page) {
                 page = page || 0;
                 return doGet($q, $http, config, DataType.LOOPMAIL, {"folderID": folderId, "start": (page * 20), "max": 20}, defaultParams, storageService, service);
-            },
-            setCourseTitle: function(title) {
-                courseTitle = title;
-            },
-            getCourseTitle: function() {
-                return courseTitle;
             },
             setLoopmailFolder: function(id) {
                 folderId = id;

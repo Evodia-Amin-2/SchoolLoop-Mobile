@@ -92,13 +92,11 @@
                 var view = gettextCatalog.getString("View");
                 var cancel = gettextCatalog.getString("Cancel");
                 navigator.notification.confirm(data.message, function(buttonIndex) {
-                    if(buttonIndex === 2) {
-                        return;
-                    }
-                    $rootScope.$broadcast(notifyMessage, {message: data.message, payload: additionalData});
+                    var view = buttonIndex === 1;
+                    $rootScope.$broadcast(notifyMessage, {message: data.message, payload: additionalData, view: view});
                 }, notification, [view, cancel]);
             } else {
-                $rootScope.$broadcast(notifyMessage, {message: data.message, payload: additionalData});
+                $rootScope.$broadcast(notifyMessage, {message: data.message, payload: additionalData, view: true});
             }
         }
 
@@ -110,69 +108,6 @@
                     console.log("clear badge error");
                 }, 0);
             }
-        }
-
-        $rootScope.$on('notify.loopmail', function(event, data) {
-            var payload = data.payload;
-            dataService.update().then(
-                function() {
-                    $location.path("main.tabs.loopmail-detail", {loopmailId: payload.messageid});
-                }
-            );
-        });
-
-        $rootScope.$on('notify.assignment grade update', function(event, data) {
-            courseNotification(data);
-        });
-
-        $rootScope.$on('notify.letter grade update', function(event, data) {
-            courseNotification(data);
-        });
-
-        function courseNotification(data) {
-            var courses = dataService.list(DataType.COURSE);
-            var payload = data.payload;
-            for(var i = 0, len = courses.length; i < len; i++) {
-                var course = courses[i];
-                if(course.periodID === payload.periodid) {
-                    dataService.clearProgressReport();
-                    dataService.setCourseTitle(course.period + " - " + course.courseName);
-                    $location.path("main.tabs.courses-detail", {periodID: course.periodID});
-                }
-            }
-        }
-
-        $rootScope.$on('notify.test tomorrow', function(event, data) {
-            assignmentNotification(data);
-        });
-
-        $rootScope.$on('notify.assignment tomorrow', function(event, data) {
-            assignmentNotification(data);
-        });
-
-        $rootScope.$on('notify.assignment due', function(event, data) {
-            assignmentNotification(data);
-        });
-
-        $rootScope.$on('notify.assignment assigned', function(event, data) {
-            assignmentNotification(data);
-        });
-
-        $rootScope.$on('notify.test assigned', function(event, data) {
-            assignmentNotification(data);
-        });
-
-        $rootScope.$on('notify.test due', function(event, data) {
-            assignmentNotification(data);
-        });
-
-        function assignmentNotification(data) {
-            var payload = data.payload;
-            dataService.refresh(DataType.ASSIGNMENT).then(
-                function() {
-                    $location.path("main.tabs.assignments-detail", {assignmentId: payload.assignmentid});
-                }
-            );
         }
 
         var service = {

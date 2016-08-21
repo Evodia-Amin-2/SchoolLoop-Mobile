@@ -45,7 +45,7 @@
             $scope.mainSplitter.left.open();
         };
 
-        $scope.getMailCount = function() {
+        main.getMailCount = function() {
             var loopmailList = dataService.listNoReload(DataType.LOOPMAIL);
             if(loopmailList) {
                 var unreadList = _.where(loopmailList, {read: "false"});
@@ -54,7 +54,7 @@
             return 0;
         };
 
-        $scope.getNewsCount = function() {
+        main.getNewsCount = function() {
             var newsList = dataService.listNoReload(DataType.NEWS);
             if(newsList) {
                 var unreadList = _.where(newsList, {isNew: true});
