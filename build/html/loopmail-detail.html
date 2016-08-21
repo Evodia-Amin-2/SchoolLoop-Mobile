@@ -2,6 +2,11 @@
     <ons-toolbar class="default-toolbar">
         <div class="left"><ons-back-button translate>Back</ons-back-button></div>
         <div class="center">{{::loopmailDetail.loopmail.subject}}</div>
+        <div class="right" ng-click="loopmailDetail.reply()">
+            <ons-toolbar-button>
+                <ons-icon size="24px" icon="md-mail-reply"></ons-icon>
+            </ons-toolbar-button>
+        </div>
     </ons-toolbar>
     <div class="loopmail-detail-header">
         <div class="loopmail-sender"><span translate>From:</span> {{loopmailDetail.loopmail.sender.name}}</div>
