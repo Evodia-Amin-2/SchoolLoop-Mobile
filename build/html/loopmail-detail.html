@@ -15,7 +15,7 @@
     <div class="loopmail-detail-subheader">
         <ons-icon ng-if="loopmailDetail.loopmail.links" icon="md-attachment" class="ons-icon zmdi zmdi-attachment" size="20px"></ons-icon>
         <div class="loopmail-subject">{{loopmailDetail.loopmail.subject}}</div>
-        <div class="loopmail-date">{{loopmailDetail.loopmail.date|date:"MMM d, y" : "UTC"}}</div>
+        <div class="loopmail-date">{{loopmailDetail.loopmail.date|date:"MM/dd/yyyy" : "UTC"}}</div>
     </div>
     <div class="loopmail-content">
         <div class="loopmail-desc" ng-bind-html="loopmailDetail.trustedMessage"></div>

@@ -20,7 +20,7 @@
                            ng-click="newsNavigator.pushPage('news-detail.html', {animation: 'slide', news: item})">
                 <div class="center">
                     <div class="news-title" ng-class="{new:newsCtrl.isNew(item)}">{{item.title}}</div>
-                    <div class="news-date">{{item.createdDate|date:"MMM d, y"}}</div>
+                    <div class="news-date">{{item.createdDate|date:"MM/dd/yyyy"}}</div>
                 </div>
             </ons-list-item>
         </ons-list>
