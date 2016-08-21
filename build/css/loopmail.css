@@ -82,9 +82,9 @@
     background-color: rgba(255, 255, 255, 0.75);
     position: absolute;
     right: 10px;
-    top: 12px;
-    bottom: 12px;
+    bottom: 8px;
     width: 32px;
+    height: 32px;
     text-align: center;
     border-radius: 3px;
 }
@@ -96,4 +96,8 @@
     position: absolute;
     left: 0;
     right: 0;
+}
+
+.loopmail-toolbar-button {
+    width: 25px;
 }

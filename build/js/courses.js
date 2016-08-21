@@ -4,6 +4,7 @@
     angular.module('mobileloop')
         .controller('CoursesController', ['$scope', '$timeout', '$location', 'DataService', 'DataType', 'StatusService', 'LoopmailService', 'Utils', CoursesController])
         .controller('CourseDetailController', ['$scope', '$timeout', 'DataService', 'StatusService', 'Utils', 'CourseColors', CourseDetailController])
+        .controller('CourseAsgnController', ['$scope', 'Utils', 'CourseColors', CourseAsgnController])
     ;
 
     function CoursesController($scope, $timeout, $location, dataService, DataType, statusService, loopmailService, utils) {
@@ -136,11 +137,6 @@
             var periodIndex = ((courseDetail.course.period - 1) % 10) + 1;
             return "period-" + periodIndex;
         };
-
-        courseDetail.viewAll = function() {
-            courseDetail.limit = 1000000;
-        };
-
 
         if(_.isUndefined(courseDetail.progress) === true) {
             courseDetail.progress = {};
@@ -285,6 +281,28 @@
             });
 
         }
+
+    }
+
+
+    function CourseAsgnController($scope, utils, CourseColors) {
+        var courseAsgn = this;
+
+        courseAsgn.course = $scope.courseNavigator.topPage.pushedOptions.course;
+        courseAsgn.progress = $scope.courseNavigator.topPage.pushedOptions.progress;
+
+        var periodIndex = (courseAsgn.course.period - 1) % 10;
+        StatusBar.backgroundColorByHexString(CourseColors[periodIndex]);
+        StatusBar.show();
+
+        courseAsgn.isZero = function(item) {
+            return utils.isTrue(item.zero);
+        };
+
+        courseAsgn.courseColor = function() {
+            var periodIndex = ((courseAsgn.course.period - 1) % 10) + 1;
+            return "period-" + periodIndex;
+        };
 
     }
 

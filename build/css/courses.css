@@ -30,6 +30,7 @@
     height: 100%;
     width: 100%;
     text-align: center;
+    margin-top: 20px;
 }
 
 .course-grade {
@@ -86,7 +87,7 @@
     bottom: 0;
 }
 
-.due-date {
+.progress-due-date {
     font-size: 0.9em;
     color: #777;
 }

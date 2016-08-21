@@ -5,7 +5,7 @@
         .controller('AssignmentsController', ['$scope', '$location', '$sce', '$timeout',
                         'DataService', 'DataType', 'gettextCatalog', AssignmentsController])
         .controller('AssignmentDetailController', ['$scope', '$window', '$sce', 'StorageService',
-                        'StatusService', 'DataService', 'DataType', 'Utils', 'CourseColors', AssignmentDetailController])
+                        'StatusService', 'Utils', 'CourseColors', 'gettextCatalog', AssignmentDetailController])
         .filter('period', [PeriodFilter])
         .filter('course', [CourseFilter])
     ;
@@ -30,44 +30,7 @@
         };
 
         assignCtrl.getDate = function (source, timeZone) {
-            var sourceDate;
-            var today, future;
-            if(timeZone) {
-                sourceDate = moment(new Date(Number(source))).tz(timeZone);
-                today = moment().tz(timeZone);
-                future = moment().tz(timeZone);
-            } else {
-                sourceDate = moment(new Date(Number(source)));
-                today = moment();
-                future = moment();
-            }
-            future.add(1, 'days');
-
-            var message;
-            if(sourceDate.isSame(today, 'day')) {
-                message = gettextCatalog.getString("Today");
-                return message;
-            } else if(sourceDate.isSame(future, 'day')) {
-                message = gettextCatalog.getString("Tomorrow");
-                return message;
-            } else {
-                future.add(6, 'days'); // 1 week from now
-                if(sourceDate.isBefore(future)) {
-                    return sourceDate.format("dddd");
-                } else {
-                    return sourceDate.format("MMM D, YYYY");
-                }
-            }
-            return sourceDate.format("MMM D, YYYY");
-        };
-
-
-        assignCtrl.isToday = function (itemDate, timeZone) {
-            return isToday(itemDate, timeZone);
-        };
-
-        assignCtrl.isTomorrow = function (itemDate, timeZone) {
-            return isTomorrow(itemDate, timeZone);
+            return getDate(source, timeZone, gettextCatalog);
         };
 
         assignCtrl.courseColor = function(assignment) {
@@ -153,8 +116,7 @@
         }
     }
 
-    function AssignmentDetailController($scope, $window, $sce, storageService, statusService,
-                                        dataService, DataType, utils, CourseColors) {
+    function AssignmentDetailController($scope, $window, $sce, storageService, statusService, utils, CourseColors, gettextCatalog) {
         var assignDetail = this;
 
         assignDetail.assignment = $scope.asgnNavigator.topPage.pushedOptions.assignment;
@@ -175,12 +137,9 @@
             return "";
         };
 
-        assignDetail.isToday = function (itemDate, timeZone) {
-            return isToday(itemDate, timeZone);
-        };
 
-        assignDetail.isTomorrow = function (itemDate, timeZone) {
-            return isTomorrow(itemDate, timeZone);
+        assignDetail.getDate = function (source, timeZone) {
+            return getDate(source, timeZone, gettextCatalog);
         };
 
         assignDetail.openURL = function (link) {
@@ -202,31 +161,36 @@
         };
     }
 
-    function isToday(source, timeZone) {
+    function getDate(source, timeZone, gettextCatalog) {
         var sourceDate;
-        var today;
+        var today, future;
         if(timeZone) {
             sourceDate = moment(new Date(Number(source))).tz(timeZone);
             today = moment().tz(timeZone);
+            future = moment().tz(timeZone);
         } else {
             sourceDate = moment(new Date(Number(source)));
             today = moment();
+            future = moment();
         }
-        return sourceDate.isSame(today, 'day');
-    }
+        future.add(1, 'days');
 
-    function isTomorrow(source, timeZone) {
-        var sourceDate;
-        var tomorrow;
-        if(timeZone) {
-            sourceDate = moment(new Date(Number(source))).tz(timeZone);
-            tomorrow = moment().tz(timeZone);
+        var message;
+        if(sourceDate.isSame(today, 'day')) {
+            message = gettextCatalog.getString("Today");
+            return message;
+        } else if(sourceDate.isSame(future, 'day')) {
+            message = gettextCatalog.getString("Tomorrow");
+            return message;
         } else {
-            sourceDate = moment(new Date(Number(source)));
-            tomorrow = moment();
+            future.add(6, 'days'); // 1 week from now
+            if(sourceDate.isBefore(future)) {
+                return sourceDate.format("dddd");
+            } else {
+                return sourceDate.format("MMM D, YYYY");
+            }
         }
-        tomorrow.add(1, 'days');
-        return sourceDate.isSame(tomorrow, 'day');
+        return sourceDate.format("MMM D, YYYY");
     }
 
     function groupAssignments(data) {

@@ -7,7 +7,8 @@
         <ons-row>
             <ons-col>
                 <div class="course-header">
-                    <div class="teacher" tappable>
+                    <div class="teacher" tappable
+                         ng-click="courseNavigator.pushPage('compose.html', {animation: 'slide', navigator: courseNavigator})">
                         <ons-ripple color="rgba(156, 156, 156, 0.20)"></ons-ripple>
                         <ons-icon icon="ion-ios-email" size="32px"></ons-icon>{{courseDetail.progress.teacher.name}}<span ng-show="courseDetail.progress.coTeacher"> - {{courseDetail.progress.coTeacher.name}}</span>
                     </div>
@@ -36,7 +37,7 @@
         </div>
     </div>
     <ons-list>
-        <ons-list-header>
+        <ons-list-header ng-if="courseDetail.progress.grades.length > 0">
             Recent Scores
         </ons-list-header>
         <div class="card">
@@ -53,7 +54,7 @@
                     <div class="progress-report course-row">
                         <div class="title">{{item.assignment.title}}</div>
                         <div class="category">{{item.assignment.categoryName}}</div>
-                        <div class="due-date">
+                        <div class="progress-due-date">
                             <span translate>Due:</span> {{item.assignment.dueDate|truncate:10|date:"MMM d, y" : "UTC"}}
                             <span class="seperator" ng-show="hasComment(item)">-</span>
                             <span class="comment" ng-show="hasComment(item)"><span class="icon-comment"></span>{{item.comment}}</span>
@@ -62,14 +63,15 @@
                 </div>
                 <div class="right">
                     <div class="course-grades">
-                        <div class="course-detail-grade">{{item.percentScore}}</div>
+                        <div ng-if="courseDetail.isZero(item)" class="course-detail-grade" translate>Zero</div>
+                        <div ng-if="!courseDetail.isZero(item)" class="course-detail-grade">{{item.percentScore}}</div>
                         <div class="course-score">{{item.score}}</div>
                     </div>
                 </div>
             </ons-list-item>
             <ons-list-item class="card-item course-detail" modifier="longdivider" tappable
                            ng-if="courseDetail.progress.grades.length > 4 && courseDetail.limit <= 4"
-                           ng-click="courseDetail.viewAll()">
+                           ng-click="courseNavigator.pushPage('course-assignments.html', {animation: 'slide', progress: courseDetail.progress, course: courseDetail.course})">
                 <div class="right">
                     <div translate>View All Assignments</div>
                 </div>

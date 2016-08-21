@@ -92,3 +92,14 @@
 .teacher .ion-ios-email {
     color: #777 !important;
 }
+
+.due-label {
+    font-size: 0.9em;
+    color: #777;
+}
+
+.due-date {
+    font-size: 0.9em;
+    font-weight: bold;
+}
+

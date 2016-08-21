@@ -1,0 +1,35 @@
+<ons-page ng-controller="CourseAsgnController as courseAsgn">
+    <ons-toolbar ng-class="courseAsgn.courseColor()">
+        <div class="left"><ons-back-button translate>Back</ons-back-button></div>
+        <div class="center" translate>Assignments</div>
+        <div class="right" ng-click="courseAsgn.filterList()">
+            <ons-toolbar-button>
+                <ons-icon size="24px" icon="md-filter-list"></ons-icon>
+            </ons-toolbar-button>
+        </div>
+    </ons-toolbar>
+    <ons-list>
+        <ons-list-item class="course-detail course-assignments" ng-class="{'zero-grade': courseAsgn.isZero(item)}"
+                       ng-if="courseAsgn.progress.grades.length > 0"
+                       modifier="longdivider" tappable ng-repeat="item in courseAsgn.progress.grades|limitTo:courseAsgn.limit">
+            <div class="center">
+                <div class="progress-report course-row">
+                    <div class="title">{{item.assignment.title}}</div>
+                    <div class="category">{{item.assignment.categoryName}}</div>
+                    <div class="progress-due-date">
+                        <span translate>Due:</span> {{item.assignment.dueDate|truncate:10|date:"MMM d, y" : "UTC"}}
+                        <span class="seperator" ng-show="hasComment(item)">-</span>
+                        <span class="comment" ng-show="hasComment(item)"><span class="icon-comment"></span>{{item.comment}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="course-grades">
+                    <div ng-if="courseAsgn.isZero(item)" class="course-detail-grade" translate>Zero</div>
+                    <div ng-if="!courseAsgn.isZero(item)" class="course-detail-grade">{{item.percentScore}}</div>
+                    <div class="course-score">{{item.score}}</div>
+                </div>
+            </div>
+        </ons-list-item>
+    </ons-list>
+</ons-page>

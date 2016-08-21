@@ -20,8 +20,7 @@
         </div>
     </ons-list-item>
     <div class="assignment-detail">
-        <div class="due-date"><span translate>Due:</span> {{assignDetail.assignment.dueDate| momentTz:"MMM D, YYYY":assignDetail.assignment.timeZone}}</div>
-
+        <div><span class="due-label" translate>Due:</span><span class="due-date"> {{assignDetail.getDate(assignDetail.assignment.dueDate, assignDetail.assignment.timeZone)}}</span></div>
         <div class="assignment-desc" ng-bind-html="assignDetail.getDescription()"></div>
 
         <ons-list class="attachements-view" ng-if="assignDetail.assignment.links">
