@@ -23,10 +23,10 @@
         <ons-list class="attachements-view" ng-if="loopmailDetail.loopmail.links">
             <ons-list-item modifier="longdivider" tappable ng-repeat="link in loopmailDetail.loopmail.links"
                            ng-click="loopmailDetail.openURL(link)">
+                <!--<div class="left">-->
+                    <!--<ons-icon icon="md-attachment" class="ons-icon zmdi zmdi-attachment" size="20px"></ons-icon>-->
+                <!--</div>-->
                 <div class="left">
-                    <ons-icon icon="md-attachment" class="ons-icon zmdi zmdi-attachment" size="20px"></ons-icon>
-                </div>
-                <div class="center">
                     <div class="title">{{link.Title}}</div>
                 </div>
             </ons-list-item>

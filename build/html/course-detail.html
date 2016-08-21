@@ -11,11 +11,13 @@
                         <ons-ripple color="rgba(156, 156, 156, 0.20)"></ons-ripple>
                         <ons-icon icon="ion-ios-email" size="32px"></ons-icon>{{courseDetail.progress.teacher.name}}<span ng-show="courseDetail.progress.coTeacher"> - {{courseDetail.progress.coTeacher.name}}</span>
                     </div>
-                    <div class="category" translate>Last Progress Report:</div>
-                    <div class="category">{{courseDetail.progress.date|date:"MMM d, y" : "UTC"}}</div>
+                    <div ng-if="courseDetail.progress.grades.length > 0">
+                        <div class="category" translate>Last Progress Report:</div>
+                        <div class="category">{{courseDetail.progress.date|truncate:10|date:"MM/dd/yyyy"}}</div>
+                    </div>
                 </div>
             </ons-col>
-            <ons-col width="175px">
+            <ons-col width="175px" ng-if="courseDetail.progress.grades.length > 0">
                 <div class="grade-info" ng-show="courseDetail.hasGrade() === true || courseDetail.hasScore() === true" tappable
                                 ng-click="courseNavigator.pushPage('course-info.html', {animation: 'slide', progress: courseDetail.progress, course: courseDetail.course})">
                     <div class="grade" ng-show="courseDetail.hasGrade() === true">{{courseDetail.getGrade()}}</div>
@@ -52,7 +54,7 @@
                         <div class="title">{{item.assignment.title}}</div>
                         <div class="category">{{item.assignment.categoryName}}</div>
                         <div class="due-date">
-                            <span translate>Due:</span> {{item.assignment.dueDate|truncate:10|date:medium}}
+                            <span translate>Due:</span> {{item.assignment.dueDate|truncate:10|date:"MM/dd/yyyy"}}
                             <span class="seperator" ng-show="hasComment(item)">-</span>
                             <span class="comment" ng-show="hasComment(item)"><span class="icon-comment"></span>{{item.comment}}</span>
                         </div>

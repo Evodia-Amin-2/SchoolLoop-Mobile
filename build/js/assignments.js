@@ -3,14 +3,14 @@
 
     angular.module('mobileloop')
         .controller('AssignmentsController', ['$scope', '$location', '$sce', '$timeout',
-                        'DataService', 'DataType', AssignmentsController])
+                        'DataService', 'DataType', 'gettextCatalog', AssignmentsController])
         .controller('AssignmentDetailController', ['$scope', '$window', '$sce', 'StorageService',
                         'StatusService', 'DataService', 'DataType', 'Utils', 'CourseColors', AssignmentDetailController])
         .filter('period', [PeriodFilter])
         .filter('course', [CourseFilter])
     ;
 
-    function AssignmentsController($scope, $location, $sce, $timeout, dataService, DataType) {
+    function AssignmentsController($scope, $location, $sce, $timeout, dataService, DataType, gettextCatalog) {
         var assignCtrl = this;
 
         navigator.analytics.sendAppView('Assignments');
@@ -28,6 +28,39 @@
                 });
             }, 1000);
         };
+
+        assignCtrl.getDate = function (source, timeZone) {
+            var sourceDate;
+            var today, future;
+            if(timeZone) {
+                sourceDate = moment(new Date(Number(source))).tz(timeZone);
+                today = moment().tz(timeZone);
+                future = moment().tz(timeZone);
+            } else {
+                sourceDate = moment(new Date(Number(source)));
+                today = moment();
+                future = moment();
+            }
+            future.add(1, 'days');
+
+            var message;
+            if(sourceDate.isSame(today, 'day')) {
+                message = gettextCatalog.getString("Today");
+                return message;
+            } else if(sourceDate.isSame(future, 'day')) {
+                message = gettextCatalog.getString("Tomorrow");
+                return message;
+            } else {
+                future.add(6, 'days'); // 1 week from now
+                if(sourceDate.isBefore(future)) {
+                    return sourceDate.format("dddd");
+                } else {
+                    return sourceDate.format("MM/DD/YYYY");
+                }
+            }
+            return sourceDate.format("MM/DD/YYYY");
+        };
+
 
         assignCtrl.isToday = function (itemDate, timeZone) {
             return isToday(itemDate, timeZone);

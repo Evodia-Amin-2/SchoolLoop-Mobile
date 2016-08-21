@@ -28,10 +28,7 @@
         <ons-list ng-repeat="item in assCtrl.assignments">
             <ons-list-header>
                 <strong>
-                    <span ng-show="assCtrl.isToday(item.date, timeZone)" translate>Today</span>
-                    <span ng-show="!assCtrl.isToday(item.date, timeZone) && assCtrl.isTomorrow(item.date, timeZone)" translate>Tomorrow</span>
-                    <span ng-show="!assCtrl.isToday(item.date, timeZone) && !assCtrl.isTomorrow(item.date, timeZone)">{{item.date | momentTz:"dddd":timeZone}}</span>
-                    <span ng-show="assCtrl.showDate()">{{item.date | momentTz:"MMM D, YYYY":timeZone}}</span>
+                    <span>{{assCtrl.getDate(item.date, timeZone)}}</span>
                 </strong>
             </ons-list-header>
             <div class="card">

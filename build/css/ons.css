@@ -47,6 +47,10 @@ page--material .link {
     bottom: 59px;
 }
 
+.tab-bar--material__button {
+    text-transform: inherit;
+}
+
 .default-toolbar {
     background-color: #009688;
 }
