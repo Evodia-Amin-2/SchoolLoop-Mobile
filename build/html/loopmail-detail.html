@@ -8,6 +8,7 @@
         <div class="loopmail-sender"><span translate>To:</span> {{loopmailDetail.loopmail.shortRecipientString}}</div>
     </div>
     <div class="loopmail-detail-subheader">
+        <ons-icon ng-if="loopmailDetail.loopmail.links" icon="md-attachment" class="ons-icon zmdi zmdi-attachment" size="20px"></ons-icon>
         <div class="loopmail-subject">{{loopmailDetail.loopmail.subject}}</div>
         <div class="loopmail-date">{{loopmailDetail.loopmail.date|date:"MMM d, y" : "UTC"}}</div>
     </div>

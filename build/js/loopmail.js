@@ -109,17 +109,16 @@
             return message.read === 'false' || message.read === 'null';
         };
 
+        mailCtrl.compose = function() {
+            $scope.mainNavigator.pushPage('compose.html', {animation: 'slide'});
+        };
+
         $scope.$on("loopmail.sent", function() {
             if(dataService.getFolderId() < 0) {
                 mailCtrl.loopmail = storageService.getOutgoingMail();
                 mailCtrl.noMailMessage = gettextCatalog.getString("All Mail Delivered");
             }
 
-        });
-
-        $scope.$on("menu.loopmail", function() {
-            loopmailService.setRecipients(undefined);
-            $location.path("main.compose");
         });
 
         $scope.$on('notify.loopmail', function(event, data) {

@@ -25,6 +25,11 @@
                 </ons-toolbar-button>
             </div>
             <div class="center" ng-click="mailCtrl.showMenu()">{{mailCtrl.mailbox.label}} <ons-icon icon="fa-caret-down" size="18px"></ons-icon></div>
+            <div class="right">
+                <div class="loopmail-compose" ng-click="mailCtrl.compose()" tappable>
+                    <ons-icon icon="md-edit"></ons-icon>
+                </div>
+            </div>
         </ons-toolbar>
         <ons-list class="loopmail-view">
             <ons-list-item class="loopmail-item" modifier="longdivider" tappable ng-repeat="item in mailCtrl.loopmail"
