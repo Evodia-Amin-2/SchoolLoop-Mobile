@@ -55,10 +55,10 @@
                 if(sourceDate.isBefore(future)) {
                     return sourceDate.format("dddd");
                 } else {
-                    return sourceDate.format("MM/DD/YYYY");
+                    return sourceDate.format("MMM D, YYYY");
                 }
             }
-            return sourceDate.format("MM/DD/YYYY");
+            return sourceDate.format("MMM D, YYYY");
         };
 
 

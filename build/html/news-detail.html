@@ -5,7 +5,7 @@
     </ons-toolbar>
     <div class="news-content">
         <div class="news-title">{{newsDetail.newsItem.title}}</div>
-        <div class="news-date">{{newsDetail.newsItem.createdDate|date:"MM/dd/yyyy" : "UTC"}}</div>
+        <div class="news-date">{{newsDetail.newsItem.createdDate|date:"MMM d, y" : "UTC"}}</div>
 
         <div class="news-desc" ng-bind-html="newsDetail.getDescription()"></div>
 

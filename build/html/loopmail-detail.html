@@ -13,9 +13,9 @@
         <div class="loopmail-sender"><span translate>To:</span> {{loopmailDetail.loopmail.shortRecipientString}}</div>
     </div>
     <div class="loopmail-detail-subheader">
-        <ons-icon ng-if="loopmailDetail.loopmail.links" icon="md-attachment" class="ons-icon zmdi zmdi-attachment" size="20px"></ons-icon>
+        <!--<ons-icon ng-if="loopmailDetail.loopmail.links" icon="md-attachment" class="ons-icon zmdi zmdi-attachment" size="20px"></ons-icon>-->
         <div class="loopmail-subject">{{loopmailDetail.loopmail.subject}}</div>
-        <div class="loopmail-date">{{loopmailDetail.loopmail.date|date:"MM/dd/yyyy" : "UTC"}}</div>
+        <div class="loopmail-date">{{loopmailDetail.loopmail.date|date:"MMM d, y" : "UTC"}}</div>
     </div>
     <div class="loopmail-content">
         <div class="loopmail-desc" ng-bind-html="loopmailDetail.trustedMessage"></div>
@@ -23,9 +23,9 @@
         <ons-list class="attachements-view" ng-if="loopmailDetail.loopmail.links">
             <ons-list-item modifier="longdivider" tappable ng-repeat="link in loopmailDetail.loopmail.links"
                            ng-click="loopmailDetail.openURL(link)">
-                <!--<div class="left">-->
-                    <!--<ons-icon icon="md-attachment" class="ons-icon zmdi zmdi-attachment" size="20px"></ons-icon>-->
-                <!--</div>-->
+                <div class="left">
+                    <ons-icon icon="md-attachment" class="ons-icon zmdi zmdi-attachment" size="20px"></ons-icon>
+                </div>
                 <div class="left">
                     <div class="title">{{link.Title}}</div>
                 </div>
