@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('ComposeController', ['$scope', '$window', 'DataService', 'StorageService', 'gettextCatalog', ComposeController])
+        .controller('ComposeController', ['$scope', ComposeController])
         ;
 
-        function ComposeController($scope, $window, dataService, storageService, gettextCatalog) {
+        function ComposeController($scope) {
             var compose = this;
 
             compose.back = function() {

@@ -7,5 +7,38 @@
             <ons-tab page="news.html" label="News" icon="fa-newspaper-o" counter="page.getNewsCount"></ons-tab>
             <ons-tab page="calendar.html" label="Calendar" icon="md-calendar"></ons-tab>
         </ons-tabbar>
+        <ons-modal var="filterModal">
+            <div class="assignment-filter">
+                <ons-row>
+                    <ons-col>
+                        <div class="left filter-prompt">Show:</div>
+                    </ons-col>
+                    <ons-col width="30px" tappable ng-click="doFilter('close')">
+                        <ons-ripple color="rgba(156, 156, 156, 0.20)"></ons-ripple>
+                        <ons-icon icon="md-close" size="32px"></ons-icon>
+                    </ons-col>
+                </ons-row>
+                <ons-list>
+                    <ons-list-item modifier="nodivider" tappable ng-click="doFilter('ungraded')">
+                        <label class="left">
+                            <ons-input type="checkbox" input-id="check-1" ng-model="filter.ungraded"></ons-input>
+                            <span class="filter-label">Ungraded Assignments</span>
+                        </label>
+                    </ons-list-item>
+                    <ons-list-item modifier="nodivider" tappable ng-click="doFilter('graded')">
+                        <label class="left">
+                            <ons-input type="checkbox" input-id="check-2" ng-model="filter.graded"></ons-input>
+                            <span class="filter-label">Graded Assignments</span>
+                        </label>
+                    </ons-list-item>
+                    <ons-list-item modifier="nodivider" tappable ng-click="doFilter('zeros')">
+                        <label class="left">
+                            <ons-input type="checkbox" input-id="check-3" ng-model="filter.zeros"></ons-input>
+                            <span class="filter-label">Zeros</span>
+                        </label>
+                    </ons-list-item>
+                </ons-list>
+            </div>
+        </ons-modal>
     </ons-page>
 </ons-navigator>

@@ -103,3 +103,29 @@
     font-weight: bold;
 }
 
+.assignment-filter {
+    position: absolute;
+    background-color: white;
+    color: black;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+}
+
+.assignment-filter .list__item {
+    padding-bottom: 15px;
+}
+
+.assignment-filter .list {
+    border: none;
+}
+
+.filter-prompt {
+    color: #777;
+    text-align: left;
+}
+
+.filter-label {
+    margin-left: 10px;
+}

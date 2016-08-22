@@ -2,11 +2,11 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('MainController', ['$scope', '$location', '$timeout', 'DataService', 'DataType', 'StorageService',
+        .controller('MainController', ['$rootScope', '$scope', '$location', '$timeout', 'DataService', 'DataType', 'StorageService',
             'StatusService', 'NotificationService','UpdateService', 'LoopmailService', MainController])
     ;
 
-    function MainController($scope, $location, $timeout,
+    function MainController($rootScope, $scope, $location, $timeout,
              dataService, DataType, storageService, statusService, notificationService,
              updateService, loopmailService) {
         var main = this;
@@ -17,6 +17,11 @@
         StatusBar.styleLightContent();
         StatusBar.backgroundColorByHexString("#009688");
         StatusBar.show();
+
+        $scope.filter = {};
+        $scope.filter.ungraded = true;
+        $scope.filter.graded = true;
+        $scope.filter.zeros = true;
 
         $timeout(function() {
             statusService.hideNoWait();
@@ -61,6 +66,11 @@
                 return unreadList.length;
             }
             return 0;
+        };
+
+        $scope.doFilter = function(action) {
+            $scope.filter[action] = ! $scope.filter[action];
+            $rootScope.$broadcast("filter.action", {action: action, state: $scope.filter[action]});
         };
 
         // var doExit = false;

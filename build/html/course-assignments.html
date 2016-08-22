@@ -10,24 +10,30 @@
     </ons-toolbar>
     <ons-list>
         <ons-list-item class="course-detail course-assignments" ng-class="{'zero-grade': courseAsgn.isZero(item)}"
-                       ng-if="courseAsgn.progress.grades.length > 0"
-                       modifier="longdivider" tappable ng-repeat="item in courseAsgn.progress.grades|limitTo:courseAsgn.limit">
+                       ng-if="courseAsgn.assignments.length > 0"
+                       modifier="longdivider" tappable ng-repeat="item in courseAsgn.assignments">
             <div class="center">
                 <div class="progress-report course-row">
-                    <div class="title">{{item.assignment.title}}</div>
-                    <div class="category">{{item.assignment.categoryName}}</div>
+                    <div class="title">{{item.title}}</div>
+                    <div class="category">{{item.categoryName}}</div>
                     <div class="progress-due-date">
-                        <span translate>Due:</span> {{item.assignment.dueDate|truncate:10|date:"MMM d, y" : "UTC"}}
+                        <span translate>Due:</span> {{item.dueDate|date:"MMM d, y" : "UTC"}}
                         <span class="seperator" ng-show="hasComment(item)">-</span>
                         <span class="comment" ng-show="hasComment(item)"><span class="icon-comment"></span>{{item.comment}}</span>
                     </div>
                 </div>
             </div>
             <div class="right">
-                <div class="course-grades">
+                <div class="course-grades" ng-if="item.graded == true">
                     <div ng-if="courseAsgn.isZero(item)" class="course-detail-grade" translate>Zero</div>
                     <div ng-if="!courseAsgn.isZero(item)" class="course-detail-grade">{{item.percentScore}}</div>
                     <div class="course-score">{{item.score}}</div>
+                </div>
+                <div class="right" ng-if="item.graded != true">
+                    <div class="assignment-points">
+                        <div class="points-max">{{item.maxPoints}}</div>
+                        <div class="points-label" translate>PTS</div>
+                    </div>
                 </div>
             </div>
         </ons-list-item>
