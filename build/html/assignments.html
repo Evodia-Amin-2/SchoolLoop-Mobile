@@ -32,7 +32,7 @@
                 </strong>
             </ons-list-header>
             <div class="card">
-                <ons-list-item class="card-item assignment-item" modifier="longdivider" tappable ng-repeat="item in item.list"
+                <ons-list-item class="card-item assignment-item" modifier="longdivider" tappable ng-repeat="item in item.list|orderBy:['periodNumber', 'title']"
                                ng-click="asgnNavigator.pushPage('assignment-detail.html', {animation: 'slide', assignment: item})">
                     <div class="left">
                         <div class="course-color" ng-class="assCtrl.courseColor(item)">&nbsp;</div>
