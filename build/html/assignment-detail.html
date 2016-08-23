@@ -1,5 +1,5 @@
-<ons-page ng-controller="AssignmentDetailController as assignDetail">
-    <ons-toolbar ng-class="assignDetail.courseColor()">
+<ons-page ng-controller="AssignmentDetailController as assignDetail" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
+    <ons-toolbar ng-class="[assignDetail.courseColor(), {student:main.currentStudent, ios:ons.platform.isIOS()}]">
         <div class="left"><ons-back-button translate>Back</ons-back-button></div>
         <div class="center">{{::assignDetail.assignment.categoryName}}</div>
     </ons-toolbar>
