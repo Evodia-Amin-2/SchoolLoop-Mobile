@@ -46,5 +46,35 @@
                 </ons-list>
             </div>
         </ons-modal>
+        <ons-modal var="replyModal">
+            <div class="assignment-filter">
+                <ons-list>
+                    <ons-list-item modifier="nodivider" tappable ng-click="doReply('reply')">
+                        <label class="left">
+                            <ons-icon icon="md-mail-reply" size="32px"></ons-icon>
+                        </label>
+                        <label class="center" translate>
+                            Reply
+                        </label>
+                    </ons-list-item>
+                    <ons-list-item modifier="nodivider" tappable ng-click="doReply('reply-all')">
+                        <label class="left">
+                            <ons-icon icon="md-mail-reply-all" size="32px"></ons-icon>
+                        </label>
+                        <label class="center" translate>
+                            Reply All
+                        </label>
+                    </ons-list-item>
+                    <ons-list-item modifier="nodivider" tappable ng-click="doReply('cancel')">
+                        <label class="left">
+                            <ons-icon icon="md-close" size="32px"></ons-icon>
+                        </label>
+                        <label class="center" translate>
+                            Cancel
+                        </label>
+                    </ons-list-item>
+                </ons-list>
+            </div>
+        </ons-modal>
     </ons-page>
 </ons-navigator>

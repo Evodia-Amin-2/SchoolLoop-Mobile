@@ -72,6 +72,10 @@
             $rootScope.$broadcast("filter.action", {action: action});
         };
 
+        $scope.doReply = function(action) {
+            $rootScope.$broadcast("reply.action", {action: action});
+        };
+
         $scope.$on('filter.reset', function(event, data) {
             $scope.gradeFilter = data.action;
         });

@@ -206,6 +206,17 @@
             console.log("message error: " + JSON.stringify(response));
         });
 
+        mailDetail.reply = function() {
+            $scope.replyModal.show();
+        };
+
+        $scope.$on('reply.action', function(event, data) {
+            $scope.replyModal.hide();
+            if(data.action === "cancel") {
+                return;
+            }
+        });
+
         mailDetail.sender = function () {
             if (_.isUndefined(mailDetail.loopmail) || _.isUndefined(mailDetail.loopmail.sender)) {
                 return "";
