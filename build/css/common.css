@@ -57,3 +57,36 @@
 .active .icon-count {
     background-color: #009688;
 }
+
+.student.navigation-bar {
+    height: 64px;
+}
+
+.student .page__content {
+    top: 64px !important;
+}
+
+.ios.student[status-bar-fill].navigation-bar {
+    height: 84px !important;
+}
+
+.ios.student[status-bar-fill] .page__content {
+    top: 84px !important;
+}
+
+.current-student {
+    color: #f0f0f0;
+    background-color: rgba(0,0,0,0.05);
+    padding: 1px;
+    position: absolute;
+    text-align: center;
+    top: 43px;
+    left: 0;
+    right: 0;
+    font-size: 0.9em;
+    z-index: 100;
+}
+
+.current-student.ios {
+    top: 60px !important;
+}

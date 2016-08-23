@@ -13,6 +13,7 @@
 
         main.isTeacher = false;
 
+
         StatusBar.overlaysWebView(true);
         StatusBar.styleLightContent();
         StatusBar.backgroundColorByHexString("#009688");
@@ -33,6 +34,8 @@
         }
 
         navigator.analytics.sendAppView('Main');
+
+        main.currentStudent = storageService.getSelectedStudent();
 
         updateService.start();
         loopmailService.start();

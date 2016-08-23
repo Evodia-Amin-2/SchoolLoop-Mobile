@@ -11,7 +11,6 @@
         var menu = this;
 
         menu.school = undefined;
-        menu.currentStudent = undefined;
         menu.version = config.version;
         menu.build = config.build;
         menu.isTeacher = false;

@@ -145,6 +145,20 @@
                 }
                 return index;
             },
+            getSelectedStudent: function() {
+                var student;
+                var students = loadStudents();
+                var id = storage.getItem("selectedStudent");
+                if (id !== null) {
+                    for (var i = 0, len = students.length; i < len; i++) {
+                        if (students[i].studentID === id) {
+                            student = students[i];
+                            break;
+                        }
+                    }
+                }
+                return student;
+            },
             setSelectedStudentId: function(id) {
                 storage.setItem("selectedStudent", id);
             },

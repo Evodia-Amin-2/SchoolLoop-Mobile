@@ -1,5 +1,5 @@
 <ons-navigator var="asgnNavigator">
-    <ons-page class="card-view" ng-controller="AssignmentsController as assCtrl">
+    <ons-page class="card-view" ng-controller="AssignmentsController as assCtrl" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
         <ons-pull-hook ng-action="assCtrl.load($done)" var="aloader">
                 <span ng-switch="aloader.state">
                   <span ng-switch-when="initial" translate><ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon>Pull down to refresh</span>
@@ -7,9 +7,9 @@
                   <span ng-switch-when="action" translate><ons-icon size="35px" spin="true" icon="ion-load-d"></ons-icon>Loading data...</span>
                 </span>
         </ons-pull-hook>
-        <ons-toolbar class="default-toolbar">
+        <ons-toolbar class="default-toolbar" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
             <div class="left">
-                <ons-toolbar-button ng-click="page.openMenu()">
+                <ons-toolbar-button ng-click="main.openMenu()">
                     <ons-icon icon="md-menu"></ons-icon>
                 </ons-toolbar-button>
             </div>
@@ -53,4 +53,5 @@
             </div>
         </ons-list>
     </ons-page>
+    <div ng-show="main.currentStudent" class="current-student" ng-class="{ios:ons.platform.isIOS()}"><span>{{main.currentStudent.name}}</span></div>
 </ons-navigator>

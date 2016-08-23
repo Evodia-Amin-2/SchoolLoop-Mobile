@@ -1,5 +1,5 @@
-<ons-page ng-controller="CourseAsgnController as courseAsgn">
-    <ons-toolbar ng-class="courseAsgn.courseColor()">
+<ons-page ng-controller="CourseAsgnController as courseAsgn" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
+    <ons-toolbar ng-class="[courseAsgn.courseColor(), {student:main.currentStudent, ios:ons.platform.isIOS()}]">
         <div class="left"><ons-back-button translate>Back</ons-back-button></div>
         <div class="center" translate>Assignments</div>
         <div class="right" ng-click="courseAsgn.filterList()">

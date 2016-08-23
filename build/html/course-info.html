@@ -1,5 +1,5 @@
-<ons-page class="full-page" ng-controller="CourseDetailController as courseDetail">
-    <ons-toolbar ng-class="courseDetail.courseColor()">
+<ons-page class="full-page" ng-controller="CourseDetailController as courseDetail" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
+    <ons-toolbar ng-class="[courseDetail.courseColor(), {student:main.currentStudent, ios:ons.platform.isIOS()}]">
         <div class="left"><ons-back-button translate>Back</ons-back-button></div>
         <div class="center">{{::courseDetail.course.courseName}}</div>
     </ons-toolbar>
