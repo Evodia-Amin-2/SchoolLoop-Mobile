@@ -6,8 +6,6 @@
                         'DataService', 'DataType', 'gettextCatalog', AssignmentsController])
         .controller('AssignmentDetailController', ['$scope', '$window', '$sce', 'StorageService',
                         'StatusService', 'Utils', 'CourseColors', 'gettextCatalog', AssignmentDetailController])
-        .filter('period', [PeriodFilter])
-        .filter('course', [CourseFilter])
     ;
 
     function AssignmentsController($scope, $location, $sce, $timeout, dataService, DataType, gettextCatalog) {
@@ -30,6 +28,13 @@
         };
 
         assignCtrl.getDate = function (source, timeZone) {
+            if(_.isUndefined(source.periodNumber)) {
+                var tokens = input.split(" Period ");
+                if(tokens.length === 2) {
+                    source.periodNumber = tokens[1];
+                    source.courseName = tokens[0];
+                }
+            }
             return getDate(source, timeZone, gettextCatalog);
         };
 
@@ -204,23 +209,5 @@
             assignments.push(object);
         }
         return assignments;
-    }
-
-    function PeriodFilter() {
-        return function(input) {
-            if(_.isUndefined(input) === false) {
-                return input.split(" Period ")[1];
-            }
-            return input;
-        };
-    }
-
-    function CourseFilter() {
-        return function(input) {
-            if(_.isUndefined(input) === false) {
-                return input.split(" Period ")[0];
-            }
-            return input;
-        };
     }
 })();
