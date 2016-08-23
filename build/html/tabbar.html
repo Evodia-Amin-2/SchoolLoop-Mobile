@@ -19,22 +19,28 @@
                     </ons-col>
                 </ons-row>
                 <ons-list>
-                    <ons-list-item modifier="nodivider" tappable ng-click="doFilter('ungraded')">
+                    <ons-list-item modifier="nodivider" tappable>
                         <label class="left">
-                            <ons-input type="checkbox" input-id="check-1" ng-model="filter.ungraded"></ons-input>
-                            <span class="filter-label">Ungraded Assignments</span>
+                            <ons-input name="grade-filter" type="radio" input-id="radio-1" ng-model="gradeFilter" value="all" ng-change="doFilter(gradeFilter)"></ons-input>
+                        </label>
+                        <label for="radio-1" class="center" translate>
+                            All Assignments
                         </label>
                     </ons-list-item>
-                    <ons-list-item modifier="nodivider" tappable ng-click="doFilter('graded')">
+                    <ons-list-item modifier="nodivider" tappable>
                         <label class="left">
-                            <ons-input type="checkbox" input-id="check-2" ng-model="filter.graded"></ons-input>
-                            <span class="filter-label">Graded Assignments</span>
+                            <ons-input name="grade-filter" type="radio" input-id="radio-2" ng-model="gradeFilter" value="graded" ng-change="doFilter(gradeFilter)"></ons-input>
+                        </label>
+                        <label for="radio-2" class="center" translate>
+                            Graded Assignments
                         </label>
                     </ons-list-item>
-                    <ons-list-item modifier="nodivider" tappable ng-click="doFilter('zeros')">
+                    <ons-list-item modifier="nodivider" tappable>
                         <label class="left">
-                            <ons-input type="checkbox" input-id="check-3" ng-model="filter.zeros"></ons-input>
-                            <span class="filter-label">Zeros</span>
+                            <ons-input name="grade-filter" type="radio" input-id="radio-3" ng-model="gradeFilter" value="zeros" ng-change="doFilter(gradeFilter)"></ons-input>
+                        </label>
+                        <label for="radio-3" class="center" translate>
+                            Zeros
                         </label>
                     </ons-list-item>
                 </ons-list>

@@ -18,10 +18,7 @@
         StatusBar.backgroundColorByHexString("#009688");
         StatusBar.show();
 
-        $scope.filter = {};
-        $scope.filter.ungraded = true;
-        $scope.filter.graded = true;
-        $scope.filter.zeros = true;
+        $scope.gradeFilter = "all";
 
         $timeout(function() {
             statusService.hideNoWait();
@@ -69,9 +66,12 @@
         };
 
         $scope.doFilter = function(action) {
-            $scope.filter[action] = ! $scope.filter[action];
-            $rootScope.$broadcast("filter.action", {action: action, state: $scope.filter[action]});
+            $rootScope.$broadcast("filter.action", {action: action});
         };
+
+        $scope.$on('filter.reset', function() {
+            $scope.gradeFilter = "all";
+        });
 
         // var doExit = false;
         // $scope.$on("hardware.backbutton", function() {

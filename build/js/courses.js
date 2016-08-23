@@ -4,7 +4,7 @@
     angular.module('mobileloop')
         .controller('CoursesController', ['$scope', '$timeout', '$location', 'DataService', 'DataType', 'StatusService', 'LoopmailService', 'Utils', CoursesController])
         .controller('CourseDetailController', ['$scope', '$timeout', 'DataService', 'StatusService', 'Utils', 'CourseColors', CourseDetailController])
-        .controller('CourseAsgnController', ['$scope', 'Utils', 'DataService', 'DataType', 'CourseColors', CourseAsgnController])
+        .controller('CourseAsgnController', ['$rootScope', '$scope', '$timeout', 'Utils', 'DataService', 'DataType', 'CourseColors', CourseAsgnController])
     ;
 
     function CoursesController($scope, $timeout, $location, dataService, DataType, statusService, loopmailService, utils) {
@@ -148,7 +148,6 @@
                 var page = navigator.pages[1];
                 if(page.name === "compose.html") {
                     $timeout(function() {
-                        console.log($scope.courseNavigator.pages[1].backButton);
                         $scope.courseNavigator.pages[1].backButton.style.display = "block";
                     });
                 }
@@ -300,28 +299,17 @@
 
     }
 
-    function CourseAsgnController($scope, utils, dataService, DataType, CourseColors) {
+    function CourseAsgnController($rootScope, $scope, $timeout, utils, dataService, DataType, CourseColors) {
         var courseAsgn = this;
 
         courseAsgn.course = $scope.courseNavigator.topPage.pushedOptions.course;
         courseAsgn.progress = $scope.courseNavigator.topPage.pushedOptions.progress;
 
-        courseAsgn.assignments = dataService.list(DataType.ASSIGNMENT).slice();
-        var grades = courseAsgn.progress.grades;
-        for(var i = 0; i < grades.length; i++) {
-            var assignment = JSON.parse(JSON.stringify(grades[i].assignment));
-            assignment.iD = assignment.systemID;
-            assignment.zero = grades[i].zero;
-            assignment.grade = grades[i].grade;
-            assignment.percentScore = grades[i].percentScore;
-            assignment.score = grades[i].score;
-            assignment.comment = grades[i].comment;
-            var dueDate = Date.parse(assignment.dueDate);
-            assignment.dueDate = dueDate;
-            assignment.graded = true;
-            courseAsgn.assignments.push(assignment);
-        }
-        courseAsgn.assignments = _.sortBy(courseAsgn.assignments, function(o) { return o.dueDate; }).reverse();
+        courseAsgn.filter = "all";
+
+        $rootScope.$broadcast("filter.reset", {action: courseAsgn.filter});
+
+        loadAssignments();
 
         var periodIndex = (courseAsgn.course.period - 1) % 10;
         StatusBar.backgroundColorByHexString(CourseColors[periodIndex]);
@@ -340,12 +328,45 @@
             return "period-" + periodIndex;
         };
 
-        $scope.$on('filter.action', function(event, data) {
-            if(data.action === "close") {
-                $scope.filterModal.hide();
+        courseAsgn.applyFilter = function(element) {
+            if(courseAsgn.filter === "graded") {
+                return element.graded === true;
+            } else if(courseAsgn.filter === "zeros") {
+                return utils.isTrue(element.zero);
             }
+            return true;
+        };
+
+        $scope.$on('filter.action', function(event, data) {
+            $scope.filterModal.hide();
+            if(data.action === "close") {
+                return;
+            }
+
+            courseAsgn.filter = data.action;
+            courseAsgn.assignments = [];
+
+            $timeout(loadAssignments, 300);
         });
 
+        function loadAssignments() {
+            courseAsgn.assignments = dataService.list(DataType.ASSIGNMENT).slice();
+            var grades = courseAsgn.progress.grades;
+            for(var i = 0; i < grades.length; i++) {
+                var assignment = JSON.parse(JSON.stringify(grades[i].assignment));
+                assignment.iD = assignment.systemID;
+                assignment.zero = grades[i].zero;
+                assignment.grade = grades[i].grade;
+                assignment.percentScore = grades[i].percentScore;
+                assignment.score = grades[i].score;
+                assignment.comment = grades[i].comment;
+                var dueDate = Date.parse(assignment.dueDate);
+                assignment.dueDate = dueDate;
+                assignment.graded = true;
+                courseAsgn.assignments.push(assignment);
+            }
+            courseAsgn.assignments = _.sortBy(courseAsgn.assignments, function(o) { return o.dueDate; }).reverse();
+        }
     }
 
     function roundWithPrecision(x, p) {

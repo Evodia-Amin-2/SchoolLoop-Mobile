@@ -11,7 +11,7 @@
     <ons-list>
         <ons-list-item class="course-detail course-assignments" ng-class="{'zero-grade': courseAsgn.isZero(item)}"
                        ng-if="courseAsgn.assignments.length > 0"
-                       modifier="longdivider" tappable ng-repeat="item in courseAsgn.assignments">
+                       modifier="longdivider" tappable ng-repeat="item in courseAsgn.assignments|filter:courseAsgn.applyFilter">
             <div class="center">
                 <div class="progress-report course-row">
                     <div class="title">{{item.title}}</div>

@@ -113,12 +113,9 @@
     padding: 20px;
 }
 
-.assignment-filter .list__item {
-    padding-bottom: 15px;
-}
-
 .assignment-filter .list {
     border: none;
+    margin-bottom: 15px;
 }
 
 .filter-prompt {

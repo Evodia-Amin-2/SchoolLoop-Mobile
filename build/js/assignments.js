@@ -183,7 +183,7 @@
             message = gettextCatalog.getString("Tomorrow");
             return message;
         } else {
-            future.add(6, 'days'); // 1 week from now
+            future.add(5, 'days');
             if(sourceDate.isBefore(future)) {
                 return sourceDate.format("dddd");
             } else {
