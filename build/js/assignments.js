@@ -29,7 +29,7 @@
 
         assignCtrl.getDate = function (source, timeZone) {
             if(_.isUndefined(source.periodNumber)) {
-                var tokens = input.split(" Period ");
+                var tokens = source.courseName.split(" Period ");
                 if(tokens.length === 2) {
                     source.periodNumber = tokens[1];
                     source.courseName = tokens[0];
