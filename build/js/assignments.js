@@ -187,10 +187,10 @@
             if(sourceDate.isBefore(future)) {
                 return sourceDate.format("dddd");
             } else {
-                return sourceDate.format("MMM D, YYYY");
+                return sourceDate.format("dddd, MMM D, YYYY");
             }
         }
-        return sourceDate.format("MMM D, YYYY");
+        return sourceDate.format("dddd, MMM D, YYYY");
     }
 
     function groupAssignments(data) {

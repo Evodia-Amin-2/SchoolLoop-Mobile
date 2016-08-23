@@ -82,8 +82,11 @@
         }
 
         $scope.courseNavigator.on("prepop", function() {
-            StatusBar.backgroundColorByHexString("#009688");
-            StatusBar.show();
+            var pages = $scope.courseNavigator.pages;
+            if(pages.length === 2) {
+                StatusBar.backgroundColorByHexString("#009688");
+                StatusBar.show();
+            }
         });
 
         var tabbar = document.querySelector("ons-tabbar");

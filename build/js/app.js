@@ -19,7 +19,7 @@
     angular.module('mobileloop', ['onsen', 'ngRoute', 'ngSanitize', 'templates', 'gettext', 'app.config',
                                 'app.services', 'app.utils', 'ui.components', 'angular-flot'])
         .config(['$routeProvider', MobileLoopRouter])
-        .run(['$rootScope', 'gettextCatalog', 'StorageService', 'config', MobileLoopRun])
+        .run(['$rootScope', '$location', 'gettextCatalog', 'StorageService', 'config', MobileLoopRun])
     ;
 
     angular.module('templates', []);
@@ -40,11 +40,12 @@
             .when('/agreement-en', {templateUrl: "agreement-en.html" })
             .when('/agreement-es', {templateUrl: "agreement-es.html" })
             .when('/agreement-zh', {templateUrl: "agreement-zh.html" })
+            .when('/update', {templateUrl: "update.html" })
             .otherwise({redirectTo:'/start'});
 
     }
 
-    function MobileLoopRun($rootScope, gettextCatalog, storageService, config) {
+    function MobileLoopRun($rootScope, $location, gettextCatalog, storageService, config) {
 
         console.log("Initializing app");
 
@@ -121,14 +122,8 @@
             $rootScope.$broadcast("hardware.offline");
         }, false);
 
-        document.addEventListener('chcp_updateIsReadyToInstall', function(eventData) {
-            var msg = gettextCatalog.getString("A new version is ready to be installed. The application will automatically restart.");
-            var update = gettextCatalog.getString("Update");
-            navigator.notification.alert(msg, function() {
-                window.chcp.installUpdate();
-            }, update);
-
-            console.log(JSON.stringify(eventData));
+        document.addEventListener('chcp_updateIsReadyToInstall', function() {
+            $location.path("/update");
         }, false);
 
         window.addEventListener("orientationchange", function() {

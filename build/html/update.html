@@ -1,0 +1,16 @@
+<ons-page ng-controller="UpdateController as page" class="full-page">
+    <div class="login-panel">
+        <img alt="" src="img/circle-logo.png">
+
+        <p class="message-text" translate>
+            A new version is ready to be installed.
+        </p>
+        <p class="message-text" translate>
+            The application will automatically restart.
+        </p>
+
+        <div class="button-bar">
+            <ons-button ng-click="page.update()" translate>Update</ons-button>
+        </div>
+    </div>
+</ons-page>
