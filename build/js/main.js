@@ -76,6 +76,10 @@
             $scope.gradeFilter = data.action;
         });
 
+        $scope.$on("refresh.all", function() {
+            main.currentStudent = storageService.getSelectedStudent();
+        });
+
         // var doExit = false;
         // $scope.$on("hardware.backbutton", function() {
         //     if (doExit === true) {
