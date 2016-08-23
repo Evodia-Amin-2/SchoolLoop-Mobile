@@ -28,17 +28,18 @@
         };
 
         assignCtrl.getDate = function (source, timeZone) {
-            if(_.isUndefined(source.periodNumber)) {
-                var tokens = source.courseName.split(" Period ");
-                if(tokens.length === 2) {
-                    source.periodNumber = tokens[1];
-                    source.courseName = tokens[0];
-                }
-            }
             return getDate(source, timeZone, gettextCatalog);
         };
 
         assignCtrl.courseColor = function(assignment) {
+            if(_.isUndefined(assignment.periodNumber)) {
+                var tokens = assignment.courseName.split(" Period ");
+                if(tokens.length === 2) {
+                    assignment.periodNumber = tokens[1];
+                    assignment.courseName = tokens[0];
+                }
+            }
+
             var period = assignment.periodNumber;
             var periodIndex = ((period - 1) % 10) + 1;
             return "period-" + periodIndex;
