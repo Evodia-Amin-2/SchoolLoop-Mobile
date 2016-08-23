@@ -24,7 +24,9 @@
                     <div class="score" ng-show="courseDetail.hasScore() === true">{{courseDetail.getScore()}}<ons-icon class="nav-indicator" icon="ion-chevron-right" size="12px"></ons-icon></div>
                 </div>
                 <div class="grade-info" ng-show="courseDetail.zeroCount > 0">
-                    <div class="zero">{{courseDetail.zeroCount}}</div>
+                    <div class="zero"
+                            ng-click="courseNavigator.pushPage('course-assignments.html', {animation: 'slide', filter: 'zeros', progress: courseDetail.progress, course: courseDetail.course})">
+                        {{courseDetail.zeroCount}}</div>
                     <div class="score" ng-show="courseDetail.zeroCount == 1" translate>Zero<ons-icon class="nav-indicator" icon="ion-chevron-right" size="12px"></ons-icon></div>
                     <div class="score" ng-show="courseDetail.zeroCount > 1" translate>Zeros<ons-icon class="nav-indicator" icon="ion-chevron-right" size="12px"></ons-icon></div>
                 </div>
@@ -69,7 +71,7 @@
                 </div>
             </ons-list-item>
             <ons-list-item class="card-item course-detail" modifier="longdivider" tappable
-                           ng-if="courseDetail.progress.grades.length > 4 && courseDetail.limit <= 4"
+                           ng-if="courseDetail.progress.grades.length > 0"
                            ng-click="courseNavigator.pushPage('course-assignments.html', {animation: 'slide', progress: courseDetail.progress, course: courseDetail.course})">
                 <div class="right">
                     <div translate>View All Assignments</div>

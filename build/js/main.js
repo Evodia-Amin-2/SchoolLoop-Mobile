@@ -69,8 +69,8 @@
             $rootScope.$broadcast("filter.action", {action: action});
         };
 
-        $scope.$on('filter.reset', function() {
-            $scope.gradeFilter = "all";
+        $scope.$on('filter.reset', function(event, data) {
+            $scope.gradeFilter = data.action;
         });
 
         // var doExit = false;

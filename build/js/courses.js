@@ -164,14 +164,7 @@
 
         function processProgressReport() {
             courseDetail.progress.grades = _.sortBy(courseDetail.progress.grades, function(o) { return o.assignment.dueDate; }).reverse();
-
-            courseDetail.zeroCount = 0;
-            for (var i = 0, len = courseDetail.progress.grades.length; i < len; i++) {
-                var grade = courseDetail.progress.grades[i];
-                if (utils.isTrue(grade.zero) === true) {
-                    courseDetail.zeroCount += 1;
-                }
-            }
+            courseDetail.zeroCount = countZeros(courseDetail.progress, utils);
         }
 
         function processCourseInfo() {
@@ -304,10 +297,11 @@
 
         courseAsgn.course = $scope.courseNavigator.topPage.pushedOptions.course;
         courseAsgn.progress = $scope.courseNavigator.topPage.pushedOptions.progress;
-
-        courseAsgn.filter = "all";
+        courseAsgn.filter = $scope.courseNavigator.topPage.pushedOptions.filter || "all";
 
         $rootScope.$broadcast("filter.reset", {action: courseAsgn.filter});
+
+        courseAsgn.zeroCount = countZeros(courseAsgn.progress, utils);
 
         loadAssignments();
 
@@ -350,7 +344,11 @@
         });
 
         function loadAssignments() {
-            courseAsgn.assignments = dataService.list(DataType.ASSIGNMENT).slice();
+            var assignments = _.filter(dataService.list(DataType.ASSIGNMENT), function(item) {
+                return +item.periodNumber === +courseAsgn.course.period;
+            });
+
+            courseAsgn.assignments = assignments;//.slice();
             var grades = courseAsgn.progress.grades;
             for(var i = 0; i < grades.length; i++) {
                 var assignment = JSON.parse(JSON.stringify(grades[i].assignment));
@@ -367,6 +365,17 @@
             }
             courseAsgn.assignments = _.sortBy(courseAsgn.assignments, function(o) { return o.dueDate; }).reverse();
         }
+    }
+
+    function countZeros(progressReport, utils) {
+        var count = 0;
+        for (var i = 0, len = progressReport.grades.length; i < len; i++) {
+            var grade = progressReport.grades[i];
+            if (utils.isTrue(grade.zero) === true) {
+                count += 1;
+            }
+        }
+        return count;
     }
 
     function roundWithPrecision(x, p) {

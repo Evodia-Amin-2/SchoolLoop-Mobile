@@ -9,6 +9,13 @@
         </div>
     </ons-toolbar>
     <ons-list>
+        <ons-list ng-show="courseAsgn.zeroCount === 0 && courseAsgn.filter === 'zeros'">
+            <ons-list-item class="card-item assignment-item" modifier="nodivider">
+                <div class="center">
+                    <div class="status-message" translate>No Zeros</div>
+                </div>
+            </ons-list-item>
+        </ons-list>
         <ons-list-item class="course-detail course-assignments" ng-class="{'zero-grade': courseAsgn.isZero(item)}"
                        ng-if="courseAsgn.assignments.length > 0"
                        modifier="longdivider" tappable ng-repeat="item in courseAsgn.assignments|filter:courseAsgn.applyFilter">
