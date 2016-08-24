@@ -113,6 +113,26 @@
             $scope.mainNavigator.pushPage('compose.html', {animation: 'slide'});
         };
 
+        $scope.$on("refresh.all", function() {
+            loadLoopMail();
+        });
+
+        var tabbar = document.querySelector("ons-tabbar");
+        tabbar.addEventListener("prechange", function() {
+            var pages = $scope.loopmailNavigator.pages;
+            if(pages.length > 1) {
+                $scope.loopmailNavigator.popPage();
+            }
+        });
+
+        tabbar.addEventListener("reactive", function() {
+            var pages = $scope.loopmailNavigator.pages;
+            if(pages.length > 1) {
+                $scope.loopmailNavigator.popPage();
+            }
+        });
+
+
         $scope.$on("loopmail.sent", function() {
             if(dataService.getFolderId() < 0) {
                 mailCtrl.loopmail = storageService.getOutgoingMail();
@@ -173,6 +193,7 @@
         var mailDetail = this;
 
         var loopmail = $scope.loopmailNavigator.topPage.pushedOptions.loopmail;
+        loopmail.read = true;
 
         mailDetail.loaded = false;
 

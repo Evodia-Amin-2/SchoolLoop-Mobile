@@ -96,6 +96,13 @@
                 $scope.courseNavigator.popPage();
             }
         });
+
+        tabbar.addEventListener("reactive", function() {
+            var pages = $scope.courseNavigator.pages;
+            if(pages.length > 1) {
+                $scope.courseNavigator.popPage();
+            }
+        });
     }
 
     function CourseDetailController($scope, $timeout, dataService, statusService, utils, CourseColors) {

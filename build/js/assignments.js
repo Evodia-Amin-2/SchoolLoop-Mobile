@@ -111,6 +111,13 @@
             }
         });
 
+        tabbar.addEventListener("reactive", function() {
+            var pages = $scope.asgnNavigator.pages;
+            if(pages.length > 1) {
+                $scope.asgnNavigator.popPage();
+            }
+        });
+
         function initialize() {
             var assignments = dataService.list(DataType.ASSIGNMENT);
             if(_.isUndefined(assignments) === true) {

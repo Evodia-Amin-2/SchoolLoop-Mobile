@@ -46,6 +46,13 @@
             }
         });
 
+        tabbar.addEventListener("reactive", function() {
+            var pages = $scope.newsNavigator.pages;
+            if(pages.length > 1) {
+                $scope.newsNavigator.popPage();
+            }
+        });
+
     }
 
     function NewsDetailController($rootScope, $scope, $window, $sce, $filter, storageService, utils) {
