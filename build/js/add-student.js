@@ -62,7 +62,10 @@
                     function(error) {
                         statusService.hideWait(500);
                         window.plugins.toast.showLongBottom(error.data);
-                        page.studentId = undefined;
+                        page.studentId = "";
+                        page.initialFirst = "";
+                        page.initialLast = "";
+                        page.error.studentId = gettextCatalog.getString("Student not found");
                     }
                 );
 
