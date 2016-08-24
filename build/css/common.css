@@ -90,3 +90,20 @@
 .current-student.ios {
     top: 60px !important;
 }
+
+.input-wide {
+    width: 80%;
+    margin-top: 20px;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.spacer {
+    margin-top: 20px;
+}
+
+.spacer-large {
+    margin-top: 50px;
+}

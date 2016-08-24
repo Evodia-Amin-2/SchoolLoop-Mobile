@@ -36,15 +36,14 @@
 
         menu.selectStudent = function(student) {
             storageService.setSelectedStudentId(student.studentID);
-            dataService.clearCache();
 
+            dataService.clearCache();
             statusService.showLoading();
             dataService.load().then(function() {
                 statusService.hideWait(1000);
                 menu.closeMenu();
                 $rootScope.$broadcast("refresh.all");
             });
-
         };
 
         menu.isSelected = function(student) {

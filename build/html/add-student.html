@@ -1,6 +1,54 @@
-<ons-page ng-controller="SupportController as page">
+<ons-page ng-controller="AddStudentController as page">
     <ons-toolbar class="default-toolbar">
-        <div class="left" tappable ng-click="mainNavigator.popPage()"><ons-icon size="24px" class="dialog-close" icon="md-close"></ons-icon></div>
+        <div class="left" ng-click="mainNavigator.popPage()">
+            <ons-toolbar-button>
+                <ons-icon size="24px" icon="md-close"></ons-icon>
+            </ons-toolbar-button>
+        </div>
         <div class="center" translate>Add Student</div>
+        <div class="right" translate>
+            <ons-toolbar-button ng-click="page.addStudent()">Add</ons-toolbar-button>
+        </div>
     </ons-toolbar>
+    <ons-row class="add-student-header">
+        <ons-col>
+            <div class="add-student-content">
+                Add a student from:<br/>
+                <strong>{{page.school.name}}</strong>
+            </div>
+        </ons-col>
+        <ons-col width="40%">
+            <div class="add-student-content">
+                <ons-button ng-click="page.changeSchool()" class="change-school" translate>Change</ons-button>
+            </div>
+        </ons-col>
+    </ons-row>
+    <div class="add-student-content">
+        <div class="spacer">
+            <ons-input class="input-wide" id="studentId" name="studentId" modifier="underbar" placeholder="{{page.placeholder.studentId}}" float ng-model="page.studentId"
+                       ng-class="{error: page.hasFieldError(page.studentId)}"
+                       ng-enter="page.addStudent()" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+            </ons-input>
+            <div class="field-error" ng-show="page.studentId.length == 0 && page.error.studentId.length > 0">{{page.error.studentId}}</div>
+        </div>
+
+        <div class="spacer">
+            <ons-input class="input-wide" id="initialFirst" name="initialFirst" modifier="underbar" placeholder="{{page.placeholder.initialFirst}}" float ng-model="page.initialFirst"
+                       ng-class="{error: page.hasFieldError(page.initialFirst)}"
+                       ng-enter="page.addStudent()" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+            </ons-input>
+            <div class="field-error" ng-show="page.initialFirst.length == 0 && page.error.initialFirst.length > 0">{{page.error.initialFirst}}</div>
+        </div>
+
+        <div class="spacer">
+            <ons-input class="input-wide" id="initialLast" name="initialLast" modifier="underbar" placeholder="{{page.placeholder.initialLast}}" float ng-model="page.initialLast"
+                       ng-class="{error: page.hasFieldError(page.initialLast)}"
+                       ng-enter="page.addStudent()" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+            </ons-input>
+            <div class="field-error" ng-show="page.initialLast.length == 0 && page.error.initialLast.length > 0">{{page.error.initialLast}}</div>
+        </div>
+    </div>
+    <div class="add-student-content align-center">
+        <ons-button ng-click="page.addStudent()" class="spacer-large" translate>Add Student</ons-button>
+    </div>
 </ons-page>

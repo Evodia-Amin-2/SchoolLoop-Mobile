@@ -31,7 +31,9 @@
         console.log("Attempting to automatically login");
 
         loginService.login().then(
-            function(/* data */) {
+            function(message) {
+                var data = message.data;
+                storageService.addStudents(school, data.students, true);
                 dataService.load().then(function() {
                     $location.path('/main');
                 }, function(response) {

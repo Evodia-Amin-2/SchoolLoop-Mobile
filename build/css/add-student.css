@@ -1,0 +1,11 @@
+.add-student-header {
+    border-bottom: 1px solid #eee;
+}
+
+.add-student-content {
+    margin: 20px;
+}
+
+.change-school {
+    background-color: #999;
+}

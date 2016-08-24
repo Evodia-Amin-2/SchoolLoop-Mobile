@@ -203,6 +203,12 @@
                     }
 
                     storage.setItem("students", JSON.stringify(currentStudents));
+
+                    var selectedId = storage.getItem("selectedStudent");
+                    result = _.find(currentStudents, {studentID: selectedId});
+                    if(_.isUndefined(result) === true && currentStudents.length > 0) {
+                        service.setSelectedStudentId(currentStudents[0].studentID);
+                    }
                 }
             },
             setVisited: function(newsItem) {
