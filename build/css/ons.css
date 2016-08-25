@@ -66,6 +66,10 @@ page--material .link {
     color: white !important;
 }
 
+.navigation-bar .toolbar-button {
+    color: white !important;
+}
+
 .loopmail-compose .ons-icon {
     color: #009688 ! important;
 }

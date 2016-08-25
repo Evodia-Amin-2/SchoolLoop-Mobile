@@ -12,7 +12,6 @@
         var page = this;
 
         page.selectedSchool = undefined;
-        page.year = new Date().getFullYear();
 
         page.placeholder = {};
         page.placeholder.username = gettextCatalog.getString("User Name");

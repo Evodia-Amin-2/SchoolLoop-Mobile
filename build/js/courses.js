@@ -117,7 +117,7 @@
 
         courseDetail.zeroCount = 0;
         courseDetail.courseInfo = false;
-        courseDetail.limit = 4;
+        courseDetail.limit = 20;
 
         courseDetail.hasScore = function() {
             return _.isUndefined(courseDetail.progress.score) === false &&
@@ -335,6 +335,8 @@
         courseAsgn.applyFilter = function(element) {
             if(courseAsgn.filter === "graded") {
                 return element.graded === true;
+            } else if(courseAsgn.filter === "unscored") {
+                return _.isUndefined(element.graded) === true || element.graded === false;
             } else if(courseAsgn.filter === "zeros") {
                 return utils.isTrue(element.zero);
             }
@@ -350,7 +352,7 @@
             courseAsgn.filter = data.action;
             courseAsgn.assignments = [];
 
-            $timeout(loadAssignments, 300);
+            $timeout(loadAssignments, 200);
         });
 
         function loadAssignments() {

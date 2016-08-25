@@ -48,6 +48,13 @@
                     <div class="status-message" translate>No Recent Scores</div>
                 </div>
             </ons-list-item>
+            <ons-list-item class="card-item course-detail" modifier="longdivider" tappable
+                           ng-if="courseDetail.progress.grades.length > 0"
+                           ng-click="courseNavigator.pushPage('course-assignments.html', {animation: 'slide', progress: courseDetail.progress, course: courseDetail.course})">
+                <div class="right">
+                    <div translate>View All Assignments<ons-icon class="nav-indicator" icon="ion-chevron-right" size="12px"></ons-icon></div>
+                </div>
+            </ons-list-item>
             <ons-list-item class="card-item course-detail" ng-class="{'zero-grade': courseDetail.isZero(item)}"
                            ng-if="courseDetail.progress.grades.length > 0"
                            modifier="longdivider" tappable ng-repeat="item in courseDetail.progress.grades|limitTo:courseDetail.limit">
@@ -68,13 +75,6 @@
                         <div ng-if="!courseDetail.isZero(item)" class="course-detail-grade">{{item.percentScore}}</div>
                         <div class="course-score">{{item.score}}</div>
                     </div>
-                </div>
-            </ons-list-item>
-            <ons-list-item class="card-item course-detail" modifier="longdivider" tappable
-                           ng-if="courseDetail.progress.grades.length > 0"
-                           ng-click="courseNavigator.pushPage('course-assignments.html', {animation: 'slide', progress: courseDetail.progress, course: courseDetail.course})">
-                <div class="right">
-                    <div translate>View All Assignments</div>
                 </div>
             </ons-list-item>
         </div>
