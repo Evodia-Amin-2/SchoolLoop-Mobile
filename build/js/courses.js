@@ -352,7 +352,7 @@
             courseAsgn.filter = data.action;
             courseAsgn.assignments = [];
 
-            $timeout(loadAssignments, 200);
+            $timeout(loadAssignments, 300);
         });
 
         function loadAssignments() {
