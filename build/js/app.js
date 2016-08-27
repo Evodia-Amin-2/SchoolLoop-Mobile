@@ -19,7 +19,7 @@
     angular.module('mobileloop', ['onsen', 'ngRoute', 'ngSanitize', 'templates', 'gettext', 'app.config',
                                 'app.services', 'app.utils', 'ui.components', 'angular-flot'])
         .config(['$routeProvider', MobileLoopRouter])
-        .run(['$rootScope', '$location', 'gettextCatalog', 'StorageService', 'config', MobileLoopRun])
+        .run(['$rootScope', '$location', '$timeout', 'gettextCatalog', 'StorageService', 'config', MobileLoopRun])
     ;
 
     angular.module('templates', []);
@@ -45,7 +45,7 @@
 
     }
 
-    function MobileLoopRun($rootScope, $location, gettextCatalog, storageService, config) {
+    function MobileLoopRun($rootScope, $location, $timeout, gettextCatalog, storageService, config) {
 
         console.log("Initializing app");
 
@@ -109,9 +109,11 @@
         document.addEventListener("resume", function () {
             $rootScope.$broadcast("hardware.resume");
 
-            window.chcp.fetchUpdate(function() {
+            $timeout(function() {
+                window.chcp.fetchUpdate(function() {
 
-            });
+                });
+            }, 60000);
         }, false);
 
         document.addEventListener("online", function () {
