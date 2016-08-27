@@ -2,11 +2,11 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('AddStudentController', ['$rootScope', '$scope', 'StorageService', 'DataService', 'StatusService',
+        .controller('AddStudentController', ['$rootScope', '$scope', '$timeout', 'LoginService', 'StorageService', 'DataService', 'StatusService',
             'SchoolService', 'gettextCatalog', AddStudentController])
     ;
 
-    function AddStudentController($rootScope, $scope, storageService, dataService, statusService,
+    function AddStudentController($rootScope, $scope, $timeout, loginService, storageService, dataService, statusService,
             schoolService, gettextCatalog) {
         var page = this;
 
@@ -16,6 +16,7 @@
         page.studentId = "";
         page.initialFirst = "";
         page.initialLast = "";
+        page.students = [];
 
         page.selectedSchool = undefined;
         page.searchParam = undefined;
@@ -45,17 +46,14 @@
             clearErrors();
 
             if(isSchoolDefined(school) === true) {
-                // storageService.setSchool(school);
                 page.selectedSchool = school;
                 page.searchParam = school.name;
 
-                // var $username = $("#username");
-                // var $input = $username.find(":input");
-                // $timeout(function() {
-                //     $input.focus();
-                // });
+                var $button = $(".login-button");
+                $timeout(function() {
+                    $button.focus();
+                });
             } else {
-                // storageService.clear();
                 page.selectedSchool = undefined;
                 page.searchParam = "";
                 page.submitted = false;
@@ -139,6 +137,25 @@
 
         page.addStudent = function() {
             page.submitted = true;
+            var student;
+            if(page.students.length > 0) {
+                var school = page.selectedSchool;
+                student = page.students[0];
+                storageService.addStudents(school, page.students, true);
+                var message = gettextCatalog.getString("{} has been added");
+                message = message.replace("{}", student.name);
+                $scope.mainNavigator.popPage();
+
+                storageService.setSelectedStudentId(student.studentID);
+
+                window.plugins.toast.showLongBottom(message);
+
+                dataService.clearCache();
+                dataService.load().then(function() {
+                    $rootScope.$broadcast("refresh.students");
+                });
+                return;
+            }
             if(isFormValid()) {
                 var params = {};
                 params.studentID = page.studentId;
@@ -152,7 +169,7 @@
                     function(response) {
                         storageService.addStudents(page.school, response, false);
                         statusService.hideNoWait();
-                        var student = response[0];
+                        student = response[0];
                         var message = gettextCatalog.getString("{} has been added");
                         message = message.replace("{}", student.name);
                         $scope.mainNavigator.popPage();
@@ -163,7 +180,7 @@
 
                         dataService.clearCache();
                         dataService.load().then(function() {
-                            $rootScope.$broadcast("refresh.all");
+                            $rootScope.$broadcast("refresh.students");
                         });
 
                     },
@@ -192,6 +209,12 @@
 
         page.changeSchool = function() {
             $scope.schoolModal.show();
+            $timeout(function() {
+                var lookup = $('#school-lookup');
+                var input = lookup.find('input');
+                input.attr('placeholder', page.error.school);
+                input.focus();
+            }, 200);
         };
 
         page.cancel = function() {
@@ -200,8 +223,52 @@
         };
 
         page.select = function() {
-            $scope.schoolModal.hide();
+            if(_.isUndefined(page.selectedSchool) === false) {
+                var newSchool = page.selectedSchool;
+                loginService.login(newSchool.domainName, domain.user.userName, domain.user.hashedPassword).then(
+                    function(response) {
+                        processSuccess(response, newSchool, domain.user.hashedPassword);
+                    },
+                    function(error) {
+                        processFailure(error);
+                    }
+                );
+            }
         };
+
+        function processSuccess(response, school, password) {
+            $scope.schoolModal.hide();
+            page.school = school;
+            var data = response.data;
+            if (data.isUnverifiedParent === 'true') {
+                page.message = gettextCatalog.getString("Parent needs to be verified");
+            } else {
+                storageService.addDomain(school, data, password);
+                page.message = "";
+                var students = data.students;
+                page.students = [];
+                page.existing = [];
+                if (_.isUndefined(students) === false && _.isNull(students) === false) {
+                    var currentStudents = storageService.getStudents();
+                    for (var i = 0, len = students.length; i < len; i++) {
+                        var student = students[i];
+                        var result = _.findWhere(currentStudents, {studentID: student.studentID});
+                        if (_.isUndefined(result) === true) {
+                            page.students.push(student);
+                        } else {
+                            page.existing.push(student);
+                        }
+                    }
+                }
+            }
+        }
+
+        function processFailure(/*error*/) {
+            // adder.loginSuccess = false;
+            // adder.message = "";
+            // adder.password = "";
+            // console.log(error);
+        }
 
         function isFormValid() {
             clearErrors();

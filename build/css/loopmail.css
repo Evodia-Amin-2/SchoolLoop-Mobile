@@ -98,6 +98,10 @@
     right: 0;
 }
 
+.student .loopmail-compose {
+    bottom: 28px;
+}
+
 .loopmail-toolbar-button {
     width: 25px;
 }

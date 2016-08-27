@@ -23,6 +23,7 @@
             menu.user.isParent = true;
             menu.students = storageService.getStudents();
         }
+
         menu.isTeacher = (menu.user.role !== 'student' && menu.user.role !== 'parent');
 
         menu.action = function(page) {
@@ -71,6 +72,12 @@
                 }
             );
         };
+
+        $scope.$on("refresh.students", function() {
+            menu.students = storageService.getStudents();
+
+            $rootScope.$broadcast("refresh.all");
+        });
 
         menu.agreement = function () {
             menu.closeMenu();

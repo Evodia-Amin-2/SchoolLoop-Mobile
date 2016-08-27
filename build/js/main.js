@@ -82,26 +82,9 @@
 
         $scope.$on("refresh.all", function() {
             main.currentStudent = storageService.getSelectedStudent();
+            main.getMailCount();
+            main.getNewsCount();
         });
-
-        // var doExit = false;
-        // $scope.$on("hardware.backbutton", function() {
-        //     if (doExit === true) {
-        //         navigator.app.exitApp();   // This will exit the application
-        //     }
-        //     if (main.menuVisible === true) {
-        //         main.toggleMenu();
-        //     } else {
-        //         if(history.length > 1) {
-        //             $timeout(function() {
-        //                 $window.history.back();
-        //             });
-        //             history.pop();
-        //         } else {
-        //             doExit = true;
-        //         }
-        //     }
-        // });
 
         // var current = $location.path();
         // if(current.name === "/main") {

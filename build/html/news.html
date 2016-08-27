@@ -1,5 +1,5 @@
 <ons-navigator var="newsNavigator">
-    <ons-page ng-controller="NewsController as newsCtrl">
+    <ons-page ng-controller="NewsController as newsCtrl" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
         <ons-pull-hook ng-action="newsCtrl.load($done)" var="nloader">
             <span ng-switch="nloader.state">
               <span ng-switch-when="initial" translate><ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon>Pull down to refresh</span>
@@ -7,7 +7,7 @@
               <span ng-switch-when="action" translate><ons-icon size="35px" spin="true" icon="ion-load-d"></ons-icon>Loading data...</span>
             </span>
         </ons-pull-hook>
-        <ons-toolbar class="default-toolbar">
+        <ons-toolbar class="default-toolbar" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
             <div class="left">
                 <ons-toolbar-button ng-click="main.openMenu()">
                     <ons-icon icon="md-menu"></ons-icon>
@@ -15,7 +15,14 @@
             </div>
             <div class="center" translate>News</div>
         </ons-toolbar>
-        <ons-list class="news-view">
+        <ons-list ng-show="newsCtrl.news.length === 0">
+            <ons-list-item class="card-item assignment-item" modifier="nodivider">
+                <div class="center">
+                    <div class="status-message" translate>No News Currently</div>
+                </div>
+            </ons-list-item>
+        </ons-list>
+        <ons-list class="news-view" ng-show="newsCtrl.news.length > 0">
             <ons-list-item class="news-item" modifier="longdivider" tappable ng-repeat="item in newsCtrl.news"
                            ng-click="newsNavigator.pushPage('news-detail.html', {animation: 'slide', news: item})">
                 <div class="center">
@@ -25,4 +32,5 @@
             </ons-list-item>
         </ons-list>
     </ons-page>
+    <div ng-show="main.currentStudent" class="current-student ng-hide" ng-class="{ios:ons.platform.isIOS()}"><span>{{main.currentStudent.school.name}}</span></div>
 </ons-navigator>
