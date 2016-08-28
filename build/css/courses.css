@@ -34,14 +34,14 @@
 
 .course-grade {
     display: block;
-    font-size: 2.1em;
+    font-size: 2.0em;
     font-weight: bold;
     color: #666;
-    margin-top: 14px;
+    margin-top: 12px;
 }
 
 .list__item--material__right .course-grade {
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 .course-info-grade, .course-info-score {
@@ -74,7 +74,7 @@
 
 .course-score {
     display: block;
-    margin-top: 5px;
+    margin-top: 1px;
     font-size: 0.9em;
     color: #aaa;
 }

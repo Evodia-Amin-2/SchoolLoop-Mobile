@@ -19,7 +19,7 @@
         </ons-col>
         <ons-col width="35%">
             <div class="add-student-content-right align-center">
-                <ons-button ng-click="page.changeSchool()" class="change-school" translate>Change</ons-button>
+                <ons-button ng-click="page.changeSchool()" class="change-school-button" translate>Change</ons-button>
             </div>
         </ons-col>
     </ons-row>
@@ -62,9 +62,9 @@
         </ons-list>
     </div>
     <div class="add-student-content align-center">
-        <ons-button ng-click="page.addStudent()" class="spacer-large" translate>Add</ons-button>
+        <div class="spacer-large button-bar" >
+            <ons-button ng-click="mainNavigator.popPage()" translate>Cancel</ons-button>
+            <ons-button ng-click="page.addStudent()" translate>Add</ons-button>
+        </div>
     </div>
-    <ons-modal var="schoolModal">
-        <div ng-include="'change-school.html'" ng-show="page.modalShowing" auto-focus ></div>
-    </ons-modal>
 </ons-page>

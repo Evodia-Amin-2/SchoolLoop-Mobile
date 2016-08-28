@@ -1,0 +1,30 @@
+.change-school .lookup-input {
+    margin: 0;
+}
+
+.change-school .lookup-icon-search {
+    top: 0;
+}
+
+.change-school .lookup-icon-close {
+    top: 0;
+    right: 0;
+}
+
+.change-school .ion-ios-search {
+    top: 5px !important;
+}
+
+.change-school .ion-ios-close-empty {
+    top: 5px !important;
+}
+
+.change-school .lookup-list {
+    top: 0;
+    position: relative !important;
+}
+
+.lookup-panel {
+    position: relative;
+    text-align: left;
+}

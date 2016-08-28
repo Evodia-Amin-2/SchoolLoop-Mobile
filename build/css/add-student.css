@@ -10,80 +10,6 @@
     margin: 20px 0;
 }
 
-.change-school {
-    background-color: #999;
-    min-width: 100px !important;
-    text-align: center;
-}
-
-.school-modal {
-    position: absolute;
-    top: 10px;
-    left: 0;
-    right: 0;
-    height: 90% !important;
-    border-radius: 3px;
-    color: black;
-    background-color: white;
-    margin: 10px auto !important;
-    max-width: 90% !important;
-}
-
-.school-modal.ios {
-    height: 50% !important;
-}
-
-.school-modal .cancel {
-    text-align: left;
-}
-
-.school-modal-title {
-    font-size: 1.2em;
-    margin-top: 10px;
-    margin-left: 10px;
-    display: inline-block;
-    vertical-align: top;
-}
-
-.school-modal .cancel .ons-icon {
-    color: black;
-    padding: 5px 10px;
-}
-
-.school-modal .login-panel {
-    margin: 10px auto;
-}
-
-.lookup-modal {
-    margin: 0 20px;
-}
-
-.lookup-modal .lookup-icon-search {
-    top: 58px;
-    left: 22px;
-}
-
-.lookup-modal .lookup-icon-close {
-    top: 53px;
-    right: 23px;
-}
-
-.lookup-modal .ion-android-search {
-    top: 53px;
-}
-
-.lookup-modal .lookup-input {
-    margin: 0;
-    margin-top: 10px;
-}
-
-.lookup-modal .lookup-list {
-    left: 20px;
-    right: 20px;
-    top: inherit;
-    max-height: 70%;
-}
-
 .add-student-buttons {
     margin-top: 40px;
 }
@@ -95,4 +21,10 @@
 
 .add-student-list {
     padding: 20px;
+}
+
+.change-school-button {
+    background-color: #999;
+    min-width: 100px !important;
+    text-align: center;
 }

@@ -1,0 +1,49 @@
+<ons-page ng-controller="ChangeSchoolController as page">
+    <ons-toolbar class="default-toolbar">
+        <div class="left" ng-click="mainNavigator.popPage()">
+            <ons-toolbar-button>
+                <ons-icon size="24px" icon="md-close"></ons-icon>
+            </ons-toolbar-button>
+        </div>
+        <div class="center" translate>Find School</div>
+        <div class="right" translate>
+            <ons-toolbar-button ng-disabled="!page.isSchoolSelected(page.selectedSchool)" ng-click="page.addStudent()" translate>Select</ons-toolbar-button>
+        </div>
+    </ons-toolbar>
+    <div class="change-school login-panel">
+        <div class="lookup-panel">
+            <ons-icon class="lookup-icon-search" tappable icon="ion-ios-search, material:ion-android-search" size="20px"></ons-icon>
+            <ons-icon ng-click="page.clear()" ng-show="page.isSchoolSelected(page.selectedSchool)" class="lookup-icon-close" tappable
+                      icon="ion-ios-close-empty, material:ion-android-close" size="20px"></ons-icon>
+
+            <ons-input class="lookup-input" modifier="underbar" ng-model="page.searchParam" ng-change="page.change()"
+                       placeholder="{{page.placeholder.school}}" float autocomplete="off"></ons-input>
+            <ons-list class="lookup-list" ng-show="page.lookup.expanded && page.lookup.displaySet.length > 0">
+                <ons-list-item ng-repeat="item in page.lookup.displaySet" tappable ng-click="page.selectSchool(item)" modifier="longdivider">
+                    <div class="lookup-text">{{item.name}}</div>
+                    <div class="lookup-subtext">{{item.districtName}}</div>
+                </ons-list-item>
+            </ons-list>
+        </div>
+
+        <div class="field-error" ng-show="page.error.school.length > 0">{{page.error.school}}</div>
+
+        <div ng-show="page.authFailed">
+            <ons-input id="username" name="username" modifier="underbar" placeholder="{{page.placeholder.username}}" float ng-model="page.username"
+                       ng-class="{error: page.hasFieldError(page.username)}"
+                       ng-enter="page.login()" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+            </ons-input>
+            <div class="field-error" ng-show="page.username.length == 0 && page.error.username.length > 0">{{page.error.username}}</div>
+
+            <ons-input name="password" modifier="underbar" type="password" placeholder="{{page.placeholder.password}}" float ng-model="page.password"
+                       ng-class="{error: page.hasFieldError(page.password)}"
+                       ng-enter="page.login()" ng-required>
+            </ons-input>
+            <div class="field-error" ng-show="page.password.length == 0 && page.error.password.length > 0">{{page.error.password}}</div>
+        </div>
+
+        <div class="add-student-buttons">
+            <ons-button ng-click="page.select()" ng-disabled="!page.isSchoolSelected(page.selectedSchool)" class="login-button" translate>Select</ons-button>
+        </div>
+    </div>
+</ons-page>
