@@ -2,12 +2,13 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('CoursesController', ['$scope', '$timeout', '$location', 'DataService', 'DataType', 'StatusService', 'LoopmailService', 'Utils', CoursesController])
+        .controller('CoursesController', ['$scope', '$timeout', '$location', 'DataService', 'DataType', 'StatusService',
+            'Utils', 'CourseColors', CoursesController])
         .controller('CourseDetailController', ['$scope', '$timeout', 'DataService', 'StatusService', 'Utils', 'CourseColors', CourseDetailController])
         .controller('CourseAsgnController', ['$rootScope', '$scope', '$timeout', 'Utils', 'DataService', 'DataType', 'CourseColors', CourseAsgnController])
     ;
 
-    function CoursesController($scope, $timeout, $location, dataService, DataType, statusService, loopmailService, utils) {
+    function CoursesController($scope, $timeout, $location, dataService, DataType, statusService, utils, CourseColors) {
         var courseCtrl = this;
 
         navigator.analytics.sendAppView('Courses');
@@ -43,7 +44,7 @@
         };
 
         courseCtrl.courseColor = function(item) {
-            var periodIndex = ((item.period - 1) % 10) + 1;
+            var periodIndex = item.period % CourseColors.length;
             return "period-" + periodIndex;
         };
 
@@ -111,7 +112,7 @@
         courseDetail.course = $scope.courseNavigator.topPage.pushedOptions.course;
         courseDetail.progress = $scope.courseNavigator.topPage.pushedOptions.progress;
 
-        var periodIndex = (courseDetail.course.period - 1) % 10;
+        var periodIndex = courseDetail.course.period % CourseColors.length;
         StatusBar.backgroundColorByHexString(CourseColors[periodIndex]);
         StatusBar.show();
 
@@ -144,7 +145,7 @@
         };
 
         courseDetail.courseColor = function() {
-            var periodIndex = ((courseDetail.course.period - 1) % 10) + 1;
+            var periodIndex = courseDetail.course.period % CourseColors.length;
             return "period-" + periodIndex;
         };
 
@@ -315,7 +316,7 @@
 
         loadAssignments();
 
-        var periodIndex = (courseAsgn.course.period - 1) % 10;
+        var periodIndex = courseAsgn.course.period % CourseColors.length;
         StatusBar.backgroundColorByHexString(CourseColors[periodIndex]);
         StatusBar.show();
 
@@ -328,7 +329,7 @@
         };
 
         courseAsgn.courseColor = function() {
-            var periodIndex = ((courseAsgn.course.period - 1) % 10) + 1;
+            var periodIndex = courseAsgn.course.period % CourseColors.length;
             return "period-" + periodIndex;
         };
 

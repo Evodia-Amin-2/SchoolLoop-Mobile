@@ -2,13 +2,13 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('AssignmentsController', ['$scope', '$location', '$sce', '$timeout',
-                        'DataService', 'DataType', 'gettextCatalog', AssignmentsController])
+        .controller('AssignmentsController', ['$scope', '$location', '$timeout',
+                        'DataService', 'DataType', 'CourseColors', 'gettextCatalog', AssignmentsController])
         .controller('AssignmentDetailController', ['$scope', '$window', '$sce', 'StorageService',
-                        'StatusService', 'Utils', 'CourseColors', 'gettextCatalog', AssignmentDetailController])
+                        'Utils', 'CourseColors', 'gettextCatalog', AssignmentDetailController])
     ;
 
-    function AssignmentsController($scope, $location, $sce, $timeout, dataService, DataType, gettextCatalog) {
+    function AssignmentsController($scope, $location, $timeout, dataService, DataType, CourseColors, gettextCatalog) {
         var assignCtrl = this;
 
         navigator.analytics.sendAppView('Assignments');
@@ -40,8 +40,7 @@
                 }
             }
 
-            var period = assignment.periodNumber;
-            var periodIndex = ((period - 1) % 10) + 1;
+            var periodIndex = assignment.periodNumber % CourseColors.length;
             return "period-" + periodIndex;
         };
 
@@ -129,18 +128,18 @@
         }
     }
 
-    function AssignmentDetailController($scope, $window, $sce, storageService, statusService, utils, CourseColors, gettextCatalog) {
+    function AssignmentDetailController($scope, $window, $sce, storageService, utils, CourseColors, gettextCatalog) {
         var assignDetail = this;
 
         assignDetail.assignment = $scope.asgnNavigator.topPage.pushedOptions.assignment;
 
         var period = assignDetail.assignment.periodNumber;
-        var periodIndex = (period - 1) % 10;
+        var periodIndex = period % CourseColors.length;
         StatusBar.backgroundColorByHexString(CourseColors[periodIndex]);
         StatusBar.show();
 
         assignDetail.courseColor = function() {
-            return "period-" + (periodIndex + 1);
+            return "period-" + periodIndex;
         };
 
         assignDetail.getDescription = function() {

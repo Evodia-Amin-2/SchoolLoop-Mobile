@@ -21,6 +21,10 @@ page--material .link {
     margin-top: -1px !important;
 }
 
+.list__item__center {
+    padding: 10px 6px 10px 0 !important;
+}
+
 .tab-bar--material {
     background-color: transparent;
 }
