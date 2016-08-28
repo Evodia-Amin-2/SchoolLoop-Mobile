@@ -86,6 +86,18 @@
             main.getNewsCount();
         });
 
+        $rootScope.$on('hardware.resume', function() {
+            if(storageService.isLoggedIn() === true) {
+                window.chcp.fetchUpdate();
+            }
+        });
+
+        $rootScope.$on('update.ready', function() {
+            if(storageService.isLoggedIn() === true) {
+                $location.path("/update");
+            }
+        });
+        
         // var current = $location.path();
         // if(current.name === "/main") {
         //     if(main.isTeacher) {

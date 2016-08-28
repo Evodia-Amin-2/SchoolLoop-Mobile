@@ -108,10 +108,6 @@
 
         document.addEventListener("resume", function () {
             $rootScope.$broadcast("hardware.resume");
-
-                window.chcp.fetchUpdate(function() {
-
-                });
         }, false);
 
         document.addEventListener("online", function () {
@@ -123,7 +119,7 @@
         }, false);
 
         document.addEventListener('chcp_updateIsReadyToInstall', function() {
-            $location.path("/update");
+            $rootScope.$broadcast("update.ready");
         }, false);
 
         window.addEventListener("orientationchange", function() {
