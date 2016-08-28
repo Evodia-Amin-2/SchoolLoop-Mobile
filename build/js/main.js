@@ -88,6 +88,11 @@
 
         $rootScope.$on('hardware.resume', function() {
             if(storageService.isLoggedIn() === true) {
+                var domain = storageService.getDefaultDomain() || {};
+                var school = domain.school;
+                if(school && school.domain === "ds2-slb-ca.schoolloop.com") {
+                    return;
+                }
                 window.chcp.fetchUpdate();
             }
         });
@@ -97,7 +102,7 @@
                 $location.path("/update");
             }
         });
-        
+
         // var current = $location.path();
         // if(current.name === "/main") {
         //     if(main.isTeacher) {
