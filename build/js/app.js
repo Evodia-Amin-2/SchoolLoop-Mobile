@@ -109,11 +109,9 @@
         document.addEventListener("resume", function () {
             $rootScope.$broadcast("hardware.resume");
 
-            $timeout(function() {
                 window.chcp.fetchUpdate(function() {
 
                 });
-            }, 60000);
         }, false);
 
         document.addEventListener("online", function () {

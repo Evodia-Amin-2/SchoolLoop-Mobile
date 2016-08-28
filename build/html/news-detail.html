@@ -1,5 +1,5 @@
-<ons-page ng-controller="NewsDetailController as newsDetail" class="news-detail">
-    <ons-toolbar class="default-toolbar">
+<ons-page ng-controller="NewsDetailController as newsDetail" class="news-detail" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
+    <ons-toolbar class="default-toolbar" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
         <div class="left"><ons-back-button translate>Back</ons-back-button></div>
         <div class="center">{{::newsDetail.newsItem.title}}</div>
     </ons-toolbar>

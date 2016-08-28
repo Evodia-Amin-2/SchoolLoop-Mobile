@@ -5,8 +5,10 @@
                 <ons-icon icon="ion-android-person" size="20px"></ons-icon>
             </div>
             <div class="center">
-                <div class="menu-header-text">{{menu.user.fullName}}</div>
-                <div class="menu-header-subtext">{{menu.school.name}}</div>
+                <div>
+                    <div class="menu-header-text">{{menu.user.fullName}}</div>
+                    <div class="menu-header-subtext">{{menu.school.name}}</div>
+                </div>
             </div>
         </ons-list-item>
     </ons-list>
@@ -19,8 +21,10 @@
                     <ons-icon class="menu-content-icon" icon="ion-android-person" size="20px"></ons-icon>
                 </div>
                 <div class="center">
-                    <div class="menu-content-text">{{student.name}}</div>
-                    <div class="menu-content-subtext">{{student.school.name}}</div>
+                    <div>
+                        <div class="menu-content-text">{{student.name}}</div>
+                        <div class="menu-content-subtext">{{student.school.name}}</div>
+                    </div>
                 </div>
             </ons-list-item>
             <ons-list-item modifier="nodivider" ng-if="menu.user.isParent === true" class="menu-action" tappable  ng-click="menu.action('add-student.html')">

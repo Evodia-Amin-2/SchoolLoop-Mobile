@@ -1,5 +1,5 @@
-<ons-page ng-controller="LoopMailDetailController as loopmailDetail" class="loopmail-detail">
-    <ons-toolbar class="default-toolbar">
+<ons-page ng-controller="LoopMailDetailController as loopmailDetail" class="loopmail-detail" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
+    <ons-toolbar class="default-toolbar" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
         <div class="left"><ons-back-button translate>Back</ons-back-button></div>
         <div class="center">{{::loopmailDetail.loopmail.subject}}</div>
         <div class="right" ng-click="loopmailDetail.reply()">

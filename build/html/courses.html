@@ -23,8 +23,10 @@
                     <div class="period">{{item.period}}</div>
                 </div>
                 <div class="center">
-                    <div class="title">{{item.courseName}}</div>
-                    <div class="category">{{item.teacherName}}<span ng-show="courseCtrl.hasCoTeacher(item)"> - {{item.coTeacherName}}</span></div>
+                    <div>
+                        <div class="title">{{item.courseName}}</div>
+                        <div class="category">{{item.teacherName}}<span ng-show="courseCtrl.hasCoTeacher(item)"> - {{item.coTeacherName}}</span></div>
+                    </div>
                 </div>
                 <div class="right">
                     <div class="course-grades">
