@@ -2,7 +2,7 @@
   "name": "mobileloop",
   "description": "SchoolLoop mobile app",
   "author": "Rob MacDonell <rob@schoolloop.com>",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "license": "Commercial",
   "private": true,
   "devDependencies": {

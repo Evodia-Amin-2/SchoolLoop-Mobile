@@ -27,7 +27,7 @@ var platformsPath = "app/platforms";
 var browserPath = "app/platforms/browser/www";
 
 var appId = flags["id"] || "app";
-var version = flags["version"] || '2.2.0';
+var version = flags["version"] || '3.0.0';
 if(appId && appId.length > 0) {
     configFile = "build/versions/" + appId + "/config.json";
 }
@@ -189,7 +189,7 @@ gulp.task('app-config', ['set-build'], function () {
 
     var appVersion = flags["version"];
     if(!appVersion || appVersion.length === 0) {
-        appVersion = "2.2.0";
+        appVersion = "3.0.0";
     }
     var buildNumber = flags["build"];
     if(!buildNumber) {
