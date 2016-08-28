@@ -48,43 +48,23 @@
             <div class="field-error" ng-show="page.initialLast.length == 0 && page.error.initialLast.length > 0">{{page.error.initialLast}}</div>
         </div>
     </div>
-    <ons-list ng-show="page.students.length > 0">
-        <ons-list-item ng-repeat="student in page.students">
-            <div class="left">
-                <ons-icon class="menu-content-icon" icon="ion-android-person" size="20px"></ons-icon>
-            </div>
-            <div class="center">
-                <div class="menu-content-text">{{student.name}}</div>
-            </div>
-        </ons-list-item>
-    </ons-list>
+    <div class="add-student-list" ng-show="page.students.length > 0">
+        <p translate>The following students will be added:</p>
+        <ons-list>
+            <ons-list-item ng-repeat="student in page.students">
+                <div class="left">
+                    <ons-icon class="menu-content-icon" icon="ion-android-person" size="20px"></ons-icon>
+                </div>
+                <div class="center">
+                    <div class="menu-content-text">{{student.name}}</div>
+                </div>
+            </ons-list-item>
+        </ons-list>
+    </div>
     <div class="add-student-content align-center">
         <ons-button ng-click="page.addStudent()" class="spacer-large" translate>Add</ons-button>
     </div>
     <ons-modal var="schoolModal">
-        <div class="school-modal login-panel" ng-class="{ios:ons.platform.isIOS()}">
-            <div class="cancel">
-                <span class="school-modal-title" translate>Search for Your School</span>
-                <ons-icon icon="md-close" size="32px" ng-click="page.cancel()"></ons-icon>
-            </div>
-            <div class="lookup-modal">
-                <ons-icon class="lookup-icon-search" tappable icon="ion-ios-search, material:ion-android-search" size="20px"></ons-icon>
-
-                <ons-input ng-if="!ons.platform.isIOS()" id="school-lookup" class="lookup-input" modifier="underbar" ng-model="page.searchParam" ng-change="page.change()"
-                           placeholder="{{page.placeholder.school}}" float autocomplete="off"></ons-input>
-                <ons-input ng-if="ons.platform.isIOS()" id="school-lookup" class="lookup-input" modifier="underbar" ng-model="page.searchParam" ng-change="page.change()"
-                           autocomplete="off"></ons-input>
-                <ons-list class="lookup-list" ng-show="page.lookup.expanded">
-                    <ons-list-item ng-repeat="item in page.lookup.displaySet" tappable ng-click="page.selectSchool(item)" modifier="longdivider">
-                        <div class="lookup-text">{{item.name}}</div>
-                        <div class="lookup-subtext">{{item.districtName}}</div>
-                    </ons-list-item>
-                </ons-list>
-            </div>
-            <!--<div class="field-error" ng-show="!page.isSchoolSelected(page.selectedSchool) && page.error.school.length > 0">{{page.error.school}}</div>-->
-            <div class="add-student-buttons">
-                <ons-button ng-click="page.select()" class="login-button" translate>Select</ons-button>
-            </div>
-        </div>
+        <div ng-include="'change-school.html'" ng-show="page.modalShowing" auto-focus ></div>
     </ons-modal>
 </ons-page>

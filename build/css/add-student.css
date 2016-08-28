@@ -33,19 +33,21 @@
     height: 50% !important;
 }
 
-.school-modal-title {
-    float: left;
-    font-size: 1.2em;
-    margin-top: 8px;
-    margin-left: 20px;
-}
 .school-modal .cancel {
-    text-align: right;
+    text-align: left;
+}
+
+.school-modal-title {
+    font-size: 1.2em;
+    margin-top: 10px;
+    margin-left: 10px;
+    display: inline-block;
+    vertical-align: top;
 }
 
 .school-modal .cancel .ons-icon {
     color: black;
-    padding: 5px 20px;
+    padding: 5px 10px;
 }
 
 .school-modal .login-panel {
@@ -57,7 +59,7 @@
 }
 
 .lookup-modal .lookup-icon-search {
-    top: 60px;
+    top: 58px;
     left: 22px;
 }
 
@@ -89,4 +91,8 @@
 .add-student-buttons .login-button {
     margin-left: 15px;
     margin-right: 15px;
+}
+
+.add-student-list {
+    padding: 20px;
 }

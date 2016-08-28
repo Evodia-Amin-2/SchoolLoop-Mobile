@@ -1,0 +1,42 @@
+<div class="school-modal login-panel" ng-controller="ChangeSchoolController as modal" ng-class="{ios:ons.platform.isIOS()}">
+    <div class="cancel">
+        <ons-icon icon="md-close" size="32px" ng-click="page.cancel()"></ons-icon>
+        <span class="school-modal-title" translate>Search for Your School</span>
+    </div>
+    <div class="lookup-modal">
+        <ons-icon class="lookup-icon-search" tappable icon="ion-ios-search, material:ion-android-search" size="20px"></ons-icon>
+        <ons-icon ng-click="modal.clear()" ng-show="modal.isSchoolSelected(modal.selectedSchool)" class="lookup-icon-close" tappable
+                  icon="ion-ios-close-empty, material:ion-android-close" size="20px"></ons-icon>
+
+        <ons-input ng-if="!ons.platform.isIOS()" class="lookup-input" modifier="underbar" ng-model="modal.searchParam" ng-change="modal.change()"
+                   placeholder="{{modal.placeholder.school}}" float autocomplete="off"></ons-input>
+        <ons-input ng-if="ons.platform.isIOS()" class="lookup-input" modifier="underbar" ng-model="modal.searchParam" ng-change="modal.change()"
+                   autocomplete="off"></ons-input>
+        <ons-list class="lookup-list" ng-show="modal.lookup.expanded && modal.lookup.displaySet.length > 0">
+            <ons-list-item ng-repeat="item in modal.lookup.displaySet" tappable ng-click="modal.selectSchool(item)" modifier="longdivider">
+                <div class="lookup-text">{{item.name}}</div>
+                <div class="lookup-subtext">{{item.districtName}}</div>
+            </ons-list-item>
+        </ons-list>
+
+        <div class="field-error" ng-show="modal.error.school.length > 0">{{modal.error.school}}</div>
+
+        <div ng-show="modal.authFailed">
+            <ons-input id="username" name="username" modifier="underbar" placeholder="{{modal.placeholder.username}}" float ng-model="modal.username"
+                       ng-class="{error: modal.hasFieldError(modal.username)}"
+                       ng-enter="modal.login()" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+            </ons-input>
+            <div class="field-error" ng-show="modal.username.length == 0 && modal.error.username.length > 0">{{modal.error.username}}</div>
+
+            <ons-input name="password" modifier="underbar" type="password" placeholder="{{modal.placeholder.password}}" float ng-model="modal.password"
+                       ng-class="{error: modal.hasFieldError(modal.password)}"
+                       ng-enter="modal.login()" ng-required>
+            </ons-input>
+            <div class="field-error" ng-show="modal.password.length == 0 && modal.error.password.length > 0">{{modal.error.password}}</div>
+        </div>
+
+    </div>
+    <div class="add-student-buttons">
+        <ons-button ng-click="modal.select()" ng-disabled="!modal.isSchoolSelected(modal.selectedSchool)" class="login-button" translate>Select</ons-button>
+    </div>
+</div>
