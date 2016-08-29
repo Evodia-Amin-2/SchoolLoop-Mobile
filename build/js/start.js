@@ -35,7 +35,14 @@
                 var data = message.data;
                 storageService.addStudents(school, data.students, true);
                 dataService.load().then(function() {
-                    $location.path('/main');
+                    var domain = storageService.getDefaultDomain();
+                    var user = domain.user;
+                    var isTeacher = (user.role !== 'student' && user.role !== 'parent');
+                    if(isTeacher) {
+                        $location.path('/main-teacher');
+                    } else {
+                        $location.path('/main');
+                    }
                 }, function(response) {
                     var error = response.data;
                     if(error.toLowerCase().startsWith("error 6")) {

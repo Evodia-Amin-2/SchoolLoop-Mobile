@@ -31,6 +31,7 @@
             .when('/start', {templateUrl: "start.html" })
             .when('/login', {templateUrl: "login.html" })
             .when('/main', {templateUrl: "main.html" })
+            .when('/main-teacher', {templateUrl: "main-teacher.html" })
             .when('/forgot', {templateUrl: "forgot.html" })
             .when('/unverified', {templateUrl: "unverified.html" })
             .when('/invalid', {templateUrl: "invalid.html" })

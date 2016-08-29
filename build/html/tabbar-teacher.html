@@ -1,0 +1,39 @@
+<ons-navigator var="mainNavigator">
+    <ons-page ng-controller="MainController as main">
+        <ons-tabbar var="tabbar">
+            <ons-tab page="loopmail.html" label="LoopMail" icon="fa-envelope-o" active="true" counter="main.getMailCount"></ons-tab>
+            <ons-tab page="news.html" label="News" icon="fa-newspaper-o" counter="main.getNewsCount"></ons-tab>
+            <ons-tab page="calendar.html" label="Calendar" icon="md-calendar"></ons-tab>
+        </ons-tabbar>
+        <ons-modal var="replyModal">
+            <div class="assignment-filter">
+                <ons-list>
+                    <ons-list-item modifier="nodivider" tappable ng-click="doReply('reply')">
+                        <label class="left">
+                            <ons-icon icon="md-mail-reply" size="32px"></ons-icon>
+                        </label>
+                        <label class="center" translate>
+                            Reply
+                        </label>
+                    </ons-list-item>
+                    <ons-list-item modifier="nodivider" tappable ng-click="doReply('reply-all')">
+                        <label class="left">
+                            <ons-icon icon="md-mail-reply-all" size="32px"></ons-icon>
+                        </label>
+                        <label class="center" translate>
+                            Reply All
+                        </label>
+                    </ons-list-item>
+                    <ons-list-item modifier="nodivider" tappable ng-click="doReply('cancel')">
+                        <label class="left">
+                            <ons-icon icon="md-close" size="32px"></ons-icon>
+                        </label>
+                        <label class="center" translate>
+                            Cancel
+                        </label>
+                    </ons-list-item>
+                </ons-list>
+            </div>
+        </ons-modal>
+    </ons-page>
+</ons-navigator>

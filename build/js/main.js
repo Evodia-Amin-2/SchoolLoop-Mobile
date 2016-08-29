@@ -11,9 +11,6 @@
              updateService, loopmailService) {
         var main = this;
 
-        main.isTeacher = false;
-
-
         StatusBar.overlaysWebView(true);
         StatusBar.styleLightContent();
         StatusBar.backgroundColorByHexString("#009688");
@@ -107,17 +104,6 @@
                 $location.path("/update");
             }
         });
-
-        // var current = $location.path();
-        // if(current.name === "/main") {
-        //     if(main.isTeacher) {
-        //         console.log("go tab loopmail " + new Date());
-        //         $location.path("main.loopmail");
-        //     } else {
-        //         console.log("go tab assignments " + new Date());
-        //         $location.path("main.assignments");
-        //     }
-        // }
 
     }
 })();
