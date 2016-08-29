@@ -38,16 +38,9 @@
                     $location.path('/main');
                 }, function(response) {
                     var error = response.data;
-                    if(error.startsWith("ERROR 6")) {
+                    if(error.toLowerCase().startsWith("error 6")) {
                         $location.path('/notstarted');
-                    } else if(error.startsWith("ERROR 6")) {
-                        $location.path('/reset');
                     }
-                    $timeout(function() {
-                        statusService.hideNoWait();
-                        navigator.splashscreen.hide();
-                        $location.path('/login');
-                    }, 750);
                 });
             },
             function(error) {
