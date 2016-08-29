@@ -2,13 +2,13 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('AssignmentsController', ['$scope', '$location', '$timeout',
+        .controller('AssignmentsController', ['$scope', '$location', '$timeout', 'Utils',
                         'DataService', 'DataType', 'CourseColors', 'gettextCatalog', AssignmentsController])
         .controller('AssignmentDetailController', ['$scope', '$window', '$sce', 'StorageService',
                         'Utils', 'CourseColors', 'gettextCatalog', AssignmentDetailController])
     ;
 
-    function AssignmentsController($scope, $location, $timeout, dataService, DataType, CourseColors, gettextCatalog) {
+    function AssignmentsController($scope, $location, $timeout, utils, dataService, DataType, CourseColors, gettextCatalog) {
         var assignCtrl = this;
 
         navigator.analytics.sendAppView('Assignments');
@@ -28,7 +28,7 @@
         };
 
         assignCtrl.getDate = function (source, timeZone) {
-            return getDate(source, timeZone, gettextCatalog);
+            return utils.getDisplayDate(source, timeZone, gettextCatalog);
         };
 
         assignCtrl.courseColor = function(assignment) {
@@ -151,7 +151,7 @@
 
 
         assignDetail.getDate = function (source, timeZone) {
-            return getDate(source, timeZone, gettextCatalog);
+            return utils.getDisplayDate(source, timeZone, gettextCatalog);
         };
 
         assignDetail.openURL = function (link) {
@@ -171,38 +171,6 @@
                 return false;
             }
         };
-    }
-
-    function getDate(source, timeZone, gettextCatalog) {
-        var sourceDate;
-        var today, future;
-        if(timeZone) {
-            sourceDate = moment(new Date(Number(source))).tz(timeZone);
-            today = moment().tz(timeZone);
-            future = moment().tz(timeZone);
-        } else {
-            sourceDate = moment(new Date(Number(source)));
-            today = moment();
-            future = moment();
-        }
-        future.add(1, 'days');
-
-        var message;
-        if(sourceDate.isSame(today, 'day')) {
-            message = gettextCatalog.getString("Today");
-            return message;
-        } else if(sourceDate.isSame(future, 'day')) {
-            message = gettextCatalog.getString("Tomorrow");
-            return message;
-        } else {
-            future.add(5, 'days');
-            if(sourceDate.isBefore(future)) {
-                return sourceDate.format("dddd");
-            } else {
-                return sourceDate.format("dddd, MMM D, YYYY");
-            }
-        }
-        return sourceDate.format("dddd, MMM D, YYYY");
     }
 
     function groupAssignments(data) {

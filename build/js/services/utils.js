@@ -15,6 +15,37 @@
             },
             isTrue: function(value) {
                 return value === true || value === "true";
+            },
+            getDisplayDate: function(source, timeZone, gettextCatalog) {
+                var sourceDate;
+                var today, future;
+                if(timeZone) {
+                    sourceDate = moment(new Date(Number(source))).tz(timeZone);
+                    today = moment().tz(timeZone);
+                    future = moment().tz(timeZone);
+                } else {
+                    sourceDate = moment(new Date(Number(source)));
+                    today = moment();
+                    future = moment();
+                }
+                future.add(1, 'days');
+
+                var message;
+                if(sourceDate.isSame(today, 'day')) {
+                    message = gettextCatalog.getString("Today");
+                    return message;
+                } else if(sourceDate.isSame(future, 'day')) {
+                    message = gettextCatalog.getString("Tomorrow");
+                    return message;
+                } else {
+                    future.add(5, 'days');
+                    if(sourceDate.isBefore(future) && sourceDate.isAfter(today)) {
+                        return sourceDate.format("dddd");
+                    } else {
+                        return sourceDate.format("dddd, MMM D, YYYY");
+                    }
+                }
+                return sourceDate.format("dddd, MMM D, YYYY");
             }
         };
         return utils;

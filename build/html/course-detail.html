@@ -57,13 +57,14 @@
             </ons-list-item>
             <ons-list-item class="card-item course-detail" ng-class="{'zero-grade': courseDetail.isZero(item)}"
                            ng-if="courseDetail.progress.grades.length > 0"
-                           modifier="longdivider" tappable ng-repeat="item in courseDetail.progress.grades|limitTo:courseDetail.limit">
+                           modifier="longdivider" tappable ng-repeat="item in courseDetail.progress.grades|limitTo:courseDetail.limit"
+                           ng-click="courseNavigator.pushPage('course-assignment-detail.html', {animation: 'slide', assignment: item.assignment, course: courseDetail.course})">
                 <div class="center">
                     <div class="progress-report course-row">
                         <div class="title">{{item.assignment.title}}</div>
                         <div class="category">{{item.assignment.categoryName}}</div>
                         <div class="progress-due-date">
-                            <span translate>Due:</span> {{item.assignment.dueDate|truncate:10|date:"MMM d, y" : "UTC"}}
+                            <span translate>Due:</span> {{item.assignment.dueDate|date:"MMM d, y" : "UTC"}}
                             <span class="seperator" ng-show="hasComment(item)">-</span>
                             <span class="comment" ng-show="hasComment(item)"><span class="icon-comment"></span>{{item.comment}}</span>
                         </div>

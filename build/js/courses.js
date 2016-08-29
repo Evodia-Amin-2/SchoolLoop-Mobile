@@ -6,6 +6,7 @@
             'Utils', 'CourseColors', CoursesController])
         .controller('CourseDetailController', ['$scope', '$timeout', 'DataService', 'StatusService', 'Utils', 'CourseColors', CourseDetailController])
         .controller('CourseAsgnController', ['$rootScope', '$scope', '$timeout', 'Utils', 'DataService', 'DataType', 'CourseColors', CourseAsgnController])
+        .controller('CourseAsgnDetailController', ['$scope', '$window', '$sce', 'StorageService', 'Utils', 'CourseColors', 'gettextCatalog', CourseAsgnDetailController])
     ;
 
     function CoursesController($scope, $timeout, $location, dataService, DataType, statusService, utils, CourseColors) {
@@ -118,7 +119,7 @@
 
         courseDetail.zeroCount = 0;
         courseDetail.courseInfo = false;
-        courseDetail.limit = 20;
+        courseDetail.limit = 100;
 
         courseDetail.hasScore = function() {
             return _.isUndefined(courseDetail.progress.score) === false &&
@@ -352,6 +353,7 @@
 
             courseAsgn.filter = data.action;
             courseAsgn.assignments = [];
+            courseAsgn.loaded = false;
 
             $timeout(loadAssignments, 300);
         });
@@ -361,23 +363,77 @@
                 return +item.periodNumber === +courseAsgn.course.period;
             });
 
-            courseAsgn.assignments = assignments;//.slice();
+            courseAsgn.assignments = assignments;
+
+            var timeZone = "";
+            var assignment;
+            if(assignments && assignments.length > 0) {
+                assignment = assignments[0];
+                timeZone = assignment.timeZone;
+            }
+
             var grades = courseAsgn.progress.grades;
             for(var i = 0; i < grades.length; i++) {
-                var assignment = JSON.parse(JSON.stringify(grades[i].assignment));
+                assignment = JSON.parse(JSON.stringify(grades[i].assignment));
                 assignment.iD = assignment.systemID;
                 assignment.zero = grades[i].zero;
                 assignment.grade = grades[i].grade;
                 assignment.percentScore = grades[i].percentScore;
                 assignment.score = grades[i].score;
                 assignment.comment = grades[i].comment;
-                var dueDate = Date.parse(assignment.dueDate);
-                assignment.dueDate = dueDate;
                 assignment.graded = true;
                 courseAsgn.assignments.push(assignment);
             }
             courseAsgn.assignments = _.sortBy(courseAsgn.assignments, function(o) { return o.dueDate; }).reverse();
+            courseAsgn.loaded = true;
         }
+    }
+
+
+    function CourseAsgnDetailController($scope, $window, $sce, storageService, utils, CourseColors, gettextCatalog) {
+        var assignDetail = this;
+
+        assignDetail.assignment = $scope.courseNavigator.topPage.pushedOptions.assignment;
+        assignDetail.course = $scope.courseNavigator.topPage.pushedOptions.course;
+
+        var period = assignDetail.course.period;
+        var periodIndex = period % CourseColors.length;
+        StatusBar.backgroundColorByHexString(CourseColors[periodIndex]);
+        StatusBar.show();
+
+        assignDetail.courseColor = function() {
+            return "period-" + periodIndex;
+        };
+
+        assignDetail.getDescription = function() {
+            if(utils.isNull(assignDetail.assignment.description) === false) {
+                return $sce.trustAsHtml(assignDetail.assignment.description);
+            }
+            return "";
+        };
+
+        assignDetail.getDate = function (source, timeZone) {
+            timeZone = timeZone || "UTC";
+            return utils.getDisplayDate(source, timeZone, gettextCatalog);
+        };
+
+        assignDetail.openURL = function (link) {
+            var url = link.URL;
+            if(url.toLowerCase().startsWith("http") === false) {
+                var school = storageService.getSelectedSchool().domainName;
+                url = "http://" + school + url;
+            }
+            $window.open(url, '_system', 'location=yes,clearcache=yes,clearsessioncache=yes');
+
+        };
+
+        assignDetail.hasDiscussion = function () {
+            if (_.isUndefined(assignDetail.assignment) === false) {
+                return assignDetail.assignment.numMessages > 0;
+            } else {
+                return false;
+            }
+        };
     }
 
     function countZeros(progressReport, utils) {
@@ -386,6 +442,9 @@
             var grade = progressReport.grades[i];
             if (utils.isTrue(grade.zero) === true) {
                 count += 1;
+            }
+            if(Number.isInteger(grade.assignment.dueDate) === false) {
+                grade.assignment.dueDate = Date.parse(grade.assignment.dueDate);
             }
         }
         return count;
