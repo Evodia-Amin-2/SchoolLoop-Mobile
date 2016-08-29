@@ -91,7 +91,7 @@
                 var domain = storageService.getDefaultDomain() || {};
                 var school = domain.school;
                 alert("Fetch: " + JSON.stringify(school));
-                if(school && school.domain === "ds2-slb-ca.schoolloop.com") {
+                if(school && school.domainName === "ds2-slb-ca.schoolloop.com") {
                     return;
                 }
                 window.chcp.fetchUpdate();
@@ -103,7 +103,7 @@
                 var domain = storageService.getDefaultDomain() || {};
                 var school = domain.school;
                 alert("Ready: " + JSON.stringify(school));
-                if(school && school.domain === "ds2-slb-ca.schoolloop.com") {
+                if(school && school.domainName === "ds2-slb-ca.schoolloop.com") {
                     return;
                 }
                 $location.path("/update");

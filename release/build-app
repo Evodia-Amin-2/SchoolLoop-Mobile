@@ -20,7 +20,7 @@ fi
 
 bower install
 rm -rf tmp/*.js
-./release/create-app "$ID"
+/bin/bash -ex ./release/create-app "$ID"
 gulp init --id "$ID" --name "$NAME"  --version "${VERSION}" --build "${BUILD}" --profile "$ID"
 gulp default --id "$ID" --name "$NAME" --version "${VERSION}" --build "${BUILD}" --profile "$ID"
 cd ./app
