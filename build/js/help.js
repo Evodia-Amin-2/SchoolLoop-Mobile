@@ -3,60 +3,78 @@
 
     angular.module('mobileloop')
         .controller('HelpController', ['$scope', '$window', 'DataService', 'StorageService', 'gettextCatalog', HelpController])
-        ;
+    ;
 
-        function HelpController($scope, $window, dataService, storageService, gettextCatalog) {
-            var help = this;
+    function HelpController($scope, $window, dataService, storageService, gettextCatalog) {
+        var page = this;
 
-            var domain = storageService.getDefaultDomain();
-            var user = domain.user;
-            help.user = user;
-            help.name = user.fullName;
-            help.email = user.email;
-            help.cc = "";
-            help.subject = "";
-            help.details = "";
+        var domain = storageService.getDefaultDomain();
+        var user = domain.user;
+        page.user = user;
+        page.name = user.fullName;
+        page.email = user.email;
+        page.cc = "";
+        page.subject = "";
+        page.details = "";
 
-            $scope.$on("menu.send", function() {
-                var error = false;
-                if(_.isUndefined(help.email) || help.email.length === 0) {
-                    $scope.ticket.submitted = true;
-                    $scope.ticket.email.$invalid = true;
-                    help.emailError = gettextCatalog.getString("Email required");
-                    error = true;
+        page.placeholder = {};
+        page.placeholder.email = gettextCatalog.getString("Your Email Address:");
+        page.placeholder.cc = gettextCatalog.getString("CC");
+        page.placeholder.subject = gettextCatalog.getString("Subject");
+        page.placeholder.details = gettextCatalog.getString("Details");
+
+        page.error = {};
+
+        page.submitted = false;
+
+        clearErrors();
+
+        page.send = function () {
+            if(isFormValid()) {
+                var message;
+                dataService.supportTicket(page.name, page.subject, page.details, page.email, page.cc).then(
+                    function() {
+                        message = gettextCatalog.getString("Help ticket has been submitted");
+                        window.plugins.toast.showLongBottom(message, function() {
+                            page.close();
+                        });
+                    },
+                    function() {
+                        message = gettextCatalog.getString("There was a problem sending the help ticket");
+                        window.plugins.toast.showLongBottom(message, function() {
+                            page.close();
+                        });
+                    }
+
+                );
+
+            } else {
+                page.submitted = true;
+                if(page.email.length === 0) {
+                    page.error.email = gettextCatalog.getString("Email required");
                 }
-                if(_.isUndefined(help.subject) || help.subject.length === 0) {
-                    $scope.ticket.submitted = true;
-                    $scope.ticket.subject.$invalid = true;
-                    help.subjectError = gettextCatalog.getString("Subject required");
-                    error = true;
+                if(page.subject.length === 0) {
+                    page.error.subject = gettextCatalog.getString("Subject required");
                 }
-                if(error === false) {
-                    var message;
-                    dataService.supportTicket(help.name, help.subject, help.details, help.email, help.cc).then(
-                        function() {
-                            message = gettextCatalog.getString("Help ticket has been submitted");
-                            window.plugins.toast.showLongBottom(message, function() {
-                                $window.history.back();
-                            });
-                        },
-                        function() {
-                            message = gettextCatalog.getString("There was a problem sending the help ticket");
-                            window.plugins.toast.showLongBottom(message, function() {
-                                $window.history.back();
-                            });
-                        }
+            }
+        };
 
-                    );
-                }
-            });
+        page.close = function() {
+            $scope.mainNavigator.popPage();
+        };
 
-            $scope.$on("menu.cancel", function() {
-                $window.history.back();
-            });
+        page.hasFieldError = function(field) {
+            return (page.submitted === true && field.length === 0);
+        };
 
-            $scope.$on("menu.back", function() {
-                $window.history.back();
-            });
+        function clearErrors() {
+            page.error.email = "";
+            page.error.subject = "";
         }
+
+        function isFormValid() {
+            clearErrors();
+            return page.email.length > 0 && page.subject.length > 0;
+        }
+    }
 })();
