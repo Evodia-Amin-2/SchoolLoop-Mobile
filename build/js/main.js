@@ -90,10 +90,10 @@
             if(storageService.isLoggedIn() === true) {
                 var domain = storageService.getDefaultDomain() || {};
                 var school = domain.school;
-                alert("Fetch: " + JSON.stringify(school));
                 if(school && school.domainName === "ds2-slb-ca.schoolloop.com") {
                     return;
                 }
+                alert("Fetch: " + JSON.stringify(school));
                 window.chcp.fetchUpdate();
             }
         });
@@ -102,10 +102,10 @@
             if(storageService.isLoggedIn() === true) {
                 var domain = storageService.getDefaultDomain() || {};
                 var school = domain.school;
-                alert("Ready: " + JSON.stringify(school));
                 if(school && school.domainName === "ds2-slb-ca.schoolloop.com") {
                     return;
                 }
+                alert("Ready: " + JSON.stringify(school));
                 $location.path("/update");
             }
         });
