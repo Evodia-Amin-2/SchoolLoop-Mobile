@@ -20,8 +20,10 @@
                        placeholder="{{page.placeholder.school}}" float autocomplete="off"></ons-input>
             <ons-list class="lookup-list" ng-show="page.lookup.expanded && page.lookup.displaySet.length > 0">
                 <ons-list-item ng-repeat="item in page.lookup.displaySet" tappable ng-click="page.selectSchool(item)" modifier="longdivider">
-                    <div class="lookup-text">{{item.name}}</div>
-                    <div class="lookup-subtext">{{item.districtName}}</div>
+                    <div>
+                        <div class="lookup-text">{{item.name}}</div>
+                        <div class="lookup-subtext">{{item.districtName}}</div>
+                    </div>
                 </ons-list-item>
             </ons-list>
         </div>
