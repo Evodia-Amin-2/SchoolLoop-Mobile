@@ -2,18 +2,18 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('InvalidController', ['StatusService', InvalidController])
+        .controller('InvalidController', ['$location', 'StatusService', InvalidController])
         ;
 
-        function InvalidController(statusService) {
+        function InvalidController($location, statusService) {
             var invalid = this;
 
             statusService.hideNoWait();
-            navigator.splashscreen.hide();
+            window.navigator.splashscreen.hide();
 
             invalid.close = function() {
-                navigator.splashscreen.hide();
-                navigator.app.exitApp();
+                $location.path('/login');
+                window.navigator.splashscreen.hide();
             };
 
         }

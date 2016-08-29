@@ -1,6 +1,10 @@
 <ons-page ng-controller="InvalidController as page" class="full-page">
     <ons-toolbar class="default-toolbar">
-        <div class="left" tappable ng-click="page.close()"><ons-icon size="24px" class="dialog-close" icon="md-close"></ons-icon></div>
+        <div class="left" ng-click="page.close()">
+            <ons-toolbar-button>
+                <ons-icon size="24px" icon="md-close"></ons-icon>
+            </ons-toolbar-button>
+        </div>
         <div class="center" translate>Attention</div>
     </ons-toolbar>
     <div class="login-panel">
