@@ -89,11 +89,10 @@
         $rootScope.$on('hardware.resume', function() {
             if(storageService.isLoggedIn() === true) {
                 var domain = storageService.getDefaultDomain() || {};
-                var school = domain.school;
-                if(school && school.domainName === "ds2-slb-ca.schoolloop.com") {
+                var school = domain.school || {};
+                if(school.domainName === "ds2-slb-ca.schoolloop.com") {
                     return;
                 }
-                alert("Fetch: " + JSON.stringify(school));
                 window.chcp.fetchUpdate();
             }
         });
@@ -101,11 +100,10 @@
         $rootScope.$on('update.ready', function() {
             if(storageService.isLoggedIn() === true) {
                 var domain = storageService.getDefaultDomain() || {};
-                var school = domain.school;
-                if(school && school.domainName === "ds2-slb-ca.schoolloop.com") {
+                var school = domain.school || {};
+                if(school.domainName === "ds2-slb-ca.schoolloop.com") {
                     return;
                 }
-                alert("Ready: " + JSON.stringify(school));
                 $location.path("/update");
             }
         });
