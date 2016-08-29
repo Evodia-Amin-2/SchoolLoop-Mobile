@@ -27,9 +27,9 @@
         </ons-input>
         <div class="field-error" ng-show="page.password.length == 0 && page.error.password.length > 0">{{page.error.password}}</div>
 
-        <div class="right-link"><ons-button ng-click="page.forgot()" modifier="quiet" translate>Forgot Password?</ons-button></div>
+        <div class="right-link" ng-show="page.isSchoolSelected(page.selectedSchool)"><ons-button ng-click="page.forgot()" modifier="quiet" translate>Forgot Password?</ons-button></div>
         <ons-button ng-click="page.login()" class="login-button" translate>Log In</ons-button>
-        <div class="login-footer" translate><span class="login-prompt">Don't have an account?</span>
+        <div class="login-footer" ng-show="page.isSchoolSelected(page.selectedSchool)" translate><span class="login-prompt">Don't have an account?</span>
             <ons-button ng-click="page.register()" modifier="quiet" translate>Register</ons-button>
         </div>
     </div>
