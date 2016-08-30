@@ -79,6 +79,13 @@
                     }
 
                     return tmp;
+                }, function(error) {
+                    console.log(error);
+                    cache.assignments = [];
+                    cache.report_card = [];
+                    cache.mail_messages = [];
+                    cache.news = [];
+                    return cache;
                 }).then(function(tmpResult) {
                     cache = tmpResult;
 

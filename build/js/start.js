@@ -35,18 +35,11 @@
                 var data = message.data;
                 storageService.addStudents(school, data.students, true);
                 dataService.load().then(function() {
-                    var domain = storageService.getDefaultDomain();
-                    var user = domain.user;
-                    var isTeacher = (user.role !== 'student' && user.role !== 'parent');
-                    if(isTeacher) {
-                        $location.path('/main-teacher');
-                    } else {
-                        $location.path('/main');
-                    }
+                    startApp();
                 }, function(response) {
                     var error = response.data;
                     if(error.toLowerCase().startsWith("error 6")) {
-                        $location.path('/notstarted');
+                        startApp();
                     }
                 });
             },
@@ -59,6 +52,16 @@
             }
         );
 
+        function startApp() {
+            var domain = storageService.getDefaultDomain();
+            var user = domain.user;
+            var isTeacher = (user.role !== 'student' && user.role !== 'parent');
+            if(isTeacher) {
+                $location.path('/main-teacher');
+            } else {
+                $location.path('/main');
+            }
+        }
     }
 
 })();
