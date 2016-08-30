@@ -4,20 +4,6 @@
         <div class="center">{{::assignDetail.assignment.title}}</div>
     </ons-toolbar>
     <div ng-show="assignDetail.assignment">
-        <div class="card" ng-if="assignDetail.grade.score">
-            <ons-list-item class="card-item course-detail" modifier="nodivider">
-                <div class="center">
-                    <span class="comment" ng-show="assignDetail.hasComment(assignDetail.grade)"><ons-icon icon="md-comment-alt-text" size="24px"></ons-icon>{{assignDetail.grade.comment}}</span>
-                </div>
-                <div class="right">
-                    <div class="course-grades">
-                        <div class="course-detail-grade">{{assignDetail.grade.percentScore}}</div>
-                        <div class="course-score">{{assignDetail.grade.score}}</div>
-                    </div>
-                </div>
-            </ons-list-item>
-        </div>
-
         <ons-list-item modifier="longdivider" class="assignment-detail-header">
             <div class="left">
                 <div class="period">{{assignDetail.assignment.periodNumber}}</div>
@@ -30,14 +16,25 @@
                 </div>
             </div>
             <div class="right">
-                <div class="assignment-points">
+                <div class="course-grades" ng-if="assignDetail.grade.score">
+                    <div class="course-grades">
+                        <div class="course-detail-grade">{{assignDetail.grade.percentScore}}</div>
+                        <div class="course-score">{{assignDetail.grade.score}}</div>
+                    </div>
+                </div>
+                <div class="assignment-points" ng-if="!assignDetail.grade.score">
                     <div class="points-max">{{assignDetail.assignment.maxPoints}}</div>
                     <div class="points-label" translate>PTS</div>
                 </div>
             </div>
         </ons-list-item>
+        <div class="assignment-detail-footer" ng-show="assignDetail.hasComment(assignDetail.grade)" >
+            <div>
+                <span class="comment"><ons-icon icon="md-comment-alt-text" size="24px"></ons-icon>{{assignDetail.grade.comment}}</span>
+            </div>
+        </div>
         <div class="assignment-detail">
-            <div><span class="due-label" translate>Due:</span><span class="due-date"> {{assignDetail.getDate(assignDetail.assignment.dueDate, assignDetail.assignment.timeZone)}}</span></div>
+            <div><span class="due-label" translate>Due:</span><span> {{assignDetail.getDate(assignDetail.assignment.dueDate, assignDetail.assignment.timeZone)}}</span></div>
             <div class="assignment-desc" ng-bind-html="assignDetail.trustedDescription"></div>
 
             <ons-list class="attachements-view" ng-if="assignDetail.assignment.links">

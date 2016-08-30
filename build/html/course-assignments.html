@@ -29,11 +29,9 @@
                     <div ng-if="!courseAsgn.isZero(item)" class="course-detail-grade">{{item.percentScore}}</div>
                     <div class="course-score">{{item.score}}</div>
                 </div>
-                <div class="right" ng-if="item.graded == false">
-                    <div class="assignment-points">
-                        <div class="points-max">{{item.assignment.maxPoints}}</div>
-                        <div class="points-label" translate>PTS</div>
-                    </div>
+                <div class="assignment-points" ng-if="item.graded == false">
+                    <div class="points-max">{{item.assignment.maxPoints}}</div>
+                    <div class="points-label" translate>PTS</div>
                 </div>
             </div>
         </ons-list-item>

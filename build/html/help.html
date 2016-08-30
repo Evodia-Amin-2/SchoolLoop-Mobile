@@ -15,6 +15,11 @@
     <div class="help-panel">
         <div class="message-text" translate>How can we help?</div>
 
+        <div class="display-field">
+            <span class="_helper text-input__label text-input--material__label text-input--underbar__label display-label" translate>Name:</span>
+            <div>{{page.name}}</div>
+        </div>
+
         <ons-input name="email" modifier="underbar" placeholder="{{page.placeholder.email}}" float ng-model="page.email"
                    ng-class="{error: page.hasFieldError(page.email)}" ng-enter="page.send()">
         </ons-input>
