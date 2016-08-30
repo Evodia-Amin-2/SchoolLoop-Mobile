@@ -44,7 +44,7 @@
                 if(numStudents > 2) {
                     message = gettextCatalog.getString("{name} and {number} others have been added");
                     message = message.replace("{name}", student.name);
-                    message = message.replace("{number}", numStudents);
+                    message = message.replace("{number}", (numStudents - 1);
                 } else if(numStudents === 2) {
                     message = gettextCatalog.getString("{name1} and {name2} have been added");
                     message = message.replace("{name1}", student.name[0]);
