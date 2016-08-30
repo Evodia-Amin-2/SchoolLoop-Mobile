@@ -403,6 +403,7 @@
         assignDetail.assignment = undefined;
         assignDetail.grade = $scope.courseNavigator.topPage.pushedOptions.grade;
         assignDetail.course = $scope.courseNavigator.topPage.pushedOptions.course;
+        assignDetail.trustedDescription = "";
 
         var period = assignDetail.course.period;
         var periodIndex = period % CourseColors.length;
@@ -417,9 +418,8 @@
 
         function setAssignment(assignment) {
             assignDetail.assignment = assignment;
-            assignDetail.trustedDescription = "";
 
-            if(assignment && assignment.description) {
+            if(assignment && utils.isNull(assignment.description) === false) {
                 var description = $filter('replaceUrlFilter')(assignment.description);
                 var school = storageService.getSelectedSchool().domainName;
                 description = $filter('replaceSrcFilter')(description, school);
