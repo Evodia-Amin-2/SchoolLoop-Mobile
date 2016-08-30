@@ -4,9 +4,12 @@
     angular.module('mobileloop')
         .controller('CoursesController', ['$scope', '$timeout', '$location', 'DataService', 'DataType', 'StatusService',
             'Utils', 'CourseColors', CoursesController])
-        .controller('CourseDetailController', ['$scope', '$timeout', 'DataService', 'StatusService', 'Utils', 'CourseColors', CourseDetailController])
-        .controller('CourseAsgnController', ['$rootScope', '$scope', '$timeout', 'Utils', 'DataService', 'DataType', 'CourseColors', CourseAsgnController])
-        .controller('CourseAsgnDetailController', ['$scope', '$window', '$sce', 'StorageService', 'Utils', 'CourseColors', 'gettextCatalog', CourseAsgnDetailController])
+        .controller('CourseDetailController', ['$scope', '$timeout', 'DataService', 'StatusService', 'Utils',
+            'CourseColors', CourseDetailController])
+        .controller('CourseAsgnController', ['$rootScope', '$scope', '$timeout', 'Utils', 'DataService', 'DataType',
+            'CourseColors', CourseAsgnController])
+        .controller('CourseAsgnDetailController', ['$scope', '$window', '$sce', '$filter', 'DataService', 'StatusService',
+            'StorageService', 'Utils', 'CourseColors', 'gettextCatalog', CourseAsgnDetailController])
     ;
 
     function CoursesController($scope, $timeout, $location, dataService, DataType, statusService, utils, CourseColors) {
@@ -152,6 +155,10 @@
 
         courseDetail.compose = function() {
             $scope.mainNavigator.pushPage('compose.html', {animation: 'slide'});
+        };
+
+        courseDetail.hasComment = function (grade) {
+            return _.isUndefined(grade.comment) === false && grade.comment !== "null" && grade.comment.length > 0;
         };
 
         $scope.mainNavigator.on("prepop", function(event) {
@@ -334,11 +341,15 @@
             return "period-" + periodIndex;
         };
 
+        courseAsgn.hasComment = function (grade) {
+            return _.isUndefined(grade.comment) === false && grade.comment !== "null" && grade.comment.length > 0;
+        };
+
         courseAsgn.applyFilter = function(element) {
             if(courseAsgn.filter === "graded") {
-                return element.graded === true;
+                return utils.isNull(element.score) === false;
             } else if(courseAsgn.filter === "unscored") {
-                return _.isUndefined(element.graded) === true || element.graded === false;
+                return element.graded === false;
             } else if(courseAsgn.filter === "zeros") {
                 return utils.isTrue(element.zero);
             }
@@ -352,48 +363,45 @@
             }
 
             courseAsgn.filter = data.action;
-            courseAsgn.assignments = [];
+            courseAsgn.grades = [];
             courseAsgn.loaded = false;
 
             $timeout(loadAssignments, 300);
         });
 
         function loadAssignments() {
+            var grades = courseAsgn.progress.grades.slice();
+
             var assignments = _.filter(dataService.list(DataType.ASSIGNMENT), function(item) {
                 return +item.periodNumber === +courseAsgn.course.period;
             });
 
-            courseAsgn.assignments = assignments;
-
-            var timeZone = "";
-            var assignment;
-            if(assignments && assignments.length > 0) {
-                assignment = assignments[0];
-                timeZone = assignment.timeZone;
+            for(var i = 0; i < assignments.length; i++) {
+                var grade = {};
+                grade.assignment = {};
+                grade.assignment.categoryName = assignments[i].categoryName;
+                grade.assignment.dueDate = assignments[i].dueDate;
+                grade.assignment.maxPoints = assignments[i].maxPoints;
+                grade.assignment.systemID = assignments[i].iD;
+                grade.assignment.title = assignments[i].title;
+                grade.zero = false;
+                grade.score = null;
+                grade.grade = null;
+                grade.graded = false;
+                grades.push(grade);
             }
-
-            var grades = courseAsgn.progress.grades;
-            for(var i = 0; i < grades.length; i++) {
-                assignment = JSON.parse(JSON.stringify(grades[i].assignment));
-                assignment.iD = assignment.systemID;
-                assignment.zero = grades[i].zero;
-                assignment.grade = grades[i].grade;
-                assignment.percentScore = grades[i].percentScore;
-                assignment.score = grades[i].score;
-                assignment.comment = grades[i].comment;
-                assignment.graded = true;
-                courseAsgn.assignments.push(assignment);
-            }
-            courseAsgn.assignments = _.sortBy(courseAsgn.assignments, function(o) { return o.dueDate; }).reverse();
+            courseAsgn.grades = _.sortBy(grades, function(o) {
+                return o.assignment.dueDate;
+            }).reverse();
             courseAsgn.loaded = true;
         }
     }
 
-
-    function CourseAsgnDetailController($scope, $window, $sce, storageService, utils, CourseColors, gettextCatalog) {
+    function CourseAsgnDetailController($scope, $window, $sce, $filter, dataService, statusService, storageService, utils, CourseColors, gettextCatalog) {
         var assignDetail = this;
 
-        assignDetail.assignment = $scope.courseNavigator.topPage.pushedOptions.assignment;
+        assignDetail.assignment = undefined;
+        assignDetail.grade = $scope.courseNavigator.topPage.pushedOptions.grade;
         assignDetail.course = $scope.courseNavigator.topPage.pushedOptions.course;
 
         var period = assignDetail.course.period;
@@ -401,20 +409,39 @@
         StatusBar.backgroundColorByHexString(CourseColors[periodIndex]);
         StatusBar.show();
 
+        var assignmentId = assignDetail.grade.assignment.systemID || assignDetail.assignment.systemID;
+        dataService.getAssignment(assignmentId).then(function(response) {
+            setAssignment(response);
+            statusService.hideWait(500);
+        });
+
+        function setAssignment(assignment) {
+            assignDetail.assignment = assignment;
+            assignDetail.trustedDescription = "";
+
+            if(assignment && assignment.description) {
+                var description = $filter('replaceUrlFilter')(assignment.description);
+                var school = storageService.getSelectedSchool().domainName;
+                description = $filter('replaceSrcFilter')(description, school);
+                assignDetail.trustedDescription = $sce.trustAsHtml(description);
+            }
+        }
+
         assignDetail.courseColor = function() {
             return "period-" + periodIndex;
-        };
-
-        assignDetail.getDescription = function() {
-            if(utils.isNull(assignDetail.assignment.description) === false) {
-                return $sce.trustAsHtml(assignDetail.assignment.description);
-            }
-            return "";
         };
 
         assignDetail.getDate = function (source, timeZone) {
             timeZone = timeZone || "UTC";
             return utils.getDisplayDate(source, timeZone, gettextCatalog);
+        };
+
+        assignDetail.hasCoTeacher = function() {
+            var assignment = assignDetail.assignment;
+            if(_.isUndefined(assignment) === false) {
+                return _.isUndefined(assignment.coTeacherName) === false && utils.isNull(assignment.coTeacherName) === false;
+            }
+            return false;
         };
 
         assignDetail.openURL = function (link) {
@@ -427,13 +454,10 @@
 
         };
 
-        assignDetail.hasDiscussion = function () {
-            if (_.isUndefined(assignDetail.assignment) === false) {
-                return assignDetail.assignment.numMessages > 0;
-            } else {
-                return false;
-            }
+        assignDetail.hasComment = function (grade) {
+            return _.isUndefined(grade.comment) === false && grade.comment !== "null" && grade.comment.length > 0;
         };
+
     }
 
     function countZeros(progressReport, utils) {
@@ -443,7 +467,7 @@
             if (utils.isTrue(grade.zero) === true) {
                 count += 1;
             }
-            if(Number.isInteger(grade.assignment.dueDate) === false) {
+            if(typeof(grade.assignment.dueDate) === "string") {
                 grade.assignment.dueDate = Date.parse(grade.assignment.dueDate);
             }
         }

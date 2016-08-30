@@ -10,29 +10,28 @@
     </ons-toolbar>
     <ons-list>
         <ons-list-item class="course-detail course-assignments" ng-class="{'zero-grade': courseAsgn.isZero(item)}"
-                       ng-if="courseAsgn.assignments.length > 0"
-                       modifier="longdivider" tappable ng-repeat="item in filtered = (courseAsgn.assignments|filter:courseAsgn.applyFilter)"
-                       ng-click="courseNavigator.pushPage('course-assignment-detail.html', {animation: 'slide', assignment: item, course: courseAsgn.course})">
+                       ng-if="courseAsgn.grades.length > 0"
+                       modifier="longdivider" tappable ng-repeat="item in filtered = (courseAsgn.grades|filter:courseAsgn.applyFilter)"
+                       ng-click="courseNavigator.pushPage('course-assignment-detail.html', {animation: 'slide', grade: item, course: courseAsgn.course})">
             <div class="center">
                 <div class="progress-report course-row">
-                    <div class="title">{{item.title}}</div>
-                    <div class="category">{{item.categoryName}}</div>
+                    <div class="title">{{item.assignment.title}}</div>
+                    <div class="category">{{item.assignment.categoryName}}</div>
                     <div class="progress-due-date">
-                        <span translate>Due:</span> {{item.dueDate|date:"MMM d, y" : "UTC"}}
-                        <span class="seperator" ng-show="hasComment(item)">-</span>
-                        <span class="comment" ng-show="hasComment(item)"><span class="icon-comment"></span>{{item.comment}}</span>
+                        <span translate>Due:</span> {{item.assignment.dueDate|date:"MMM d, y" : "UTC"}}
                     </div>
                 </div>
             </div>
             <div class="right">
-                <div class="course-grades" ng-if="item.graded == true">
+                <span class="comment" ng-show="courseAsgn.hasComment(item)"><ons-icon icon="md-comment-alt-text" size="24px"></ons-icon></span>
+                <div class="course-grades" ng-if="item.graded != false">
                     <div ng-if="courseAsgn.isZero(item)" class="course-detail-grade" translate>Zero</div>
                     <div ng-if="!courseAsgn.isZero(item)" class="course-detail-grade">{{item.percentScore}}</div>
                     <div class="course-score">{{item.score}}</div>
                 </div>
-                <div class="right" ng-if="item.graded != true">
+                <div class="right" ng-if="item.graded == false">
                     <div class="assignment-points">
-                        <div class="points-max">{{item.maxPoints}}</div>
+                        <div class="points-max">{{item.assignment.maxPoints}}</div>
                         <div class="points-label" translate>PTS</div>
                     </div>
                 </div>

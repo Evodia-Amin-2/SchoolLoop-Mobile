@@ -27,7 +27,6 @@
 }
 
 .course-grades {
-    height: 100%;
     width: 100%;
     text-align: center;
 }
@@ -242,4 +241,11 @@
     min-width: 50px;
     text-align: right;
     display: inline-block;
+}
+
+.comment .zmdi-comment-alt-text {
+    padding-right: 10px;
+    color: #aaa;
+    position: relative;
+    top: 4px;
 }

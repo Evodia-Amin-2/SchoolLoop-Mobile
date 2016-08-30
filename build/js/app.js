@@ -1,3 +1,4 @@
+/* jshint freeze:false */
 (function(window, angular) {
     'use strict';
 
@@ -127,6 +128,14 @@
             $rootScope.$broadcast("orientation.change");
         }, true);
     }
+
+    String.prototype.startsWith = function (str) {
+        return this.indexOf(str) === 0;
+    };
+
+    String.prototype.endsWith = function (suffix) {
+        return this.indexOf(suffix, this.length - suffix.length) !== -1;
+    };
 })(window, window.angular);
 
 /*jshint unused:false*/
