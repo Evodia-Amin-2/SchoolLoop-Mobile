@@ -30,10 +30,6 @@
             return item.isNew === true;
         };
 
-        newsCtrl.showNews = function(newsItem) {
-            $location.path("main.tabs.news-detail", {newsId: newsItem.iD});
-        };
-
         $scope.$on("refresh.all", function() {
             newsCtrl.news = dataService.list(DataType.NEWS);
         });

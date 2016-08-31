@@ -63,7 +63,7 @@
                                 storageService.addDomain(school, data, page.password);
                                 storageService.addStudents(school, data.students, true);
                                 page.inReset = false;
-                                $location.go('/main');
+                                $location.path('/main');
                             }
                         },
                         function(error) {

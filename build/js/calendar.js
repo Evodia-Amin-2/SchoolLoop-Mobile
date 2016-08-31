@@ -28,10 +28,6 @@
             return item.isNew === true;
         };
 
-        calendarCtrl.showNews = function(newsItem) {
-            $location.path("main.tabs.news-detail", {newsId: newsItem.iD});
-        };
-
         $scope.$on("refresh.all", function() {
             calendarCtrl.news = dataService.list(DataType.NEWS);
         });

@@ -32,13 +32,15 @@
                 }
                 return password;
             },
-            setPassword: function(domainName, user/*, password*/) {
+            setPassword: function(domainName, user, password) {
                 var domainMap = loadDomainMap();
                 var domain = domainMap[domainName];
                 if(user.userName !== domain.user.userName || _.isUndefined(domain.user.userID) === true) {
                     domain.encrypted = undefined;
                     domain.user = user;
                 }
+                domain.user.hashedPassword = password;
+
                 if (_.isUndefined(domain) === false && _.isNull(domain) === false) {
                     saveDomainMap(domainMap);
                 }
