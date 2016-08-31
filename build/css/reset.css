@@ -1,0 +1,10 @@
+.reset-panel {
+    margin: 30px;
+}
+
+.reset-panel .ons-input,
+.reset-panel ons-input {
+    width: 100%;
+    margin: 20px 0 4px;
+}
+

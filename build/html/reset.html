@@ -1,23 +1,33 @@
-<div class="mobileloop-page full-page" ng-controller="ResetController as reset">
-    <div class="overthrow" expand="">
-        <form name="reset_form" novalidate>
-            <h1 translate="" style="margin-top: 20px">Set Password</h1>
-            <div class="form-content">
-                <div class="simple-group" style="margin-top: 20px">
-                    <label translate>New Password</label>
-                    <input name="password" ng-enter="reset.reset()" ng-class="{error: reset_form.password.$invalid && reset_form.submitted}"
-                           type="password" placeholder="{{reset_form.password.placeholder}}" ng-model="reset.password" required /><br/>
-                </div>
-                <div class="simple-group" style="margin-top: 20px">
-                    <label translate>Confirm Password</label>
-                    <input name="confirm" ng-enter="reset.reset()" ng-class="{error: reset_form.confirm.$invalid && reset_form.submitted}"
-                           type="password" placeholder="{{reset_form.confirm.placeholder}}" ng-model="reset.confirm" required /><br/>
-                </div>
-            </div>
-            <div class="footer center">
-                <button ng-click="reset.cancel()" class="button button-blue clickable" ng-disabled="reset.inReset" translate>Cancel</button>
-                <button ng-click="reset.reset()"class="button button-blue clickable" ng-disabled="reset.inReset" translate>Set Password</button>
-            </div>
-        </form>
+<ons-page ng-controller="ResetController as page" class="full-page">
+    <ons-toolbar class="default-toolbar">
+        <div class="left" ng-click="page.cancel()">
+            <ons-toolbar-button>
+                <ons-icon size="24px" icon="md-close"></ons-icon>
+            </ons-toolbar-button>
+        </div>
+        <div class="center" translate>Set Password</div>
+        <div class="right" translate>
+            <ons-toolbar-button ng-click="page.reset()">Set</ons-toolbar-button>
+        </div>
+    </ons-toolbar>
+    <div class="reset-panel">
+        <div>
+            <ons-input name="password" modifier="underbar" type="password" placeholder="{{page.placeholder.password}}" float ng-model="page.password"
+                       ng-class="{error: page.hasFieldError(page.password)}"
+                       ng-enter="page.reset()" ng-required>
+            </ons-input>
+            <div class="field-error" ng-show="page.password.length == 0 && page.error.password.length > 0">{{page.error.password}}</div>
+
+            <ons-input name="confirm" modifier="underbar" type="password" placeholder="{{page.placeholder.confirm}}" float ng-model="page.confirm"
+                       ng-class="{error: page.hasFieldError(page.confirm)}"
+                       ng-enter="page.reset()" ng-required>
+            </ons-input>
+            <div class="field-error" ng-show="page.confirm.length == 0 && page.error.confirm.length > 0">{{page.error.confirm}}</div>
+        </div>
+
+        <div class="button-bar">
+            <ons-button ng-click="page.cancel()" translate>Cancel</ons-button>
+            <ons-button ng-click="page.reset()" translate>Set Password</ons-button>
+        </div>
     </div>
-</div>
+</ons-page>

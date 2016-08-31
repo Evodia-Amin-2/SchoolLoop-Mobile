@@ -6,8 +6,44 @@
     margin: 20px;
 }
 
+.add-student-header .add-student-content {
+    margin-right: 0;
+    display: inline-block;
+    width: 35%;
+}
+
+@media only screen and (min-width: 350px) {
+    .add-student-header .add-student-content {
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: 480px) {
+    .add-student-header .add-student-content {
+        width: 65%;
+    }
+
+    .entry-area {
+        max-width: 440px;
+        margin: 20px auto;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .add-student-header .add-student-content {
+        width: 72%;
+    }
+
+    .entry-area {
+        max-width: 500px;
+        margin: 20px auto;
+    }
+}
+
 .add-student-content-right {
-    margin: 20px 0;
+    display: inline-block;
+    margin: 20px;
+    float: right;
 }
 
 .add-student-buttons {

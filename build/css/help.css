@@ -20,6 +20,10 @@
     margin-bottom: 20px;
 }
 
-.display-label {
+.display-field span {
+    position: relative;
+}
+
+.display-field.android span {
     color: #009688;
 }
