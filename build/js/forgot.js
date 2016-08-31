@@ -54,6 +54,7 @@
                                     page.error.email = gettextCatalog.getString("Please enter email!");
                                 });
                             }, title, button);
+                            page.inReset = false;
                         }
                     );
                 } else {

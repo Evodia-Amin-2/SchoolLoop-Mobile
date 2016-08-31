@@ -145,10 +145,6 @@
             page.password = domain.password || "";
         }
 
-        page.privacy = function () {
-            page.auth();
-        };
-
         page.login = function () {
             if(isFormValid()) {
                 if(cordova.plugins.Keyboard) {

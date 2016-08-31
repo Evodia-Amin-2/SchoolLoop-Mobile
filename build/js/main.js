@@ -3,12 +3,12 @@
 
     angular.module('mobileloop')
         .controller('MainController', ['$rootScope', '$scope', '$location', '$timeout', 'DataService', 'DataType', 'StorageService',
-            'StatusService', 'NotificationService','UpdateService', 'LoopmailService', MainController])
+            'StatusService', 'NotificationService','UpdateService', 'LoopmailService', 'Utils', MainController])
     ;
 
     function MainController($rootScope, $scope, $location, $timeout,
              dataService, DataType, storageService, statusService, notificationService,
-             updateService, loopmailService) {
+             updateService, loopmailService, utils) {
         var main = this;
 
         StatusBar.overlaysWebView(true);
@@ -32,7 +32,10 @@
 
         navigator.analytics.sendAppView('Main');
 
-        main.currentStudent = storageService.getSelectedStudent();
+        var domain = storageService.getDefaultDomain();
+        if(utils.isTrue(domain.user.isParent) === true) {
+            main.currentStudent = storageService.getSelectedStudent();
+        }
 
         updateService.start();
         loopmailService.start();
@@ -78,7 +81,9 @@
         });
 
         $scope.$on("refresh.all", function() {
-            main.currentStudent = storageService.getSelectedStudent();
+            if (_.isUndefined(main.currentStudent) === false) {
+                main.currentStudent = storageService.getSelectedStudent();
+            }
             main.getMailCount();
             main.getNewsCount();
         });

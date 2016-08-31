@@ -18,6 +18,7 @@
         page.error = {};
         clearErrors();
 
+        page.inReset = false;
         page.submitted = false;
 
         var messages = {
@@ -32,6 +33,10 @@
         };
 
         page.reset = function() {
+            if(page.inReset === true) {
+                return;
+            }
+            page.inReset = true;
             page.submitted = true;
 
             if(isFormValid()) {
@@ -51,11 +56,13 @@
                                     }, title, button);
                                 } else {
                                     page.error.password = messages[data];
+                                    page.inReset = false;
                                 }
                             } else {
                                 var school = storageService.getSelectedSchool();
                                 storageService.addDomain(school, data, page.password);
                                 storageService.addStudents(school, data.students, true);
+                                page.inReset = false;
                                 $location.go('/main');
                             }
                         },
@@ -65,6 +72,7 @@
                         }
                     );
                 } else {
+                    page.inReset = false;
                     page.confirm = "";
                     page.error.confirm = gettextCatalog.getString("Passwords don't match");
                 }
@@ -76,6 +84,7 @@
                 if(page.confirm.length === 0) {
                     page.error.confirm = gettextCatalog.getString("Password Required!");
                 }
+                page.inReset = false;
             }
         };
 
@@ -94,6 +103,7 @@
         }
 
         function goLogin() {
+            page.inReset = false;
             var domain = storageService.getDefaultDomain();
             var domainName = domain.school.domainName;
             storageService.clearPassword(domainName);
