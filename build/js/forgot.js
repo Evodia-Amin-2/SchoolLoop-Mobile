@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('ForgotController', ['$scope', '$location', 'DataService', 'gettextCatalog', ForgotController])
+        .controller('ForgotController', ['$scope', '$location', '$timeout', 'DataService', 'gettextCatalog', ForgotController])
         ;
 
-        function ForgotController($scope, $location, dataService, gettextCatalog) {
+        function ForgotController($scope, $location, $timeout, dataService, gettextCatalog) {
             var page = this;
             page.inReset = false;
 
@@ -35,7 +35,9 @@
                             button = gettextCatalog.getString("Login");
                             navigator.notification.alert(message, function() {
                                 page.inReset = false;
-                                $location.path("/login");
+                                $timeout(function() {
+                                    $location.path("/login");
+                                });
                             }, title, button);
                         },
                         function(response) {
