@@ -8,6 +8,8 @@
     function ComposeController($scope, $filter, $sce, storageService, loopmailService, gettextCatalog) {
         var page = this;
 
+        page.hasLMT = $scope.mainNavigator.topPage.pushedOptions.hasLMT;
+
         page.toList = [];
         page.ccList = [];
         page.subject = "";
@@ -26,6 +28,10 @@
 
         page.removeCC = function(member) {
             page.ccList = _.without(page.ccList, _.findWhere(page.ccList, {id: member.id}));
+        };
+
+        page.addLMT = function() {
+
         };
 
         page.cancel = function() {

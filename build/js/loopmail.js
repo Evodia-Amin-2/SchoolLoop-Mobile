@@ -110,7 +110,7 @@
         };
 
         mailCtrl.compose = function() {
-            $scope.mainNavigator.pushPage('compose.html', {animation: 'slide'});
+            $scope.mainNavigator.pushPage('compose.html', {animation: 'slide', hasLMT: false});
         };
 
         $scope.$on("refresh.all", function() {

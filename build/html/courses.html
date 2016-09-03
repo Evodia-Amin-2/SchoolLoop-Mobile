@@ -16,13 +16,11 @@
             <div class="center" translate>Courses</div>
         </ons-toolbar>
         <ons-list class="course-view">
-            <ons-list ng-show="courseCtrl.courses.length === 0">
-                <ons-list-item class="card-item assignment-item" modifier="nodivider">
-                    <div class="center">
-                        <div class="status-message" translate>No Courses Currently</div>
-                    </div>
-                </ons-list-item>
-            </ons-list>
+            <ons-list-item class="card-item assignment-item" modifier="nodivider" ng-show="courseCtrl.courses.length === 0">
+                <div class="center">
+                    <div class="status-message" translate>No Courses Currently</div>
+                </div>
+            </ons-list-item>
             <ons-list-item class="course-item" modifier="longdivider" tappable ng-repeat="item in courseCtrl.courses"
                            ng-click="courseNavigator.pushPage('course-detail.html', {animation: 'slide', course: item})">
                 <div class="left">

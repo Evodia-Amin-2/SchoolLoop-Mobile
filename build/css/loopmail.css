@@ -113,5 +113,22 @@
 .loopmail-panel .ons-input,
 .loopmail-panel ons-input {
     width: 100%;
-    margin: 30px 0 4px;
+    margin: 10px 0 4px;
+}
+
+.loopmail-add-lmt {
+    margin-top: 15px;
+    padding: 0;
+    border-bottom: none !important;
+}
+
+.loopmail-add-lmt .list__item {
+    background-color: transparent;
+    padding: 0;
+}
+
+.loopmail-add-lmt label {
+    margin-left: 10px;
+    position: relative;
+    top: -2px;
 }

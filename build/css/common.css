@@ -151,3 +151,9 @@ blockquote cite {
     padding: 4px;
     border: 1px solid #ccc;
 }
+
+.textarea-edit.android textarea:active, .textarea-edit.android textarea:focus {
+    border-color: #009688;
+    border-width: 2px;
+    padding: 3px;
+}

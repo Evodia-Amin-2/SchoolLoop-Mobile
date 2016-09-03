@@ -148,7 +148,7 @@
         };
 
         courseDetail.compose = function() {
-            $scope.mainNavigator.pushPage('compose.html', {animation: 'slide'});
+            $scope.mainNavigator.pushPage('compose.html', {animation: 'slide', hasLMT: true});
         };
 
         courseDetail.hasComment = function (grade) {
