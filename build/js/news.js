@@ -2,11 +2,11 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('NewsController', ['$rootScope', '$scope', '$timeout', '$location', 'DataService', 'DataType', 'StorageService', NewsController])
+        .controller('NewsController', ['$rootScope', '$scope', '$timeout', 'DataService', 'DataType', 'StorageService', 'Utils', NewsController])
         .controller('NewsDetailController', ['$rootScope', '$scope', '$window', '$sce', '$filter', 'StorageService', 'Utils', NewsDetailController])
     ;
 
-    function NewsController($rootScope, $scope, $timeout, $location, dataService, DataType, storageService) {
+    function NewsController($rootScope, $scope, $timeout, dataService, DataType, storageService, utils) {
         var newsCtrl = this;
 
         navigator.analytics.sendAppView('News');
@@ -34,21 +34,15 @@
             newsCtrl.news = dataService.list(DataType.NEWS);
         });
 
+
         var tabbar = document.querySelector("ons-tabbar");
-        tabbar.addEventListener("prechange", function() {
-            var pages = $scope.newsNavigator.pages;
-            if(pages.length > 1) {
-                $scope.newsNavigator.popPage();
-            }
+        tabbar.addEventListener("postchange", function() {
+            utils.resetTab($scope.newsNavigator, "news.html");
         });
 
         tabbar.addEventListener("reactive", function() {
-            var pages = $scope.newsNavigator.pages;
-            if(pages.length > 1) {
-                $scope.newsNavigator.popPage();
-            }
+            utils.resetTab($scope.newsNavigator, "news.html");
         });
-
     }
 
     function NewsDetailController($rootScope, $scope, $window, $sce, $filter, storageService, utils) {

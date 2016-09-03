@@ -103,18 +103,12 @@
         });
 
         var tabbar = document.querySelector("ons-tabbar");
-        tabbar.addEventListener("prechange", function() {
-            var pages = $scope.asgnNavigator.pages;
-            if(pages.length > 1) {
-                $scope.asgnNavigator.popPage();
-            }
+        tabbar.addEventListener("postchange", function() {
+            utils.resetTab($scope.asgnNavigator, "assignments.html");
         });
 
         tabbar.addEventListener("reactive", function() {
-            var pages = $scope.asgnNavigator.pages;
-            if(pages.length > 1) {
-                $scope.asgnNavigator.popPage();
-            }
+            utils.resetTab($scope.asgnNavigator, "assignments.html");
         });
 
         function initialize() {

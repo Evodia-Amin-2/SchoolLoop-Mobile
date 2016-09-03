@@ -5,10 +5,10 @@
     angular.module('app.services')
         .constant('CourseColors', ["#0084b1", "#159501", "#673AB7", "#9C27B0", "#EAB102",
             "#B96113", "#99CEE0", "#A1D59A", "#C2B0E2", "#D7A9DF"])
-        .factory('Utils', [Utils])
+        .factory('Utils', ['$timeout', Utils])
     ;
 
-    function Utils() {
+    function Utils($timeout) {
         var utils = {
             isNull: function(value) {
                 return value === null || value === "null";
@@ -46,6 +46,14 @@
                     }
                 }
                 return sourceDate.format("dddd, MMM D, YYYY");
+            },
+            resetTab: function(navigator, page) {
+                var pages = navigator.pages;
+                if(pages.length > 1) {
+                    $timeout(function() {
+                        navigator.resetToPage(page);
+                    });
+                }
             }
         };
         return utils;

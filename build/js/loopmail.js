@@ -2,14 +2,14 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('LoopMailController', ['$rootScope', '$scope', '$timeout', '$location', 'DataService', 'DataType', 'StatusService',
-            'LoopmailService', 'StorageService', 'gettextCatalog', LoopMailController])
-        .controller('LoopMailDetailController', ['$rootScope', '$scope', '$window', '$sce', '$filter',
+        .controller('LoopMailController', ['$rootScope', '$scope', '$timeout', 'DataService', 'DataType', 'StatusService',
+            'LoopmailService', 'StorageService', 'gettextCatalog', 'Utils', LoopMailController])
+        .controller('LoopMailDetailController', ['$rootScope', '$scope', '$window', '$sce', '$filter', '$timeout',
             'StorageService', 'DataService', 'DataType', 'StatusService', 'gettextCatalog', LoopMailDetailController])
     ;
 
-    function LoopMailController($rootScope, $scope, $timeout, $location, dataService, DataType, statusService,
-                                loopmailService, storageService, gettextCatalog) {
+    function LoopMailController($rootScope, $scope, $timeout, dataService, DataType, statusService,
+                                loopmailService, storageService, gettextCatalog, utils) {
         var mailCtrl = this;
 
         navigator.analytics.sendAppView('LoopMail');
@@ -118,18 +118,12 @@
         });
 
         var tabbar = document.querySelector("ons-tabbar");
-        tabbar.addEventListener("prechange", function() {
-            var pages = $scope.loopmailNavigator.pages;
-            if(pages.length > 1) {
-                $scope.loopmailNavigator.popPage();
-            }
+        tabbar.addEventListener("postchange", function() {
+            utils.resetTab($scope.loopmailNavigator, "loopmail.html");
         });
 
         tabbar.addEventListener("reactive", function() {
-            var pages = $scope.loopmailNavigator.pages;
-            if(pages.length > 1) {
-                $scope.loopmailNavigator.popPage();
-            }
+            utils.resetTab($scope.loopmailNavigator, "loopmail.html");
         });
 
 
@@ -188,7 +182,7 @@
         }
     }
 
-    function LoopMailDetailController($rootScope, $scope, $window, $sce, $filter, storageService,
+    function LoopMailDetailController($rootScope, $scope, $window, $sce, $filter, $timeout, storageService,
                                       dataService, DataType, statusService, gettextCatalog) {
         var mailDetail = this;
 
@@ -235,6 +229,20 @@
             $scope.replyModal.hide();
             if(data.action === "cancel") {
                 return;
+            } else {
+                $scope.mainNavigator.pushPage('reply.html', {animation: 'slide', loopmail: mailDetail.loopmail, action: data.action});
+            }
+        });
+
+        $scope.mainNavigator.on("prepop", function(event) {
+            var navigator = event.navigator;
+            if(navigator.pages.length === 2) {
+                var page = navigator.pages[1];
+                if(page.name === "reply.html") {
+                    $timeout(function() {
+                        $scope.loopmailNavigator.pages[1].backButton.style.display = "block";
+                    });
+                }
             }
         });
 
@@ -276,10 +284,6 @@
             $window.open(url, '_system', 'location=yes,clearcache=yes,clearsessioncache=yes');
 
         };
-
-        $scope.$on('menu.back', function() {
-            $window.history.back();
-        });
 
     }
 })();

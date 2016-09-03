@@ -10,7 +10,7 @@
     </ons-toolbar>
     <div class="loopmail-detail-header">
         <div class="loopmail-sender"><span translate>From:</span> {{loopmailDetail.loopmail.sender.name}}</div>
-        <div class="loopmail-sender"><span translate>To:</span> {{loopmailDetail.loopmail.shortRecipientString}}</div>
+        <div class="loopmail-sender" ng-if="loopmailDetail.loopmail.shortRecipientString"><span translate>To:</span> {{loopmailDetail.loopmail.shortRecipientString}}</div>
     </div>
     <div class="loopmail-detail-subheader">
         <!--<ons-icon ng-if="loopmailDetail.loopmail.links" icon="md-attachment" class="ons-icon zmdi zmdi-attachment" size="20px"></ons-icon>-->

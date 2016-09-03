@@ -18,7 +18,8 @@
         page.details = "";
 
         page.placeholder = {};
-        page.placeholder.email = gettextCatalog.getString("Your Email Address:");
+        page.placeholder.name = gettextCatalog.getString("Name");
+        page.placeholder.email = gettextCatalog.getString("Your Email Address");
         page.placeholder.cc = gettextCatalog.getString("CC");
         page.placeholder.subject = gettextCatalog.getString("Subject");
         page.placeholder.details = gettextCatalog.getString("Details");

@@ -95,18 +95,12 @@
         });
 
         var tabbar = document.querySelector("ons-tabbar");
-        tabbar.addEventListener("prechange", function() {
-            var pages = $scope.courseNavigator.pages;
-            if(pages.length > 1) {
-                $scope.courseNavigator.popPage();
-            }
+        tabbar.addEventListener("postchange", function() {
+            utils.resetTab($scope.courseNavigator, "courses.html");
         });
 
         tabbar.addEventListener("reactive", function() {
-            var pages = $scope.courseNavigator.pages;
-            if(pages.length > 1) {
-                $scope.courseNavigator.popPage();
-            }
+            utils.resetTab($scope.courseNavigator, "courses.html");
         });
     }
 
@@ -370,30 +364,43 @@
         });
 
         function loadAssignments() {
-            var grades = courseAsgn.progress.grades.slice();
 
-            var assignments = _.filter(dataService.list(DataType.ASSIGNMENT), function(item) {
-                return +item.periodNumber === +courseAsgn.course.period;
-            });
+            dataService.getAssignmentsByCourse(courseAsgn.course.periodID).then(
+                function(result) {
 
-            for(var i = 0; i < assignments.length; i++) {
-                var grade = {};
-                grade.assignment = {};
-                grade.assignment.categoryName = assignments[i].categoryName;
-                grade.assignment.dueDate = assignments[i].dueDate;
-                grade.assignment.maxPoints = assignments[i].maxPoints;
-                grade.assignment.systemID = assignments[i].iD;
-                grade.assignment.title = assignments[i].title;
-                grade.zero = false;
-                grade.score = null;
-                grade.grade = null;
-                grade.graded = false;
-                grades.push(grade);
-            }
-            courseAsgn.grades = _.sortBy(grades, function(o) {
-                return o.assignment.dueDate;
-            }).reverse();
-            courseAsgn.loaded = true;
+                    var assignments = result;
+                    var grades = courseAsgn.progress.grades.slice();
+
+                    for(var i = 0; i < assignments.length; i++) {
+                        var grade = undefined;
+                        for(var j = 0; j < grades.length; j++) {
+                            if(grades[j].assignment.systemID === assignments[i].iD) {
+                                grade = grades[j];
+                                break;
+                            }
+                        }
+                        if(_.isUndefined(grade) === true) {
+                            grade = {};
+                            grade.zero = false;
+                            grade.score = null;
+                            grade.grade = null;
+                            grade.graded = false;
+                            grade.assignment = {};
+                            grades.push(grade);
+                        }
+                        grade.assignment.categoryName = assignments[i].categoryName;
+                        grade.assignment.dueDate = assignments[i].dueDate;
+                        grade.assignment.maxPoints = assignments[i].maxPoints;
+                        grade.assignment.systemID = assignments[i].iD;
+                        grade.assignment.title = assignments[i].title;
+                    }
+
+                    courseAsgn.grades = _.sortBy(grades, function(o) {
+                        return o.assignment.dueDate;
+                    }).reverse();
+                    courseAsgn.loaded = true;
+                }
+            );
         }
     }
 

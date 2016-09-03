@@ -1,0 +1,42 @@
+<div>
+<ons-page ng-controller="ReplyController as page" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
+    <ons-toolbar class="default-toolbar" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
+        <div class="left" ng-click="page.cancel()">
+            <ons-toolbar-button>
+                <ons-icon size="24px" icon="md-close"></ons-icon>
+            </ons-toolbar-button>
+        </div>
+        <div class="center">{{::page.title}}</div>
+        <div class="right" ng-click="page.send()">
+            <ons-toolbar-button>
+                <ons-icon size="24px" icon="md-mail-send"></ons-icon>
+            </ons-toolbar-button>
+        </div>
+    </ons-toolbar>
+    <div class="loopmail-panel">
+        <ons-input name="to" modifier="underbar" placeholder="{{::page.placeholder.to}}" float ng-model="page.to"
+                   ng-class="{error: page.hasFieldError(page.to)}" ng-enter="page.send()">
+        </ons-input>
+        <div class="field-error" ng-show="page.to.length == 0 && page.error.to.length > 0">{{page.error.to}}</div>
+
+        <ons-input name="cc" modifier="underbar" placeholder="{{::page.placeholder.cc}}" float ng-model="page.cc"
+                   ng-class="{error: page.hasFieldError(page.cc)}" ng-enter="page.send()">
+        </ons-input>
+        <div class="field-error" ng-show="page.cc.length == 0 && page.error.cc.length > 0">{{page.error.cc}}</div>
+
+        <ons-input name="subject" modifier="underbar" placeholder="{{::page.placeholder.subject}}" float ng-model="page.subject"
+                   ng-class="{error: page.hasFieldError(page.subject)}" ng-enter="page.send()">
+        </ons-input>
+        <div class="field-error" ng-show="page.subject.length == 0 && page.error.subject.length > 0">{{page.error.subject}}</div>
+
+        <div class="textarea-edit" ng-class="{android:ons.platform.isAndroid()}">
+            <span ng-show="page.body && ons.platform.isAndroid()" class="_helper text-input__label text-input--material__label text-input--underbar__label">{{::page.placeholder.body}}</span>
+            <textarea name="body" class="textarea textarea--transparent text-input text-input--underbar"
+                      ng-model="page.body" placeholder="{{::page.placeholder.body}}"></textarea>
+        </div>
+
+        <div ng-bind-html="page.originalMsg"></div>
+    </div>
+</ons-page>
+<div ng-show="main.currentStudent" class="current-student ng-hide" ng-class="{ios:ons.platform.isIOS()}"><span>{{main.currentStudent.school.name}}</span></div>
+</div>
