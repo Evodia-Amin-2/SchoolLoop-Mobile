@@ -45,7 +45,7 @@
                         $scope.mainNavigator.popPage();
                     },
                     function(error) {
-                        console.log(error);
+                        $scope.mainNavigator.popPage();
                     }
                 );
             } else {

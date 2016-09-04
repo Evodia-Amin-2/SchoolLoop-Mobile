@@ -42,7 +42,7 @@
         </ons-list>
         <ons-list class="loopmail-view" ng-show="mailCtrl.loopmail.length > 0">
             <ons-list-item class="loopmail-item" modifier="longdivider" tappable ng-repeat="item in mailCtrl.loopmail"
-                           ng-click="loopmailNavigator.pushPage('loopmail-detail.html', {animation: 'slide', loopmail: item})">
+                           ng-click="mailCtrl.showDetail(item)">
                 <div class="left">
                     <ons-icon icon="fa-envelope" size="24px" ng-show="mailCtrl.isNew(item)" class="new"></ons-icon>
                     <ons-icon icon="fa-envelope-o" size="24px" ng-show="!mailCtrl.isNew(item)"></ons-icon>
@@ -53,6 +53,9 @@
                         <div class="loopmail-sender">{{mailCtrl.sender(item)}}</div>
                         <div class="loopmail-date">{{item.date|date:"MMM d, y hh:mm a"}}</div>
                     </div>
+                </div>
+                <div ng-show="mailCtrl.isOutbox()" class="right">
+                    <ons-icon size="24px" icon="md-close"></ons-icon>
                 </div>
             </ons-list-item>
         </ons-list>

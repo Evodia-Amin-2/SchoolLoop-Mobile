@@ -84,7 +84,6 @@
             var button = gettextCatalog.getString("Close");
             navigator.notification.alert(message, function() {
                 timer = $timeout(retry, RETRY_INTERVAL);
-                $window.history.back();
             }, title, button);
         }
 
@@ -101,9 +100,14 @@
                             return "error";
                         }
                     },
-                    function() {
-                        queueFailure(toList, ccList, subject, body);
-                        return "error";
+                    function(error) {
+                        if(error.data === "Error: blocked publication rights.") {
+                            var message = gettextCatalog.getString("Communication Privileges Suspended.  Contact an Adminstrator");
+                            window.plugins.toast.showLongBottom(message);
+                        } else {
+                            queueFailure(toList, ccList, subject, body);
+                        }
+                        return error.data;
                     }
                 );
             },

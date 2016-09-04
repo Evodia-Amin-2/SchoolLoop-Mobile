@@ -84,6 +84,29 @@
             mailCtrl.loopmail = storageService.removeOutgoingMail(message);
         };
 
+        mailCtrl.isOutbox = function() {
+            var folderId = dataService.getFolderId();
+            return folderId < 0;
+        };
+
+        mailCtrl.showDetail = function(message) {
+            if(mailCtrl.isOutbox() === false) {
+                loopmailNavigator.pushPage('loopmail-detail.html', {animation: 'slide', loopmail: message})
+            } else {
+                var title = gettextCatalog.getString("Confirm");
+                var remove = gettextCatalog.getString("Remove");
+                var cancel = gettextCatalog.getString("Cancel");
+                var prompt = gettextCatalog.getString("Remove the message from outgoing queue?");
+                navigator.notification.confirm(prompt, function(buttonIndex) {
+                    if(buttonIndex === 1) {
+                        $scope.$apply(function() {
+                            mailCtrl.removeOutgoing(message);
+                        });
+                    }
+                }, title, [remove, cancel]);
+            }
+        };
+
         mailCtrl.sender = function(message) {
             var folderId = dataService.getFolderId();
             if(folderId === 2) {

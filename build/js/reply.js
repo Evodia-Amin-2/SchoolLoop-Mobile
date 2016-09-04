@@ -77,7 +77,7 @@
                             $scope.mainNavigator.resetToPage("loopmail.html");
                         },
                         function(error) {
-                            console.log(error);
+                            $scope.mainNavigator.resetToPage("loopmail.html");
                         }
                     );
                 } else {
