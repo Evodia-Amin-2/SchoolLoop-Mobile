@@ -2,14 +2,15 @@
     'use strict';
 
     angular.module('ui.components')
-        .directive('multiSelect', ['$parse', '$timeout', MultiSelect]);
+        .directive('multiSelect', ['$timeout', MultiSelect]);
 
-    function MultiSelect($parse, $timeout) {
+    function MultiSelect($timeout) {
         return {
             restrict: 'E',
             scope: {
                 search: '=',
-                values: '='
+                values: '=',
+                android: '@'
             },
             replace: true,
             link: function (scope, element) {
@@ -68,13 +69,20 @@
 
                 scope.focusInput = function () {
                     data.hasFocus = true;
-                    //inputField.style.width = "80px";
                     $timeout(function () {
                         inputField.focus();
                     });
                 };
 
-                scope.select = function (item) {
+                scope.loseFocus = function () {
+                    $timeout(function () {
+                        data.hasFocus = false;
+                        data.token = "";
+                        data.results = undefined;
+                    });
+                };
+
+                scope.selectItem = function (item) {
                     scope.values.push(item);
                     data.token = "";
                     data.results = undefined;

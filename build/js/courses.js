@@ -151,6 +151,10 @@
             $scope.mainNavigator.pushPage('compose.html', {animation: 'slide', hasLMT: true, teachers: courseDetail.course});
         };
 
+        courseDetail.hasCoTeacher = function(item) {
+            return _.isUndefined(item.coTeacherName) === false && utils.isNull(item.coTeacherName) === false;
+        };
+
         courseDetail.hasComment = function (grade) {
             return _.isUndefined(grade.comment) === false && grade.comment !== "null" && grade.comment.length > 0;
         };

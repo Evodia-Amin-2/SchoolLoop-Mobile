@@ -25,5 +25,9 @@
 }
 
 .help-email {
+    margin-top: 20px !important;
+}
+
+.help-email.ios {
     margin-top: 8px !important;
 }

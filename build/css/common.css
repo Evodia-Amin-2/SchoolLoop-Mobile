@@ -101,7 +101,11 @@
 }
 
 .spacer {
-    margin-top: 20px;
+    margin-top: 20px !important;
+}
+
+.spacer-medium {
+    margin-top: 30px !important;
 }
 
 .spacer-large {
@@ -153,7 +157,6 @@ blockquote cite {
 }
 
 .textarea-edit.android textarea:active, .textarea-edit.android textarea:focus {
-    border-color: #009688;
-    border-width: 2px;
     padding: 3px;
+    border-bottom: 2px solid #009688;
 }

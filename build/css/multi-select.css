@@ -1,10 +1,11 @@
 .recipient-list {
-    border: 1px solid #f3f3f3;
+    border: 1px solid #ccc;
     padding-top: 5px;
     padding-left: 5px;
     min-height: 20px;
     margin-bottom: 0;
     margin-top: 3px;
+    padding-bottom: 3px;
 }
 
 .recipient-list ul {
@@ -15,7 +16,7 @@
 .recipient-list li {
     display: inline-block;
     padding: 3px 12px 7px;
-    margin: 0 7px 7px 0;
+    margin: 0 7px 2px 0;
     background: #eee;
     border-radius: 30px;
     cursor: pointer;
@@ -26,6 +27,11 @@
     position: relative;
     color: #aaa;
     top: 1px;
+}
+
+.token-select-focus .recipient-list.android {
+    padding-bottom: 1px !important;
+    border-bottom: 2px solid #009688 !important;
 }
 
 .token-input {
@@ -42,10 +48,26 @@
 }
 
 .multi-select .lookup-list {
-    top: -11px;
+    top: 0px;
     position: relative !important;
+    border: 1px solid #eee !important;
+    z-index: 1;
+    margin: 0;
+    background-color: white;
+    padding: 0;
+    right: 1px;
+    left: 1px;
+    max-width: 400px;
+    max-height: 190px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.37);
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch !important;
 }
 
+.multi-select .lookup-list li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
 
 .multi-select.error {
     border-bottom: 1px solid red;
