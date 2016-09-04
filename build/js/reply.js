@@ -45,9 +45,18 @@
 
             page.toList.push({name: loopmail.sender.name, id: loopmail.sender.userID});
             if(page.replyAll === true) {
+                var recipient;
                 var recipientList = loopmail.recipientList || {};
                 for (var i = 0, len = recipientList.length; i < len; i++) {
-                    var recipient = recipientList[i];
+                    recipient = recipientList[i];
+                    if(recipient.userID !== userId) {
+                        page.toList.push({name: recipient.name, id: recipient.userID});
+                    }
+                }
+
+                recipientList = loopmail.ccRecipientList || {};
+                for (i = 0, len = recipientList.length; i < len; i++) {
+                    recipient = recipientList[i];
                     if(recipient.userID !== userId) {
                         page.ccList.push({name: recipient.name, id: recipient.userID});
                     }
