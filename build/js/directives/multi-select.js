@@ -12,7 +12,7 @@
                 values: '='
             },
             replace: true,
-            link: function (scope, element, attrs, controller) {
+            link: function (scope, element) {
 
                 var data = scope.data = {};
                 data.results = undefined;

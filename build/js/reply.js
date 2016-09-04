@@ -2,11 +2,14 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('ReplyController', ['$scope', '$filter', '$sce', 'StorageService', 'LoopmailService', 'gettextCatalog', ReplyController])
+        .controller('ReplyController', ['$scope', '$q', '$filter', '$sce', 'DataService', 'StorageService', 'LoopmailService', 'gettextCatalog', ReplyController])
         ;
 
-        function ReplyController($scope, $filter, $sce, storageService, loopmailService, gettextCatalog) {
+        function ReplyController($scope, $q, $filter, $sce, dataService, storageService, loopmailService, gettextCatalog) {
             var page = this;
+
+            StatusBar.backgroundColorByHexString("#009688");
+            StatusBar.show();
 
             var action = $scope.mainNavigator.topPage.pushedOptions.action;
             var loopmail = $scope.mainNavigator.topPage.pushedOptions.loopmail;
@@ -51,7 +54,34 @@
                 }
             }
 
+
+            page.error = {};
+
+            page.submitted = false;
             page.loading = true;
+
+            clearErrors();
+
+            page.send = function () {
+                if(isFormValid()) {
+                    loopmailService.send(page.toList, page.ccList, page.subject, page.body + "<br/><br/>" + page.originalMsg).then(
+                        function() {
+                            $scope.mainNavigator.resetToPage("loopmail.html");
+                        },
+                        function(error) {
+                            console.log(error);
+                        }
+                    );
+                } else {
+                    page.submitted = true;
+                    if(page.toList.length === 0) {
+                        page.error.to = gettextCatalog.getString("Must include a recipient");
+                    }
+                    if(page.subject.length === 0) {
+                        page.error.subject = gettextCatalog.getString("Subject required");
+                    }
+                }
+            };
 
             page.removeCC = function(member) {
                 page.ccList = _.without(page.ccList, _.findWhere(page.ccList, {id: member.id}));
@@ -61,15 +91,34 @@
                 $scope.mainNavigator.popPage();
             };
 
-            page.send = function() {
-                $scope.mainNavigator.resetToPage("loopmail.html");
-                // if(_.isUndefined(page.subject) || page.subject.length === 0) {
-                //     $scope.send_message.submitted = true;
-                //     $scope.send_message.subject.$invalid = true;
-                //     page.subjectError = gettextCatalog.getString("Subject required");
-                // } else {
-                //     loopmailService.send(page.toList, page.ccList, page.subject, page.body + "<br/><br/>" + page.originalMsg);
-                // }
+            page.searchContacts = function(search) {
+                var deferred = $q.defer();
+
+                dataService.getContacts(search).then(
+                    function(data) {
+                        deferred.resolve(data);
+                    },
+                    function(error) {
+                        deferred.reject(error);
+                    }
+                );
+
+                return deferred.promise;
             };
+
+            page.hasFieldError = function(field) {
+                return (page.submitted === true && field.length === 0);
+            };
+
+            function clearErrors() {
+                page.error.to = "";
+                page.error.subject = "";
+            }
+
+            function isFormValid() {
+                clearErrors();
+                return page.toList.length > 0 && page.subject.length > 0;
+            }
+
         }
 })();

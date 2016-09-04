@@ -14,7 +14,7 @@
     </ons-toolbar>
     <div class="loopmail-panel">
 
-        <div class="multi-group">
+        <div>
             <div class="loopmail-label">{{::page.placeholder.to}}</div>
             <multi-select search="page.searchContacts" values="page.toList"
                           ng-class="{error: page.hasFieldError(page.toList)}" ng-enter="page.send()"></multi-select>
@@ -39,8 +39,10 @@
         </div>
 
         <div ng-show="!page.hasLMT">
-            <ons-input name="cc" modifier="underbar" placeholder="{{::page.placeholder.cc}}" float ng-model="page.cc" ng-enter="page.send()">
-            </ons-input>
+            <div class="loopmail-label">{{::page.placeholder.cc}}</div>
+            <multi-select search="page.searchContacts" values="page.ccList"
+                          ng-class="{error: page.hasFieldError(page.ccList)}" ng-enter="page.send()"></multi-select>
+            <div class="field-error" ng-show="page.ccList.length == 0 && page.error.cc.length > 0">{{page.error.cc}}</div>
         </div>
 
         <ons-input name="subject" modifier="underbar" placeholder="{{::page.placeholder.subject}}" float ng-model="page.subject"
