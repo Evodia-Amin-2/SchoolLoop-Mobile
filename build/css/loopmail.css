@@ -137,4 +137,9 @@
 .loopmail-label {
     margin-top: 20px;
     font-size: 0.80em;
+    color: #999;
+}
+
+.loopmail-label.android {
+    color: #009688;
 }

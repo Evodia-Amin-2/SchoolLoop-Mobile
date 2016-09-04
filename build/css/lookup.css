@@ -37,9 +37,6 @@
 .lookup-input .text-input__label {
     margin-left: 22px;
 }
-.text-input--material__label--active {
-    margin-left: 0 !important;
-}
 
 .lookup-list {
     position: absolute !important;

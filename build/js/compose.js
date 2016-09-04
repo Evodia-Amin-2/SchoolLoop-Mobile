@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('ComposeController', ['$scope', '$q', '$timeout', 'DataService', 'LoopmailService', 'gettextCatalog', ComposeController])
+        .controller('ComposeController', ['$scope', '$q', '$timeout', 'DataService', 'LoopmailService', 'Utils', 'gettextCatalog', ComposeController])
     ;
 
-    function ComposeController($scope, $q, $timeout, dataService, loopmailService, gettextCatalog) {
+    function ComposeController($scope, $q, $timeout, dataService, loopmailService, utils, gettextCatalog) {
         var page = this;
 
         StatusBar.backgroundColorByHexString("#009688");
@@ -26,7 +26,7 @@
         var teachers = $scope.mainNavigator.topPage.pushedOptions.teachers;
         if(_.isUndefined(teachers) === false) {
             page.toList.push({name: teachers.teacherName, id: teachers.teacherID});
-            if(_.isUndefined(teachers.coTeacherID) === false) {
+            if(_.isUndefined(teachers.coTeacherID) === false && utils.isNull(teachers.coTeacherName) === false) {
                 page.toList.push({name: teachers.coTeacherName, id: teachers.coTeacherID});
             }
         }

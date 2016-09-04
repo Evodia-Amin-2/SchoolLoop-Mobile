@@ -25,7 +25,7 @@
             page.placeholder.subject = gettextCatalog.getString("Subject");
             page.placeholder.body = gettextCatalog.getString("Message Text");
 
-            page.replyAll = action === "reply-all";
+            page.replyAll = (action === "reply-all");
             page.title = page.replyAll ? gettextCatalog.getString("Reply All") : gettextCatalog.getString("Reply");
 
             var subject = loopmail.subject;
@@ -53,7 +53,6 @@
                     }
                 }
             }
-
 
             page.error = {};
 

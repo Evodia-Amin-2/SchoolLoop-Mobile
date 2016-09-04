@@ -160,3 +160,9 @@ blockquote cite {
     padding: 3px;
     border-bottom: 2px solid #009688;
 }
+
+.text-input--material__label--active {
+    margin-left: 0 !important;
+    margin-top: -2px;
+}
+

@@ -15,7 +15,7 @@
     <div class="loopmail-panel">
 
         <div>
-            <div class="loopmail-label">{{::page.placeholder.to}}</div>
+            <div class="loopmail-label" ng-class="{android:ons.platform.isAndroid()}">{{page.placeholder.to}}</div>
             <multi-select search="page.searchContacts" values="page.toList" android="{{ons.platform.isAndroid()}}"
                           ng-class="{error: page.hasFieldError(page.toList)}" ng-enter="page.send()"></multi-select>
         </div>
@@ -39,7 +39,7 @@
         </div>
 
         <div ng-show="!page.hasLMT">
-            <div class="loopmail-label">{{::page.placeholder.cc}}</div>
+            <div class="loopmail-label" ng-class="{android:ons.platform.isAndroid()}">{{page.placeholder.cc}}</div>
             <multi-select search="page.searchContacts" values="page.ccList" android="{{ons.platform.isAndroid()}}" ng-enter="page.send()"></multi-select>
         </div>
 
