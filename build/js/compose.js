@@ -23,11 +23,11 @@
         page.placeholder.body = gettextCatalog.getString("Message Text");
 
         page.hasLMT = $scope.mainNavigator.topPage.pushedOptions.hasLMT;
-        var course = $scope.mainNavigator.topPage.pushedOptions.course;
-        if(_.isUndefined(course) === false) {
-            page.toList.push({name: course.teacherName, id: course.teacherID});
-            if(_.isUndefined(course.coTeacherID) === false) {
-                page.toList.push({name: course.coTeacherName, id: course.coTeacherID});
+        var teachers = $scope.mainNavigator.topPage.pushedOptions.teachers;
+        if(_.isUndefined(teachers) === false) {
+            page.toList.push({name: teachers.teacherName, id: teachers.teacherID});
+            if(_.isUndefined(teachers.coTeacherID) === false) {
+                page.toList.push({name: teachers.coTeacherName, id: teachers.coTeacherID});
             }
         }
 

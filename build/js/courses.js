@@ -148,7 +148,7 @@
         };
 
         courseDetail.compose = function() {
-            $scope.mainNavigator.pushPage('compose.html', {animation: 'slide', hasLMT: true, course: courseDetail.course});
+            $scope.mainNavigator.pushPage('compose.html', {animation: 'slide', hasLMT: true, teachers: courseDetail.course});
         };
 
         courseDetail.hasComment = function (grade) {
@@ -466,6 +466,10 @@
 
         assignDetail.hasComment = function (grade) {
             return _.isUndefined(grade.comment) === false && grade.comment !== "null" && grade.comment.length > 0;
+        };
+
+        assignDetail.compose = function() {
+            $scope.mainNavigator.pushPage('compose.html', {animation: 'slide', hasLMT: true, teachers: assignDetail.course});
         };
 
     }

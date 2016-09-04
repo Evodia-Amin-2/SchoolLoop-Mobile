@@ -4,7 +4,7 @@
     angular.module('mobileloop')
         .controller('AssignmentsController', ['$scope', '$location', '$timeout', 'Utils',
                         'DataService', 'DataType', 'CourseColors', 'gettextCatalog', AssignmentsController])
-        .controller('AssignmentDetailController', ['$scope', '$window', '$sce', 'StorageService',
+        .controller('AssignmentDetailController', ['$scope', '$timeout', '$window', '$sce', 'StorageService',
                         'Utils', 'CourseColors', 'gettextCatalog', AssignmentDetailController])
     ;
 
@@ -122,7 +122,7 @@
         }
     }
 
-    function AssignmentDetailController($scope, $window, $sce, storageService, utils, CourseColors, gettextCatalog) {
+    function AssignmentDetailController($scope, $timeout, $window, $sce, storageService, utils, CourseColors, gettextCatalog) {
         var assignDetail = this;
 
         assignDetail.assignment = $scope.asgnNavigator.topPage.pushedOptions.assignment;
@@ -165,6 +165,30 @@
                 return false;
             }
         };
+
+        assignDetail.hasCoTeacher = function(item) {
+            return _.isUndefined(item.coTeacherName) === false && utils.isNull(item.coTeacherName) === false;
+        };
+
+        assignDetail.compose = function() {
+            $scope.mainNavigator.pushPage('compose.html', {animation: 'slide', hasLMT: true, teachers: assignDetail.assignment});
+        };
+
+        $scope.mainNavigator.on("prepop", function(event) {
+            var navigator = event.navigator;
+            if(navigator.pages.length === 2) {
+                var page = navigator.pages[1];
+                if(page.name === "compose.html") {
+                    $timeout(function() {
+                        $scope.asgnNavigator.pages[1].backButton.style.display = "block";
+                    });
+                }
+                var period = assignDetail.assignment.periodNumber;
+                var periodIndex = period % CourseColors.length;
+                StatusBar.backgroundColorByHexString(CourseColors[periodIndex]);
+                StatusBar.show();
+            }
+        });
     }
 
     function groupAssignments(data) {
