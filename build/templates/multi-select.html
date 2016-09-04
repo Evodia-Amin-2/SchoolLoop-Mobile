@@ -1,0 +1,18 @@
+<div class="multi-select">
+    <div class="token-select" ng-class="{'token-select-focus':data.hasFocus}">
+        <ul class="recipient-list">
+            <li ng-repeat="item in values" ng-click="removeToken(item)">{{item.name}}<ons-icon size="14px" icon="md-close"></ons-icon></li>
+            <li class="token-input"><input tabindex="-1" ng-model="data.token" ng-change="updateSearch()"
+               ng-blur="data.hasFocus = false" ng-focus="data.hasFocus = true" type="text" autocomplete="off" /></li>
+        </ul>
+    </div>
+    <ons-list class="lookup-list" ng-show="data.results || data.loading">
+        <ons-list-item ng-repeat="item in data.results" tappable ng-click="select(item)" modifier="longdivider">
+            <div>
+                <div class="lookup-text">{{item.name}}</div>
+                <div class="lookup-subtext">({{item.role}}{{item.desc}})</div>
+            </div>
+        </ons-list-item>
+    </ons-list>
+
+</div>

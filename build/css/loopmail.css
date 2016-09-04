@@ -132,3 +132,8 @@
     position: relative;
     top: -2px;
 }
+
+.loopmail-label {
+    margin-top: 20px;
+    font-size: 0.80em;
+}

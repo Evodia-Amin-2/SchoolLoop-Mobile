@@ -1,50 +1,57 @@
-<div>
-    <ons-page class="full-page" ng-controller="ComposeController as page" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
-        <ons-toolbar class="default-toolbar" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
-            <div class="left" ng-click="page.cancel()">
-                <ons-toolbar-button>
-                    <ons-icon size="24px" icon="md-close"></ons-icon>
-                </ons-toolbar-button>
-            </div>
-            <div class="center" translate>New Loopmail</div>
-            <div class="right" ng-click="page.send()">
-                <ons-toolbar-button>
-                    <ons-icon size="24px" icon="md-mail-send"></ons-icon>
-                </ons-toolbar-button>
-            </div>
-        </ons-toolbar>
-        <div class="loopmail-panel">
-            <ons-input name="to" modifier="underbar" placeholder="{{::page.placeholder.to}}" float ng-model="page.to"
-                       ng-class="{error: page.hasFieldError(page.to)}" ng-enter="page.send()">
-            </ons-input>
-            <div class="field-error" ng-show="page.to.length == 0 && page.error.to.length > 0">{{page.error.to}}</div>
+<ons-page class="full-page" ng-controller="ComposeController as page">
+    <ons-toolbar class="default-toolbar">
+        <div class="left" ng-click="page.cancel()">
+            <ons-toolbar-button>
+                <ons-icon size="24px" icon="md-close"></ons-icon>
+            </ons-toolbar-button>
+        </div>
+        <div class="center" translate>New Loopmail</div>
+        <div class="right" ng-click="page.send()">
+            <ons-toolbar-button>
+                <ons-icon size="24px" icon="md-mail-send"></ons-icon>
+            </ons-toolbar-button>
+        </div>
+    </ons-toolbar>
+    <div class="loopmail-panel">
 
-            <ons-list ng-show="page.hasLMT" class="loopmail-add-lmt">
-                <ons-list-item modifier="nodivider" ng-click="page.addLMT()" tappable>
-                    <div>
-                        <ons-icon size="24px" icon="md-plus-circle-o"></ons-icon><label translate>Add Learning Team</label>
-                    </div>
-                </ons-list-item>
-            </ons-list>
+        <div class="multi-group">
+            <div class="loopmail-label">{{::page.placeholder.to}}</div>
+            <multi-select search="page.searchContacts" values="page.toList"
+                          ng-class="{error: page.hasFieldError(page.toList)}" ng-enter="page.send()"></multi-select>
+        </div>
+        <div class="field-error" ng-show="page.toList.length == 0 && page.error.to.length > 0">{{page.error.to}}</div>
 
-            <div ng-show="!page.hasLMT" >
-                <ons-input name="cc" modifier="underbar" placeholder="{{::page.placeholder.cc}}" float ng-model="page.cc"
-                           ng-class="{error: page.hasFieldError(page.cc)}" ng-enter="page.send()">
-                </ons-input>
-                <div class="field-error" ng-show="page.cc.length == 0 && page.error.cc.length > 0">{{page.error.cc}}</div>
-            </div>
+        <ons-list ng-show="page.hasLMT && page.ccList.length === 0" class="loopmail-add-lmt">
+            <ons-list-item modifier="nodivider" ng-click="page.addLMT()" tappable>
+                <div>
+                    <ons-icon size="24px" icon="md-plus-circle-o"></ons-icon><label translate>Add Learning Team</label>
+                </div>
+            </ons-list-item>
+        </ons-list>
 
-            <ons-input name="subject" modifier="underbar" placeholder="{{::page.placeholder.subject}}" float ng-model="page.subject"
-                       ng-class="{error: page.hasFieldError(page.subject)}" ng-enter="page.send()">
-            </ons-input>
-            <div class="field-error" ng-show="page.subject.length == 0 && page.error.subject.length > 0">{{page.error.subject}}</div>
-
-            <div class="textarea-edit" ng-class="{android:ons.platform.isAndroid()}">
-                <span ng-show="page.body && ons.platform.isAndroid()" class="_helper text-input__label text-input--material__label text-input--underbar__label">{{::page.placeholder.body}}</span>
-                <textarea name="body" class="textarea textarea--transparent text-input text-input--underbar"
-                          ng-model="page.body" placeholder="{{::page.placeholder.body}}"></textarea>
+        <div ng-show="page.hasLMT && page.ccList.length > 0">
+            <div class="loopmail-label">{{::page.placeholder.cc}}</div>
+            <div class="recipient-list">
+                <ul>
+                    <li ng-repeat="item in page.ccList" ng-click="page.removeCC(item)">{{item.name}}<span>x</span></li>
+                </ul>
             </div>
         </div>
-    </ons-page>
-    <div ng-show="main.currentStudent" class="current-student ng-hide" ng-class="{ios:ons.platform.isIOS()}"><span>{{main.currentStudent.school.name}}</span></div>
-</div>
+
+        <div ng-show="!page.hasLMT">
+            <ons-input name="cc" modifier="underbar" placeholder="{{::page.placeholder.cc}}" float ng-model="page.cc" ng-enter="page.send()">
+            </ons-input>
+        </div>
+
+        <ons-input name="subject" modifier="underbar" placeholder="{{::page.placeholder.subject}}" float ng-model="page.subject"
+                   ng-class="{error: page.hasFieldError(page.subject)}" ng-enter="page.send()">
+        </ons-input>
+        <div class="field-error" ng-show="page.subject.length == 0 && page.error.subject.length > 0">{{page.error.subject}}</div>
+
+        <div class="textarea-edit" ng-class="{android:ons.platform.isAndroid()}">
+            <span ng-show="page.body && ons.platform.isAndroid()" class="_helper text-input__label text-input--material__label text-input--underbar__label">{{::page.placeholder.body}}</span>
+            <textarea name="body" class="textarea textarea--transparent text-input text-input--underbar"
+                      ng-model="page.body" placeholder="{{::page.placeholder.body}}"></textarea>
+        </div>
+    </div>
+</ons-page>

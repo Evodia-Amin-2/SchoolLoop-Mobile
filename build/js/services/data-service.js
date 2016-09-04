@@ -178,7 +178,7 @@
                 if(cache.student_loop) {
                     return cachedResult("student_loop");
                 }
-                return doGet($q, $http, config, "student_loop", defaultParams, storageService, service).then(function(response) {
+                return doGet($q, $http, config, "student_loop", {}, defaultParams, storageService, service).then(function(response) {
                     cache.student_loop = response;
                     return response;
                 });
@@ -209,7 +209,7 @@
                 return doGet($q, $http, config, "register", params, defaultParams, storageService, service);
             },
             accept: function() {
-                return doGet($q, $http, config, "accept_agreement", defaultParams, storageService, service);
+                return doGet($q, $http, config, "accept_agreement", {}, defaultParams, storageService, service);
             },
             getContacts: function(query) {
                 return doGet($q, $http, config, "contacts", { "q":query, "max":25 }, defaultParams, storageService, service);

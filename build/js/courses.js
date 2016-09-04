@@ -148,7 +148,7 @@
         };
 
         courseDetail.compose = function() {
-            $scope.mainNavigator.pushPage('compose.html', {animation: 'slide', hasLMT: true});
+            $scope.mainNavigator.pushPage('compose.html', {animation: 'slide', hasLMT: true, course: courseDetail.course});
         };
 
         courseDetail.hasComment = function (grade) {
@@ -164,6 +164,9 @@
                         $scope.courseNavigator.pages[1].backButton.style.display = "block";
                     });
                 }
+                var periodIndex = courseDetail.course.period % CourseColors.length;
+                StatusBar.backgroundColorByHexString(CourseColors[periodIndex]);
+                StatusBar.show();
             }
         });
 

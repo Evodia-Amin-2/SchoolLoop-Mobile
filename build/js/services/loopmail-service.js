@@ -90,19 +90,20 @@
 
         return {
             "send": function(toList, ccList, subject, body) {
-                dataService.sendLoopMail(toList, ccList, subject, body).then(
+                return dataService.sendLoopMail(toList, ccList, subject, body).then(
                     function(response) {
                         if(response.statusText === "OK") {
                             var message = gettextCatalog.getString("Success! LoopMail sent.");
                             window.plugins.toast.showLongBottom(message);
-                            console.log(message);
-                            $window.history.back();
+                            return response;
                         } else {
                             queueFailure(toList, ccList, subject, body);
+                            return "error";
                         }
                     },
                     function() {
                         queueFailure(toList, ccList, subject, body);
+                        return "error";
                     }
                 );
             },

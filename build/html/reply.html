@@ -1,6 +1,5 @@
-<div>
-<ons-page class="full-page" ng-controller="ReplyController as page" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
-    <ons-toolbar class="default-toolbar" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
+<ons-page class="full-page" ng-controller="ReplyController as page">
+    <ons-toolbar class="default-toolbar">
         <div class="left" ng-click="page.cancel()">
             <ons-toolbar-button>
                 <ons-icon size="24px" icon="md-close"></ons-icon>
@@ -38,5 +37,3 @@
         <div ng-bind-html="page.originalMsg"></div>
     </div>
 </ons-page>
-<div ng-show="main.currentStudent" class="current-student ng-hide" ng-class="{ios:ons.platform.isIOS()}"><span>{{main.currentStudent.school.name}}</span></div>
-</div>

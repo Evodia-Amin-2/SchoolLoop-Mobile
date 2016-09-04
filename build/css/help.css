@@ -5,7 +5,7 @@
 .help-panel .ons-input,
 .help-panel ons-input {
     width: 100%;
-    margin: 30px 0 4px;
+    margin: 20px 0 4px;
 }
 
 .help-panel ons-input[disabled] {
@@ -14,4 +14,16 @@
 
 .help-panel .text-input--underbar:disabled {
     border: none
+}
+
+.help-name-label {
+    font-size: .80em;
+}
+
+.help-panel .help-name {
+    margin-top: 3px;
+}
+
+.help-email {
+    margin-top: 8px !important;
 }
