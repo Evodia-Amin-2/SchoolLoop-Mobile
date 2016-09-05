@@ -44,7 +44,7 @@
                     function() {
                         $scope.mainNavigator.popPage();
                     },
-                    function(error) {
+                    function() {
                         $scope.mainNavigator.popPage();
                     }
                 );

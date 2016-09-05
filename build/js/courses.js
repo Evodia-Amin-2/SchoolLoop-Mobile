@@ -288,7 +288,7 @@
                         series: {
                             lines: { show: true, fill: 0.7, fillColor: false, zero: false, lineWidth: 5 }
                         },
-                        colors: [CourseColors[(courseDetail.course.period - 1) % 10]],
+                        colors: [CourseColors[(courseDetail.course.period) % CourseColors.length]],
                         xaxis: {
                             mode: "time",
                             minTickSize: [tickSize, tickType],

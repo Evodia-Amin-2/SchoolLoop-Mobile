@@ -76,7 +76,7 @@
                         function() {
                             $scope.mainNavigator.resetToPage("loopmail.html");
                         },
-                        function(error) {
+                        function() {
                             $scope.mainNavigator.resetToPage("loopmail.html");
                         }
                     );

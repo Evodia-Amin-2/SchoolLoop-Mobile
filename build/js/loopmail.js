@@ -91,7 +91,7 @@
 
         mailCtrl.showDetail = function(message) {
             if(mailCtrl.isOutbox() === false) {
-                loopmailNavigator.pushPage('loopmail-detail.html', {animation: 'slide', loopmail: message})
+                $scope.loopmailNavigator.pushPage('loopmail-detail.html', {animation: 'slide', loopmail: message});
             } else {
                 var title = gettextCatalog.getString("Confirm");
                 var remove = gettextCatalog.getString("Remove");
