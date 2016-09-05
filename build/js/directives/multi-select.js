@@ -69,6 +69,7 @@
 
                 scope.focusInput = function () {
                     data.hasFocus = true;
+                    inputField.focus();
                     $timeout(function () {
                         inputField.focus();
                     });

@@ -1,8 +1,8 @@
 <div class="multi-select">
-    <div class="token-select" ng-click="focusInput()" ng-class="{'token-select-focus':data.hasFocus}">
+    <div class="token-select" ng-class="{'token-select-focus':data.hasFocus}" ng-click="focusInput()">
         <ul class="recipient-list" ng-class="{android:android === 'true'}">
             <li ng-repeat="item in values" ng-click="removeToken(item)">{{item.name}}<ons-icon size="14px" icon="md-close"></ons-icon></li>
-            <li class="token-input"><input tabindex="-1" ng-model="data.token" ng-change="updateSearch()"
+            <li class="token-input"><input ng-model="data.token" ng-change="updateSearch()"
                ng-blur="loseFocus()" ng-focus="data.hasFocus = true" type="text" autocomplete="off" /></li>
         </ul>
     </div>
