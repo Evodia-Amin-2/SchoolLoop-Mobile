@@ -164,7 +164,14 @@
                 function() {
                     loadLoopMail();
                     if(data.view === true) {
-                        $scope.tabbar.setActiveTab(2);
+                        var domain = storageService.getDefaultDomain();
+                        var user = domain.user;
+                        var isTeacher = (user.role !== 'student' && user.role !== 'parent');
+                        if(isTeacher) {
+                            $scope.tabbar.setActiveTab(0);
+                        } else {
+                            $scope.tabbar.setActiveTab(2);
+                        }
                         var loopmailId = payload.messageid;
                         $scope.loopmailNavigator.pushPage('loopmail-detail.html', {animation: 'slide', loopmail: {ID: loopmailId}});
                     }

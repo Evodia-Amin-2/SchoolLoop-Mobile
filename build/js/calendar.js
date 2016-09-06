@@ -41,7 +41,7 @@
         };
 
         calendarCtrl.course = function(event) {
-            if(_.isUndefined(event.scopeNames) === true) {
+            if(_.isUndefined(event.scopeNames) === true || event.eventType !== "due") {
                 return "";
             }
             var course = event.scopeNames[0].split(" Period ")[0];

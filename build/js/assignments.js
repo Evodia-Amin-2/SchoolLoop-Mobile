@@ -86,7 +86,7 @@
             var payload = data.payload;
             dataService.refresh(DataType.ASSIGNMENT).then(
                 function(result) {
-                    $scope.tabbar.setActiveTab(1);
+                    $scope.tabbar.setActiveTab(0);
                     getTimeZone(result);
                     assignCtrl.assignments = groupAssignments(result, $scope);
                     var assignment = _.findWhere(assignCtrl.assignments, {iD: payload.assignmentid});
