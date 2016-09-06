@@ -98,7 +98,6 @@
                 };
 
                 scope.showLookup = function() {
-                    console.log(data);
                     return data.results && data.results.length > 0 && data.hasFocus && data.token.length > 0;
                 };
 
