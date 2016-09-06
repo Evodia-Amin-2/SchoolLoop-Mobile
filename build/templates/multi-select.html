@@ -6,7 +6,7 @@
                ng-blur="loseFocus()" ng-focus="data.hasFocus = true" type="text" autocomplete="off" /></li>
         </ul>
     </div>
-    <ul class="lookup-list" ng-show="data.results && data.results.length > 0 && data.hasFocus">
+    <ul class="lookup-list" ng-show="showLookup()">
         <li ng-repeat="item in data.results" ng-click="selectItem(item)" modifier="longdivider">
             <ons-ripple color="rgba(156, 156, 156, 0.20)"></ons-ripple>
             <div>

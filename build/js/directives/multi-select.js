@@ -34,6 +34,7 @@
                 }, 350);
 
                 var search = _.debounce(function (searchTerm) {
+                    data.hasFocus = true;
                     data.results = undefined;
                     data.loading = undefined;
                     if (searchTerm === "") {
@@ -69,7 +70,9 @@
 
                 scope.focusInput = function () {
                     data.hasFocus = true;
-                    inputField.focus();
+                    if(window.ons.platform.isIOS()) {
+                        inputField.focus();
+                    }
                     $timeout(function () {
                         inputField.focus();
                     });
@@ -92,6 +95,11 @@
 
                 scope.removeToken = function (item) {
                     scope.values = _.without(scope.values, _.findWhere(scope.values, {id: item.id}));
+                };
+
+                scope.showLookup = function() {
+                    console.log(data);
+                    return data.results && data.results.length > 0 && data.hasFocus && data.token.length > 0;
                 };
 
                 function processResults(results) {
