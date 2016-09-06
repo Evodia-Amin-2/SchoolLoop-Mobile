@@ -53,14 +53,16 @@
         );
 
         function startApp() {
-            var domain = storageService.getDefaultDomain();
-            var user = domain.user;
-            var isTeacher = (user.role !== 'student' && user.role !== 'parent');
-            if(isTeacher) {
-                $location.path('/main-teacher');
-            } else {
-                $location.path('/main');
-            }
+            $timeout(function() {
+                var domain = storageService.getDefaultDomain();
+                var user = domain.user;
+                var isTeacher = (user.role !== 'student' && user.role !== 'parent');
+                if(isTeacher) {
+                    $location.path('/main-teacher');
+                } else {
+                    $location.path('/main');
+                }
+            }, 1000);
         }
     }
 

@@ -274,6 +274,8 @@
                     });
                 }
             }
+            StatusBar.backgroundColorByHexString("#009688");
+            StatusBar.show();
         });
 
         mailDetail.sender = function () {
