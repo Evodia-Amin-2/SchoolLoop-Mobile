@@ -1,6 +1,6 @@
 <ons-navigator var="asgnNavigator">
-    <ons-page class="card-view" ng-controller="AssignmentsController as assCtrl" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
-        <ons-pull-hook ng-action="assCtrl.load($done)" var="aloader">
+    <ons-page class="card-view" ng-controller="AssignmentsController as asgnCtrl" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
+        <ons-pull-hook ng-action="asgnCtrl.load($done)" var="aloader">
                 <span ng-switch="aloader.state">
                   <span ng-switch-when="initial" translate><ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon>Pull down to refresh</span>
                   <span ng-switch-when="preaction" translate><ons-icon size="35px" icon="ion-arrow-up-a"></ons-icon>Release to refresh</span>
@@ -16,7 +16,7 @@
             <div class="center" translate>Assignments</div>
         </ons-toolbar>
 
-        <ons-list ng-show="assCtrl.assignments.length === 0">
+        <ons-list ng-show="asgnCtrl.assignments.length === 0">
             <div class="card">
                 <ons-list-item class="card-item assignment-item" modifier="longdivider">
                     <div class="center">
@@ -25,17 +25,17 @@
                 </ons-list-item>
             </div>
         </ons-list>
-        <ons-list ng-repeat="item in assCtrl.assignments">
+        <ons-list ng-repeat="item in asgnCtrl.assignments">
             <ons-list-header>
                 <strong>
-                    <span>{{assCtrl.getDate(item.date, timeZone)}}</span>
+                    <span>{{asgnCtrl.getDate(item.date, timeZone)}}</span>
                 </strong>
             </ons-list-header>
             <div class="card">
                 <ons-list-item class="card-item assignment-item" modifier="longdivider" tappable ng-repeat="item in item.list|orderBy:['periodNumber', 'title']"
                                ng-click="asgnNavigator.pushPage('assignment-detail.html', {animation: 'slide', assignment: item})">
                     <div class="left">
-                        <div class="course-color" ng-class="assCtrl.courseColor(item)">&nbsp;</div>
+                        <div class="course-color" ng-class="asgnCtrl.courseColor(item)">&nbsp;</div>
                         <div class="period">{{item.periodNumber}}</div>
                     </div>
                     <div class="center">

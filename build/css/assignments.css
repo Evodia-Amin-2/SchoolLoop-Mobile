@@ -35,10 +35,11 @@
 }
 
 .period {
-    width: 100%;
+    width: 40px;
     font-size: 2em;
     color: #aaaaaa;
     text-align: center;
+    margin-left: 10px;
 }
 
 .assignment-item .list__item__right {

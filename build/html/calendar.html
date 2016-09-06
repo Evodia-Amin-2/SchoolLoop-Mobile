@@ -1,21 +1,63 @@
 <ons-navigator var="calendarNavigator">
-    <ons-page ng-controller="CalendarController as calendarCtrl">
+    <ons-page class="card-view" ng-controller="CalendarController as calendarCtrl" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
         <ons-pull-hook ng-action="calendarCtrl.load($done)" var="nloader">
-            <span ng-switch="nloader.state">
-              <span ng-switch-when="initial" translate><ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon>Pull down to refresh</span>
-              <span ng-switch-when="preaction" translate><ons-icon size="35px" icon="ion-arrow-up-a"></ons-icon>Release to refresh</span>
-              <span ng-switch-when="action" translate><ons-icon size="35px" spin="true" icon="ion-load-d"></ons-icon>Loading data...</span>
-            </span>
+                <span ng-switch="nloader.state">
+                  <span ng-switch-when="initial" translate><ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon>Pull down to refresh</span>
+                  <span ng-switch-when="preaction" translate><ons-icon size="35px" icon="ion-arrow-up-a"></ons-icon>Release to refresh</span>
+                  <span ng-switch-when="action" translate><ons-icon size="35px" spin="true" icon="ion-load-d"></ons-icon>Loading data...</span>
+                </span>
         </ons-pull-hook>
-        <ons-toolbar class="default-toolbar">
+        <ons-toolbar class="default-toolbar" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
             <div class="left">
                 <ons-toolbar-button ng-click="main.openMenu()">
                     <ons-icon icon="md-menu"></ons-icon>
                 </ons-toolbar-button>
             </div>
-            <div class="center" translate>Calendar</div>
+            <div class="center">{{calendarCtrl.title}}</div>
         </ons-toolbar>
-        <ons-list class="calendar-view">
+
+        <ons-list ng-show="calendarCtrl.events.length === 0">
+            <div class="card">
+                <ons-list-item class="card-item assignment-item" modifier="longdivider">
+                    <div class="center">
+                        <div class="status-message" translate>No Events Currently</div>
+                    </div>
+                </ons-list-item>
+            </div>
+        </ons-list>
+        <ons-list ng-repeat="eventList in calendarCtrl.events">
+            <div class="calender-group clearfix">
+                <div class="calendar-date">
+                    <div class="calendar-day">{{eventList.day}}</div>
+                    <div class="calendar-dow">{{eventList.dow}}</div>
+                </div>
+                <div class="card day-group">
+                    <ons-list-item class="calender-item" modifier="longdivider" tappable
+                                   ng-class="{'cal-assignment': calendarCtrl.isAssignment(item)}"
+                                   ng-repeat="item in eventList.list"
+                                   ng-click="calendarNavigator.pushPage('calendar-detail.html', {animation: 'slide', event: item})">
+                        <div class="left" ng-show="calendarCtrl.isAssignment(item)">
+                            <div class="course-color" ng-class="calendarCtrl.courseColor(item)">&nbsp;</div>
+                            <div class="period">{{calendarCtrl.period(item)}}</div>
+                        </div>
+                        <div class="center" ng-show="calendarCtrl.isAssignment(item)">
+                            <div>
+                                <div class="course">{{calendarCtrl.course(item)}}</div>
+                                <div class="title">{{item.title}}</div>
+                                <div class="category">{{item.eventType}}</div>
+                            </div>
+                        </div>
+                        <div class="center" ng-show="!calendarCtrl.isAssignment(item)">
+                            <div class="event-item">
+                                <div class="title">{{item.title}}</div>
+                                <div class="category">{{calendarCtrl.displayDate(item)}}</div>
+                                <div class="category">{{item.location}}</div>
+                            </div>
+                        </div>
+                    </ons-list-item>
+                </div>
+            </div>
         </ons-list>
     </ons-page>
+    <div ng-show="main.currentStudent" class="current-student ng-hide" ng-class="{ios:ons.platform.isIOS()}"><span>{{main.currentStudent.name}}</span></div>
 </ons-navigator>

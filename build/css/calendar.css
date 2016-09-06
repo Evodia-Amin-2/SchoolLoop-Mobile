@@ -1,0 +1,66 @@
+.calender-group {
+    margin-top: 15px;
+}
+
+.day-group {
+    margin-left: 55px;
+    margin-right: 15px;
+}
+
+.calender-item {
+    /*margin: 8px 5px !important;*/
+}
+
+.calendar-date {
+    float: left;
+    text-align: center;
+    width: 50px;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+.calendar-day {
+    font-size: 2em;
+    color: #666;
+    line-height: 0.8em;
+}
+
+.calendar-dow {
+    font-size: 0.9em;
+    color: #999;
+}
+
+.cal-assignment {
+    padding: 10px;
+}
+
+.cal-assignment .period {
+    width: 15px !important;
+}
+
+.calendar-detail-header {
+    padding: 20px;
+    border-bottom: 1px #eee solid !important;
+}
+
+.calendar-detail-content {
+    padding: 5px 20px;
+}
+
+.calendar-detail-footer {
+    border-top: 1px #eee solid !important;
+    background-color: white;
+    padding: 20px;
+}
+
+.cal-detail-date {
+    margin: 10px 0;
+    font-size: 0.9em;
+}
+
+.cal-detail-location,
+.cal-detail-contact {
+    margin: 10px 0;
+    font-size: 0.9em;
+    color: #777;
+}

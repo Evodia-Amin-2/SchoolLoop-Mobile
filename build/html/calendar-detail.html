@@ -1,0 +1,30 @@
+<ons-page ng-controller="CalendarDetailController as calendarDetail" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
+    <ons-toolbar class="default-toolbar" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
+        <div class="left"><ons-back-button translate>Back</ons-back-button></div>
+        <div class="center">{{::calendarDetail.event.title}}</div>
+    </ons-toolbar>
+    <div class="calendar-detail-header">
+        <div class="title">{{calendarDetail.event.title}}</div>
+        <div class="cal-detail-date"><strong>{{calendarDetail.event.endDay|date:"MMM d, y" : "UTC"}}</strong> {{calendarDetail.event.startTimeString}} - {{calendarDetail.event.endTimeString}}</div>
+        <div class="cal-detail-location spacer" ng-show="calendarDetail.event.location"><span translate>Location:</span> {{calendarDetail.event.location}}</div>
+        <div class="cal-detail-contact" ng-show="calendarDetail.event.contact"><span translate>Contact:</span> {{calendarDetail.event.contact}}</div>
+    </div>
+    <div class="calendar-detail-content">
+        <div class="assignment-desc" ng-bind-html="calendarDetail.getDescription()"></div>
+
+        <ons-list class="attachements-view" ng-if="calendarDetail.links">
+            <ons-list-item modifier="longdivider" tappable ng-repeat="link in calendarDetail.links"
+                           ng-click="calendarDetail.openURL(link)">
+                <div class="left">
+                    <ons-icon icon="md-attachment" class="ons-icon zmdi zmdi-attachment" size="20px"></ons-icon>
+                </div>
+                <div class="center">
+                    <div class="title">{{link.Title}}</div>
+                </div>
+            </ons-list-item>
+        </ons-list>
+    </div>
+    <div class="calendar-detail-footer">
+        <div class="category"><span translate>Posted By:</span> {{calendarDetail.event.postedBy}}</div>
+    </div>
+</ons-page>

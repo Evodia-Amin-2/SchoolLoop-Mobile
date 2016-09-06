@@ -1,3 +1,13 @@
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
 .scrollable-panel {
     position: absolute;
     top: 0;
@@ -102,6 +112,10 @@
 
 .spacer {
     margin-top: 20px !important;
+}
+
+.spacer-small {
+    margin-top: 10px !important;
 }
 
 .spacer-medium {

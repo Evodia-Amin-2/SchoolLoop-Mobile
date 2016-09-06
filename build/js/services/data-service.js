@@ -6,6 +6,7 @@
         .constant('DataType', {
             "ASSIGNMENT": "assignments",
             "COURSE": "report_card",
+            "CALENDAR": "calendar",
             "LOOPMAIL": "mail_messages",
             "NEWS": "news"
         })
@@ -17,9 +18,15 @@
 
         var folderId = 1;
 
+        var today = moment();
+        var end = moment();
+        today.startOf('day');
+        end.endOf('month');
+
         var defaultParams = {};
         defaultParams[DataType.LOOPMAIL] = {"folderID": folderId, "start": 0, "max": 20};
         defaultParams[DataType.NEWS] = {"lastRequest": getLastRequestTime(), "alerts": true};
+        defaultParams[DataType.CALENDAR] = {"startDate": today.valueOf(), "endDate":  end.valueOf()};
 
         function cachedResult(element) {
             var dataDeferred = $q.defer();
@@ -35,7 +42,7 @@
                     return false;
                 }
             } else {
-                if(!cache.assignments || !cache.report_card || !cache.mail_messages || !cache.news) {
+                if(!cache.assignments || !cache.report_card || !cache.calendar || !cache.mail_messages || !cache.news) {
                     return false;
                 }
             }
@@ -57,14 +64,15 @@
             load: function() {
                 var params;
                 var requests = [];
+                var calendar = doGet($q, $http, config, DataType.CALENDAR, params, defaultParams, storageService, service);
                 var loopmail = doGet($q, $http, config, DataType.LOOPMAIL, params, defaultParams, storageService, service);
                 var news = doGet($q, $http, config, DataType.NEWS, params, defaultParams, storageService, service);
                 if(isTeacher() === true) {
-                    requests = [loopmail, news];
+                    requests = [calendar, loopmail, news];
                 } else {
                     var assignments = doGet($q, $http, config, DataType.ASSIGNMENT, params, defaultParams, storageService, service);
                     var courses = doGet($q, $http, config, DataType.COURSE, {trim: true}, defaultParams, storageService, service);
-                    requests = [assignments, courses, loopmail, news];
+                    requests = [assignments, courses, calendar, loopmail, news];
                 }
 
                 return $q.all(requests).then(function(result) {
@@ -75,7 +83,11 @@
                         if(isTeacher() === true && (type === DataType.ASSIGNMENT || type === DataType.COURSE)) {
                             continue;
                         }
-                        tmp[type] = result[index++];
+                        var data = result[index++];
+                        if(data === "") {
+                            data = [];
+                        }
+                        tmp[type] = data;
                     }
 
                     return tmp;
@@ -83,6 +95,7 @@
                     console.log(error);
                     cache.assignments = [];
                     cache.report_card = [];
+                    cache.calendar = [];
                     cache.mail_messages = [];
                     cache.news = [];
                     return cache;

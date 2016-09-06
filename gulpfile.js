@@ -109,7 +109,7 @@ gulp.task('init-config', function () {
                     '    <preference name="Fullscreen" value="false" />\n' +
                     '    <preference name="KeepRunning" value="true" />\n' +
                     '    <preference name="SplashScreen" value="screen" />\n' +
-                    '    <preference name="SplashScreenDelay" value="1000" />\n' +
+                    '    <preference name="SplashScreenDelay" value="3000" />\n' +
                     '    <preference name="AllowInlineMediaPlayback" value="false" />\n' +
                     '    <preference name="AutoHideSplashScreen" value="true" />\n' +
                     '    <preference name="BackupWebStorage" value="none"/>\n' +

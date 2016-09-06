@@ -18,7 +18,7 @@ page--material .link {
 }
 
 .list__item:first-child {
-    margin-top: -1px !important;
+    box-shadow: none;
 }
 
 .list__item__center {
