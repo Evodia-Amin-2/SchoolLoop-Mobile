@@ -41,10 +41,12 @@
 .calendar-detail-header {
     padding: 20px;
     border-bottom: 1px #eee solid !important;
+    background-color: white;
 }
 
 .calendar-detail-content {
-    padding: 5px 20px;
+    background-color: white;
+    padding: 10px 20px;
 }
 
 .calendar-detail-footer {
