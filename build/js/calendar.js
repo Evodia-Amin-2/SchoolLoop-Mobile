@@ -130,6 +130,9 @@
             return "";
         };
 
+        calendarDetail.hasDescription = function() {
+            return _.isUndefined(calendarDetail.event.description) === false && _.isUndefined(calendarDetail.event.links) === false;
+        };
 
         calendarDetail.getDate = function (source, timeZone) {
             return utils.getDisplayDate(source, timeZone, gettextCatalog);

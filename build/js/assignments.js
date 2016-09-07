@@ -175,6 +175,9 @@
         };
 
         $scope.mainNavigator.on("prepop", function(event) {
+            if($scope.tabbar.getActiveTabIndex() !== 0) {
+                return;
+            }
             var navigator = event.navigator;
             if(navigator.pages.length === 2) {
                 var page = navigator.pages[1];

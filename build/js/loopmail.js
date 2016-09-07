@@ -142,13 +142,18 @@
 
         var tabbar = document.querySelector("ons-tabbar");
         tabbar.addEventListener("postchange", function() {
-            utils.resetTab($scope.loopmailNavigator, "loopmail.html");
+            resetTab();
         });
 
         tabbar.addEventListener("reactive", function() {
-            utils.resetTab($scope.loopmailNavigator, "loopmail.html");
+            resetTab();
         });
 
+        function resetTab() {
+            utils.resetTab($scope.loopmailNavigator, "loopmail.html");
+            StatusBar.backgroundColorByHexString("#009688");
+            StatusBar.show();
+        }
 
         $scope.$on("loopmail.sent", function() {
             if(dataService.getFolderId() < 0) {
