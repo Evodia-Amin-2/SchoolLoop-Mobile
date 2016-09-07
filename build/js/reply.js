@@ -74,10 +74,12 @@
                 if(isFormValid()) {
                     loopmailService.send(page.toList, page.ccList, page.subject, page.body + "<br/><br/>" + page.originalMsg).then(
                         function() {
-                            $scope.mainNavigator.resetToPage("loopmail.html");
+                            $scope.mainNavigator.popPage();
+                            $scope.loopmailNavigator.resetToPage("loopmail.html");
                         },
                         function() {
-                            $scope.mainNavigator.resetToPage("loopmail.html");
+                            $scope.mainNavigator.popPage();
+                            $scope.loopmailNavigator.resetToPage("loopmail.html");
                         }
                     );
                 } else {
