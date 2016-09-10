@@ -242,8 +242,9 @@
             setupAuthHeaders: function(username, password, params, hashed) {
                 $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode(username + ':' + password);
                 if(hashed === true) {
-                    $http.defaults.headers.common['SL_HASH'] = 'true';
-                    params["hash"] = 'true';
+                    $http.defaults.headers.common['SL-HASH'] = 'true';
+                    var school = storageService.getSchool();
+                    $http.defaults.headers.common['SL-UUID'] = device.uuid || "browser-" + school.domainName;
                 }
             }
         };
@@ -301,7 +302,7 @@
 
         var domain = storageService.getDomain(url);
         if(_.isUndefined(domain) === false && _.isNull(domain) === false) {
-            dataService.setupAuthHeaders(domain.user.userName, domain.user.hashedPassword, params, false);
+            dataService.setupAuthHeaders(domain.user.userName, domain.user.hashedPassword, params, true);
         }
 
         if(_.isUndefined(params["studentID"]) === true) {
@@ -336,7 +337,7 @@
         var url = storageService.getSelectedSchool().domainName;
         var domain = storageService.getDomain(url);
         if(_.isUndefined(domain) === false && _.isNull(domain) === false) {
-            dataService.setupAuthHeaders(domain.user.userName, domain.user.hashedPassword, params, false);
+            dataService.setupAuthHeaders(domain.user.userName, domain.user.hashedPassword, params, true);
         }
 
         var endpoint = "https://" + url + "/mapi/" + action;

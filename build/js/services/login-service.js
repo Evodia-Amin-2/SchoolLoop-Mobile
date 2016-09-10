@@ -32,14 +32,15 @@
                 var domain = storageService.getDomain(url);
                 username = domain.user.userName;
                 password = domain.user.hashedPassword;
-                // hashed = true;
+                hashed = _.isUndefined(password) === false;
             }
 
             var params = {
                 "version": parseVersion(config.version),
-                "uuid": device.uuid || "test-" + school.domainName,
+                "uuid": device.uuid || "browser-" + school.domainName,
                 "devOS": device.platform,
-                "year": new Date().getFullYear()
+                "year": new Date().getFullYear(),
+                "hash": hashed
             };
 
             dataService.setupAuthHeaders(username, password, params, hashed);

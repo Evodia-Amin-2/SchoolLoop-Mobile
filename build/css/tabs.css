@@ -1,17 +1,6 @@
-.tab-bar__icon .ion-ios-book-outline {
-    font-size: 32px;
-    position: relative;
-    top: -3px;
+svg {
+    height: 28px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width:  3px;
 }
-
-.tab-bar__icon .zmdi-calendar {
-    font-size: 28px;
-    position: relative;
-    top: 0;
-}
-
-.tab-bar__icon .fa-newspaper-o {
-    position: relative;
-    top: 1px;
-}
-

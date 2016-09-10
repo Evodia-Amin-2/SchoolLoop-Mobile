@@ -157,7 +157,7 @@
                 loginService.login(page.selectedSchool.domainName, page.username, page.password).then(
                     function(message) {
                         data = message.data;
-                        storageService.addDomain(page.selectedSchool, data, page.password);
+                        storageService.addDomain(page.selectedSchool, data, data.hashedPassword);
                         if(data.isUnverifiedParent === 'true') {
                             storageService.clearPassword(page.selectedSchool.domainName);
                             page.password = "";

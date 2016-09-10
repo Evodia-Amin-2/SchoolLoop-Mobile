@@ -77,6 +77,7 @@ gulp.task('default', function () {
 gulp.task('watch', function() {
     gulp.watch('config.json', ['app-config', 'app-js']);
     gulp.watch(srcPath + '/css/**/*.*', ['app-config', 'app-css']);
+    gulp.watch(srcPath + '/assets/**/*.*', ['app-config', 'app-assets']);
     gulp.watch(srcPath + '/js/**/*.js', ['app-config', 'app-js']);
     gulp.watch(srcPath + '/templates/**/*.html', ['app-config', 'app-tmpl']);
     gulp.watch(srcPath + '/templates/**/*.html', ['app-config', 'browser-tmpl']);
