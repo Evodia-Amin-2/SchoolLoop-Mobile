@@ -1,0 +1,26 @@
+<ons-page ng-controller="SchoolSearchController as page">
+    <ons-toolbar class="default-toolbar">
+        <div class="left" ng-click="loginNavigator.popPage()">
+            <ons-toolbar-button>
+                <ons-icon size="24px" icon="md-close"></ons-icon>
+            </ons-toolbar-button>
+        </div>
+        <div class="center" translate>Find School</div>
+    </ons-toolbar>
+    <div class="login-panel login-panel-search">
+        <div class="lookup">
+            <ons-icon class="lookup-icon-search" tappable icon="ion-ios-search, material:ion-android-search" size="20px"></ons-icon>
+
+            <ons-input class="lookup-input" auto-focus="" id="lookup" modifier="underbar" float placeholder="{{page.placeholder.school}}"
+                       ng-model="page.searchParam" ng-change="page.change()" ng-show="true" ng-disabled="page.disabled" autocomplete="off"></ons-input>
+            <ons-list class="lookup-list" ng-show="page.lookup.expanded && page.lookup.displaySet.length > 0">
+                <ons-list-item ng-repeat="item in page.lookup.displaySet" tappable ng-click="page.selectSchool(item)" modifier="longdivider">
+                    <div>
+                        <div class="lookup-text">{{item.name}}</div>
+                        <div class="lookup-subtext">{{item.districtName}}</div>
+                    </div>
+                </ons-list-item>
+            </ons-list>
+        </div>
+    </div>
+</ons-page>

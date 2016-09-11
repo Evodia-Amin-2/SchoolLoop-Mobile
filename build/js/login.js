@@ -21,31 +21,26 @@
         page.error = {};
         clearErrors();
 
-        page.lookup = {};
-        page.lookup.expanded = false;
-        page.lookup.currentPage = 0;
-        page.lookup.itemsPerPage = 20;
-        page.lookup.displaySet = [];
-
         page.username = "";
         page.password = "";
+        page.logo = "img/circle-logo.png";
 
         StatusBar.styleDefault();
         StatusBar.show();
 
-        schoolService.list().then(
-            function(data) {
-                page.schoolList = data;
-            }
-        );
-
         page.selectSchool = function(school) {
+            $scope.loginNavigator.popPage();
+
             clearErrors();
 
             if(isSchoolDefined(school) === true) {
+                page.logo = "img/circle-logo-small.png";
+                if(school.domainName !== storageService.getDefaultDomain()) {
+                    storageService.clear();
+                }
                 storageService.setSchool(school);
                 page.selectedSchool = school;
-                page.searchParam = school.name;
+                page.schoolName = school.name;
 
                 var $username = $("#username");
                 var $input = $username.find(":input");
@@ -55,18 +50,11 @@
             } else {
                 storageService.clear();
                 page.selectedSchool = undefined;
-                page.searchParam = "";
+                page.schoolName = "";
                 page.username = "";
                 page.password = "";
                 page.submitted = false;
             }
-            page.lookup.expanded = false;
-        };
-
-        page.expand = function() {
-            clearDisplaySet();
-            loadData();
-            page.lookup.expanded = true;
         };
 
         page.clear = function() {
@@ -74,59 +62,21 @@
         };
 
         page.showClear = function() {
-            return _.isUndefined(page.selectedSchool) === false || isSearchDefined() || page.lookup.expanded === true;
+            return _.isUndefined(page.selectedSchool) === false || isSearchDefined();
         };
-
-        page.change = function() {
-            page.lookup.expanded = (page.searchParam && page.searchParam.length > 0);
-            clearDisplaySet();
-            loadData();
-        };
-
-        function loadData() {
-            if(_.isUndefined(page.schoolList) === true) {
-                return;
-            }
-            var start = page.lookup.currentPage * page.lookup.itemsPerPage;
-            var end = start + page.lookup.itemsPerPage;
-            var results = page.schoolList;
-            var i, len, item, queryRegExp = null;
-            if(isSearchDefined()) {
-                results = [];
-                queryRegExp = RegExp(page.searchParam, 'i'); //'i' -> case insensitive
-                for(i = start, len = page.schoolList.length; i < len; i++) {
-                    item = page.schoolList[i];
-                    if(item.name.match(queryRegExp) || item.districtName.match(queryRegExp)) {
-                        results.push(item);
-                    }
-                    if(results.length > end) {
-                        break;
-                    }
-                }
-            }
-            for(i = start, len = results.length; i < len && i < end; i++) {
-                item = results[i];
-                page.lookup.displaySet.push(item);
-            }
-            if(page.lookup.displaySet.length === 1) {
-                page.selectSchool(page.lookup.displaySet[0]);
-            }
-        }
 
         function isSearchDefined() {
-            return _.isUndefined(page.searchParam) === false && page.searchParam.length > 0;
+            return _.isUndefined(page.schoolName) === false && page.schoolName.length > 0;
         }
 
-        function clearDisplaySet() {
-            page.lookup.displaySet = [];
-            page.lookup.currentPage = 0;
-            //$('.lookup-content').scrollTop(0);
-        }
+        page.searchSchool = function() {
+            $scope.loginNavigator.pushPage("school-search.html", {animation: 'slide-up', searchCallback: page.selectSchool});
+        };
 
         var school = storageService.getSelectedSchool();
         if(isSchoolDefined(school) === true) {
             page.selectedSchool = school;
-            page.searchParam = school.name;
+            page.schoolName = school.name;
         }
 
         page.inputStyle = "text-input text-input--underbar";

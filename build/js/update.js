@@ -6,7 +6,9 @@
         ;
 
         function UpdateController(statusService, config) {
-            var update = this;
+            var page = this;
+
+            page.updating = false;
 
             StatusBar.backgroundColorByHexString("#009688");
             StatusBar.show();
@@ -14,9 +16,10 @@
             statusService.hideNoWait();
             navigator.splashscreen.hide();
 
-            update.config = config;
+            page.config = config;
 
-            update.update = function() {
+            page.update = function() {
+                page.updating = true;
                 window.chcp.installUpdate();
             };
 

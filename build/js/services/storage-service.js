@@ -96,7 +96,6 @@
                 domain.user = JSON.parse(JSON.stringify(user)); // make a copy
                 delete domain.user.students;
 
-                console.log("******* Overriding hashedPassword ******");
                 domain.user.hashedPassword = password;
 
                 domainMap[school.domainName] = domain;

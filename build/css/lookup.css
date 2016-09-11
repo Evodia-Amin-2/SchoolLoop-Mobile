@@ -1,4 +1,12 @@
 .lookup {
+    position: absolute;
+    top: 5px;
+    bottom: 20px;
+    right: 20px;
+    left: 20px;
+}
+
+.lookup-input-panel {
     width: 100%;
     position: relative;
 }
@@ -39,7 +47,7 @@
 }
 
 .lookup-list {
-    position: absolute !important;
+    position: relative;
     border: 1px solid #eee !important;
     z-index: 1;
     margin: 0;
@@ -49,9 +57,9 @@
     left: 2px;
     overflow: auto !important;
     -webkit-overflow-scrolling: touch !important;
-    max-height: 244px;
-    top: 46px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.37);
+    top: 0;
+    max-height: 80%;
 }
 
 .lookup-text {
