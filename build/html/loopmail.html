@@ -24,7 +24,7 @@
                     <ons-icon icon="md-menu"></ons-icon>
                 </ons-toolbar-button>
             </div>
-            <div class="center" ng-click="mailCtrl.showMenu()">{{mailCtrl.mailbox.label}} <ons-icon icon="fa-caret-down" size="18px"></ons-icon></div>
+            <div class="center" ng-click="mailCtrl.showMenu()">{{mailCtrl.mailbox.label}} <ons-icon icon="md-caret-down" size="24px"></ons-icon></div>
             <div class="right">
                 <ons-toolbar-button class="loopmail-toolbar-button" ng-click="mailCtrl.compose()">
                     <div class="loopmail-compose">
@@ -44,8 +44,8 @@
             <ons-list-item class="loopmail-item" modifier="longdivider" tappable ng-repeat="item in mailCtrl.loopmail"
                            ng-click="mailCtrl.showDetail(item)">
                 <div class="left">
-                    <ons-icon icon="fa-envelope" size="24px" ng-show="mailCtrl.isNew(item)" class="new"></ons-icon>
-                    <ons-icon icon="fa-envelope-o" size="24px" ng-show="!mailCtrl.isNew(item)"></ons-icon>
+                    <ons-icon icon="ion-ios-email" size="32px" ng-show="mailCtrl.isNew(item)" class="new"></ons-icon>
+                    <ons-icon icon="ion-ios-email-outline" size="32px" ng-show="!mailCtrl.isNew(item)"></ons-icon>
                 </div>
                 <div class="center">
                     <div>

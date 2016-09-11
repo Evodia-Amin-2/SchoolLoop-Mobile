@@ -29,6 +29,7 @@
 .course-grades {
     width: 100%;
     text-align: center;
+    padding: 5px;
 }
 
 .course-grade {
@@ -76,6 +77,7 @@
     margin-top: 1px;
     font-size: 0.9em;
     color: #aaa;
+    white-space: nowrap;
 }
 
 .course-color {

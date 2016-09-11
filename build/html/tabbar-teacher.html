@@ -1,9 +1,36 @@
 <ons-navigator var="mainNavigator">
     <ons-page ng-controller="MainController as main">
         <ons-tabbar var="tabbar">
-            <ons-tab page="loopmail.html" label="LoopMail" icon="fa-envelope-o" active="true" counter="main.getMailCount"></ons-tab>
-            <ons-tab page="news.html" label="News" icon="fa-newspaper-o" counter="main.getNewsCount"></ons-tab>
-            <ons-tab page="calendar.html" label="Calendar" icon="md-calendar"></ons-tab>
+            <ons-tab page="loopmail.html" counter="main.getMailCount" active="true">
+                <div class="tab-bar__icon svg-icon">
+                    <svg viewBox="0 0 60 50">
+                        <use xlink:href="#loopmail"></use>
+                    </svg>
+                </div>
+                <div class="tab-bar__label" tanslate>
+                    Loopmail
+                </div>
+            </ons-tab>
+            <ons-tab page="news.html" counter="main.getNewsCount">
+                <div class="tab-bar__icon svg-icon">
+                    <svg viewBox="0 0 60 50">
+                        <use xlink:href="#news"></use>
+                    </svg>
+                </div>
+                <div class="tab-bar__label" tanslate>
+                    News
+                </div>
+            </ons-tab>
+            <ons-tab page="calendar.html">
+                <div class="tab-bar__icon svg-icon">
+                    <svg viewBox="0 0 60 50">
+                        <use xlink:href="#calendar"></use>
+                    </svg>
+                </div>
+                <div class="tab-bar__label" tanslate>
+                    Calendar
+                </div>
+            </ons-tab>
         </ons-tabbar>
         <ons-modal var="replyModal">
             <div class="assignment-filter">

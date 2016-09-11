@@ -143,3 +143,8 @@
 .loopmail-label.android {
     color: #009688;
 }
+
+.zmdi-caret-down {
+    position: relative;
+    top: 5px;
+}

@@ -176,8 +176,10 @@ gulp.task('init-merges', function () {
 
 gulp.task('app-assets', function () {
     return gulp.src([srcPath + '/assets/**/*.*',
-            'bower_components/onsenui/**/*/css/*.min.css',
-            'bower_components/onsenui/**/*/fonts/*',
+            'bower_components/onsenui/**/ionicons/css/*.min.css',
+            'bower_components/onsenui/**/material*/css/*.min.css',
+            'bower_components/onsenui/**/ionicons/fonts/*',
+            'bower_components/onsenui/**/material*/fonts/*',
             'bower_components/onsenui/**/onsen-css-components.css',
             'bower_components/onsenui/**/onsenui.css'
         ])

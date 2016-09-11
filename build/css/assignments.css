@@ -55,6 +55,7 @@
 
 .assignment-detail-header {
     border-bottom: 1px #eee solid !important;
+    padding-left: 0 !important;
 }
 
 .assignment-detail-footer {
@@ -63,9 +64,18 @@
     padding: 10px 44px;
 }
 
+.assignment-detail-header .period {
+    margin-left: 0 !important;
+    min-width: 50px;
+}
+
 .assignment-detail-header .list__item--material__left {
     padding: 12px 14px 12px 0;
-    min-width: 20px;
+    min-width: 50px;
+}
+
+.assignment-detail-header .left {
+    padding-right: 5px;
 }
 
 .assignment-detail {

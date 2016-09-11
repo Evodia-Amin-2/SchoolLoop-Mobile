@@ -40,6 +40,7 @@ page--material .link {
 
 .tab-bar {
     height: 59px;
+    border-top: 1px solid #ccc !important;
 }
 
 .tab-bar__content {
