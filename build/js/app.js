@@ -4,6 +4,9 @@
 
     document.addEventListener('deviceready', function() {
         console.log("***** device ready *****");
+        if(device.uuid === null) {
+            device.uuid = "ffffaaaaffffaaaa";
+        }
         console.log("Cordova: " + JSON.stringify(device));
         window.open = cordova.InAppBrowser.open;
         if(!navigator.analytics) {

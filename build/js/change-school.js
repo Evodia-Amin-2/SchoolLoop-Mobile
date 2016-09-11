@@ -128,7 +128,7 @@
                 var newSchool = page.selectedSchool;
                 loginService.login(newSchool.domainName, page.username, page.password).then(
                     function(response) {
-                        processSuccess(response, newSchool, domain.user.hashedPassword);
+                        processSuccess(response, newSchool, response.data.hashedPassword);
                     },
                     function(error) {
                         processFailure(error);

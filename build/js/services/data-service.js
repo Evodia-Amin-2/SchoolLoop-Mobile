@@ -243,8 +243,7 @@
                 $http.defaults.headers.common['Authorization'] = 'Basic ' + Base64.encode(username + ':' + password);
                 if(hashed === true) {
                     $http.defaults.headers.common['SL-HASH'] = 'true';
-                    var school = storageService.getSchool();
-                    $http.defaults.headers.common['SL-UUID'] = device.uuid || "browser-" + school.domainName;
+                    $http.defaults.headers.common['SL-UUID'] = device.uuid;
                 }
             }
         };

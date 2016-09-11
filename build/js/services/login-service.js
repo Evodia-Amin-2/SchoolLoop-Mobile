@@ -37,7 +37,7 @@
 
             var params = {
                 "version": parseVersion(config.version),
-                "uuid": device.uuid || "browser-" + school.domainName,
+                "uuid": device.uuid,
                 "devOS": device.platform,
                 "year": new Date().getFullYear(),
                 "hash": hashed
