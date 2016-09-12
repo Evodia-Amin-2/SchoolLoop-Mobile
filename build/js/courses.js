@@ -4,7 +4,7 @@
     angular.module('mobileloop')
         .controller('CoursesController', ['$scope', '$timeout', '$location', 'DataService', 'DataType', 'StatusService',
             'Utils', 'CourseColors', CoursesController])
-        .controller('CourseDetailController', ['$scope', '$timeout', 'DataService', 'StatusService', 'Utils',
+        .controller('CourseDetailController', ['$scope', '$timeout', 'DataService', 'StatusService', 'Utils', 'gettextCatalog',
             'CourseColors', CourseDetailController])
         .controller('CourseAsgnController', ['$rootScope', '$scope', '$timeout', 'Utils', 'DataService', 'DataType',
             'CourseColors', CourseAsgnController])
@@ -104,7 +104,7 @@
         });
     }
 
-    function CourseDetailController($scope, $timeout, dataService, statusService, utils, CourseColors) {
+    function CourseDetailController($scope, $timeout, dataService, statusService, utils, gettextCatalog, CourseColors) {
         var courseDetail = this;
 
         courseDetail.course = $scope.courseNavigator.topPage.pushedOptions.course;
@@ -131,6 +131,9 @@
         };
 
         courseDetail.getScore = function() {
+            if(utils.isNull(courseDetail.progress.score) === true) {
+                return  gettextCatalog.getString("Info");
+            }
             return roundWithPrecision(courseDetail.progress.score * 100, courseDetail.progress.precision) + "%";
         };
 
@@ -385,7 +388,7 @@
                         var grade = undefined;
                         for(var j = 0; j < grades.length; j++) {
                             if(grades[j].assignment.systemID === assignments[i].iD) {
-                                grade = grades[j];
+                                grade = JSON.parse(JSON.stringify(grades[j]));
                                 break;
                             }
                         }

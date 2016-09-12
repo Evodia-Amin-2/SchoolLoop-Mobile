@@ -18,14 +18,14 @@
                 </div>
             </ons-col>
             <ons-col width="175px" ng-if="courseDetail.progress.grades.length > 0">
-                <div class="grade-info" ng-show="courseDetail.hasGrade() === true || courseDetail.hasScore() === true" tappable
+                <div class="grade-info" ng-show="courseDetail.hasGrade() === true" tappable
                                 ng-click="courseNavigator.pushPage('course-info.html', {animation: 'slide', progress: courseDetail.progress, course: courseDetail.course})">
                     <div class="grade" ng-show="courseDetail.hasGrade() === true">{{courseDetail.getGrade()}}</div>
-                    <div class="score" ng-show="courseDetail.hasScore() === true">{{courseDetail.getScore()}}<ons-icon class="nav-indicator" icon="ion-chevron-right" size="12px"></ons-icon></div>
+                    <div class="score">{{courseDetail.getScore()}}<ons-icon class="nav-indicator" icon="ion-chevron-right" size="12px"></ons-icon></div>
                 </div>
-                <div class="grade-info" ng-show="courseDetail.zeroCount > 0">
-                    <div class="zero"
-                            ng-click="courseNavigator.pushPage('course-assignments.html', {animation: 'slide', filter: 'zeros', progress: courseDetail.progress, course: courseDetail.course})">
+                <div class="grade-info" ng-show="courseDetail.zeroCount > 0" tappable
+                                ng-click="courseNavigator.pushPage('course-assignments.html', {animation: 'slide', filter: 'zeros', progress: courseDetail.progress, course: courseDetail.course})">
+                    <div class="zero">
                         {{courseDetail.zeroCount}}</div>
                     <div class="score" ng-show="courseDetail.zeroCount == 1" translate>Zero<ons-icon class="nav-indicator" icon="ion-chevron-right" size="12px"></ons-icon></div>
                     <div class="score" ng-show="courseDetail.zeroCount > 1" translate>Zeros<ons-icon class="nav-indicator" icon="ion-chevron-right" size="12px"></ons-icon></div>

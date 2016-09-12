@@ -14,7 +14,7 @@
                 </div>
             </ons-col>
             <ons-col width="175px">
-                <div class="course-info" ng-show="courseDetail.hasGrade() === true || courseDetail.hasScore() === true" tappable>
+                <div class="course-info" ng-show="courseDetail.hasGrade() === true || courseDetail.hasScore() === true">
                     <div class="course-info-score" ng-show="courseDetail.hasScore() === true">{{courseDetail.getScore()}}</div>
                     <div class="course-info-grade" ng-show="courseDetail.hasGrade() === true">{{courseDetail.getGrade()}}</div>
                 </div>
