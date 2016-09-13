@@ -46,6 +46,18 @@
             StatusBar.show();
         });
 
+        if(_.isUndefined(main.currentStudent) === false) {
+            tabbar.addEventListener("postchange", function() {
+                var index = $scope.tabbar.getActiveTabIndex();
+                if(index === 2 || index === 3) {
+                    main.currentStudentInfo =  main.currentStudent.school.name;
+                } else {
+                    main.currentStudentInfo = main.currentStudent.name;
+                }
+                $scope.$apply();
+            });
+        }
+
         main.openMenu = function() {
             $scope.mainSplitter.left.open();
         };

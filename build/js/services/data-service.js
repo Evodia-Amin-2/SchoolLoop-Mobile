@@ -148,11 +148,11 @@
             listNoReload: function(type) {
                 return cache[type];
             },
-            getMessage: function(id) {
+            getMessage: function(id, url) {
                 if(cache.message && cache.message.ID === id) {
                     return cachedResult("message");
                 }
-                return doGet($q, $http, config, DataType.LOOPMAIL, {"ID": id}, defaultParams, storageService, service).then(function(response) {
+                return doGet($q, $http, config, DataType.LOOPMAIL, {"ID": id, "url": url}, defaultParams, storageService, service).then(function(response) {
                     cache.message = response;
                     return response;
                 });

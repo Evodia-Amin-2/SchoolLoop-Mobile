@@ -123,9 +123,25 @@
             $rootScope.$broadcast("hardware.offline");
         }, false);
 
-        document.addEventListener('chcp_updateIsReadyToInstall', function() {
-            $rootScope.$broadcast("update.ready");
-        }, false);
+        document.addEventListener('chcp_updateIsReadyToInstall', function(eventData) { chcpCallback(eventData, 'chcp_updateIsReadyToInstall', "update.ready"); }, false);
+        document.addEventListener('chcp_updateLoadFailed', function(eventData) { chcpCallback(eventData, 'chcp_updateLoadFailed'); }, false);
+        document.addEventListener('chcp_nothingToUpdate', function(eventData) { chcpCallback(eventData, 'chcp_nothingToUpdate'); }, false);
+        document.addEventListener('chcp_updateInstallFailed', function(eventData) { chcpCallback(eventData, 'chcp_updateInstallFailed'); }, false);
+        document.addEventListener('chcp_assetsInstallationError', function(eventData) { chcpCallback(eventData, 'chcp_assetsInstallationError'); }, false);
+
+        function chcpCallback(eventData, eventType, action) {
+            console.log("eventType: " + eventType + " data: " + JSON.stringify(eventData));
+            if (eventData.details && eventData.details.error) {
+                var error = eventData.details.error;
+                if(error) {
+                    console.log('CHCP: Error with code: ' + JSON.stringify(error));
+                }
+            }
+            if(action) {
+                $rootScope.$broadcast(action);
+            }
+
+        }
 
         window.addEventListener("orientationchange", function() {
             $rootScope.$broadcast("orientation.change");

@@ -178,7 +178,7 @@
                             $scope.tabbar.setActiveTab(2);
                         }
                         var loopmailId = payload.messageid;
-                        $scope.loopmailNavigator.pushPage('loopmail-detail.html', {animation: 'slide', loopmail: {ID: loopmailId}});
+                        $scope.loopmailNavigator.pushPage('loopmail-detail.html', {animation: 'slide', loopmail: {ID: loopmailId, schoolName: true}});
                     }
                 }
             );
@@ -198,6 +198,11 @@
             } else {
                 mailCtrl.loopmail = storageService.getOutgoingMail();
                 mailCtrl.noMailMessage = gettextCatalog.getString("All Mail Delivered");
+            }
+
+            if(_.isUndefined($scope.main.currentStudentInfo) === false) {
+                var school = storageService.getSelectedSchool();
+                $scope.main.currentStudentInfo = school.name;
             }
         }
 
@@ -226,7 +231,14 @@
 
         mailDetail.loaded = false;
 
-        dataService.getMessage(loopmail.ID).then(function(response) {
+        var url;
+        if(_.isUndefined($scope.main.currentStudentInfo) === false && _.isUndefined(loopmail.schoolName) === false && loopmail.schoolName === true) {
+            var domain = storageService.getDefaultDomain();
+            $scope.main.currentStudentInfo = domain.school.name;
+            url = domain.school.domainName;
+        }
+
+        dataService.getMessage(loopmail.ID, url).then(function(response) {
             mailDetail.loaded = true;
             statusService.hideWait(500);
 
@@ -281,6 +293,15 @@
             }
             StatusBar.backgroundColorByHexString("#009688");
             StatusBar.show();
+        });
+
+        $scope.loopmailNavigator.on("prepop", function() {
+            if(_.isUndefined($scope.main.currentStudentInfo) === false) {
+                $timeout(function() {
+                    var school = storageService.getSelectedSchool();
+                    $scope.main.currentStudentInfo = school.name;
+                });
+            }
         });
 
         mailDetail.sender = function () {
