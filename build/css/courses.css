@@ -72,12 +72,20 @@
     color: #666;
 }
 
+.course-detail .right {
+    padding-right: 0 !important;
+    min-width: 80px !important;
+}
+
+.card-item.course-detail .right {
+    min-width: 80px !important;
+}
+
 .course-score {
     display: block;
     margin-top: 1px;
     font-size: 0.9em;
     color: #aaa;
-    white-space: nowrap;
 }
 
 .course-color {

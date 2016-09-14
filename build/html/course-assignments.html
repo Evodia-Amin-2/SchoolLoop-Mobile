@@ -23,15 +23,16 @@
                 </div>
             </div>
             <div class="right">
-                <span class="comment" ng-show="courseAsgn.hasComment(item)"><ons-icon icon="md-comment-alt-text" size="24px"></ons-icon></span>
                 <div class="course-grades" ng-if="item.graded != false">
                     <div ng-if="courseAsgn.isZero(item)" class="course-detail-grade" translate>Zero</div>
                     <div ng-if="!courseAsgn.isZero(item)" class="course-detail-grade">{{item.percentScore}}</div>
                     <div class="course-score">{{item.score}}</div>
+                    <div class="comment" ng-show="courseAsgn.hasComment(item)"><ons-icon icon="md-comment-alt-text" size="24px"></ons-icon></div>
                 </div>
                 <div class="assignment-points" ng-if="item.graded == false">
                     <div class="points-max">{{item.assignment.maxPoints}}</div>
                     <div class="points-label" translate>PTS</div>
+                    <div class="comment" ng-show="courseAsgn.hasComment(item)"><ons-icon icon="md-comment-alt-text" size="24px"></ons-icon></div>
                 </div>
             </div>
         </ons-list-item>
