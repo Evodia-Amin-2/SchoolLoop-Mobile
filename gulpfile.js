@@ -102,6 +102,8 @@ gulp.task('init-config', function () {
                 $("platform[name=android]").append('    <preference name="KeepRunning" value="false" />\n    ');
                 $("platform[name=ios]").append('    <preference name="Orientation" value="all" />\n    ');
 
+                $("widget").append('<allow-navigation href="*" />');
+
                 $("widget").append('    <preference name="DisallowOverscroll" value="true" />\n' +
                     '    <preference name="Orientation" value="default" />\n' +
                     '    <preference name="loglevel" value="DEBUG" />\n' +
