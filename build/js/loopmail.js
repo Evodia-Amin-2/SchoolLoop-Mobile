@@ -168,6 +168,10 @@
             dataService.update().then(
                 function() {
                     loadLoopMail();
+                    if(_.isUndefined($scope.main.currentStudentInfo) === false) {
+                        var school = storageService.getSelectedSchool();
+                        $scope.main.currentStudentInfo = school.name;
+                    }
                     if(data.view === true) {
                         var domain = storageService.getDefaultDomain();
                         var user = domain.user;
@@ -200,10 +204,6 @@
                 mailCtrl.noMailMessage = gettextCatalog.getString("All Mail Delivered");
             }
 
-            if(_.isUndefined($scope.main.currentStudentInfo) === false) {
-                var school = storageService.getSelectedSchool();
-                $scope.main.currentStudentInfo = school.name;
-            }
         }
 
         function convertToIndex(folderId) {

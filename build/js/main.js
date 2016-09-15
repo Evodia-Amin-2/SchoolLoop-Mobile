@@ -48,14 +48,18 @@
 
         if(_.isUndefined(main.currentStudent) === false) {
             tabbar.addEventListener("postchange", function() {
-                var index = $scope.tabbar.getActiveTabIndex();
-                if(index === 2 || index === 3) {
-                    main.currentStudentInfo =  main.currentStudent.school.name;
-                } else {
-                    main.currentStudentInfo = main.currentStudent.name;
-                }
+                setupCurrentStudent();
                 $scope.$apply();
             });
+        }
+
+        function setupCurrentStudent() {
+            var index = $scope.tabbar.getActiveTabIndex();
+            if(index === 2 || index === 3) {
+                main.currentStudentInfo =  main.currentStudent.school.name;
+            } else {
+                main.currentStudentInfo = main.currentStudent.name;
+            }
         }
 
         main.openMenu = function() {
@@ -95,6 +99,7 @@
         $scope.$on("refresh.all", function() {
             if (_.isUndefined(main.currentStudent) === false) {
                 main.currentStudent = storageService.getSelectedStudent();
+                setupCurrentStudent();
             }
             main.getMailCount();
             main.getNewsCount();
