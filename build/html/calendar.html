@@ -2,9 +2,9 @@
     <ons-page class="card-view" ng-controller="CalendarController as calendarCtrl" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
         <ons-pull-hook ng-action="calendarCtrl.load($done)" var="nloader">
                 <span ng-switch="nloader.state">
-                  <span ng-switch-when="initial" translate><ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon>Pull down to refresh</span>
-                  <span ng-switch-when="preaction" translate><ons-icon size="35px" icon="ion-arrow-up-a"></ons-icon>Release to refresh</span>
-                  <span ng-switch-when="action" translate><ons-icon size="35px" spin="true" icon="ion-load-d"></ons-icon>Loading data...</span>
+                  <span ng-switch-when="initial"><ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon><span translate>Pull down to refresh</span></span>
+                  <span ng-switch-when="preaction"><ons-icon size="35px" icon="ion-arrow-up-a"></ons-icon><span translate>Release to refresh</span></span>
+                  <span ng-switch-when="action"><ons-icon size="35px" spin="true" icon="ion-load-d"></ons-icon><span translate>Loading data...</span></span>
                 </span>
         </ons-pull-hook>
         <ons-toolbar class="default-toolbar" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">

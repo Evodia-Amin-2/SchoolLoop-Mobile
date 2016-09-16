@@ -27,8 +27,8 @@
                                 ng-click="courseNavigator.pushPage('course-assignments.html', {animation: 'slide', filter: 'zeros', progress: courseDetail.progress, course: courseDetail.course})">
                     <div class="zero">
                         {{courseDetail.zeroCount}}</div>
-                    <div class="score" ng-show="courseDetail.zeroCount == 1" translate>Zero<ons-icon class="nav-indicator" icon="ion-chevron-right" size="12px"></ons-icon></div>
-                    <div class="score" ng-show="courseDetail.zeroCount > 1" translate>Zeros<ons-icon class="nav-indicator" icon="ion-chevron-right" size="12px"></ons-icon></div>
+                    <div class="score" ng-show="courseDetail.zeroCount == 1"><span translate>Zero</span><ons-icon class="nav-indicator" icon="ion-chevron-right" size="12px"></ons-icon></div>
+                    <div class="score" ng-show="courseDetail.zeroCount > 1"><span translate>Zeros</span><ons-icon class="nav-indicator" icon="ion-chevron-right" size="12px"></ons-icon></div>
                 </div>
             </ons-col>
         </ons-row>
@@ -52,7 +52,7 @@
                            ng-if="courseDetail.progress.grades.length > 0"
                            ng-click="courseNavigator.pushPage('course-assignments.html', {animation: 'slide', progress: courseDetail.progress, course: courseDetail.course})">
                 <div class="right">
-                    <div translate>View All Assignments<ons-icon class="nav-indicator" icon="ion-chevron-right" size="12px"></ons-icon></div>
+                    <div><span translate>View All Assignments</span><ons-icon class="nav-indicator" icon="ion-chevron-right" size="12px"></ons-icon></div>
                 </div>
             </ons-list-item>
             <ons-list-item class="card-item course-detail" ng-class="{'zero-grade': courseDetail.isZero(item)}"
