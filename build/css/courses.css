@@ -74,11 +74,11 @@
 
 .course-detail .right {
     padding-right: 0 !important;
-    min-width: 80px !important;
+    min-width: 90px !important;
 }
 
 .card-item.course-detail .right {
-    min-width: 80px !important;
+    min-width: 90px !important;
 }
 
 .course-score {

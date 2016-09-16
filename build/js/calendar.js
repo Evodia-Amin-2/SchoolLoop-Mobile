@@ -90,6 +90,10 @@
         }
 
         function groupEvents(data) {
+            if(_.isUndefined(data) === true) {
+                return [];
+            }
+
             var filtered = [];
             for(var i = 0, len = data.length; i < len; i++) {
                 if(data[i].eventType === 'assigned') {

@@ -15,7 +15,7 @@
 
 @media only screen and (max-width: 460px) {
     .login-panel {
-        margin: 30px;
+        margin: 0px 30px;
         text-align: center;
     }
 }
@@ -33,7 +33,7 @@
 }
 
 .login-footer {
-    margin-top: 60px;
+    margin-top: 50px;
 }
 
 .error .text-input--underbar {
