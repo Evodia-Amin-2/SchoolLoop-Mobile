@@ -9,7 +9,9 @@
     function ChangeSchoolController($scope, $timeout, loginService, storageService, schoolService, gettextCatalog) {
         var page = this;
 
-        page.addCallback = $scope.mainNavigator.topPage.pushedOptions.addCallback;
+        page.searchCallback = $scope.mainNavigator.topPage.pushedOptions.searchCallback;
+        page.disabled = false;
+        page.needsLogin = false;
 
         var domain = storageService.getDefaultDomain();
         page.username = domain.user.userName;
@@ -52,21 +54,19 @@
         };
 
         page.selectSchool = function(school) {
+            page.needsLogin = false;
+            page.lookup.expanded = false;
             if(isSchoolDefined(school) === true) {
                 page.selectedSchool = school;
                 page.searchParam = school.name;
-
-                var $input = $(".lookup-input");
-                $timeout(function() {
-                    $input.blur();
-                }, 100);
+                page.disabled = true;
+                page.login();
             } else {
                 page.selectedSchool = undefined;
                 page.searchParam = "";
                 page.submitted = false;
                 page.authFailed = false;
             }
-            page.lookup.expanded = false;
         };
 
         page.expand = function() {
@@ -122,7 +122,7 @@
             }
         }
 
-        page.select = function() {
+        page.login = function() {
             if(_.isUndefined(page.selectedSchool) === false) {
                 clearErrors();
                 var newSchool = page.selectedSchool;
@@ -138,16 +138,20 @@
         };
 
         function processSuccess(response, school, password) {
+            page.disabled = false;
             var data = response.data;
             if (data.isUnverifiedParent === 'true') {
                 page.message = gettextCatalog.getString("Parent needs to be verified");
             } else {
                 $scope.mainNavigator.popPage();
-                page.addCallback(school, data, password);
+                page.searchCallback(school, data, password);
             }
         }
 
         function processFailure(error) {
+            page.disabled = false;
+            page.needsLogin = true;
+            page.password = "";
             var status = error.data;
             var isCredError = status.toLowerCase().startsWith("error 1:") ||
                 status.toLowerCase().startsWith("error 2:");

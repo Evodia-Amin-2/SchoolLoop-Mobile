@@ -117,7 +117,7 @@
         };
 
         page.changeSchool = function() {
-            $scope.mainNavigator.pushPage("change-school.html", {animation: 'slide', addCallback: page.addSchool});
+            $scope.mainNavigator.pushPage("change-school.html", {animation: 'slide', searchCallback: page.addSchool});
         };
 
         page.addSchool = function(school, userLogin, password) {
