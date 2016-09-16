@@ -1,5 +1,5 @@
 <ons-navigator var="mainNavigator">
-    <ons-page ng-controller="MainController as main">
+    <ons-page ng-controller="MainController as main" ng-show="main.isLoaded">
         <ons-tabbar var="tabbar">
 
             <ons-tab page="assignments.html" label="Assignments" active="true">

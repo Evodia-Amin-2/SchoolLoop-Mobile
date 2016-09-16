@@ -11,6 +11,8 @@
              updateService, loopmailService, utils) {
         var main = this;
 
+        main.isLoaded = false;
+
         StatusBar.overlaysWebView(true);
         StatusBar.styleLightContent();
         StatusBar.backgroundColorByHexString("#009688");
@@ -21,6 +23,7 @@
         $timeout(function() {
             statusService.hideNoWait();
             navigator.splashscreen.hide();
+            main.isLoaded = true;
         }, 750);
 
         if(storageService.isLoggedIn() === false) {

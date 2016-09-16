@@ -124,7 +124,6 @@
         }, false);
 
         document.addEventListener('chcp_updateIsReadyToInstall', function(eventData) { chcpCallback(eventData, 'chcp_updateIsReadyToInstall', "update.ready"); }, false);
-        document.addEventListener('chcp_updateLoadFailed', function(eventData) { chcpCallback(eventData, 'chcp_updateLoadFailed'); }, false);
         document.addEventListener('chcp_nothingToUpdate', function(eventData) { chcpCallback(eventData, 'chcp_nothingToUpdate'); }, false);
         document.addEventListener('chcp_updateInstallFailed', function(eventData) { chcpCallback(eventData, 'chcp_updateInstallFailed'); }, false);
         document.addEventListener('chcp_assetsInstallationError', function(eventData) { chcpCallback(eventData, 'chcp_assetsInstallationError'); }, false);
