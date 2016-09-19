@@ -1,8 +1,7 @@
 <ons-navigator var="mainNavigator">
     <ons-page ng-controller="MainController as main" ng-show="main.isLoaded">
         <ons-tabbar var="tabbar">
-
-            <ons-tab page="assignments.html" label="Assignments" active="true">
+            <ons-tab page="assignments.html" active="true">
                 <div class="tab-bar__icon svg-icon">
                     <svg viewBox="0 0 45 50">
                         <use xlink:href="#assignments"></use>
@@ -130,7 +129,6 @@
                 </ons-list>
             </div>
         </ons-modal>
-
         <div ng-show="main.currentStudentInfo" class="current-student ng-hide" ng-class="{ios:ons.platform.isIOS()}">
             <span ng-click="main.studentMenu()" class="student-display" ng-class="{menu: main.showStudentMenu()}">{{main.currentStudentInfo}}<ons-icon ng-show="main.showStudentMenu()" icon="md-caret-down" size="24px"></ons-icon></span>
             <ons-popover direction="down" cancelable var="studentMenu">
