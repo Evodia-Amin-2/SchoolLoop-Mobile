@@ -101,7 +101,7 @@
             if(index === 2 || index === 3) {
                 return false;
             }
-            return true;
+            return main.students.length > 1;
         };
 
         main.studentMenu = function() {

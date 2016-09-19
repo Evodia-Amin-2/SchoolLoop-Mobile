@@ -103,6 +103,7 @@
 
 .current-student .popover__content {
     max-height: 350px !important;
+    min-height: 50px !important;
 }
 
 .student-display {
