@@ -38,6 +38,10 @@
             return !(utils.isNull(course.score) === true || course.score === 'hidden');
         };
 
+        courseCtrl.showProgressLabel = function(course) {
+            return course.grade === "hidden" && course.score === "hidden";
+        };
+
         courseCtrl.showCourse = function(course) {
             statusService.showLoading();
             $location.path("main.tabs.courses-detail", {periodID: course.periodID});

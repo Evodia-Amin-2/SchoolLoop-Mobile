@@ -34,7 +34,10 @@
                     </div>
                 </div>
                 <div class="right">
-                    <div class="course-grades">
+                    <div class="course-grades" ng-show="courseCtrl.showProgressLabel(item)">
+                        <div class="progress-report-label" translate>Progress Report</div>
+                    </div>
+                    <div class="course-grades" ng-show="!courseCtrl.showProgressLabel(item)">
                         <div class="course-grade" ng-show="courseCtrl.hasGrade(item)">{{item.grade}}</div>
                         <div class="course-grade" ng-show="!courseCtrl.hasGrade(item)">&nbsp;</div>
                         <div class="course-score" ng-show="courseCtrl.hasScore(item)">{{item.score}}</div>

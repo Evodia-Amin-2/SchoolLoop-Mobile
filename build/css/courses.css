@@ -40,6 +40,11 @@
     margin-top: 12px;
 }
 
+.progress-report-label {
+    width: 100px;
+    color: #999;
+}
+
 .list__item--material__right .course-grade {
     margin-top: 5px;
 }
