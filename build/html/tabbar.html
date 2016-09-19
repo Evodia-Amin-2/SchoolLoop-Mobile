@@ -130,6 +130,23 @@
                 </ons-list>
             </div>
         </ons-modal>
-        <div ng-show="main.currentStudentInfo" class="current-student ng-hide" ng-class="{ios:ons.platform.isIOS()}"><span>{{main.currentStudentInfo}}</span></div>
+
+        <div ng-show="main.currentStudentInfo" class="current-student ng-hide" ng-class="{ios:ons.platform.isIOS()}">
+            <span ng-click="main.studentMenu()" class="student-display" ng-class="{menu: main.showStudentMenu()}">{{main.currentStudentInfo}}<ons-icon ng-show="main.showStudentMenu()" icon="md-caret-down" size="24px"></ons-icon></span>
+            <ons-popover direction="down" cancelable var="studentMenu">
+                <ons-list>
+                    <ons-list-item modifier="longdivider" tappable ng-repeat="student in main.students"
+                                   ng-click="main.selectStudent(student, $index)">
+                        <div class="center">
+                            <div>
+                                <div class="menu-content-text">{{student.name}}</div>
+                                <div class="menu-content-subtext">{{student.school.name}}</div>
+                            </div>
+                        </div>
+                    </ons-list-item>
+                </ons-list>
+            </ons-popover>
+        </div>
+        <div class="student-menu-popover"></div>
     </ons-page>
 </ons-navigator>

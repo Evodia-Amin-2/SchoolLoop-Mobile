@@ -101,6 +101,24 @@
     top: 60px !important;
 }
 
+.current-student .popover__content {
+    max-height: 350px !important;
+}
+
+.student-display {
+    position: relative;
+    top: 1px;
+    height: 18px;
+}
+
+.student-display.menu {
+    top: -4px;
+}
+
+.student-display .zmdi-caret-down {
+    margin-left: 4px;
+}
+
 .input-wide {
     width: 100%;
     margin-top: 20px;

@@ -17,6 +17,9 @@
             showLoading: function() {
                 show(gettextCatalog.getString("Loading..."));
             },
+            showMessage: function(message) {
+                show(message);
+            },
             showLogin: function() {
                 if(loginShowing === false) {
                     loginShowing = true;

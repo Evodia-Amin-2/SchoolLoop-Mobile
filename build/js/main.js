@@ -3,15 +3,16 @@
 
     angular.module('mobileloop')
         .controller('MainController', ['$rootScope', '$scope', '$location', '$timeout', 'DataService', 'DataType', 'StorageService',
-            'StatusService', 'NotificationService','UpdateService', 'LoopmailService', 'Utils', MainController])
+            'StatusService', 'NotificationService','UpdateService', 'LoopmailService', 'Utils', 'gettextCatalog', MainController])
     ;
 
     function MainController($rootScope, $scope, $location, $timeout,
              dataService, DataType, storageService, statusService, notificationService,
-             updateService, loopmailService, utils) {
+             updateService, loopmailService, utils, gettextCatalog) {
         var main = this;
 
         main.isLoaded = false;
+        main.students = [];
 
         StatusBar.overlaysWebView(true);
         StatusBar.styleLightContent();
@@ -93,6 +94,41 @@
 
         $scope.doReply = function(action) {
             $rootScope.$broadcast("reply.action", {action: action});
+        };
+
+        main.showStudentMenu = function() {
+            var index = $scope.tabbar.getActiveTabIndex();
+            if(index === 2 || index === 3) {
+                return false;
+            }
+            return true;
+        };
+
+        main.studentMenu = function() {
+            if(main.showStudentMenu() === false) {
+                return;
+            }
+            var students = storageService.getStudents();
+            var currentStudent = storageService.getSelectedStudent();
+            main.students = _.without(students, _.findWhere(students, {studentID: currentStudent.studentID}));
+
+            if($scope.studentMenu._element[0].visible === false) {
+                $scope.studentMenu.show('.student-menu-popover');
+            }
+        };
+
+        main.selectStudent = function(student) {
+            storageService.setSelectedStudentId(student.studentID);
+
+            dataService.clearCache();
+            $scope.studentMenu.hide();
+            var message = gettextCatalog.getString("Switching to {}");
+            message = message.replace("{}", student.name);
+            statusService.showMessage(message);
+            dataService.load().then(function() {
+                statusService.hideWait(1000);
+                $rootScope.$broadcast("refresh.all");
+            });
         };
 
         $scope.$on('filter.reset', function(event, data) {
