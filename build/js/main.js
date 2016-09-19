@@ -12,7 +12,9 @@
         var main = this;
 
         main.isLoaded = false;
-        main.students = [];
+        var students = storageService.getStudents();
+        var currentStudent = storageService.getSelectedStudent();
+        main.students = _.without(students, _.findWhere(students, {studentID: currentStudent.studentID}));
 
         StatusBar.overlaysWebView(true);
         StatusBar.styleLightContent();
