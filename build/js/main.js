@@ -12,9 +12,8 @@
         var main = this;
 
         main.isLoaded = false;
-        var students = storageService.getStudents();
-        var currentStudent = storageService.getSelectedStudent();
-        main.students = _.without(students, _.findWhere(students, {studentID: currentStudent.studentID}));
+
+        loadStudents();
 
         StatusBar.overlaysWebView(true);
         StatusBar.styleLightContent();
@@ -110,14 +109,19 @@
             if(main.showStudentMenu() === false) {
                 return;
             }
-            var students = storageService.getStudents();
-            var currentStudent = storageService.getSelectedStudent();
-            main.students = _.without(students, _.findWhere(students, {studentID: currentStudent.studentID}));
+
+            loadStudents();
 
             if($scope.studentMenu._element[0].visible === false) {
                 $scope.studentMenu.show('.student-menu-popover');
             }
         };
+
+        function loadStudents() {
+            var students = storageService.getStudents();
+            var currentStudent = storageService.getSelectedStudent();
+            main.students = _.without(students, _.findWhere(students, {studentID: currentStudent.studentID}));
+        }
 
         main.selectStudent = function(student) {
             storageService.setSelectedStudentId(student.studentID);
@@ -142,6 +146,9 @@
                 main.currentStudent = storageService.getSelectedStudent();
                 setupCurrentStudent();
             }
+
+            loadStudents();
+
             main.getMailCount();
             main.getNewsCount();
         });
