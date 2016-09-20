@@ -104,6 +104,21 @@
 .current-student .popover__content {
     max-height: 350px !important;
     min-height: 50px !important;
+    top: 20px !important;
+}
+
+.current-student .popover__content {
+    max-height: 350px !important;
+    min-height: 50px !important;
+    top: 20px !important;
+}
+
+.current-student.ios .popover__content {
+    top: 10px;
+}
+
+.current-student.ios .popover__arrow {
+    top: 20px;
 }
 
 .student-display {
@@ -113,11 +128,11 @@
 }
 
 .student-display.menu {
-    top: -4px;
+    top: -5px;
 }
 
 .student-display .zmdi-caret-down {
-    margin-left: 4px;
+    margin-left: 3px;
 }
 
 .input-wide {

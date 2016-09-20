@@ -34,26 +34,6 @@
     padding: 10px 0;
 }
 
-.menu-popover {
-    position: absolute;
-    top: 64px;
-    left: 90px;
-    right: 90px;
-    height: 2px;
-}
-
-.popover__content--material {
-    top: 55px !important;
-    left: 60px !important;
-}
-.popover__arrow {
-    left: 50% !important;
-}
-
-.popover-mask--material {
-    background-color: rgba(128, 128, 128,0.2) !important;
-}
-
 .loopmail-content {
     margin: 20px 30px;
     background-color: white;
@@ -147,4 +127,27 @@
 .zmdi-caret-down {
     position: relative;
     top: 5px;
+}
+
+.menu-popover {
+    position: absolute;
+    top: 64px;
+    left: 90px;
+    right: 90px;
+    height: 2px;
+}
+
+.loopmail-menu.ios.popover {
+    top: 80px !important;
+}
+
+.loopmail-menu.ios .popover__content {
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loopmail-menu.ios .popover__arrow {
+    left: 50% !important;
 }
