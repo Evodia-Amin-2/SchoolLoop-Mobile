@@ -103,3 +103,8 @@ page--material .link {
     opacity: 1;
     background-color: rgba(200, 200, 200, 0.3) !important;
 }
+
+.popover__content .list__item--material {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #e0e0e0;
+}
