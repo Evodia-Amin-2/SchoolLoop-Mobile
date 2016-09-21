@@ -8,7 +8,7 @@
             'CourseColors', CourseDetailController])
         .controller('CourseAsgnController', ['$rootScope', '$scope', '$timeout', 'Utils', 'DataService', 'DataType',
             'CourseColors', CourseAsgnController])
-        .controller('CourseAsgnDetailController', ['$scope', '$window', '$sce', '$filter', 'DataService', 'StatusService',
+        .controller('CourseAsgnDetailController', ['$scope', '$window', '$sce', '$filter', '$timeout', 'DataService', 'StatusService',
             'StorageService', 'Utils', 'CourseColors', 'gettextCatalog', CourseAsgnDetailController])
     ;
 
@@ -16,6 +16,8 @@
         var courseCtrl = this;
 
         navigator.analytics.sendAppView('Courses');
+
+        utils.setStatusBar("#009688");
 
         courseCtrl.courses = dataService.list(DataType.COURSE);
 
@@ -58,6 +60,7 @@
 
         $scope.$on("refresh.all", function() {
             courseCtrl.courses = dataService.list(DataType.COURSE);
+            utils.resetTab($scope.courseNavigator, "courses.html");
         });
 
         $scope.$on('notify.assignment grade update', function(event, data) {
@@ -93,8 +96,7 @@
         $scope.courseNavigator.on("prepop", function() {
             var pages = $scope.courseNavigator.pages;
             if(pages.length === 2) {
-                StatusBar.backgroundColorByHexString("#009688");
-                StatusBar.show();
+                utils.setStatusBar("#009688");
             }
         });
 
@@ -115,8 +117,7 @@
         courseDetail.progress = $scope.courseNavigator.topPage.pushedOptions.progress;
 
         var periodIndex = courseDetail.course.period % CourseColors.length;
-        StatusBar.backgroundColorByHexString(CourseColors[periodIndex]);
-        StatusBar.show();
+        utils.setStatusBar(CourseColors[periodIndex]);
 
         courseDetail.zeroCount = 0;
         courseDetail.courseInfo = false;
@@ -132,6 +133,10 @@
             return _.isUndefined(courseDetail.progress.grade) === false &&
                 utils.isNull(courseDetail.progress.grade) === false &&
                 courseDetail.progress.grade.length > 0;
+        };
+
+        courseDetail.gradeHidden = function() {
+            return courseDetail.progress.grade === "hidden";
         };
 
         courseDetail.getScore = function() {
@@ -178,9 +183,9 @@
                         $scope.courseNavigator.pages[1].backButton.style.display = "block";
                     });
                 }
+
                 var periodIndex = courseDetail.course.period % CourseColors.length;
-                StatusBar.backgroundColorByHexString(CourseColors[periodIndex]);
-                StatusBar.show();
+                utils.setStatusBar(CourseColors[periodIndex]);
             }
         });
 
@@ -336,8 +341,7 @@
         loadAssignments();
 
         var periodIndex = courseAsgn.course.period % CourseColors.length;
-        StatusBar.backgroundColorByHexString(CourseColors[periodIndex]);
-        StatusBar.show();
+        utils.setStatusBar(CourseColors[periodIndex]);
 
         courseAsgn.filterList = function() {
             $scope.filterModal.show();
@@ -421,7 +425,7 @@
         }
     }
 
-    function CourseAsgnDetailController($scope, $window, $sce, $filter, dataService, statusService, storageService, utils, CourseColors, gettextCatalog) {
+    function CourseAsgnDetailController($scope, $window, $sce, $filter, $timeout, dataService, statusService, storageService, utils, CourseColors, gettextCatalog) {
         var assignDetail = this;
 
         assignDetail.assignment = undefined;
@@ -431,8 +435,7 @@
 
         var period = assignDetail.course.period;
         var periodIndex = period % CourseColors.length;
-        StatusBar.backgroundColorByHexString(CourseColors[periodIndex]);
-        StatusBar.show();
+        utils.setStatusBar(CourseColors[periodIndex]);
 
         var assignmentId = assignDetail.grade.assignment.systemID || assignDetail.assignment.systemID;
         dataService.getAssignment(assignmentId).then(function(response) {

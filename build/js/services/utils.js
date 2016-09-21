@@ -54,6 +54,12 @@
                         navigator.resetToPage(page);
                     });
                 }
+            },
+            setStatusBar: function(color) {
+                $timeout(function () {
+                    StatusBar.backgroundColorByHexString(color);
+                    StatusBar.show();
+                }, 100);
             }
         };
         return utils;

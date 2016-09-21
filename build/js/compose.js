@@ -8,8 +8,7 @@
     function ComposeController($scope, $q, $timeout, dataService, loopmailService, utils, gettextCatalog) {
         var page = this;
 
-        StatusBar.backgroundColorByHexString("#009688");
-        StatusBar.show();
+        utils.setStatusBar("#009688");
 
         page.toList = [];
         page.ccList = [];

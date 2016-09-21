@@ -32,6 +32,7 @@
 
         $scope.$on("refresh.all", function() {
             newsCtrl.news = dataService.list(DataType.NEWS);
+            utils.resetTab($scope.newsNavigator, "news.html");
         });
 
 

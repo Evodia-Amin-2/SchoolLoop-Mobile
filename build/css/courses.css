@@ -41,7 +41,7 @@
 }
 
 .progress-report-label {
-    width: 100px;
+    width: 70px;
     color: #999;
 }
 
@@ -64,6 +64,11 @@
 
 .course-info-score {
     color: #777;
+}
+
+.grade-info-icon {
+    top: -8px;
+    position: relative;
 }
 
 .course-detail {

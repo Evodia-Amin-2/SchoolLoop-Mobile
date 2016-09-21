@@ -2,14 +2,13 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('ReplyController', ['$scope', '$q', '$filter', '$sce', 'DataService', 'StorageService', 'LoopmailService', 'gettextCatalog', ReplyController])
+        .controller('ReplyController', ['$scope', '$q', '$filter', '$sce', 'DataService', 'StorageService', 'LoopmailService', 'Utils', 'gettextCatalog', ReplyController])
         ;
 
-        function ReplyController($scope, $q, $filter, $sce, dataService, storageService, loopmailService, gettextCatalog) {
+        function ReplyController($scope, $q, $filter, $sce, dataService, storageService, loopmailService, utils, gettextCatalog) {
             var page = this;
 
-            StatusBar.backgroundColorByHexString("#009688");
-            StatusBar.show();
+            utils.setStatusBar("#009688");
 
             var action = $scope.mainNavigator.topPage.pushedOptions.action;
             var loopmail = $scope.mainNavigator.topPage.pushedOptions.loopmail;

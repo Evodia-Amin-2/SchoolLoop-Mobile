@@ -47,8 +47,7 @@
 
         var tabbar = document.querySelector("ons-tabbar");
         tabbar.addEventListener("prechange", function() {
-            StatusBar.backgroundColorByHexString("#009688");
-            StatusBar.show();
+            utils.setStatusBar("#009688");
         });
 
         if(_.isUndefined(main.currentStudent) === false) {

@@ -68,11 +68,11 @@
 
         $scope.$on("refresh.all", function() {
             initialize();
+            utils.resetTab($scope.calendarNavigator, "calendar.html");
         });
 
         $scope.calendarNavigator.on("prepop", function() {
-            StatusBar.backgroundColorByHexString("#009688");
-            StatusBar.show();
+            utils.setStatusBar("#009688");
         });
 
         var tabbar = document.querySelector("ons-tabbar");
@@ -87,6 +87,8 @@
         function initialize() {
             var events = dataService.list(DataType.CALENDAR);
             calendarCtrl.events = groupEvents(events, $scope);
+
+            utils.setStatusBar("#009688");
         }
 
         function groupEvents(data) {

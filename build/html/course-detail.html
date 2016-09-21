@@ -20,7 +20,8 @@
             <ons-col width="175px" ng-if="courseDetail.progress.grades.length > 0">
                 <div class="grade-info" ng-show="courseDetail.hasGrade() === true" tappable
                                 ng-click="courseNavigator.pushPage('course-info.html', {animation: 'slide', progress: courseDetail.progress, course: courseDetail.course})">
-                    <div class="grade" ng-show="courseDetail.hasGrade() === true">{{courseDetail.getGrade()}}</div>
+                    <div class="grade" ng-show="courseDetail.hasGrade() === true && courseDetail.gradeHidden() === false">{{courseDetail.getGrade()}}</div>
+                    <div class="grade" ng-show="courseDetail.hasGrade() === true && courseDetail.gradeHidden() === true"><ons-icon class="grade-info-icon" icon="ion-information" size="36px"></ons-icon></div>
                     <div class="score">{{courseDetail.getScore()}}<ons-icon class="nav-indicator" icon="ion-chevron-right" size="12px"></ons-icon></div>
                 </div>
                 <div class="grade-info" ng-show="courseDetail.zeroCount > 0" tappable

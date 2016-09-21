@@ -53,6 +53,7 @@
 
         $scope.$on("refresh.all", function() {
             initialize();
+            utils.resetTab($scope.asgnNavigator, "assignments.html");
         });
 
         $scope.$on('notify.test tomorrow', function(event, data) {
@@ -98,8 +99,7 @@
         }
 
         $scope.asgnNavigator.on("prepop", function() {
-            StatusBar.backgroundColorByHexString("#009688");
-            StatusBar.show();
+            utils.setStatusBar("#009688");
         });
 
         var tabbar = document.querySelector("ons-tabbar");
@@ -119,6 +119,8 @@
 
             getTimeZone(assignments);
             assignCtrl.assignments = groupAssignments(assignments, $scope);
+
+            utils.setStatusBar("#009688");
         }
     }
 
@@ -129,8 +131,8 @@
 
         var period = assignDetail.assignment.periodNumber;
         var periodIndex = period % CourseColors.length;
-        StatusBar.backgroundColorByHexString(CourseColors[periodIndex]);
-        StatusBar.show();
+
+        utils.setStatusBar(CourseColors[periodIndex]);
 
         assignDetail.courseColor = function() {
             return "period-" + periodIndex;
@@ -188,8 +190,7 @@
                 }
                 var period = assignDetail.assignment.periodNumber;
                 var periodIndex = period % CourseColors.length;
-                StatusBar.backgroundColorByHexString(CourseColors[periodIndex]);
-                StatusBar.show();
+                utils.setStatusBar(CourseColors[periodIndex]);
             }
         });
     }

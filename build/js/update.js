@@ -2,16 +2,15 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('UpdateController', ['StatusService', 'config', UpdateController])
+        .controller('UpdateController', ['StatusService', 'Utils', 'config', UpdateController])
         ;
 
-        function UpdateController(statusService, config) {
+        function UpdateController(statusService, utils, config) {
             var page = this;
 
             page.updating = false;
 
-            StatusBar.backgroundColorByHexString("#009688");
-            StatusBar.show();
+            utils.setStatusBar("#009688");
 
             statusService.hideNoWait();
             navigator.splashscreen.hide();

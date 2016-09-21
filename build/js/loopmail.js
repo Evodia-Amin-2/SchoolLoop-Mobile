@@ -5,7 +5,7 @@
         .controller('LoopMailController', ['$rootScope', '$scope', '$timeout', 'DataService', 'DataType', 'StatusService',
             'LoopmailService', 'StorageService', 'gettextCatalog', 'Utils', LoopMailController])
         .controller('LoopMailDetailController', ['$rootScope', '$scope', '$window', '$sce', '$filter', '$timeout',
-            'StorageService', 'DataService', 'DataType', 'StatusService', 'gettextCatalog', LoopMailDetailController])
+            'StorageService', 'DataService', 'DataType', 'StatusService', 'gettextCatalog', 'Utils', LoopMailDetailController])
     ;
 
     function LoopMailController($rootScope, $scope, $timeout, dataService, DataType, statusService,
@@ -138,6 +138,7 @@
 
         $scope.$on("refresh.all", function() {
             loadLoopMail();
+            resetTab();
         });
 
         var tabbar = document.querySelector("ons-tabbar");
@@ -151,8 +152,7 @@
 
         function resetTab() {
             utils.resetTab($scope.loopmailNavigator, "loopmail.html");
-            StatusBar.backgroundColorByHexString("#009688");
-            StatusBar.show();
+            utils.setStatusBar("#009688");
         }
 
         $scope.$on("loopmail.sent", function() {
@@ -223,7 +223,7 @@
     }
 
     function LoopMailDetailController($rootScope, $scope, $window, $sce, $filter, $timeout, storageService,
-                                      dataService, DataType, statusService, gettextCatalog) {
+                                      dataService, DataType, statusService, gettextCatalog, utils) {
         var mailDetail = this;
 
         var loopmail = $scope.loopmailNavigator.topPage.pushedOptions.loopmail;
@@ -291,8 +291,7 @@
                     });
                 }
             }
-            StatusBar.backgroundColorByHexString("#009688");
-            StatusBar.show();
+            utils.setStatusBar("#009688");
         });
 
         $scope.loopmailNavigator.on("prepop", function() {

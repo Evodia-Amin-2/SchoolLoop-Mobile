@@ -16,7 +16,7 @@
             <ons-col width="175px">
                 <div class="course-info" ng-show="courseDetail.hasGrade() === true || courseDetail.hasScore() === true">
                     <div class="course-info-score" ng-show="courseDetail.hasScore() === true">{{courseDetail.getScore()}}</div>
-                    <div class="course-info-grade" ng-show="courseDetail.hasGrade() === true">{{courseDetail.getGrade()}}</div>
+                    <div class="course-info-grade" ng-show="courseDetail.hasGrade() === true  && courseDetail.gradeHidden() === false">{{courseDetail.getGrade()}}</div>
                 </div>
             </ons-col>
         </ons-row>
