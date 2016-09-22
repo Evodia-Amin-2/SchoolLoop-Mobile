@@ -37,6 +37,11 @@
         "jquery.flot.resize.js"
       ]
     },
+    "moment": {
+      "main": [
+        "./min/moment-with-locales.js"
+      ]
+    },
     "onsenui": {
       "main": [
         "./js/onsenui.js"

@@ -62,9 +62,9 @@
             }
         });
 
-        //gettextCatalog.setCurrentLanguage('es');
-        //gettextCatalog.debug = (config.id === "mirror");
-        //storageService.setLanguageCode('es');
+        // gettextCatalog.setCurrentLanguage('zh');
+        // storageService.setLanguageCode('zh');
+        // moment.locale('zh-cn');
 
         if(navigator.globalization) {
             navigator.globalization.getPreferredLanguage(
@@ -73,7 +73,10 @@
                     console.log('language: ' + language.value + " code: " + code);
                     if(code !== 'en') {
                         gettextCatalog.setCurrentLanguage(code);
-                        gettextCatalog.debug = (config.id === "mirror");
+                        if(code === 'zh') {
+                            code = 'zh-cn';
+                        }
+                        moment.locale(code);
                     }
                     storageService.setLanguageCode(code);
                 },
