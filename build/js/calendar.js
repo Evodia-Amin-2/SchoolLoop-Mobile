@@ -15,7 +15,8 @@
         var calendarCtrl = this;
 
         var today = moment();
-        calendarCtrl.title = today.format("MMMM");
+        var months = moment.months();
+        calendarCtrl.title = months[month];
 
         initialize();
 
