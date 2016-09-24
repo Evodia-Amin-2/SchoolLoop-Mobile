@@ -56,9 +56,8 @@
                 function(response) {
                     if(String(response.data).indexOf("SUCCESS") === 0) {
                         dataService.clearCache();
-                        if(_.isUndefined(menu.school) === false) {
-                            storageService.clearPassword(menu.school.domainName);
-                        }
+                        var url = storageService.getDefaultDomain().school.domainName;
+                        storageService.clearPassword(url);
 
                         notificationService.unregister();
 

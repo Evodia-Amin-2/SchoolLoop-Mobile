@@ -55,7 +55,7 @@
         }
 
         function logout() {
-            var url = storageService.getSelectedSchool().domainName;
+            var url = storageService.getDefaultDomain().school.domainName;
             var endpoint = "https://" + url + "/mapi/logout";
             return $http.get(endpoint);
         }

@@ -73,8 +73,9 @@
             $scope.loginNavigator.pushPage("school-search.html", {animation: 'slide-up', searchCallback: page.selectSchool});
         };
 
-        var school = storageService.getSelectedSchool();
-        if(isSchoolDefined(school) === true) {
+        domain = storageService.getDefaultDomain();
+        if(_.isUndefined(domain) === false && isSchoolDefined(domain.school) === true) {
+            var school = domain.school;
             page.selectedSchool = school;
             page.schoolName = school.name;
         }
