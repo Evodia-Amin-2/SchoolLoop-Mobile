@@ -119,7 +119,9 @@
         function loadStudents() {
             var students = storageService.getStudents();
             var currentStudent = storageService.getSelectedStudent();
-            main.students = _.without(students, _.findWhere(students, {studentID: currentStudent.studentID}));
+            if(_.isUndefined(currentStudent) === false) {
+                main.students = _.without(students, _.findWhere(students, {studentID: currentStudent.studentID}));
+            }
         }
 
         main.selectStudent = function(student) {

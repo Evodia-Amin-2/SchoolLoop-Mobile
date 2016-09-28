@@ -20,8 +20,16 @@
 
         var today = moment();
         var end = moment();
+        var min = moment();
+        min.endOf('day');
+        min.add(2, 'w');
+
         today.startOf('day');
         end.endOf('month');
+
+        if(end.isBefore(min)) {
+            end = min;
+        }
 
         var defaultParams = {};
         defaultParams[DataType.LOOPMAIL] = {"folderID": folderId, "start": 0, "max": 20};
