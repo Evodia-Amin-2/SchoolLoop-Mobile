@@ -22,7 +22,7 @@
         var end = moment();
         var min = moment();
         min.endOf('day');
-        min.add(2, 'w');
+        min.add(1, 'w');
 
         today.startOf('day');
         end.endOf('month');
