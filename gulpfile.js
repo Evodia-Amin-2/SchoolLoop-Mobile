@@ -277,8 +277,8 @@ gulp.task('browser-tmpl', function () {
 gulp.task('lib-js', function () {
     return gulp.src([
         'bower_components/angular/angular.min.js',
-        'bower_components/onsenui/js/onsenui.js',
-        'bower_components/onsenui/js/angular-onsenui.js'
+        'bower_components/onsenui/js/onsenui.min.js',
+        'bower_components/onsenui/js/angular-onsenui.min.js'
     ])
         .pipe(gulp.dest(destPath + '/lib'))
         .pipe(gulp.dest(browserPath + '/lib'));

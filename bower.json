@@ -30,6 +30,12 @@
     "jquery": {
       "main": "./dist/jquery.min.js"
     },
+    "angular-route": {
+      "main": "./angular-route.min.js"
+    },
+    "angular-sanitize": {
+      "main": "./angular-sanitize.min.js"
+    },
     "flot": {
       "main": [
         "jquery.flot.js",
@@ -39,7 +45,7 @@
     },
     "moment": {
       "main": [
-        "./min/moment-with-locales.js"
+        "./min/moment-with-locales.min.js"
       ]
     },
     "onsenui": {
