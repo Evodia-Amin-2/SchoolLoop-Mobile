@@ -221,7 +221,7 @@
                 var params = {
                     'new': password
                 };
-                return doPost($q, $http, "reset", params, storageService, service);
+                return doPost($q, $http, "reset", params, storageService, service, false);
             },
             sendForgetEmail: function(params) {
                 return doGet($q, $http, config, "forgot", params, defaultParams, storageService, service);
@@ -339,12 +339,15 @@
         return deferred.promise;
     }
 
-    function doPost($q, $http, action, params, storageService, dataService) {
+    function doPost($q, $http, action, params, storageService, dataService, hashed) {
 
         var url = storageService.getSelectedSchool().domainName;
         var domain = storageService.getDomain(url);
         if(_.isUndefined(domain) === false && _.isNull(domain) === false) {
-            dataService.setupAuthHeaders(domain.user.userName, domain.user.hashedPassword, params, true);
+            if(_.isUndefined(hashed) === true) {
+                hashed = true;
+            }
+            dataService.setupAuthHeaders(domain.user.userName, domain.user.hashedPassword, params, hashed);
         }
 
         var endpoint = "https://" + url + "/mapi/" + action;
