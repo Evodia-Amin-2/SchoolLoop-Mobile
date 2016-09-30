@@ -252,6 +252,9 @@
                 if(hashed === true) {
                     $http.defaults.headers.common['SL-HASH'] = 'true';
                     $http.defaults.headers.common['SL-UUID'] = device.uuid;
+                } else {
+                    delete $http.defaults.headers.common['SL-HASH'];
+                    delete $http.defaults.headers.common['SL-UUID'];
                 }
             }
         };

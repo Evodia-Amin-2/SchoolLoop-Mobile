@@ -60,7 +60,7 @@
                                 }
                             } else {
                                 var school = storageService.getSelectedSchool();
-                                storageService.addDomain(school, data, page.password);
+                                storageService.addDomain(school, data, null);
                                 storageService.addStudents(school, data.students, true);
                                 page.inReset = false;
                                 $location.path('/main');
