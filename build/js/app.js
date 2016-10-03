@@ -132,7 +132,6 @@
         document.addEventListener('chcp_assetsInstallationError', function(eventData) { chcpCallback(eventData, 'chcp_assetsInstallationError'); }, false);
 
         function chcpCallback(eventData, eventType, action) {
-            console.log("eventType: " + eventType + " data: " + JSON.stringify(eventData));
             if (eventData.details && eventData.details.error) {
                 var error = eventData.details.error;
                 if(error) {
@@ -140,6 +139,7 @@
                 }
             }
             if(action) {
+                console.log('CHCP: Broadcast action: ' + action);
                 $rootScope.$broadcast(action);
             }
 

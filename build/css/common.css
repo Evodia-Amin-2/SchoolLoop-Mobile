@@ -215,3 +215,6 @@ blockquote cite {
     margin-top: -2px;
 }
 
+svg {
+    pointer-events: none;
+}
