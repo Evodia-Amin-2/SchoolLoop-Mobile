@@ -135,11 +135,11 @@
             if (eventData.details && eventData.details.error) {
                 var error = eventData.details.error;
                 if(error) {
-                    console.log('CHCP: Error with code: ' + JSON.stringify(error));
+                    console.log('CHCP: Error with code: ' + eventType + " -> " + JSON.stringify(error));
                 }
             }
             if(action) {
-                console.log('CHCP: Broadcast action: ' + action);
+                console.log('CHCP: Broadcast action: ' + eventType + " -> " + action);
                 $rootScope.$broadcast(action);
             }
 
