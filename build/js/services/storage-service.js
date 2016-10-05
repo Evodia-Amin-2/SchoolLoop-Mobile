@@ -35,6 +35,10 @@
             setPassword: function(domainName, user, password) {
                 var domainMap = loadDomainMap();
                 var domain = domainMap[domainName];
+                if(_.isUndefined(domain) === true) {
+                    domain = {};
+                    domain.user = {};
+                }
                 if(user.userName !== domain.user.userName || _.isUndefined(domain.user.userID) === true) {
                     domain.encrypted = undefined;
                     domain.user = user;
