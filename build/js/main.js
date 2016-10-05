@@ -44,6 +44,7 @@
 
         updateService.start();
         loopmailService.start();
+        checkForUpdate();
 
         var tabbar = document.querySelector("ons-tabbar");
         tabbar.addEventListener("prechange", function() {
@@ -155,6 +156,16 @@
         });
 
         $rootScope.$on('hardware.resume', function() {
+            checkForUpdate();
+        });
+
+        var retryInterval = 15000;
+
+        $rootScope.$on('update.ready', function() {
+            updateReady();
+        });
+
+        function checkForUpdate() {
             if(storageService.isLoggedIn() === true) {
                 var domain = storageService.getDefaultDomain() || {};
                 var school = domain.school || {};
@@ -163,9 +174,9 @@
                 }
                 window.chcp.fetchUpdate();
             }
-        });
+        }
 
-        $rootScope.$on('update.ready', function() {
+        function updateReady() {
             if(storageService.isLoggedIn() === true) {
                 var domain = storageService.getDefaultDomain() || {};
                 var school = domain.school || {};
@@ -173,8 +184,13 @@
                     return;
                 }
                 $location.path("/update");
+            } else {
+                if(retryInterval < 500000) {
+                    $timeout(updateReady, retryInterval);
+                    retryInterval = retryInterval * 2;
+                }
             }
-        });
+        }
 
     }
 })();

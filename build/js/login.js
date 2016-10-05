@@ -112,7 +112,7 @@
                         if(data.isUnverifiedParent === 'true') {
                             storageService.clearPassword(page.selectedSchool.domainName);
                             page.password = "";
-                            $scope.unverified('Parent');
+                            page.unverified('Parent');
                         } else {
                             storageService.addStudents(page.selectedSchool, data.students, true);
                             if (data.acceptedAgreement === 'false') {
