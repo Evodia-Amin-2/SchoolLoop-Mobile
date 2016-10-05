@@ -14,11 +14,11 @@ msgstr ""
 
 #: update.html:5
 msgid "A new version is ready to be installed."
-msgstr ""
+msgstr "Una nueva versión está lista para ser instalada."
 
 #: agreement-en.html:549 agreement-es.html:560 agreement-zh.html:289
 msgid "Accept"
-msgstr ""
+msgstr "Aceptar"
 
 #: add-student.html:10 add-student.html:63
 msgid "Add"
@@ -34,7 +34,7 @@ msgstr "Agregue un estudiante"
 
 #: tabbar.html:72
 msgid "All Assignments"
-msgstr ""
+msgstr "Todas las tareas"
 
 #: loopmail.js:161 loopmail.js:204 loopmail.js:45
 msgid "All Mail Delivered"
@@ -50,18 +50,18 @@ msgstr "Tareas"
 
 #: invalid.html:4 no-schedule.html:4 not-started.html:8 unverified.html:4
 msgid "Attention"
-msgstr ""
+msgstr "A la atención de"
 
 #: assignment-detail.html:3 calendar-detail.html:3
 #: course-assignment-detail.html:3 course-assignments.html:3
 #: course-detail.html:3 course-info.html:3 loopmail-detail.html:3
 #: news-detail.html:3
 msgid "Back"
-msgstr ""
+msgstr "Retroceder"
 
 #: compose.js:21 help.js:23 reply.js:24
 msgid "CC"
-msgstr ""
+msgstr "Con copia a"
 
 #: loopmail.js:333
 msgid "CC:"
@@ -78,7 +78,7 @@ msgstr "Puntajes por categoría"
 
 #: add-student.html:19
 msgid "Change"
-msgstr ""
+msgstr "Cambiar"
 
 #: forgot.js:50 invalid.html:14 no-schedule.html:18 not-started.html:18
 #: services/loopmail-service.js:84 unverified.html:16
@@ -88,10 +88,12 @@ msgstr "Cerrar"
 #: services/loopmail-service.js:105
 msgid "Communication Privileges Suspended.  Contact an Adminstrator"
 msgstr ""
+"Los privilegios de comunicación se han suspendido. Comuníquese con un "
+"administrador"
 
 #: loopmail.js:96
 msgid "Confirm"
-msgstr ""
+msgstr "Confirmar"
 
 #: reset.js:13
 msgid "Confirm Password"
@@ -99,11 +101,11 @@ msgstr "Confirme su contraseña"
 
 #: help.html:8 menu.html:38
 msgid "Contact Help"
-msgstr ""
+msgstr "Comuníquese para buscar ayuda"
 
 #: calendar-detail.html:10
 msgid "Contact:"
-msgstr ""
+msgstr "Comuníquese con:"
 
 #: courses.html:16
 msgid "Courses"
@@ -111,20 +113,20 @@ msgstr "Curso"
 
 #: agreement-en.html:550 agreement-es.html:561 agreement-zh.html:290
 msgid "Decline"
-msgstr ""
+msgstr "Declinar"
 
 #: help.js:25
 msgid "Details"
-msgstr ""
+msgstr "Detalles"
 
 #: login.html:27
 msgid "Don't have an account?"
-msgstr ""
+msgstr "¿No tiene una cuenta?"
 
 #: assignment-detail.html:25 course-assignment-detail.html:35
 #: course-assignments.html:21 course-detail.html:67
 msgid "Due:"
-msgstr ""
+msgstr "Fecha de entrega:"
 
 #: help.js:55
 msgid "Email required"
@@ -136,23 +138,23 @@ msgstr "No se pudo enviar"
 
 #: change-school.html:8 school-search.html:8
 msgid "Find School"
-msgstr ""
+msgstr "Encontrar la escuela"
 
 #: add-student.js:19
 msgid "First Letter of First Name"
-msgstr ""
+msgstr "Primera letra del nombre"
 
 #: add-student.js:111
 msgid "First Letter of First Name Required!"
-msgstr ""
+msgstr "¡Se requiere la primera letra del nombre!"
 
 #: add-student.js:20
 msgid "First Letter of Last Name"
-msgstr ""
+msgstr "Primera letra del apellido"
 
 #: add-student.js:114
 msgid "First Letter of Last Name Required!"
-msgstr ""
+msgstr "¡Se requiere la primera letra del apellido!"
 
 #: unverified.html:9
 msgid ""
@@ -163,6 +165,9 @@ msgid ""
 "            If you have questions, please contact your school for approval "
 "policies and procedures."
 msgstr ""
+"Para la protección de su hijo, las cuentas de los padres que quieren ver las "
+"calificaciones de sus hijos, tienen que ser aprobadas por un miembro del "
+"personal de la escuela."
 
 #: forgot.js:29
 msgid "Forgot Password"
@@ -186,7 +191,7 @@ msgstr "Escala de calificaciones"
 
 #: tabbar.html:88
 msgid "Graded Assignments"
-msgstr ""
+msgstr "Tareas calificadas"
 
 #: help.js:38
 msgid "Help ticket has been submitted"
@@ -194,7 +199,7 @@ msgstr "El boleto para recibir ayuda se ha admitido"
 
 #: help.html:16
 msgid "How can we help?"
-msgstr ""
+msgstr "¿Cómo le podemos ayudar?"
 
 #: forgot.html:16
 msgid ""
@@ -220,12 +225,12 @@ msgstr "Credenciales de ingreso no válidas"
 
 #: course-detail.html:15
 msgid "Last Progress Report:"
-msgstr ""
+msgstr "Último informe de calificaciones:"
 
 #: assignments.html:7 calendar.html:7 courses.html:7 loopmail.html:18
 #: news.html:7
 msgid "Loading data..."
-msgstr ""
+msgstr "Cargando datos..."
 
 #: services/status-service.js:18
 msgid "Loading..."
@@ -233,11 +238,11 @@ msgstr "Cargando…"
 
 #: calendar-detail.html:9
 msgid "Location:"
-msgstr ""
+msgstr "Lugar:"
 
 #: login.html:26
 msgid "Log In"
-msgstr ""
+msgstr "Iniciar sesión"
 
 #: services/status-service.js:23
 msgid "Logging in..."
@@ -265,15 +270,15 @@ msgstr "Texto del mensaje"
 
 #: compose.js:54 reply.js:88
 msgid "Must include a recipient"
-msgstr ""
+msgstr "Debe incluir un destinatario"
 
 #: help.js:21
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #: compose.html:8
 msgid "New Loopmail"
-msgstr ""
+msgstr "LoopMail nuevo"
 
 #: reset.js:12
 msgid "New Password"
@@ -297,7 +302,7 @@ msgstr "Actualmente no hay noticias"
 
 #: calendar.html:23
 msgid "No Events Currently"
-msgstr ""
+msgstr "Actualmente no hay eventos"
 
 #: loopmail.js:220
 msgid "No Mail Currently"
@@ -330,7 +335,7 @@ msgstr "No enviado"
 #: assignment-detail.html:20 assignments.html:51
 #: course-assignment-detail.html:25 course-assignments.html:34
 msgid "PTS"
-msgstr ""
+msgstr "Puntos"
 
 #: change-school.js:144
 msgid "Parent needs to be verified"
@@ -378,7 +383,7 @@ msgstr "Privacidad"
 #: assignments.html:5 calendar.html:5 courses.html:5 loopmail.html:16
 #: news.html:5
 msgid "Pull down to refresh"
-msgstr ""
+msgstr "Tirar hacia abajo para actualizar"
 
 #: login.html:28
 msgid "Register"
@@ -387,7 +392,7 @@ msgstr "Regístrese"
 #: assignments.html:6 calendar.html:6 courses.html:6 loopmail.html:17
 #: news.html:6
 msgid "Release to refresh"
-msgstr ""
+msgstr "Soltar para actualizar"
 
 #: loopmail.js:97
 msgid "Remove"
@@ -395,7 +400,7 @@ msgstr "Remover"
 
 #: loopmail.js:99
 msgid "Remove the message from outgoing queue?"
-msgstr ""
+msgstr "¿Eliminar el mensaje de la fila de mensajes que salen?"
 
 #: reply.js:29 tabbar-teacher.html:42 tabbar.html:110
 msgid "Reply"
@@ -411,11 +416,11 @@ msgstr "Cambie la contraseña"
 
 #: change-school.js:27 login.js:19 school-search.js:19
 msgid "School Name"
-msgstr ""
+msgstr "¿Eliminar el mensaje de la fila de mensajes que salen?"
 
 #: login.js:180
 msgid "School Required!"
-msgstr ""
+msgstr "¡Se requiere una escuela!"
 
 #: course-info.html:33
 msgid "Score"
@@ -423,7 +428,7 @@ msgstr "Puntos"
 
 #: menu.html:50
 msgid "Security"
-msgstr ""
+msgstr "Seguridad"
 
 #: loopmail.js:22
 msgid "Sent"
@@ -431,7 +436,7 @@ msgstr "Enviados"
 
 #: reset.html:10
 msgid "Set"
-msgstr ""
+msgstr "Ajuste"
 
 #: reset.html:29 reset.html:8
 msgid "Set Password"
@@ -445,6 +450,8 @@ msgstr "Salida"
 msgid ""
 "Sorry. Account access will not be available until the first day of school."
 msgstr ""
+"Lo sentimos. Acceso a la cuenta no estará disponible hasta el primer día de "
+"clases."
 
 #: no-schedule.html:13
 msgid ""
@@ -462,15 +469,15 @@ msgstr "No se permiten espacios"
 
 #: add-student.js:18
 msgid "Student ID Number"
-msgstr ""
+msgstr "Número de identificación del estudiante"
 
 #: add-student.js:108
 msgid "Student Id Required!"
-msgstr ""
+msgstr "¡Se requiere el número de identificación del estudiante!"
 
 #: add-student.js:102
 msgid "Student not found"
-msgstr ""
+msgstr "No tenemos información respecto a este estudiante"
 
 #: compose.js:22 help.js:24 reply.js:25
 msgid "Subject"
@@ -486,7 +493,7 @@ msgstr "¡Éxito! Enviamos un LoopMail."
 
 #: update.html:8
 msgid "The application will automatically restart."
-msgstr ""
+msgstr "La aplicación se reiniciará automáticamente."
 
 #: add-student.html:48
 msgid "The following students will be added:"
@@ -533,11 +540,11 @@ msgstr "A:"
 
 #: services/utils.js:35
 msgid "Today"
-msgstr ""
+msgstr "Hoy"
 
 #: services/utils.js:38
 msgid "Tomorrow"
-msgstr ""
+msgstr "Mañana"
 
 #: forgot.js:48
 msgid "Unable to send email to that address. Please try again!"
@@ -547,11 +554,11 @@ msgstr ""
 
 #: tabbar.html:80
 msgid "Unscored Assignments"
-msgstr ""
+msgstr "Tareas no calificadas"
 
 #: update.html:13
 msgid "Update"
-msgstr ""
+msgstr "Actualizar"
 
 #: agreement-en.html:3 agreement-es.html:3 agreement-zh.html:3 menu.html:42
 msgid "User Agreement"
@@ -559,7 +566,7 @@ msgstr "Contrato Usuario"
 
 #: change-school.js:25 login.js:17
 msgid "User Name"
-msgstr ""
+msgstr "Nombre de usuario"
 
 #: course-info.html:66
 msgid "Value"
@@ -575,7 +582,7 @@ msgstr "Ver"
 
 #: course-detail.html:55
 msgid "View All Assignments"
-msgstr ""
+msgstr "Ver todas las tareas"
 
 #: course-info.html:32
 msgid "Weight"
@@ -587,11 +594,12 @@ msgstr "Debe incluir al menos un dígito"
 
 #: help.js:22
 msgid "Your Email Address"
-msgstr ""
+msgstr "Su correo electrónico"
 
 #: login.js:162
 msgid "Your access to this account has been blocked by a school administrator."
 msgstr ""
+"Su acceso a esta cuenta ha sido bloqueado por un administrador de la escuela."
 
 #: forgot.js:46 reset.js:52
 msgid ""
@@ -614,15 +622,15 @@ msgstr "Ceros"
 
 #: add-student.js:49
 msgid "{name1} and {name2} have been added"
-msgstr ""
+msgstr "{name1} y {name2} otros se han añadido"
 
 #: add-student.js:45
 msgid "{name} and {number} others have been added"
-msgstr ""
+msgstr "{name} y {number} otros se han añadido"
 
 #: add-student.js:53 add-student.js:82
 msgid "{name} has been added"
-msgstr ""
+msgstr "{name} se ha añadido"
 
 #~ msgid "{{adder.addedStudent.name}} has been added"
 #~ msgstr "{{adder.addedStudent.name}} ha sido agregado"

@@ -14,11 +14,11 @@ msgstr ""
 
 #: update.html:5
 msgid "A new version is ready to be installed."
-msgstr ""
+msgstr "新版手機程式現供下載。"
 
 #: agreement-en.html:549 agreement-es.html:560 agreement-zh.html:289
 msgid "Accept"
-msgstr ""
+msgstr "接受"
 
 #: add-student.html:10 add-student.html:63
 msgid "Add"
@@ -34,7 +34,7 @@ msgstr "加入學生"
 
 #: tabbar.html:72
 msgid "All Assignments"
-msgstr ""
+msgstr "所有功課"
 
 #: loopmail.js:161 loopmail.js:204 loopmail.js:45
 msgid "All Mail Delivered"
@@ -50,18 +50,18 @@ msgstr "作業"
 
 #: invalid.html:4 no-schedule.html:4 not-started.html:8 unverified.html:4
 msgid "Attention"
-msgstr ""
+msgstr "致："
 
 #: assignment-detail.html:3 calendar-detail.html:3
 #: course-assignment-detail.html:3 course-assignments.html:3
 #: course-detail.html:3 course-info.html:3 loopmail-detail.html:3
 #: news-detail.html:3
 msgid "Back"
-msgstr ""
+msgstr "返回"
 
 #: compose.js:21 help.js:23 reply.js:24
 msgid "CC"
-msgstr ""
+msgstr "抄送"
 
 #: loopmail.js:333
 msgid "CC:"
@@ -78,7 +78,7 @@ msgstr "類別得分"
 
 #: add-student.html:19
 msgid "Change"
-msgstr ""
+msgstr "更改"
 
 #: forgot.js:50 invalid.html:14 no-schedule.html:18 not-started.html:18
 #: services/loopmail-service.js:84 unverified.html:16
@@ -87,11 +87,11 @@ msgstr "關閉"
 
 #: services/loopmail-service.js:105
 msgid "Communication Privileges Suspended.  Contact an Adminstrator"
-msgstr ""
+msgstr "通訊特權被暫停，請聯絡行政人員。"
 
 #: loopmail.js:96
 msgid "Confirm"
-msgstr ""
+msgstr "確認"
 
 #: reset.js:13
 msgid "Confirm Password"
@@ -99,11 +99,11 @@ msgstr "確認密碼"
 
 #: help.html:8 menu.html:38
 msgid "Contact Help"
-msgstr ""
+msgstr "求助"
 
 #: calendar-detail.html:10
 msgid "Contact:"
-msgstr ""
+msgstr "聯繫人："
 
 #: courses.html:16
 msgid "Courses"
@@ -111,20 +111,20 @@ msgstr "科目"
 
 #: agreement-en.html:550 agreement-es.html:561 agreement-zh.html:290
 msgid "Decline"
-msgstr ""
+msgstr "不接受"
 
 #: help.js:25
 msgid "Details"
-msgstr ""
+msgstr "功課詳情"
 
 #: login.html:27
 msgid "Don't have an account?"
-msgstr ""
+msgstr "還沒開戶？"
 
 #: assignment-detail.html:25 course-assignment-detail.html:35
 #: course-assignments.html:21 course-detail.html:67
 msgid "Due:"
-msgstr ""
+msgstr "到期日期"
 
 #: help.js:55
 msgid "Email required"
@@ -136,23 +136,23 @@ msgstr "遞送失敗"
 
 #: change-school.html:8 school-search.html:8
 msgid "Find School"
-msgstr ""
+msgstr "尋找學校"
 
 #: add-student.js:19
 msgid "First Letter of First Name"
-msgstr ""
+msgstr "名字的首個字母"
 
 #: add-student.js:111
 msgid "First Letter of First Name Required!"
-msgstr ""
+msgstr "名字的首個字母（必須填寫）！"
 
 #: add-student.js:20
 msgid "First Letter of Last Name"
-msgstr ""
+msgstr "姓的首個字母"
 
 #: add-student.js:114
 msgid "First Letter of Last Name Required!"
-msgstr ""
+msgstr "姓的首個字母（必須填寫）！"
 
 #: unverified.html:9
 msgid ""
@@ -162,7 +162,7 @@ msgid ""
 "approved.\n"
 "            If you have questions, please contact your school for approval "
 "policies and procedures."
-msgstr ""
+msgstr "為了保護孩子的私隱權，家長賬戶必須得到學校職員核准方可查看孩子的成績。"
 
 #: forgot.js:29
 msgid "Forgot Password"
@@ -186,7 +186,7 @@ msgstr "成績級別 :"
 
 #: tabbar.html:88
 msgid "Graded Assignments"
-msgstr ""
+msgstr "已獲評分之功課"
 
 #: help.js:38
 msgid "Help ticket has been submitted"
@@ -194,7 +194,7 @@ msgstr "已發出技術援助要求"
 
 #: help.html:16
 msgid "How can we help?"
-msgstr ""
+msgstr "我們如何幫助你？"
 
 #: forgot.html:16
 msgid ""
@@ -219,12 +219,12 @@ msgstr "登入錯誤"
 
 #: course-detail.html:15
 msgid "Last Progress Report:"
-msgstr ""
+msgstr "前一進度報告："
 
 #: assignments.html:7 calendar.html:7 courses.html:7 loopmail.html:18
 #: news.html:7
 msgid "Loading data..."
-msgstr ""
+msgstr "正在下載數據…"
 
 #: services/status-service.js:18
 msgid "Loading..."
@@ -232,11 +232,11 @@ msgstr "加載中…"
 
 #: calendar-detail.html:9
 msgid "Location:"
-msgstr ""
+msgstr "地點："
 
 #: login.html:26
 msgid "Log In"
-msgstr ""
+msgstr "登入"
 
 #: services/status-service.js:23
 msgid "Logging in..."
@@ -264,15 +264,15 @@ msgstr "信息"
 
 #: compose.js:54 reply.js:88
 msgid "Must include a recipient"
-msgstr ""
+msgstr "必須包括收件人"
 
 #: help.js:21
 msgid "Name"
-msgstr ""
+msgstr "姓名"
 
 #: compose.html:8
 msgid "New Loopmail"
-msgstr ""
+msgstr "家校通新電郵"
 
 #: reset.js:12
 msgid "New Password"
@@ -296,7 +296,7 @@ msgstr "現時沒有資訊"
 
 #: calendar.html:23
 msgid "No Events Currently"
-msgstr ""
+msgstr "目前沒有活動"
 
 #: loopmail.js:220
 msgid "No Mail Currently"
@@ -329,7 +329,7 @@ msgstr "發送信箱"
 #: assignment-detail.html:20 assignments.html:51
 #: course-assignment-detail.html:25 course-assignments.html:34
 msgid "PTS"
-msgstr ""
+msgstr "點數"
 
 #: change-school.js:144
 msgid "Parent needs to be verified"
@@ -375,7 +375,7 @@ msgstr "私隱政策"
 #: assignments.html:5 calendar.html:5 courses.html:5 loopmail.html:16
 #: news.html:5
 msgid "Pull down to refresh"
-msgstr ""
+msgstr "下拉以更新網頁"
 
 #: login.html:28
 msgid "Register"
@@ -384,7 +384,7 @@ msgstr "註冊"
 #: assignments.html:6 calendar.html:6 courses.html:6 loopmail.html:17
 #: news.html:6
 msgid "Release to refresh"
-msgstr ""
+msgstr "放鍵以更新網頁"
 
 #: loopmail.js:97
 msgid "Remove"
@@ -392,7 +392,7 @@ msgstr "刪除"
 
 #: loopmail.js:99
 msgid "Remove the message from outgoing queue?"
-msgstr ""
+msgstr "是否把郵件從發出隊列中移除？"
 
 #: reply.js:29 tabbar-teacher.html:42 tabbar.html:110
 msgid "Reply"
@@ -408,11 +408,11 @@ msgstr "重設密碼"
 
 #: change-school.js:27 login.js:19 school-search.js:19
 msgid "School Name"
-msgstr ""
+msgstr "學校名稱"
 
 #: login.js:180
 msgid "School Required!"
-msgstr ""
+msgstr "學校名稱（必須填寫）！"
 
 #: course-info.html:33
 msgid "Score"
@@ -420,7 +420,7 @@ msgstr "單項分數"
 
 #: menu.html:50
 msgid "Security"
-msgstr ""
+msgstr "安全政策"
 
 #: loopmail.js:22
 msgid "Sent"
@@ -428,7 +428,7 @@ msgstr "已寄出"
 
 #: reset.html:10
 msgid "Set"
-msgstr ""
+msgstr "設定密碼"
 
 #: reset.html:29 reset.html:8
 msgid "Set Password"
@@ -441,7 +441,7 @@ msgstr "登出"
 #: not-started.html:13
 msgid ""
 "Sorry. Account access will not be available until the first day of school."
-msgstr ""
+msgstr "抱歉，需待至開學後第一天才可登入。"
 
 #: no-schedule.html:13
 msgid ""
@@ -456,15 +456,15 @@ msgstr "不允許留空格"
 
 #: add-student.js:18
 msgid "Student ID Number"
-msgstr ""
+msgstr "學生學號"
 
 #: add-student.js:108
 msgid "Student Id Required!"
-msgstr ""
+msgstr "學生學號（必須填寫）！"
 
 #: add-student.js:102
 msgid "Student not found"
-msgstr ""
+msgstr "系統沒有該學生名字"
 
 #: compose.js:22 help.js:24 reply.js:25
 msgid "Subject"
@@ -480,7 +480,7 @@ msgstr "成功！Loop郵件已遞送"
 
 #: update.html:8
 msgid "The application will automatically restart."
-msgstr ""
+msgstr "程式將自動重啟"
 
 #: add-student.html:48
 msgid "The following students will be added:"
@@ -521,11 +521,11 @@ msgstr "收件人:"
 
 #: services/utils.js:35
 msgid "Today"
-msgstr ""
+msgstr "今天"
 
 #: services/utils.js:38
 msgid "Tomorrow"
-msgstr ""
+msgstr "明天"
 
 #: forgot.js:48
 msgid "Unable to send email to that address. Please try again!"
@@ -533,11 +533,11 @@ msgstr "信息不能遞送至該電子郵件地址。請再常試！"
 
 #: tabbar.html:80
 msgid "Unscored Assignments"
-msgstr ""
+msgstr "未獲評分之功課"
 
 #: update.html:13
 msgid "Update"
-msgstr ""
+msgstr "更新"
 
 #: agreement-en.html:3 agreement-es.html:3 agreement-zh.html:3 menu.html:42
 msgid "User Agreement"
@@ -545,7 +545,7 @@ msgstr "使用者同意書"
 
 #: change-school.js:25 login.js:17
 msgid "User Name"
-msgstr ""
+msgstr "用戶名字"
 
 #: course-info.html:66
 msgid "Value"
@@ -561,7 +561,7 @@ msgstr "閱覽郵件"
 
 #: course-detail.html:55
 msgid "View All Assignments"
-msgstr ""
+msgstr "查看所有功課"
 
 #: course-info.html:32
 msgid "Weight"
@@ -573,11 +573,11 @@ msgstr "必須至少包括一位數字"
 
 #: help.js:22
 msgid "Your Email Address"
-msgstr ""
+msgstr "你的電郵郵址"
 
 #: login.js:162
 msgid "Your access to this account has been blocked by a school administrator."
-msgstr ""
+msgstr "學校行政人員已阻止你登入此帳戶。"
 
 #: forgot.js:46 reset.js:52
 msgid ""
@@ -598,15 +598,15 @@ msgstr "零分"
 
 #: add-student.js:49
 msgid "{name1} and {name2} have been added"
-msgstr ""
+msgstr "已加入{name1}和{name2}"
 
 #: add-student.js:45
 msgid "{name} and {number} others have been added"
-msgstr ""
+msgstr "已加入{name}和{number}"
 
 #: add-student.js:53 add-student.js:82
 msgid "{name} has been added"
-msgstr ""
+msgstr "已加入{name}"
 
 #~ msgid "{{adder.addedStudent.name}} has been added"
 #~ msgstr "{{adder.addedStudent.name}} 已加入"
