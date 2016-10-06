@@ -91,8 +91,7 @@
 
         mailCtrl.showDetail = function(message) {
             if(mailCtrl.isOutbox() === false) {
-                mailCtrl.selectedLoopmail = message;
-                $scope.loopmailNavigator.pushPage('loopmail-detail.html', {animation: 'slide', loopmail: message});
+                $scope.loopmailNavigator.pushPage('loopmail-detail.html', {animation: 'slide', parent: mailCtrl, loopmail: message});
             } else {
                 var title = gettextCatalog.getString("Confirm");
                 var remove = gettextCatalog.getString("Remove");
@@ -238,6 +237,7 @@
                                       dataService, DataType, statusService, gettextCatalog, utils) {
         var mailDetail = this;
 
+        var parent = $scope.loopmailNavigator.topPage.pushedOptions.parent;
         var loopmail = $scope.loopmailNavigator.topPage.pushedOptions.loopmail;
         loopmail.read = true;
 
@@ -265,6 +265,8 @@
             }
 
             mailDetail.loopmail = response;
+            parent.selectedLoopmail = response;
+
             mailDetail.trustedMessage = "";
             if(mailDetail.loopmail) {
                 if(mailDetail.loopmail.message) {
