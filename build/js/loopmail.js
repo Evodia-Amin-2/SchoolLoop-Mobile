@@ -91,6 +91,7 @@
 
         mailCtrl.showDetail = function(message) {
             if(mailCtrl.isOutbox() === false) {
+                mailCtrl.selectedLoopmail = message;
                 $scope.loopmailNavigator.pushPage('loopmail-detail.html', {animation: 'slide', loopmail: message});
             } else {
                 var title = gettextCatalog.getString("Confirm");
@@ -161,6 +162,17 @@
                 mailCtrl.noMailMessage = gettextCatalog.getString("All Mail Delivered");
             }
 
+        });
+
+        $scope.$on('reply.action', function(event, data) {
+            $scope.replyModal.hide();
+            if(data.action === "cancel") {
+                return;
+            } else {
+                if(_.isUndefined(mailCtrl.selectedLoopmail) === false) {
+                    $scope.mainNavigator.pushPage('reply.html', {animation: 'slide', loopmail: mailCtrl.selectedLoopmail, action: data.action});
+                }
+            }
         });
 
         $scope.$on('notify.loopmail', function(event, data) {
@@ -271,15 +283,6 @@
         mailDetail.reply = function() {
             $scope.replyModal.show();
         };
-
-        $scope.$on('reply.action', function(event, data) {
-            $scope.replyModal.hide();
-            if(data.action === "cancel") {
-                return;
-            } else {
-                $scope.mainNavigator.pushPage('reply.html', {animation: 'slide', loopmail: mailDetail.loopmail, action: data.action});
-            }
-        });
 
         $scope.mainNavigator.on("prepop", function(event) {
             var navigator = event.navigator;
