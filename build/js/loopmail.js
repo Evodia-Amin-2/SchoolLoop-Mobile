@@ -193,7 +193,7 @@
                             $scope.tabbar.setActiveTab(2);
                         }
                         var loopmailId = payload.messageid;
-                        $scope.loopmailNavigator.pushPage('loopmail-detail.html', {animation: 'slide', loopmail: {ID: loopmailId, schoolName: true}});
+                        $scope.loopmailNavigator.pushPage('loopmail-detail.html', {animation: 'slide', parent: mailCtrl, loopmail: {ID: loopmailId, schoolName: true}});
                     }
                 }
             );

@@ -20,6 +20,7 @@
         utils.setStatusBar("#009688");
 
         courseCtrl.courses = dataService.list(DataType.COURSE);
+        courseCtrl.currentCourse = -1;
 
         courseCtrl.load = function($done) {
             $timeout(function() {
@@ -45,6 +46,7 @@
         };
 
         courseCtrl.showCourse = function(course) {
+            courseCtrl.currentCourse = course.periodID;
             statusService.showLoading();
             $location.path("main.tabs.courses-detail", {periodID: course.periodID});
         };
@@ -78,16 +80,23 @@
 
             dataService.refresh(DataType.COURSE).then(function(result) {
                 courseCtrl.courses = result;
+                var pages = $scope.courseNavigator.pages;
                 var payload = data.payload;
                 for(var i = 0, len = courseCtrl.courses.length; i < len; i++) {
                     var course = courseCtrl.courses[i];
                     if(course.periodID === payload.periodid) {
-                        dataService.clearProgressReport();
-                        $scope.tabbar.setActiveTab(1);
-                        var pages = $scope.courseNavigator.pages;
+                        var activeTab = $scope.tabbar.getActiveTabIndex();
+                        if(activeTab !== 1) {
+                            $scope.tabbar.setActiveTab(1);
+                        }
+                        if(courseCtrl.currentCourse !== payload.periodid) {
+                            courseCtrl.currentCourse = course.periodID;
+                            dataService.clearProgressReport();
+                        }
                         if(pages.length === 1) { // top page
                             $scope.courseNavigator.pushPage('course-detail.html', {animation: 'slide', course: course});
                         }
+                        break;
                     }
                 }
             });

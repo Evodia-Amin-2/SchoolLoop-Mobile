@@ -2,10 +2,12 @@
     'use strict';
 
     angular.module('app.services')
-        .factory('NotificationService', ['$rootScope', '$location', 'DataService', 'StorageService', 'DataType', 'config', 'gettextCatalog', NotificationService])
+        .factory('NotificationService', ['$rootScope', '$location', 'DataService', 'StorageService', 'StatusService',
+                                'config', 'gettextCatalog', NotificationService])
     ;
 
-    function NotificationService($rootScope, $location, dataService, storageService, DataType, config, gettextCatalog) {
+    function NotificationService($rootScope, $location, dataService, storageService, statusService,
+                                 config, gettextCatalog) {
         var notificationData;
         var pushNotification;
 
@@ -84,6 +86,31 @@
         }
 
         function doNotification(data) {
+            var additionalData = data.additionalData;
+            var targetId = additionalData.targetid;
+            if(_.isUndefined(targetId) === false) {
+                storageService.setSelectedStudentId(targetId);
+                var students = storageService.getStudents();
+                var student = _.findWhere(students, {studentID: targetId});
+                if(_.isUndefined(student) === true) {
+                    processNotification(data);
+                    return;
+                }
+                dataService.clearCache();
+                var message = gettextCatalog.getString("Switching to {}");
+                message = message.replace("{}", student.name);
+                statusService.showMessage(message);
+                dataService.load().then(function() {
+                    statusService.hideWait(1000);
+                    $rootScope.$broadcast("refresh.all");
+                    processNotification(data);
+                });
+            } else {
+                processNotification(data);
+            }
+        }
+
+        function processNotification(data) {
             var additionalData = data.additionalData;
             var notifyMessage = "notify." + additionalData.type;
             var foreground = additionalData.foreground;
