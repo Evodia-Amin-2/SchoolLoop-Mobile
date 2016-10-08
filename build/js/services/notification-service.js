@@ -89,7 +89,6 @@
             var additionalData = data.additionalData;
             var targetId = additionalData.targetid;
             if(_.isUndefined(targetId) === false) {
-                storageService.setSelectedStudentId(targetId);
                 var students = storageService.getStudents();
                 var student = _.findWhere(students, {studentID: targetId});
                 if(_.isUndefined(student) === true) {
@@ -98,6 +97,7 @@
                 }
                 dataService.clearCache();
                 var message = gettextCatalog.getString("Switching to {}");
+                storageService.setSelectedStudentId(targetId);
                 message = message.replace("{}", student.name);
                 statusService.showMessage(message);
                 dataService.load().then(function() {
