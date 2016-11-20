@@ -2,4 +2,4 @@
 PATH=$PATH:/usr/local/bin
 cd ./app
 /usr/local/bin/cordova-hcp build
-/usr/local/bin/cordova-hcp deploy
+#/usr/local/bin/cordova-hcp deploy
