@@ -68,7 +68,7 @@ platform :ios do
   private_lane :build_app do |options|
 
     produce(app_identifier: options[:app_identifier], app_name: options[:app_name])
-    match(app_identifier: options[:app_identifier], type: options[:type])
+    match(app_identifier: options[:app_identifier], type: options[:type], force: true)
     pem(app_identifier: options[:app_identifier], output_path: options[:release_path], p12_password: "loops411")
 
     # Build the app
