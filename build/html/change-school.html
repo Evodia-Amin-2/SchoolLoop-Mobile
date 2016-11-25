@@ -16,8 +16,9 @@
             <ons-icon ng-click="page.clear()" ng-show="page.isSchoolSelected(page.selectedSchool)" class="lookup-icon-close" tappable
                       icon="ion-ios-close-empty, material:ion-android-close" size="20px"></ons-icon>
 
-            <ons-input class="lookup-input" auto-focus="" modifier="underbar" ng-model="page.searchParam" ng-change="page.change()"
-                       placeholder="{{page.placeholder.school}}" float ng-disabled="page.disabled" autocomplete="off"></ons-input>
+            <ons-input class="school-input lookup-input" name="school" modifier="underbar" placeholder="{{page.placeholder.school}}" float ng-model="page.searchParam"
+                       ng-change="page.change()" ng-disabled="page.disabled" auto-focus="" autocomplete="off">
+            </ons-input>
             <ons-list class="lookup-list" ng-show="page.lookup.expanded && page.lookup.displaySet.length > 0">
                 <ons-list-item ng-repeat="item in page.lookup.displaySet" tappable ng-click="page.selectSchool(item)" modifier="longdivider">
                     <div>

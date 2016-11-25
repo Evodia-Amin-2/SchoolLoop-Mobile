@@ -75,7 +75,8 @@ platform :ios do
     gym(
       scheme: "#{options[:scheme]}",
       configuration: options[:configuration],
-      output_directory: "tmp"
+      output_directory: "tmp",
+      clean: true
     )
 
   end

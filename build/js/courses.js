@@ -47,7 +47,6 @@
 
         courseCtrl.showCourse = function(course) {
             courseCtrl.currentCourse = course.periodID;
-            statusService.showLoading();
             $location.path("main.tabs.courses-detail", {periodID: course.periodID});
         };
 
@@ -236,6 +235,7 @@
         }
 
         function loadProgressReport(periodId) {
+            statusService.showLoading();
             dataService.getProgressReport(periodId).then(function(response) {
                 statusService.hideWait(500);
 

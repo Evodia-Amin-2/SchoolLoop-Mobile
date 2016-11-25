@@ -9,8 +9,16 @@
             The application will automatically restart.
         </p>
 
-        <div class="button-bar">
+        <div class="update button-bar">
             <ons-button ng-click="page.update()" translate ng-disabled="page.updating">Update</ons-button>
+        </div>
+
+        <div ng-show="page.changeList.length > 0">
+            <p class="release-title" translate>What's New <span class="menu-version">&nbsp;{{page.data.version}} ({{page.data.build}})</span>
+            </p>
+            <ul class="change-list">
+                <li ng-repeat="item in page.changeList">{{item}}</li>
+            </ul>
         </div>
     </div>
 </ons-page>

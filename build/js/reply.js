@@ -71,7 +71,7 @@
 
             page.send = function () {
                 if(isFormValid()) {
-                    loopmailService.send(page.toList, page.ccList, page.subject, page.body + "<br/><br/>" + page.originalMsg).then(
+                    loopmailService.send(page.toList, page.ccList, page.subject, "<pre>" + page.body + "</pre><br/><br/>" + page.originalMsg).then(
                         function() {
                             $scope.mainNavigator.popPage().then(function() {
                                 $scope.loopmailNavigator.popPage();

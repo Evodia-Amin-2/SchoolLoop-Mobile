@@ -13,6 +13,10 @@
     margin: 20px 0 4px;
 }
 
+.school-input, .school-input input {
+    opacity: 1.0 !important;
+}
+
 @media only screen and (max-width: 460px) {
     .login-panel {
         margin: 0px 30px;

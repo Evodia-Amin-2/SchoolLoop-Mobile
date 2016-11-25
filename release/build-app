@@ -24,6 +24,7 @@ rm -rf tmp/*.js
 gulp init --id "$ID" --name "$NAME"  --version "${VERSION}" --build "${BUILD}" --profile "$ID"
 gulp default --id "$ID" --name "$NAME" --version "${VERSION}" --build "${BUILD}" --profile "$ID"
 cd ./app
+/usr/local/bin/cordova-hcp build
 cordova prepare ios --verbose
 cordova build android --release --verbose
 cd ..

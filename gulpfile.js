@@ -21,6 +21,9 @@ var fs = require('fs');
 var peditor = require('gulp-plist');
 var chalk = require('chalk');
 
+var s3Config = JSON.parse(fs.readFileSync('build/versions/.chcplogin'));
+var s3 = require('gulp-s3-upload')(s3Config);
+
 var destPath = "app/www";
 var srcPath = "build";
 var platformsPath = "app/platforms";
@@ -58,6 +61,7 @@ var name = flags["name"];
 if(name && name.length > 0) {
     buildData[appId].displayName = name;
 }
+buildData.version = version;
 
 gulp.task('init', function() {
     runSequence('init-config', 'init-android', 'init-ios', 'init-merges', 'images');
@@ -192,10 +196,7 @@ gulp.task('app-assets', function () {
 gulp.task('app-config', ['set-build'], function () {
     del(['tmp/config.js']);
 
-    var appVersion = flags["version"];
-    if(!appVersion || appVersion.length === 0) {
-        appVersion = "3.0.0";
-    }
+    var appVersion = buildData.version;
     var buildNumber = flags["build"];
     if(!buildNumber) {
         buildNumber = buildData.index;
@@ -252,7 +253,7 @@ gulp.task('app-js', ['app-config', 'translations'], function () {
         .pipe(gulp.dest(browserPath + '/js'));
 });
 
-gulp.task('app-html', function () {
+gulp.task('app-html', ['app-js'], function () {
     return gulp.src([srcPath + '/html/**/*.html'])
         .pipe(gulp.dest(destPath));
 });
@@ -302,6 +303,24 @@ gulp.task('vendor-js', function () {
         .pipe(gulp.dest(browserPath + '/js'));
 });
 
+gulp.task("upload", function() {
+    var appVersion = buildData.version;
+    var buildNumber = buildData.index;
+    return gulp.src("release/" + appId + "/changes.json")
+        .pipe(plumber({ errorHandler: gutil.log }))
+        .pipe(replace('{version}', appVersion))
+        .pipe(replace('{build}', buildNumber))
+        .pipe(s3({
+            'Bucket': 'schoolloop-release',
+            'ACL':    'public-read',
+            'keyTransform': function(relative_filename) {
+                var new_name = appId + "/" + relative_filename;
+                return new_name;
+            }
+        }))
+    ;
+});
+
 gulp.task('pot', function () {
     return gulp.src([srcPath + '/html/**/*.html', srcPath + '/js/**/*.js', srcPath + '/templates/**/*.html'])
         .pipe(gettext.extract('mobileloop.pot', {
@@ -317,6 +336,7 @@ gulp.task('translations', function () {
         }))
         .pipe(gulp.dest('tmp'));
 });
+
 
 gulp.task('build', ['default'], shell.task([
     'cordova build'
