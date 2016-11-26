@@ -1,5 +1,9 @@
 #!/bin/bash
+
+APP_ID=$1
 PATH=$PATH:/usr/local/bin
+
+gulp upload --id $APP_ID
+
 cd ./app
-/usr/local/bin/cordova-hcp build
-/usr/local/bin/cordova-hcp deploy
+cordova-hcp deploy
