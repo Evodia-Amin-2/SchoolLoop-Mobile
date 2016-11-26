@@ -3,7 +3,9 @@
 APP_ID=$1
 PATH=$PATH:/usr/local/bin
 
+echo "Uploading change file for $APP_ID"
 gulp upload --id $APP_ID
 
 cd ./app
+echo "Deploying files for hot code push"
 cordova-hcp deploy
