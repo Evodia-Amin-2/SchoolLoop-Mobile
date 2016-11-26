@@ -29,18 +29,9 @@ if [ ! -d "app" ]; then
     cd ..
     cp -r build/custom/xcshareddata app/platforms/ios/MobileLoop.xcodeproj/
     cp build/custom/build.json app/
-    printf '%s\n' /LastUpgradeCheck/a '        TargetAttributes = {
-          1D6058900D05DD3D006BFB54 = {
-            DevelopmentTeam = 4HK36Z99TA;
-            SystemCapabilities = {
-              com.apple.Push = {
-                enabled = 1;
-              };
-            };
-          };
-        };' . w q | ex -s app/platforms/ios/MobileLoop.xcodeproj/project.pbxproj
     cp build/versions/.chcplogin app/
     cp build/versions/$APP_ID/cordova-hcp.json app/
+    ./release/update-xcode $APP_ID
 else
     echo "MobileLoop project already exists"
 fi
