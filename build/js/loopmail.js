@@ -299,6 +299,14 @@
             utils.setStatusBar("#009688");
         });
 
+        $scope.$on("hardware.backbutton", function() {
+            if($scope.mainNavigator.pages.length > 1) {
+                $scope.mainNavigator.popPage();
+            } else {
+                $scope.loopmailNavigator.popPage();
+            }
+        });
+
         $scope.loopmailNavigator.on("prepop", function() {
             if(_.isUndefined($scope.main.currentStudentInfo) === false) {
                 $timeout(function() {

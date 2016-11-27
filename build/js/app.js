@@ -105,11 +105,6 @@
         document.addEventListener("backbutton", function () {
             $rootScope.$broadcast("hardware.backbutton");
         }, false);
-
-        document.addEventListener("menubutton", function () {
-            $rootScope.$broadcast("hardware.menubutton");
-        }, false);
-
         document.addEventListener("pause", function () {
             $rootScope.$broadcast("hardware.pause");
         }, false);

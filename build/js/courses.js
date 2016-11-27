@@ -197,6 +197,14 @@
             }
         });
 
+        $scope.$on("hardware.backbutton", function() {
+            if($scope.mainNavigator.pages.length > 1) {
+                $scope.mainNavigator.popPage();
+            } else {
+                $scope.courseNavigator.popPage();
+            }
+        });
+
         if(_.isUndefined(courseDetail.progress) === true) {
             courseDetail.progress = {};
             loadProgressReport(courseDetail.course.periodID);

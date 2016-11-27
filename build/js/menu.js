@@ -78,6 +78,10 @@
             $rootScope.$broadcast("refresh.all");
         });
 
+        $scope.$on("hardware.backbutton", function() {
+            menu.closeMenu();
+        });
+
         menu.agreement = function () {
             menu.closeMenu();
             var code = storageService.getLanguageCode();

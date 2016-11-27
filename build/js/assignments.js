@@ -193,6 +193,14 @@
                 utils.setStatusBar(CourseColors[periodIndex]);
             }
         });
+
+        $scope.$on("hardware.backbutton", function() {
+            if($scope.mainNavigator.pages.length > 1) {
+                $scope.mainNavigator.popPage();
+            } else {
+                $scope.asgnNavigator.popPage();
+            }
+        });
     }
 
     function groupAssignments(data) {

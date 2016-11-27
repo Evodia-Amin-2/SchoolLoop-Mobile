@@ -75,6 +75,13 @@
             return "";
         };
 
+        $scope.$on("hardware.backbutton", function() {
+            if($scope.mainNavigator.pages.length > 1) {
+                $scope.mainNavigator.popPage();
+            } else {
+                $scope.newsNavigator.popPage();
+            }
+        });
 
         newsDetail.openURL = function (link) {
             var url = link.URL;
