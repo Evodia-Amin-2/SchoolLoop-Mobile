@@ -257,6 +257,7 @@
                     delete $http.defaults.headers.common['SL-UUID'];
                 }
             }
+
         };
         return service;
     }

@@ -2,13 +2,15 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('ComposeController', ['$scope', '$q', '$timeout', 'DataService', 'LoopmailService', 'Utils', 'gettextCatalog', ComposeController])
+        .controller('ComposeController', ['$scope', '$q', '$timeout', 'DataService', 'LoopmailService', 'StorageService', 'Utils', 'gettextCatalog', ComposeController])
     ;
 
-    function ComposeController($scope, $q, $timeout, dataService, loopmailService, utils, gettextCatalog) {
+    function ComposeController($scope, $q, $timeout, dataService, loopmailService, storageService, utils, gettextCatalog) {
         var page = this;
 
         utils.setStatusBar("#009688");
+
+        storageService.clearBackButtonExit();
 
         page.toList = [];
         page.ccList = [];

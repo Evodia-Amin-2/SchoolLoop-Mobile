@@ -114,16 +114,16 @@ gulp.task('init-config', function () {
                     '    <preference name="AndroidLaunchMode" value="singleTop" />\n' +
                     '    <preference name="ErrorUrl" value="" />\n' +
                     '    <preference name="Fullscreen" value="false" />\n' +
+                    '    <preference name="KeyboardDisplayRequiresUserAction" value="false" />\n' +
                     '    <preference name="KeepRunning" value="true" />\n' +
                     '    <preference name="SplashScreen" value="screen" />\n' +
-                    '    <preference name="SplashScreenDelay" value="2000" />\n' +
+                    '    <preference name="SplashScreenDelay" value="3000" />\n' +
                     '    <preference name="AllowInlineMediaPlayback" value="false" />\n' +
                     '    <preference name="AutoHideSplashScreen" value="true" />\n' +
                     '    <preference name="BackupWebStorage" value="none"/>\n' +
                     '    <preference name="EnableViewportScale" value="false" />\n' +
                     '    <preference name="FadeSplashScreen" value="true" />\n' +
                     '    <preference name="FadeSplashScreenDuration" value="250" />\n' +
-                    '    <preference name="KeyboardDisplayRequiresUserAction" value="true" />\n' +
                     '    <preference name="MediaPlaybackRequiresUserAction" value="false" />\n' +
                     '    <preference name="ShowSplashScreenSpinner" value="false" />\n' +
                     '    <preference name="SuppressesIncrementalRendering" value="false" />\n' +

@@ -78,6 +78,8 @@
             $rootScope.$broadcast("refresh.all");
         });
 
+        storageService.clearBackButtonExit();
+
         $scope.$on("hardware.backbutton", function() {
             menu.closeMenu();
         });

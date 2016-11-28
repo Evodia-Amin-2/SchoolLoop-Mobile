@@ -75,11 +75,14 @@
             return "";
         };
 
+        storageService.clearBackButtonExit();
+
         $scope.$on("hardware.backbutton", function() {
             if($scope.mainNavigator.pages.length > 1) {
                 $scope.mainNavigator.popPage();
             } else {
                 $scope.newsNavigator.popPage();
+                storageService.setBackButtonExit(false);
             }
         });
 

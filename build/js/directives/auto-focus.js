@@ -16,7 +16,7 @@
                                 var lookup = $(element);
                                 var input = lookup.find('input');
                                 input.focus();
-                            }, 350);
+                            }, 250);
                         }
                     });
                 }
@@ -27,7 +27,7 @@
                                 var lookup = $(element);
                                 var input = lookup.find('input');
                                 input.focus();
-                            }, 350);
+                            }, 250);
                         }
                     });
                 }

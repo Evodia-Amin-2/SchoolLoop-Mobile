@@ -42,6 +42,10 @@
     padding-left: 22px;
 }
 
+.lookup-input, .lookup-input input {
+    opacity: 1.0 !important;
+}
+
 .lookup-input .text-input__label {
     margin-left: 22px;
 }

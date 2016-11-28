@@ -155,11 +155,14 @@
 
         };
 
+        storageService.clearBackButtonExit();
+
         $scope.$on("hardware.backbutton", function() {
             if($scope.mainNavigator.pages.length > 1) {
                 $scope.mainNavigator.popPage();
             } else {
                 $scope.calendarNavigator.popPage();
+                storageService.setBackButtonExit(false);
             }
         });
 

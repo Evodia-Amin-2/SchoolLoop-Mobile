@@ -94,6 +94,10 @@ page--material .link {
     background-color: rgba(0,0,0,0.6) !important;
 }
 
+.toolbar-button--material {
+    height: 44px !important;
+}
+
 .toolbar-button--material:active {
     opacity: 1;
     background-color: rgba(200, 200, 200, 0.3) !important;
@@ -107,4 +111,17 @@ page--material .link {
 .popover__content .list__item--material {
     background-color: #f0f0f0;
     border-bottom: 1px solid #e0e0e0;
+}
+
+.text-input--material__label--active {
+    margin-left: 0 !important;
+    margin-top: -2px;
+}
+
+.text-input--material.text-input--underbar:disabled {
+    border: none;
+}
+
+.text-input--underbar:disabled .text-input--underbar__label {
+    display: none
 }

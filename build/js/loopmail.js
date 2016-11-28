@@ -294,16 +294,20 @@
                     $timeout(function() {
                         $scope.loopmailNavigator.pages[1].backButton.style.display = "block";
                     });
+                    storageService.setBackButtonExit(false);
                 }
             }
             utils.setStatusBar("#009688");
         });
+
+        storageService.clearBackButtonExit();
 
         $scope.$on("hardware.backbutton", function() {
             if($scope.mainNavigator.pages.length > 1) {
                 $scope.mainNavigator.popPage();
             } else {
                 $scope.loopmailNavigator.popPage();
+                storageService.setBackButtonExit(false);
             }
         });
 

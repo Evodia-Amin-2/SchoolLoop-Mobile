@@ -4,7 +4,7 @@
     angular.module('mobileloop')
         .controller('CoursesController', ['$scope', '$timeout', '$location', 'DataService', 'DataType', 'StatusService',
             'Utils', 'CourseColors', CoursesController])
-        .controller('CourseDetailController', ['$scope', '$timeout', 'DataService', 'StatusService', 'Utils', 'gettextCatalog',
+        .controller('CourseDetailController', ['$scope', '$timeout', 'DataService', 'StatusService', 'StorageService', 'Utils', 'gettextCatalog',
             'CourseColors', CourseDetailController])
         .controller('CourseAsgnController', ['$rootScope', '$scope', '$timeout', 'Utils', 'DataService', 'DataType',
             'CourseColors', CourseAsgnController])
@@ -118,7 +118,7 @@
         });
     }
 
-    function CourseDetailController($scope, $timeout, dataService, statusService, utils, gettextCatalog, CourseColors) {
+    function CourseDetailController($scope, $timeout, dataService, statusService, storageService, utils, gettextCatalog, CourseColors) {
         var courseDetail = this;
 
         courseDetail.course = $scope.courseNavigator.topPage.pushedOptions.course;
@@ -194,14 +194,19 @@
 
                 var periodIndex = courseDetail.course.period % CourseColors.length;
                 utils.setStatusBar(CourseColors[periodIndex]);
+
+                storageService.setBackButtonExit(false);
             }
         });
+
+        storageService.clearBackButtonExit();
 
         $scope.$on("hardware.backbutton", function() {
             if($scope.mainNavigator.pages.length > 1) {
                 $scope.mainNavigator.popPage();
             } else {
                 $scope.courseNavigator.popPage();
+                storageService.setBackButtonExit(false);
             }
         });
 
