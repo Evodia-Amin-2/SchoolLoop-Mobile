@@ -86,6 +86,7 @@
         }
 
         function doNotification(data) {
+            clearNotification();
             var additionalData = data.additionalData;
             var targetId = additionalData.targetid;
             if(_.isUndefined(targetId) === false) {

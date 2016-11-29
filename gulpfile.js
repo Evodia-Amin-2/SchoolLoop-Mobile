@@ -134,7 +134,11 @@ gulp.task('init-config', function () {
                     '    <preference name="PaginationMode" value="unpaginated" />\n' +
                     '    <preference name="BackupWebStorage" value="none" />\n');
 
-                $("widget").append('    <chcp><config-file url="https://s3-us-west-2.amazonaws.com/schoolloop-hotpush/' + appId + '/chcp.json"/><auto-install enabled="false" /></chcp>\n');
+                $("widget").append('    <chcp>\n' +
+                    '        <config-file url="https://s3-us-west-2.amazonaws.com/schoolloop-hotpush/' + appId + '/chcp.json"/>\n' +
+                    '        <auto-install enabled="false" />\n' +
+                    '        <native-interface version="' + buildData.index + '" />\n' +
+                    '    </chcp>\n');
             },
             parserOptions: {
                 xmlMode: true

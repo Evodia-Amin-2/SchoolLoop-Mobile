@@ -73,7 +73,7 @@
             $scope.loginNavigator.pushPage("school-search.html", {animation: 'slide-up', searchCallback: page.selectSchool});
         };
 
-        domain = storageService.getDefaultDomain();
+        var domain = storageService.getDefaultDomain();
         if(_.isUndefined(domain) === false && isSchoolDefined(domain.school) === true) {
             var school = domain.school;
             page.selectedSchool = school;
@@ -90,7 +90,7 @@
             navigator.splashscreen.hide();
         }, 500);
 
-        var domain = storageService.getDefaultDomain();
+        domain = storageService.getDefaultDomain();
         if (_.isUndefined(domain) === false && _.isNull(domain) === false) {
             page.username = domain.user.userName;
             page.password = domain.password || "";

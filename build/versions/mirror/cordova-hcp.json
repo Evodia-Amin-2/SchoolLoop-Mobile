@@ -3,8 +3,9 @@
   "s3bucket": "schoolloop-hotpush",
   "s3prefix": "mirror/",
   "s3region": "us-west-2",
-  "ios_identifier": "",
-  "android_identifier": "",
+  "ios_identifier": "id739554978",
+  "android_identifier": "com.schoolloop.mobileloop.app",
   "update": "now",
-  "content_url": "https://s3-us-west-2.amazonaws.com/schoolloop-hotpush/mirror"
+  "content_url": "https://s3-us-west-2.amazonaws.com/schoolloop-hotpush/mirror",
+  "min_native_interface": "30119"
 }
