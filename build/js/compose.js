@@ -10,8 +10,6 @@
 
         utils.setStatusBar("#009688");
 
-        storageService.clearBackButtonExit();
-
         page.toList = [];
         page.ccList = [];
         page.subject = "";

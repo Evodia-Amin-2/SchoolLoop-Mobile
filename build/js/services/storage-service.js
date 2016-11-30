@@ -11,7 +11,6 @@
         var languageCode = 'en';
         var currentMap;
         var backButtonExit = false;
-        var showingExitConfirm = false;
 
         var service = {
             clear: function() {
@@ -286,17 +285,8 @@
             setBackButtonExit: function(state) {
                 backButtonExit = state;
             },
-            clearBackButtonExit: function() {
-                backButtonExit = false;
-            },
             getBackButtonExit: function() {
                 return backButtonExit;
-            },
-            setShowingExitConfirm: function(state) {
-                showingExitConfirm = state;
-            },
-            showingExitConfirm: function() {
-                return showingExitConfirm;
             }
         };
         return service;

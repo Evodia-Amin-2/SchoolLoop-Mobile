@@ -68,8 +68,6 @@
         }
 
         main.openMenu = function() {
-            storageService.clearBackButtonExit();
-
             $scope.mainSplitter.left.open();
         };
 
@@ -196,20 +194,8 @@
 
         $scope.$on("hardware.backbutton", function() {
             if(storageService.getBackButtonExit() === true) {
-                if(storageService.showingExitConfirm() === false) {
-                    storageService.setShowingExitConfirm(true);
-                    var message = gettextCatalog.getString("Do you want to close the app?");
-                    window.ons.notification.confirm(message) // Ask for confirmation
-                        .then(function(index) {
-                            if (index === 1) { // OK button
-                                navigator.app.exitApp(); // Close the app
-                            }
-                            storageService.setShowingExitConfirm(false);
-                        });
-
-                }
+                navigator.app.exitApp(); // Close the app
             }
-            storageService.setBackButtonExit(true);
         });
 
     }

@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('CoursesController', ['$scope', '$timeout', '$location', 'DataService', 'DataType', 'StatusService',
+        .controller('CoursesController', ['$scope', '$timeout', '$location', 'DataService', 'DataType', 'StorageService',
             'Utils', 'CourseColors', CoursesController])
         .controller('CourseDetailController', ['$scope', '$timeout', 'DataService', 'StatusService', 'StorageService', 'Utils', 'gettextCatalog',
             'CourseColors', CourseDetailController])
@@ -12,7 +12,7 @@
             'StorageService', 'Utils', 'CourseColors', 'gettextCatalog', CourseAsgnDetailController])
     ;
 
-    function CoursesController($scope, $timeout, $location, dataService, DataType, statusService, utils, CourseColors) {
+    function CoursesController($scope, $timeout, $location, dataService, DataType, storageService, utils, CourseColors) {
         var courseCtrl = this;
 
         navigator.analytics.sendAppView('Courses');
@@ -105,6 +105,7 @@
             var pages = $scope.courseNavigator.pages;
             if(pages.length === 2) {
                 utils.setStatusBar("#009688");
+                storageService.setBackButtonExit(true);
             }
         });
 
@@ -194,21 +195,19 @@
 
                 var periodIndex = courseDetail.course.period % CourseColors.length;
                 utils.setStatusBar(CourseColors[periodIndex]);
-
-                storageService.setBackButtonExit(false);
             }
         });
 
-        storageService.clearBackButtonExit();
+        storageService.setBackButtonExit(false);
 
         $scope.$on("hardware.backbutton", function() {
             if($scope.mainNavigator.pages.length > 1) {
                 $scope.mainNavigator.popPage();
-            } else {
+            } else if($scope.courseNavigator.pages.length > 1) {
                 $scope.courseNavigator.popPage();
-                storageService.setBackButtonExit(false);
             }
         });
+
 
         if(_.isUndefined(courseDetail.progress) === true) {
             courseDetail.progress = {};
@@ -510,7 +509,6 @@
         assignDetail.compose = function() {
             $scope.mainNavigator.pushPage('compose.html', {animation: 'slide', hasLMT: true, teachers: assignDetail.course});
         };
-
     }
 
     function countZeros(progressReport, utils) {

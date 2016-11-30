@@ -3,12 +3,12 @@
 
     angular.module('mobileloop')
         .controller('CalendarController', ['$scope', '$timeout', 'Utils',
-            'DataService', 'DataType', 'CourseColors', CalendarController])
+            'DataService', 'StorageService', 'DataType', 'CourseColors', CalendarController])
         .controller('CalendarDetailController', ['$scope', '$timeout', '$window', '$sce', 'StorageService',
             'Utils', 'CourseColors', 'gettextCatalog', CalendarDetailController])
     ;
 
-    function CalendarController($scope, $timeout, utils, dataService, DataType, CourseColors) {
+    function CalendarController($scope, $timeout, utils, dataService, storageService, DataType, CourseColors) {
 
         navigator.analytics.sendAppView('Calendar');
 
@@ -74,6 +74,7 @@
 
         $scope.calendarNavigator.on("prepop", function() {
             utils.setStatusBar("#009688");
+            storageService.setBackButtonExit(true);
         });
 
         var tabbar = document.querySelector("ons-tabbar");
@@ -155,17 +156,15 @@
 
         };
 
-        storageService.clearBackButtonExit();
+        storageService.setBackButtonExit(false);
 
         $scope.$on("hardware.backbutton", function() {
             if($scope.mainNavigator.pages.length > 1) {
                 $scope.mainNavigator.popPage();
-            } else {
+            } else if($scope.calendarNavigator.pages.length > 1) {
                 $scope.calendarNavigator.popPage();
-                storageService.setBackButtonExit(false);
             }
         });
-
     }
 
 })();

@@ -3,12 +3,12 @@
 
     angular.module('mobileloop')
         .controller('AssignmentsController', ['$scope', '$location', '$timeout', 'Utils',
-                        'DataService', 'DataType', 'CourseColors', 'gettextCatalog', AssignmentsController])
+                        'DataService', 'StorageService', 'DataType', 'CourseColors', 'gettextCatalog', AssignmentsController])
         .controller('AssignmentDetailController', ['$scope', '$timeout', '$window', '$sce', 'StorageService',
                         'Utils', 'CourseColors', 'gettextCatalog', AssignmentDetailController])
     ;
 
-    function AssignmentsController($scope, $location, $timeout, utils, dataService, DataType, CourseColors, gettextCatalog) {
+    function AssignmentsController($scope, $location, $timeout, utils, dataService, storageService, DataType, CourseColors, gettextCatalog) {
         var assignCtrl = this;
 
         navigator.analytics.sendAppView('Assignments');
@@ -100,6 +100,7 @@
 
         $scope.asgnNavigator.on("prepop", function() {
             utils.setStatusBar("#009688");
+            storageService.setBackButtonExit(true);
         });
 
         var tabbar = document.querySelector("ons-tabbar");
@@ -194,14 +195,13 @@
             }
         });
 
-        storageService.clearBackButtonExit();
+        storageService.setBackButtonExit(false);
 
         $scope.$on("hardware.backbutton", function() {
             if($scope.mainNavigator.pages.length > 1) {
                 $scope.mainNavigator.popPage();
-            } else {
+            } else if($scope.asgnNavigator.pages.length > 1) {
                 $scope.asgnNavigator.popPage();
-                storageService.setBackButtonExit(false);
             }
         });
     }

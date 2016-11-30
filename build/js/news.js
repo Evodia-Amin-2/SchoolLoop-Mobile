@@ -44,6 +44,10 @@
         tabbar.addEventListener("reactive", function() {
             utils.resetTab($scope.newsNavigator, "news.html");
         });
+
+        $scope.newsNavigator.on("prepop", function() {
+            storageService.setBackButtonExit(true);
+        });
     }
 
     function NewsDetailController($rootScope, $scope, $window, $sce, $filter, storageService, utils) {
@@ -75,14 +79,13 @@
             return "";
         };
 
-        storageService.clearBackButtonExit();
+        storageService.setBackButtonExit(false);
 
         $scope.$on("hardware.backbutton", function() {
             if($scope.mainNavigator.pages.length > 1) {
                 $scope.mainNavigator.popPage();
-            } else {
+            } else if($scope.newsNavigator.pages.length > 1) {
                 $scope.newsNavigator.popPage();
-                storageService.setBackButtonExit(false);
             }
         });
 
