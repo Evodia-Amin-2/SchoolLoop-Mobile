@@ -18,7 +18,7 @@
             navigator.splashscreen.hide();
 
             page.config = config;
-            var endpoint = "https://s3-us-west-2.amazonaws.com/schoolloop-release/" +  page.config.id + "/changes.json";
+            var endpoint = "https://s3-us-west-2.amazonaws.com/schoolloop-release/" +  page.config.id + "/changes.json?" + new Date();
             $http({
                 method: "GET",
                 url: endpoint,

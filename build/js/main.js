@@ -11,7 +11,9 @@
              updateService, loopmailService, utils, gettextCatalog) {
         var main = this;
 
-        main.isLoaded = false;
+        var navStack = [];
+
+        main.isLoaded = true;
 
         loadStudents();
 
@@ -49,6 +51,47 @@
         var tabbar = document.querySelector("ons-tabbar");
         tabbar.addEventListener("prechange", function() {
             utils.setStatusBar("#009688");
+        });
+
+        tabbar.addEventListener("postchange", function() {
+            var index = tabbar.getActiveTabIndex();
+            navStack.push(index);
+        });
+
+        $scope.$on("hardware.backbutton", function() {
+            if(storageService.getBackButtonExit() === false) {
+                return;
+            }
+            if(navStack.length <= 1) {
+                navigator.app.exitApp(); // Close the app
+            } else {
+                var currentTab = tabbar.getActiveTabIndex();
+                var lastTab = navStack.pop();
+                if(lastTab === currentTab) {
+                    lastTab = navStack.pop();
+                }
+                $scope.tabbar.setActiveTab(lastTab);
+
+            }
+        });
+
+        var numTabs = tabbar.children[1].childElementCount;
+        var divGD = window.ons.GestureDetector(document.querySelector('#page-content'));
+        divGD.on('swipeleft', function() {
+            if(storageService.getBackButtonExit() === false) {
+                return;
+            }
+            var currentTab = tabbar.getActiveTabIndex();
+            $scope.tabbar.setActiveTab((currentTab + 1) % numTabs, {animation: 'slide'});
+        });
+
+        divGD.on('swiperight', function() {
+            if(storageService.getBackButtonExit() === false) {
+                return;
+            }
+            var currentTab = tabbar.getActiveTabIndex();
+            currentTab = (currentTab + numTabs - 1) % numTabs;
+            $scope.tabbar.setActiveTab(currentTab, {animation: 'slide'});
         });
 
         if(_.isUndefined(main.currentStudent) === false) {
@@ -156,6 +199,8 @@
         });
 
         $rootScope.$on('hardware.resume', function() {
+            var currentTab = tabbar.getActiveTabIndex();
+            navStack = [currentTab];
             checkForUpdate();
         });
 
@@ -191,12 +236,5 @@
                 }
             }
         }
-
-        $scope.$on("hardware.backbutton", function() {
-            if(storageService.getBackButtonExit() === true) {
-                navigator.app.exitApp(); // Close the app
-            }
-        });
-
     }
 })();

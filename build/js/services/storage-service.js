@@ -10,7 +10,7 @@
         var visitedNews = null;
         var languageCode = 'en';
         var currentMap;
-        var backButtonExit = false;
+        var backButtonExit = true;
 
         var service = {
             clear: function() {
