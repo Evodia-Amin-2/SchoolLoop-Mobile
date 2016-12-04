@@ -2,9 +2,8 @@
   "version":"{version}",
   "build":"{build}",
   "changes": [
-    "Added mechanism to notify users about what's new",
     "Fixed LoopMail reply issue",
-    "Fixed transitions",
-    "Fixed back button"
+    "Fixed back button on Android",
+    "Added swipe to move between tabs"
   ]
 }
