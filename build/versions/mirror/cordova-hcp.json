@@ -7,5 +7,5 @@
   "android_identifier": "com.schoolloop.mobileloop.app",
   "update": "now",
   "content_url": "https://s3-us-west-2.amazonaws.com/schoolloop-hotpush/mirror",
-  "min_native_interface": "30119"
+  "min_native_interface": "30123"
 }
