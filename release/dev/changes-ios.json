@@ -1,0 +1,8 @@
+{
+  "version":"{version}",
+  "build":"{build}",
+  "changes": [
+    "Fixed LoopMail reply issue",
+    "Added swipe to move between tabs"
+  ]
+}

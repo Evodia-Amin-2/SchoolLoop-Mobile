@@ -3,7 +3,6 @@
   "build":"{build}",
   "changes": [
     "Fixed LoopMail reply issue",
-    "Fixed back button on Android",
     "Added swipe to move between tabs"
   ]
 }

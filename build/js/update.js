@@ -17,8 +17,14 @@
             statusService.hideNoWait();
             navigator.splashscreen.hide();
 
+            var platform = "android";
+            if (ons.platform.isIOS()) {
+                platform = "ios";
+            }
+
             page.config = config;
-            var endpoint = "https://s3-us-west-2.amazonaws.com/schoolloop-release/" +  page.config.id + "/changes.json?" + new Date();
+            var endpoint = "https://s3-us-west-2.amazonaws.com/schoolloop-release/" +
+                page.config.id + "/changes-" + platform + ".json?" + new Date();
             $http({
                 method: "GET",
                 url: endpoint,

@@ -310,7 +310,7 @@ gulp.task('vendor-js', function () {
 gulp.task("upload", function() {
     var appVersion = buildData.version;
     var buildNumber = buildData.index;
-    return gulp.src("release/" + appId + "/changes.json")
+    return gulp.src(["release/" + appId + "/changes-ios.json", "release/" + appId + "/changes-android.json"])
         .pipe(plumber({ errorHandler: gutil.log }))
         .pipe(replace('{version}', appVersion))
         .pipe(replace('{build}', buildNumber))
