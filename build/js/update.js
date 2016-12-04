@@ -17,12 +17,13 @@
             statusService.hideNoWait();
             navigator.splashscreen.hide();
 
+            page.config = config;
+
             var platform = "android";
             if (window.ons.platform.isIOS()) {
                 platform = "ios";
             }
 
-            page.config = config;
             var endpoint = "https://s3-us-west-2.amazonaws.com/schoolloop-release/" +
                 page.config.id + "/changes-" + platform + ".json?" + new Date();
             $http({
