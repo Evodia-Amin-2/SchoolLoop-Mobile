@@ -42,7 +42,7 @@ buildData[appId] = {};
 
 var build = flags["build"];
 if(build && build > 0) {
-    buildData.index = build;
+    buildData.build = build;
 } else {
     try {
         var dataFile = JSON.parse(fs.readFileSync('./build-data.json'));
@@ -53,7 +53,7 @@ if(build && build > 0) {
         }
         buildData = dataFile;
     } catch(e) {
-        buildData.index = 1;
+        buildData.build = 1;
     }
 }
 
@@ -137,7 +137,7 @@ gulp.task('init-config', function () {
                 $("widget").append('    <chcp>\n' +
                     '        <config-file url="https://s3-us-west-2.amazonaws.com/schoolloop-hotpush/' + appId + '/chcp.json"/>\n' +
                     '        <auto-install enabled="false" />\n' +
-                    '        <native-interface version="' + buildData.index + '" />\n' +
+                    '        <native-interface version="' + buildData.build + '" />\n' +
                     '    </chcp>\n');
             },
             parserOptions: {
@@ -148,13 +148,13 @@ gulp.task('init-config', function () {
 });
 
 gulp.task('init-ios', function () {
-    gutil.log(chalk.cyan("app=")+ chalk.yellow(appId), chalk.cyan("build=") + chalk.yellow(buildData.index), chalk.cyan("name=")+ chalk.yellow(buildData[appId].displayName));
+    gutil.log(chalk.cyan("app=")+ chalk.yellow(appId), chalk.cyan("build=") + chalk.yellow(buildData.build), chalk.cyan("name=")+ chalk.yellow(buildData[appId].displayName));
 
     return gulp.src('./app/platforms/ios/MobileLoop/MobileLoop-info.plist')
         .pipe(plumber({ errorHandler: gutil.log }))
         .pipe(peditor({
             "CFBundleDisplayName": buildData[appId].displayName,
-            "CFBundleVersion": buildData.index
+            "CFBundleVersion": buildData.build
         }))
         .pipe(gulp.dest('./app/platforms/ios/MobileLoop/'));
 });
@@ -203,8 +203,8 @@ gulp.task('app-config', ['set-build'], function () {
     var appVersion = buildData.version;
     var buildNumber = flags["build"];
     if(!buildNumber) {
-        buildNumber = buildData.index;
-        buildData.index++;
+        buildNumber = buildData.build;
+        buildData.build++;
         fs.writeFileSync('./build-data.json', JSON.stringify(buildData, null, '  '));
 
     }
@@ -225,8 +225,8 @@ gulp.task('set-build', function () {
         .pipe(cheerio({
             run: function ($) {
                 $('widget').attr('version', version);
-                $('widget').attr('android-versionCode', buildData.index);
-                $('widget').attr('ios-CFBundleVersion', buildData.index);
+                $('widget').attr('android-versionCode', buildData.build);
+                $('widget').attr('ios-CFBundleVersion', buildData.build);
             },
             parserOptions: {
                 xmlMode: true
@@ -309,7 +309,7 @@ gulp.task('vendor-js', function () {
 
 gulp.task("upload", function() {
     var appVersion = buildData.version;
-    var buildNumber = buildData.index;
+    var buildNumber = buildData.build;
     return gulp.src(["release/" + appId + "/changes-ios.json", "release/" + appId + "/changes-android.json"])
         .pipe(plumber({ errorHandler: gutil.log }))
         .pipe(replace('{version}', appVersion))

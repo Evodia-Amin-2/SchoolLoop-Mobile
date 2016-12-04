@@ -18,7 +18,7 @@
             navigator.splashscreen.hide();
 
             var platform = "android";
-            if (ons.platform.isIOS()) {
+            if (window.ons.platform.isIOS()) {
                 platform = "ios";
             }
 
