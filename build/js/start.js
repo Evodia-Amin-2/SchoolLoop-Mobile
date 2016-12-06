@@ -2,10 +2,11 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('StartController', ['$location', '$timeout', 'StorageService', 'LoginService', 'DataService', 'StatusService', StartController])
+        .controller('StartController', ['$location', '$timeout', 'StorageService', 'LoginService', 'DataService',
+            'StatusService', 'gettextCatalog', StartController])
     ;
 
-    function StartController($location, $timeout, storageService, loginService, dataService, statusService) {
+    function StartController($location, $timeout, storageService, loginService, dataService, statusService, gettextCatalog) {
         var start = this;
 
         console.log("Starting application");
@@ -37,13 +38,18 @@
                 dataService.load().then(function() {
                     startApp();
                 }, function(response) {
+                    statusService.hideNoWait();
                     var error = response.data;
                     if(error.toLowerCase().startsWith("error 6")) {
                         startApp();
+                    } else {
+                        var message = gettextCatalog.getString("Problem loading data.  Please try again later.");
+                        window.plugins.toast.showLongBottom(message);
                     }
                 });
             },
             function(error) {
+                statusService.hideNoWait();
                 if (_.isString(error.data) && error.data.toLowerCase().startsWith("invalid version")) {
                     $location.path('/invalid');
                     return;
