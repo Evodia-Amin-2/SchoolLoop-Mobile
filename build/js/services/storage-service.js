@@ -128,6 +128,24 @@
                     }
                 }
             },
+            getParentSchool: function(parentId) {
+                var domainMap = loadDomainMap();
+                var domainName;
+                var school;
+                for(domainName in domainMap) {
+                    if(domainMap.hasOwnProperty(domainName)) {
+                        var domain = domainMap[domainName];
+                        console.log("domain=" + JSON.stringify(domain));
+                        var user = domain.user;
+                        console.log("user=" + JSON.stringify(user) + " parentId=" + parentId);
+                        if(parentId === user.userID) {
+                            school = domain.school;
+                            break;
+                        }
+                    }
+                }
+                return school;
+            },
             getStudentId: function() {
                 var students = loadStudents();
                 if (students.length > 0) {

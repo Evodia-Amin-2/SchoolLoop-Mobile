@@ -245,9 +245,9 @@
 
         var url;
         if(_.isUndefined($scope.main.currentStudentInfo) === false && _.isUndefined(loopmail.schoolName) === false && loopmail.schoolName === true) {
-            var domain = storageService.getDefaultDomain();
-            $scope.main.currentStudentInfo = domain.school.name;
-            url = domain.school.domainName;
+            var school = storageService.getSelectedSchool();
+            $scope.main.currentStudentInfo = school.name;
+            url = school.domainName;
         }
 
         dataService.getMessage(loopmail.ID, url).then(function(response) {

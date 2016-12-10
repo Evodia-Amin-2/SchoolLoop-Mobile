@@ -29,14 +29,14 @@
             </ons-list>
             <div class="field-error" ng-show="page.error.school.length > 0">{{page.error.school}}</div>
 
-            <div ng-show="page.authFailed">
+            <div ng-show="page.needsLogin">
                 <ons-input id="username" name="username" modifier="underbar" placeholder="{{page.placeholder.username}}" float ng-model="page.username"
                            ng-class="{error: page.hasFieldError(page.username)}"
                            ng-enter="page.login()" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
                 </ons-input>
                 <div class="field-error" ng-show="page.username.length == 0 && page.error.username.length > 0">{{page.error.username}}</div>
 
-                <ons-input name="password" modifier="underbar" type="password" placeholder="{{page.placeholder.password}}" float ng-model="page.password"
+                <ons-input id="password" name="password" modifier="underbar" type="password" placeholder="{{page.placeholder.password}}" float ng-model="page.password"
                            ng-class="{error: page.hasFieldError(page.password)}"
                            ng-enter="page.login()" ng-required>
                 </ons-input>

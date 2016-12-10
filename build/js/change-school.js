@@ -60,7 +60,15 @@
                 page.selectedSchool = school;
                 page.searchParam = school.name;
                 page.disabled = true;
-                page.login();
+                page.needsLogin = true;
+                page.password = "";
+
+                var $password = $("#password");
+                var $input = $password.find(":input");
+                $timeout(function() {
+                    $input.focus();
+                }, 100);
+
             } else {
                 page.selectedSchool = undefined;
                 page.searchParam = "";

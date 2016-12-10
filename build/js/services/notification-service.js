@@ -93,6 +93,22 @@
                 var students = storageService.getStudents();
                 var student = _.findWhere(students, {studentID: targetId});
                 if(_.isUndefined(student) === true) {
+                    // Look for parent
+                    var parentSchool = storageService.getParentSchool(targetId);
+                    if(_.isUndefined(parentSchool) === true) {
+                        processNotification(data);
+                        return;
+                    }
+                    for(var i = 0; i < students.length; i++) {
+                        var school = students[i].school;
+                        if(parentSchool.domainName === school.domainName) {
+                            student = students[i];
+                            targetId = student.studentID;
+                            break;
+                        }
+                    }
+                }
+                if(_.isUndefined(student) === true) {
                     processNotification(data);
                     return;
                 }
