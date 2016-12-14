@@ -73,6 +73,10 @@
                     saveDomainMap(domainMap);
                 }
             },
+            getDomainMap: function() {
+                var domainMap = loadDomainMap();
+                return domainMap;
+            },
             getDomain: function(domainName) {
                 var domainMap = loadDomainMap();
                 var domain = domainMap[domainName];
@@ -135,9 +139,7 @@
                 for(domainName in domainMap) {
                     if(domainMap.hasOwnProperty(domainName)) {
                         var domain = domainMap[domainName];
-                        console.log("domain=" + JSON.stringify(domain));
                         var user = domain.user;
-                        console.log("user=" + JSON.stringify(user) + " parentId=" + parentId);
                         if(parentId === user.userID) {
                             school = domain.school;
                             break;

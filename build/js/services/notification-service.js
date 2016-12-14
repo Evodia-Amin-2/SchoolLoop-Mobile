@@ -2,11 +2,11 @@
     'use strict';
 
     angular.module('app.services')
-        .factory('NotificationService', ['$rootScope', '$location', 'DataService', 'StorageService', 'StatusService',
+        .factory('NotificationService', ['$rootScope', '$location', 'DataService', 'StorageService', 'StatusService', 'LoginService',
                                 'config', 'gettextCatalog', NotificationService])
     ;
 
-    function NotificationService($rootScope, $location, dataService, storageService, statusService,
+    function NotificationService($rootScope, $location, dataService, storageService, statusService, loginService,
                                  config, gettextCatalog) {
         var notificationData;
         var pushNotification;
@@ -44,6 +44,21 @@
                 console.log("notification error " + JSON.stringify(e));
                 // e.message
             });
+
+            // Login each user in order to receive notifications
+            var defaultDomain = storageService.getDefaultDomain();
+            var domainMap = storageService.getDomainMap();
+            var domainName;
+            for(domainName in domainMap) {
+                if(domainMap.hasOwnProperty(domainName)) {
+                    var domain = domainMap[domainName];
+                    var school = domain.school;
+                    if(defaultDomain.school.domainName === school.domainName) {
+                        continue;
+                    }
+                    loginService.login(school.domainName);
+                }
+            }
         }
 
         $rootScope.$on('hardware.pause', function() {
