@@ -2,6 +2,6 @@
   "version":"{version}",
   "build":"{build}",
   "changes": [
-    "Better error handling for login errors"
+    "Register all users for notifications"
   ]
 }
