@@ -55,28 +55,9 @@
         }
 
         function logout() {
-            var result;
-            // Login each user in order to receive notifications
-            var defaultDomain = storageService.getDefaultDomain();
-            var domainMap = storageService.getDomainMap();
-            var domainName;
-            for(domainName in domainMap) {
-                if(domainMap.hasOwnProperty(domainName)) {
-                    var domain = domainMap[domainName];
-                    var user = domain.user;
-                    dataService.setupAuthHeaders(user.userName, user.hashedPassword, {}, true);
-                    var school = domain.school;
-                    var url = school.domainName;
-                    var endpoint = "https://" + url + "/mapi/logout";
-                    if(defaultDomain.school.domainName === school.domainName) {
-                        result = $http.get(endpoint);
-                    } else {
-                        $http.get(endpoint);
-                    }
-
-                }
-            }
-            return result;
+            var url = storageService.getDefaultDomain().school.domainName;
+            var endpoint = "https://" + url + "/mapi/logout";
+            return $http.get(endpoint);
         }
 
         return {"login": login,

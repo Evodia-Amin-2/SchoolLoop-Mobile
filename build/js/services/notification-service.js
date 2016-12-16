@@ -44,21 +44,6 @@
                 console.log("notification error " + JSON.stringify(e));
                 // e.message
             });
-
-            // Login each user in order to receive notifications
-            var defaultDomain = storageService.getDefaultDomain();
-            var domainMap = storageService.getDomainMap();
-            var domainName;
-            for(domainName in domainMap) {
-                if(domainMap.hasOwnProperty(domainName)) {
-                    var domain = domainMap[domainName];
-                    var school = domain.school;
-                    if(defaultDomain.school.domainName === school.domainName) {
-                        continue;
-                    }
-                    loginService.login(school.domainName);
-                }
-            }
         }
 
         $rootScope.$on('hardware.pause', function() {
@@ -86,13 +71,27 @@
                 "uuid": device.uuid,
                 "devOS": device.platform
             };
-            dataService.registerDevice(params).then(
-                function () {
-                    console.log("registered: " + deviceToken);
-                }, function () {
-                    console.log("error registering: " + deviceToken);
+
+            // Register each user in order to receive notifications
+            var domainMap = storageService.getDomainMap();
+            var domainName;
+            for(domainName in domainMap) {
+                if(domainMap.hasOwnProperty(domainName)) {
+                    var domain = domainMap[domainName];
+                    var user = domain.user;
+                    dataService.setupAuthHeaders(user.userName, user.hashedPassword, {}, true);
+                    dataService.registerDevice(params).then(regSuccess, regFailure);
                 }
-            );
+            }
+
+            function regSuccess() {
+                console.log("registered: " + deviceToken);
+            }
+
+            function regFailure() {
+                console.log("error registering: " + deviceToken);
+            }
+
         }
 
         function parseVersion(version) {
