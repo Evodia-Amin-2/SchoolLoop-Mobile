@@ -2,8 +2,6 @@
   "version":"{version}",
   "build":"{build}",
   "changes": [
-    "Fixed LoopMail reply issue",
-    "Fixed back button",
-    "Added swipe to move between tabs"
+    "Fix for login issues.  All users will be forced to login again."
   ]
 }

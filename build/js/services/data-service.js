@@ -100,7 +100,7 @@
 
                     return tmp;
                 }, function(error) {
-                    console.log(error);
+                    console.log("Error: " + JSON.stringify(error));
                     cache.assignments = [];
                     cache.report_card = [];
                     cache.calendar = [];
@@ -129,7 +129,7 @@
 
                     return tmp;
                 }, function(response) {
-                    console.log("Error", response);
+                    console.log("Error" + JSON.stringify(response));
                     return response;
                 }).then(function(tmpResult) {
                     cache[DataType.LOOPMAIL] = tmpResult[DataType.LOOPMAIL];

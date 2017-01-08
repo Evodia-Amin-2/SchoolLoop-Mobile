@@ -160,16 +160,20 @@
             page.disabled = false;
             page.needsLogin = true;
             page.password = "";
-            var status = error.data;
-            var isCredError = status.toLowerCase().startsWith("error 1:") ||
-                status.toLowerCase().startsWith("error 2:");
+            var status = error.data.toLowerCase();
+            var isCredError = status.startsWith("error 1:") ||
+                status.startsWith("error 2:") || status.startsWith("error 3:");
             if(isCredError === true) {
                 page.authFailed = true;
                 page.password = "";
-                page.error.school =  gettextCatalog.getString("Invalid Login");
+                if(status.startsWith("error 3:") === true) {
+                    page.error.school =  gettextCatalog.getString("User needs verification");
+                } else {
+                    page.error.school =  gettextCatalog.getString("Invalid Login");
+                }
             }
             page.message = "";
-            console.log(error);
+            console.log(JSON.stringify(error));
         }
 
         function isSearchDefined() {
