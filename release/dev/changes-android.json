@@ -2,6 +2,6 @@
   "version":"{version}",
   "build":"{build}",
   "changes": [
-    "Fix for login issues.  All users will be forced to login again."
+    "Fix for login issues."
   ]
 }

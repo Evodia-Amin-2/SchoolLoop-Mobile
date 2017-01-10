@@ -15,16 +15,8 @@
         var service = {
             clear: function() {
                 storage.clear();
-                storage.setItem("reset", "1");
             },
             isLoggedIn: function() {
-                var reset = JSON.parse(storage.getItem("reset"));
-                if (_.isUndefined(reset) === true || _.isNull(reset) === true) {
-                    service.clear();
-                    storage.setItem("reset", "1");
-                    return false;
-                }
-
                 var domain = service.getDefaultDomain();
                 return _.isUndefined(domain) === false && _.isUndefined(domain.user.hashedPassword) === false;
             },

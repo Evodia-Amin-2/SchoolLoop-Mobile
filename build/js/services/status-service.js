@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('app.services')
-        .factory('StatusService', ['$timeout', 'gettextCatalog', StatusService])
+        .factory('StatusService', ['$timeout', '$location', 'StorageService', 'gettextCatalog', StatusService])
     ;
 
-    function StatusService($timeout, gettextCatalog) {
+    function StatusService($timeout, $location, storageService, gettextCatalog) {
 
         var loginShowing = false;
 
@@ -24,6 +24,15 @@
                 if(loginShowing === false) {
                     loginShowing = true;
                     show(gettextCatalog.getString("Logging in..."));
+
+                    $timeout(function() {
+                        if(loginShowing === true) {
+                            loginShowing = false;
+                            window.plugins.spinnerDialog.hide();
+                            storageService.clear();
+                            $location.path('/login');
+                        }
+                    }, 30000);
                 }
             },
             hideNoWait: function() {
