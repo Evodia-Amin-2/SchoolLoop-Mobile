@@ -12,6 +12,9 @@ fi
 
 echo "Uploading change file for $APP_ID"
 
+cp .mobile-s3 app/.chcplogin
 cd ./app
 echo "Deploying files for hot code push"
 cordova-hcp deploy
+cd ..
+cp build/versions/.chcplogin app/

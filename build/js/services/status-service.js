@@ -29,7 +29,7 @@
                         if(loginShowing === true) {
                             loginShowing = false;
                             window.plugins.spinnerDialog.hide();
-                            storageService.clear();
+                            storageService.clearOnce();
                             $location.path('/login');
                         }
                     }, 30000);

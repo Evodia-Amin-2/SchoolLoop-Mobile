@@ -16,6 +16,13 @@
             clear: function() {
                 storage.clear();
             },
+            clearOnce: function() {
+                var reset = JSON.parse(storage.getItem("reset"));
+                if (_.isUndefined(reset) === true || _.isNull(reset) === true) {
+                    storage.clear();
+                    storage.setItem("reset", "1");
+                }
+            },
             isLoggedIn: function() {
                 var domain = service.getDefaultDomain();
                 return _.isUndefined(domain) === false && _.isUndefined(domain.user.hashedPassword) === false;

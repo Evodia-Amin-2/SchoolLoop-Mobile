@@ -28,4 +28,4 @@ platforms/ios/MobileLoop/Images.xcassets/AppIcon.appiconset/*.png
 platforms/android/fastlane/metadata
 /app/*
 build-data.json
-.chcplogin
+.mobile-s3

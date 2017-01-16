@@ -21,7 +21,7 @@ var fs = require('fs');
 var peditor = require('gulp-plist');
 var chalk = require('chalk');
 
-var s3Config = JSON.parse(fs.readFileSync('build/versions/.chcplogin'));
+var s3Config = JSON.parse(fs.readFileSync('.mobile-s3'));
 var s3 = require('gulp-s3-upload')(s3Config);
 
 var destPath = "app/www";
