@@ -32,7 +32,7 @@
                             storageService.clearOnce();
                             $location.path('/login');
                         }
-                    }, 30000);
+                    }, 60000);
                 }
             },
             hideNoWait: function() {
