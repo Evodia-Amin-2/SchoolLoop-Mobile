@@ -30,7 +30,7 @@ var platformsPath = "app/platforms";
 var browserPath = "app/platforms/browser/www";
 
 var appId = flags["id"] || "app";
-var version = flags["version"] || '3.0.2';
+var version = flags["version"] || '3.1.0';
 if(appId && appId.length > 0) {
     configFile = "build/versions/" + appId + "/config.json";
 }

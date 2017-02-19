@@ -17,6 +17,9 @@
         var month = moment().month();
         var months = moment.months();
         calendarCtrl.title = months[month];
+        calendarCtrl.day = moment();
+        calendarCtrl.today = calendarCtrl.day.date();
+        calendarCtrl.showCalendar = false;
 
         initialize();
 
@@ -54,6 +57,10 @@
                 return event.startTimeString + "-" + event.endTimeString;
             }
             return;
+        };
+
+        calendarCtrl.toggleCalendar = function() {
+            calendarCtrl.showCalendar = ! calendarCtrl.showCalendar;
         };
 
         calendarCtrl.load = function($done) {

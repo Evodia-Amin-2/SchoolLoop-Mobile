@@ -1,0 +1,15 @@
+<div class="calendar">
+    <div class="header">
+        <ons-icon class="cal-nav" icon="ion-chevron-left" ng-click="previous()" size="14px"></ons-icon>
+        <span>{{month.format("MMMM, YYYY")}}</span>
+        <ons-icon class="cal-nav" icon="ion-chevron-right" ng-click="next()" size="14px"></ons-icon>
+    </div>
+    <div class="week">
+        <span class="day names" ng-repeat="label in weekdays">{{label|truncate:1}}</span>
+    </div>
+    <div class="week" ng-repeat="week in weeks">
+        <div class="day" ng-repeat="day in week.days">
+            <div class="day-label" ng-class="{ today: day.isToday, 'different-month': !day.isCurrentMonth, selected: day.date.isSame(selected) }" >{{day.number}}</div>
+        </div>
+    </div>
+</div>
