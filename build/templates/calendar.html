@@ -9,7 +9,7 @@
     </div>
     <div class="week" ng-repeat="week in weeks">
         <div class="day" ng-repeat="day in week.days">
-            <div class="day-label" ng-click="select(day)" ng-class="{ today: day.isToday, 'different-month': !day.isCurrentMonth, selected: day.date.isSame(selected) }" >{{day.number}}</div>
+            <div class="day-label" ng-click="select(day)" ng-class="{ today: day.isToday, 'different-month': !day.isCurrentMonth, selected: day.date.isSame(selected, 'day') }" >{{day.number}}</div>
         </div>
     </div>
 </div>

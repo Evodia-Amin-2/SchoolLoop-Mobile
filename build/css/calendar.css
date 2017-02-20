@@ -157,6 +157,12 @@
     color: #c0c0c0;
 }
 
+.calendar > .week .day-label.selected {
+    border-radius: 50%;
+    background-color: #c0c0c0;
+    color: white;
+}
+
 .calendar > .week .day-label.today {
     border-radius: 50%;
     background-color: #009688;

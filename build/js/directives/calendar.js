@@ -13,20 +13,29 @@
             },
             templateUrl: 'calendar.html',
             link: function(scope) {
-                scope.selected = _removeTime(scope.selected || moment());
-                scope.month = scope.selected.clone();
-
+                scope.selected = (scope.selected || moment());
                 scope.weekdays = moment.weekdaysShort();
 
-                var start = scope.selected.clone();
-                start.date(1);
-                _removeTime(start.day(0));
+                function initialize() {
+                    var start = scope.selected.clone();
+                    start.date(1);
+                    _removeTime(start.day(0));
 
-                _buildMonth(scope, start, scope.month);
+                    scope.month = scope.selected.clone();
+                    _buildMonth(scope, start, scope.month);
+                }
+
+                initialize();
 
                 scope.select = function(day) {
                     scope.set(day.date);
                 };
+
+                scope.$watch('selected',
+                    function(newValue) {
+                        initialize();
+                    }
+                );
 
                 scope.next = function() {
                     var next = scope.month.clone();

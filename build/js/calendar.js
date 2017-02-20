@@ -14,11 +14,9 @@
 
         var calendarCtrl = this;
 
-        var month = moment().month();
         var months = moment.months();
-        calendarCtrl.title = months[month];
-        calendarCtrl.day = moment();
-        calendarCtrl.today = calendarCtrl.day.date();
+        setDay(moment());
+        calendarCtrl.today = moment().date();
         calendarCtrl.showCalendar = false;
 
         initialize();
@@ -63,16 +61,26 @@
             calendarCtrl.showCalendar = ! calendarCtrl.showCalendar;
         };
 
+        calendarCtrl.snapToday = function() {
+            calendarCtrl.set(moment());
+        };
+
         calendarCtrl.set = function(date) {
             calendarCtrl.showCalendar = false;
-            calendarCtrl.day = date;
-            var month = calendarCtrl.day.month();
-            calendarCtrl.title = months[month];
+
+            setDay(date);
+
             calendarCtrl.events = [];
             dataService.getEvents(date).then(function(result) {
                 calendarCtrl.events = groupEvents(result, $scope);
             });
         };
+
+        function setDay(day) {
+            calendarCtrl.day = day;
+            var month = calendarCtrl.day.month();
+            calendarCtrl.title = months[month];
+        }
 
         calendarCtrl.load = function($done) {
             $timeout(function() {
