@@ -77,7 +77,12 @@
 
         var numTabs = tabbar.children[1].childElementCount;
         var divGD = window.ons.GestureDetector(document.querySelector('#page-content'));
-        divGD.on('swipeleft', function() {
+        divGD.on('swipeleft', function(event) {
+            if (utils.hasParent(event.srcElement, "calendar") === true) {
+                $rootScope.$broadcast("swipe.left", {action: "calendar"});
+                return;
+            }
+
             if(storageService.getBackButtonExit() === false) {
                 return;
             }
@@ -85,7 +90,12 @@
             $scope.tabbar.setActiveTab((currentTab + 1) % numTabs, {animation: 'slide'});
         });
 
-        divGD.on('swiperight', function() {
+        divGD.on('swiperight', function(event) {
+            if (utils.hasParent(event.srcElement, "calendar") === true) {
+                $rootScope.$broadcast("swipe.right", {action: "calendar"});
+                return;
+            }
+
             if(storageService.getBackButtonExit() === false) {
                 return;
             }

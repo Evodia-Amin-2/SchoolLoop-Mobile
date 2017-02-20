@@ -63,6 +63,17 @@
             calendarCtrl.showCalendar = ! calendarCtrl.showCalendar;
         };
 
+        calendarCtrl.set = function(date) {
+            calendarCtrl.showCalendar = false;
+            calendarCtrl.day = date;
+            var month = calendarCtrl.day.month();
+            calendarCtrl.title = months[month];
+            calendarCtrl.events = [];
+            dataService.getEvents(date).then(function(result) {
+                calendarCtrl.events = groupEvents(result, $scope);
+            });
+        };
+
         calendarCtrl.load = function($done) {
             $timeout(function() {
                 return dataService.refresh(DataType.CALENDAR).then(function(result) {

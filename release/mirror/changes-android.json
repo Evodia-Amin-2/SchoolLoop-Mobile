@@ -2,6 +2,6 @@
   "version":"{version}",
   "build":"{build}",
   "changes": [
-    "Fix for login issues."
+    "Calendar enhancements."
   ]
 }

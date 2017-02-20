@@ -2,13 +2,14 @@
     'use strict';
 
     angular.module('ui.components')
-        .directive('calendar', [Calendar]);
+        .directive('calendar', ['$rootScope', Calendar]);
 
-    function Calendar() {
+    function Calendar($rootScope) {
         return {
             restrict: 'E',
             scope: {
-                selected: "="
+                selected: "=",
+                set: "="
             },
             templateUrl: 'calendar.html',
             link: function(scope) {
@@ -24,7 +25,7 @@
                 _buildMonth(scope, start, scope.month);
 
                 scope.select = function(day) {
-                    scope.selected = day.date;
+                    scope.set(day.date);
                 };
 
                 scope.next = function() {
@@ -40,6 +41,17 @@
                     scope.month.month(scope.month.month()-1);
                     _buildMonth(scope, previous, scope.month);
                 };
+
+                scope.$on('swipe.left', function() {
+                    scope.next();
+                    scope.$apply();
+                });
+
+                scope.$on('swipe.right', function() {
+                    scope.previous();
+                    scope.$apply();
+                });
+
             }
         };
 

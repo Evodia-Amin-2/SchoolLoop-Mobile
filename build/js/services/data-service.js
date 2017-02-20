@@ -189,6 +189,22 @@
                 page = page || 0;
                 return doGet($q, $http, config, DataType.LOOPMAIL, {"folderID": folderId, "start": (page * 20), "max": 20}, defaultParams, storageService, service);
             },
+            getEvents: function(startDate) {
+                var today = startDate;
+                var end = startDate.clone();
+                var min = startDate.clone();
+                min.endOf('day');
+                min.add(1, 'w');
+
+                today.startOf('day');
+                end.endOf('month');
+
+                if(end.isBefore(min)) {
+                    end = min;
+                }
+                defaultParams[DataType.CALENDAR] = {"startDate": today.valueOf(), "endDate":  end.valueOf()};
+                return doGet($q, $http, config, DataType.CALENDAR, {"startDate": today.valueOf(), "endDate":  end.valueOf()}, defaultParams, storageService, service);
+            },
             setLoopmailFolder: function(id) {
                 folderId = id;
             },

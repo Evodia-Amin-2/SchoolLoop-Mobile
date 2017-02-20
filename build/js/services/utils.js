@@ -60,7 +60,18 @@
                     StatusBar.backgroundColorByHexString(color);
                     StatusBar.show();
                 }, 100);
+            },
+            hasParent: function(element, className) {
+                var regex = new RegExp('\\b' + className + '\\b');
+                do {
+                    if (regex.exec(element.className)) {
+                        return true;
+                    }
+                    element = element.parentNode;
+                } while (element);
+                return false;
             }
+
         };
         return utils;
     }
