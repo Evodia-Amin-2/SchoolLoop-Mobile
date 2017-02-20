@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('ui.components')
-        .directive('calendar', ['$rootScope', Calendar]);
+        .directive('calendar', [Calendar]);
 
-    function Calendar($rootScope) {
+    function Calendar() {
         return {
             restrict: 'E',
             scope: {
@@ -32,7 +32,7 @@
                 };
 
                 scope.$watch('selected',
-                    function(newValue) {
+                    function() {
                         initialize();
                     }
                 );
