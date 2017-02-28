@@ -129,6 +129,54 @@
                 </ons-list>
             </div>
         </ons-modal>
+        <ons-modal var="calFilterModal">
+            <div class="assignment-filter">
+                <ons-row>
+                    <ons-col>
+                        <div class="left filter-prompt">Show:</div>
+                    </ons-col>
+                    <ons-col width="30px" tappable ng-click="doFilter('close')">
+                        <ons-ripple color="rgba(156, 156, 156, 0.20)"></ons-ripple>
+                        <ons-icon icon="md-close" size="32px"></ons-icon>
+                    </ons-col>
+                </ons-row>
+                <ons-list>
+                    <ons-list-item modifier="nodivider" tappable>
+                        <label class="left">
+                            <ons-input type="checkbox" input-id="checkbox-1" ng-model="calFilter.assigned"></ons-input>
+                        </label>
+                        <label for="checkbox-1" class="center" translate>
+                            Work (Assigned Date)
+                        </label>
+                    </ons-list-item>
+                    <ons-list-item modifier="nodivider" tappable>
+                        <label class="left">
+                            <ons-input type="checkbox" input-id="checkbox-2" ng-model="calFilter.due"></ons-input>
+                        </label>
+                        <label for="checkbox-2" class="center" translate>
+                            Work (Due Date)
+                        </label>
+                    </ons-list-item>
+                    <ons-list-item modifier="nodivider" tappable>
+                        <label class="left">
+                            <ons-input type="checkbox" input-id="checkbox-3" ng-model="calFilter.general"></ons-input>
+                        </label>
+                        <label for="checkbox-3" class="center" translate>
+                            General Events
+                        </label>
+                    </ons-list-item>
+                    <ons-list-item modifier="nodivider" tappable>
+                        <label class="left">
+                            <ons-input type="checkbox" input-id="checkbox-4" ng-model="calFilter.group"></ons-input>
+                        </label>
+                        <label for="checkbox-4" class="center" translate>
+                            My Group Events
+                        </label>
+                    </ons-list-item>
+                    <div class="cal-filter-button" tappable ng-click="doFilter(calFilter)" translate>Filter</div>
+                </ons-list>
+            </div>
+        </ons-modal>
         <div ng-show="main.currentStudentInfo" class="current-student ng-hide" ng-class="{ios:ons.platform.isIOS()}">
             <span ng-click="main.studentMenu()" class="student-display" ng-class="{menu: main.showStudentMenu()}">{{main.currentStudentInfo}}<ons-icon ng-show="main.showStudentMenu()" icon="md-caret-down" size="24px"></ons-icon></span>
             <ons-popover direction="down" cancelable var="studentMenu">

@@ -61,10 +61,6 @@
             calendarCtrl.showCalendar = ! calendarCtrl.showCalendar;
         };
 
-        calendarCtrl.snapToday = function() {
-            calendarCtrl.set(moment());
-        };
-
         calendarCtrl.set = function(date) {
             calendarCtrl.showCalendar = false;
 
@@ -81,6 +77,14 @@
             var month = calendarCtrl.day.month();
             calendarCtrl.title = months[month];
         }
+
+        calendarCtrl.filter = function() {
+            $scope.calFilterModal.show();
+        };
+
+        $scope.$on('filter.action', function() {
+            $scope.calFilterModal.hide();
+        });
 
         calendarCtrl.load = function($done) {
             $timeout(function() {

@@ -13,23 +13,23 @@
                     <ons-icon icon="md-menu"></ons-icon>
                 </ons-toolbar-button>
             </div>
-            <div class="center" ng-click="calendarCtrl.toggleCalendar()">{{calendarCtrl.title}}
-                <ons-icon class="cal-dropdown-icon" ng-show="!calendarCtrl.showCalendar" icon="md-caret-down" size="24px"></ons-icon>
-                <ons-icon class="cal-dropdown-icon" ng-show="calendarCtrl.showCalendar" icon="md-caret-up" size="24px"></ons-icon>
-            </div>
+            <div class="center" translate>Calendar</div>
             <div class="right">
-                <ons-toolbar-button class="calendar-toolbar-button" ng-click="calendarCtrl.snapToday()">
+                <ons-toolbar-button class="calendar-toolbar-button" ng-click="calendarCtrl.toggleCalendar()">
                     <div class="cal-day-display">
                         <ons-icon size="26px" icon="ion-ios-calendar-outline"></ons-icon>
                         <div class="cal-day">{{calendarCtrl.today}}</div>
                     </div>
                 </ons-toolbar-button>
-                <ons-toolbar-button class="calendar-toolbar-button" ng-click="mailCtrl.compose()">
+                <ons-toolbar-button class="calendar-toolbar-button" ng-click="calendarCtrl.filter()">
                     <ons-icon class="cal-filter" size="24px" icon="md-filter-list"></ons-icon>
                 </ons-toolbar-button>
             </div>
         </ons-toolbar>
 
+        <ons-list-header>
+            <span>{{calendarCtrl.day.format("MMMM YYYY")}}</span>
+        </ons-list-header>
         <ons-list ng-show="calendarCtrl.events.length === 0">
             <div class="card">
                 <ons-list-item class="card-item assignment-item" modifier="longdivider">

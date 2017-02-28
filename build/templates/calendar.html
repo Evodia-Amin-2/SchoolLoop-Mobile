@@ -12,4 +12,5 @@
             <div class="day-label" ng-click="select(day)" ng-class="{ today: day.isToday, 'different-month': !day.isCurrentMonth, selected: day.date.isSame(selected, 'day') }" >{{day.number}}</div>
         </div>
     </div>
+    <div class="footer" ng-click="today()" translate>Today</div>
 </div>

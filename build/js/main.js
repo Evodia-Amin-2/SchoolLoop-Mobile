@@ -24,6 +24,13 @@
 
         $scope.gradeFilter = "all";
 
+        $scope.calFilter = {
+            assigned: false,
+            due: true,
+            general: true,
+            group: true
+        };
+
         $timeout(function() {
             statusService.hideNoWait();
             navigator.splashscreen.hide();

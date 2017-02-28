@@ -31,6 +31,10 @@
                     scope.set(day.date);
                 };
 
+                scope.today = function() {
+                    scope.set(moment());
+                };
+
                 scope.$watch('selected',
                     function() {
                         initialize();

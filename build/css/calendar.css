@@ -174,3 +174,18 @@
     margin-right: 5px;
     vertical-align: baseline;
 }
+
+.calendar > .footer, .cal-filter-button {
+    width: 100%;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    text-align: center;
+    padding: 10px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.cal-filter-button {
+    padding-top: 30px;
+    padding-bottom: 0;
+    margin-top: 20px;
+}
