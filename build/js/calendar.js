@@ -18,6 +18,7 @@
         setDay(moment());
         calendarCtrl.today = moment().date();
         calendarCtrl.showCalendar = false;
+        calendarCtrl.loaded = false;
 
         initialize();
 
@@ -82,8 +83,20 @@
             $scope.calFilterModal.show();
         };
 
-        $scope.$on('filter.action', function() {
+        $scope.$on('filter.action', function(event, data) {
             $scope.calFilterModal.hide();
+
+            if(data.action === "close") {
+                return;
+            }
+
+            calendarCtrl.loaded = false;
+            calendarCtrl.events = [];
+            $timeout(function() {
+                var events = dataService.list(DataType.CALENDAR);
+                calendarCtrl.events = groupEvents(events, $scope);
+            }, 300);
+
         });
 
         calendarCtrl.load = function($done) {
@@ -95,6 +108,17 @@
                     $done();
                 });
             }, 1000);
+        };
+
+        calendarCtrl.typeLabel = function(item) {
+            if(_.isUndefined(item) === true) {
+                return "";
+            }
+            if(item.eventType === "due") {
+                return "Due";
+            } else {
+                return "Assignment";
+            }
         };
 
         $scope.$on("refresh.all", function() {
@@ -128,12 +152,13 @@
                 return [];
             }
 
+            var i, len;
             var filtered = [];
-            for(var i = 0, len = data.length; i < len; i++) {
-                if(data[i].eventType === 'assigned') {
-                    continue;
+            for(i = 0, len = data.length; i < len; i++) {
+                var value = data[i];
+                if(applyFilter(value) === true) {
+                    filtered.push(value);
                 }
-                filtered.push(data[i]);
             }
 
             var sortedData = _.sortBy(filtered, function(o) {
@@ -147,12 +172,38 @@
                 var object = {};
                 object.date = keys[i];
                 var sourceDate = moment(object.date);
+                var today = moment();
+                if(i === 0 && sourceDate.isSame(today, "day") === false) {
+                    object.day = today.get('date');
+                    object.dow = today.format('ddd');
+                    object.list = [];
+                    events.push(object);
+                    object = {};
+                }
                 object.day = sourceDate.get('date');
                 object.dow = sourceDate.format('ddd');
                 object.list = dates[keys[i]];
                 events.push(object);
             }
+            calendarCtrl.loaded = true;
             return events;
+        }
+
+        function applyFilter(element) {
+            var eventType = element.eventType;
+            if(eventType === "assigned") {
+                return $scope.calFilter.assigned === true;
+            }
+            if(eventType === "due") {
+                return $scope.calFilter.due === true;
+            }
+            if(eventType === "school") {
+                return $scope.calFilter.general === true;
+            }
+            if(eventType === "group") {
+                return $scope.calFilter.group === true;
+            }
+            return true;
         }
     }
 

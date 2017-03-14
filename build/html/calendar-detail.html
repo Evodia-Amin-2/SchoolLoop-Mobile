@@ -12,7 +12,7 @@
     <div class="calendar-detail-content" ng-show="calendarDetail.hasDescription()">
         <div class="assignment-desc" ng-bind-html="calendarDetail.getDescription()"></div>
 
-        <ons-list class="attachements-view" ng-if="calendarDetail.links">
+        <ons-list class="attachements-view" ng-if="calendarDetail.event.links">
             <ons-list-item modifier="longdivider" tappable ng-repeat="link in calendarDetail.event.links"
                            ng-click="calendarDetail.openURL(link)">
                 <div class="left">

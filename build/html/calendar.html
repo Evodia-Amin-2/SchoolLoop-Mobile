@@ -17,8 +17,7 @@
             <div class="right">
                 <ons-toolbar-button class="calendar-toolbar-button" ng-click="calendarCtrl.toggleCalendar()">
                     <div class="cal-day-display">
-                        <ons-icon size="26px" icon="ion-ios-calendar-outline"></ons-icon>
-                        <div class="cal-day">{{calendarCtrl.today}}</div>
+                        <ons-icon size="20px" icon="fa-calendar"></ons-icon>
                     </div>
                 </ons-toolbar-button>
                 <ons-toolbar-button class="calendar-toolbar-button" ng-click="calendarCtrl.filter()">
@@ -30,7 +29,7 @@
         <ons-list-header>
             <span>{{calendarCtrl.day.format("MMMM YYYY")}}</span>
         </ons-list-header>
-        <ons-list ng-show="calendarCtrl.events.length === 0">
+        <ons-list ng-show="calendarCtrl.loaded === true && calendarCtrl.events.length === 0">
             <div class="card">
                 <ons-list-item class="card-item assignment-item" modifier="longdivider">
                     <div class="center">
@@ -46,6 +45,13 @@
                     <div class="calendar-dow">{{eventList.dow}}</div>
                 </div>
                 <div class="card day-group">
+                    <ons-list-item class="calender-item" modifier="longdivider"
+                                   ng-show="eventList.list.length === 0">
+                        <div class="left">
+                            <div class="title cal-no-events" translate>No Events Today</div>
+                        </div>
+                    </ons-list-item>
+
                     <ons-list-item class="calender-item" modifier="longdivider" tappable
                                    ng-class="{'cal-assignment': calendarCtrl.isAssignment(item)}"
                                    ng-repeat="item in eventList.list"
@@ -58,7 +64,7 @@
                             <div>
                                 <div class="course">{{calendarCtrl.course(item)}}</div>
                                 <div class="title">{{item.title}}</div>
-                                <div class="category">{{item.eventType}}</div>
+                                <div class="category">{{calendarCtrl.typeLabel(item)}}</div>
                             </div>
                         </div>
                         <div class="center" ng-show="!calendarCtrl.isAssignment(item)">
