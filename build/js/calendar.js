@@ -30,9 +30,13 @@
             if(_.isUndefined(event.periods) === true) {
                 return "";
             }
-            var period = event.periods[0];
-            var periodIndex = period % CourseColors.length;
-            return "period-" + periodIndex;
+            if(event.eventType === "assigned") {
+                return "assigned-color";
+            } else {
+                var period = event.periods[0];
+                var periodIndex = period % CourseColors.length;
+                return "period-" + periodIndex;
+            }
         };
 
         calendarCtrl.period = function(event) {
@@ -41,14 +45,6 @@
             }
             var period = event.periods[0];
             return period;
-        };
-
-        calendarCtrl.course = function(event) {
-            if(_.isUndefined(event.scopeNames) === true || event.eventType !== "due") {
-                return "";
-            }
-            var course = event.scopeNames[0].split(" Period ")[0];
-            return course;
         };
 
         calendarCtrl.displayDate = function(event) {
@@ -147,6 +143,14 @@
             utils.setStatusBar("#009688");
         }
 
+        function getCourseName(event) {
+            if(_.isUndefined(event.scopeNames) === true) {
+                return "";
+            }
+            var course = event.scopeNames[0].split(" Period ")[0];
+            return course;
+        }
+
         function groupEvents(data) {
             if(_.isUndefined(data) === true) {
                 return [];
@@ -156,6 +160,10 @@
             var filtered = [];
             for(i = 0, len = data.length; i < len; i++) {
                 var value = data[i];
+                if(value.eventType === "assigned") {
+                    value.endDay = value.startDay;
+                }
+                value.courseName = getCourseName(value);
                 if(applyFilter(value) === true) {
                     filtered.push(value);
                 }
@@ -212,15 +220,33 @@
 
         calendarDetail.event = $scope.calendarNavigator.topPage.pushedOptions.event;
 
+        calendarDetail.isAssignment = function(event) {
+            return event.eventType === "assigned" || event.eventType === "due";
+        };
+
+
+        setStatusBar();
+
+        calendarDetail.courseColor = function() {
+            if(_.isUndefined(calendarDetail.event) === true) {
+                return "";
+            }
+            if(calendarDetail.event.eventType === "due" || calendarDetail.event.eventType === "assigned") {
+                var period = calendarDetail.event.periods[0];
+                var periodIndex = period % CourseColors.length;
+                return "period-" + periodIndex;
+            }
+        };
+
         calendarDetail.getDescription = function() {
-            if(utils.isNull(calendarDetail.event.description) === false) {
+            if(_.isUndefined(calendarDetail.event) === false && utils.isNull(calendarDetail.event.description) === false) {
                 return $sce.trustAsHtml(calendarDetail.event.description);
             }
             return "";
         };
 
         calendarDetail.hasDescription = function() {
-            return _.isUndefined(calendarDetail.event.description) === false && _.isUndefined(calendarDetail.event.links) === false;
+            return _.isUndefined(calendarDetail.event.description) === false || _.isUndefined(calendarDetail.event.links) === false;
         };
 
         calendarDetail.getDate = function (source, timeZone) {
@@ -236,6 +262,37 @@
             $window.open(url, '_system', 'location=yes,clearcache=yes,clearsessioncache=yes');
 
         };
+
+        calendarDetail.hasCoTeacher = function(item) {
+            return _.isUndefined(item.coTeacherName) === false && utils.isNull(item.coTeacherName) === false;
+        };
+
+        calendarDetail.compose = function() {
+            $scope.mainNavigator.pushPage('compose.html', {animation: 'slide', hasLMT: true, teachers: calendarDetail.event});
+        };
+
+
+        function setStatusBar() {
+            if(calendarDetail.isAssignment(calendarDetail.event)) {
+                var period = +calendarDetail.event.periods[0];
+                var periodIndex = period % CourseColors.length;
+
+                utils.setStatusBar(CourseColors[periodIndex]);
+            }
+        }
+
+        $scope.mainNavigator.on("prepop", function(event) {
+            var navigator = event.navigator;
+            if(navigator.pages.length === 2) {
+                var page = navigator.pages[1];
+                if(page.name === "compose.html") {
+                    $timeout(function() {
+                        $scope.calendarNavigator.pages[1].backButton.style.display = "block";
+                    });
+                }
+                setStatusBar();
+            }
+        });
 
         storageService.setBackButtonExit(false);
 
