@@ -4,7 +4,7 @@
     angular.module('mobileloop')
         .controller('CalendarController', ['$scope', '$timeout', 'Utils',
             'DataService', 'StorageService', 'DataType', 'CourseColors', CalendarController])
-        .controller('CalendarDetailController', ['$scope', '$timeout', '$window', '$sce', 'StorageService',
+        .controller('CalendarDetailController', ['$scope', '$timeout', '$filter', '$window', '$sce', 'StorageService',
             'Utils', 'CourseColors', 'gettextCatalog', CalendarDetailController])
     ;
 
@@ -215,7 +215,7 @@
         }
     }
 
-    function CalendarDetailController($scope, $timeout, $window, $sce, storageService, utils, CourseColors, gettextCatalog) {
+    function CalendarDetailController($scope, $timeout, $filter, $window, $sce, storageService, utils, CourseColors, gettextCatalog) {
         var calendarDetail = this;
 
         calendarDetail.event = $scope.calendarNavigator.topPage.pushedOptions.event;
@@ -240,7 +240,9 @@
 
         calendarDetail.getDescription = function() {
             if(_.isUndefined(calendarDetail.event) === false && utils.isNull(calendarDetail.event.description) === false) {
-                return $sce.trustAsHtml(calendarDetail.event.description);
+                var school = storageService.getSelectedSchool().domainName;
+                var description = $filter('replaceSrcFilter')(calendarDetail.event.description, school);
+                return $sce.trustAsHtml(description);
             }
             return "";
         };
@@ -271,13 +273,22 @@
             $scope.mainNavigator.pushPage('compose.html', {animation: 'slide', hasLMT: true, teachers: calendarDetail.event});
         };
 
+        calendarDetail.openURL = function (link) {
+            var url = link.URL;
+            if(url.toLowerCase().startsWith("http") === false) {
+                var school = storageService.getSelectedSchool().domainName;
+                url = "http://" + school + url;
+            }
+            $window.open(url, '_system', 'location=yes,clearcache=yes,clearsessioncache=yes');
+        };
 
         function setStatusBar() {
             if(calendarDetail.isAssignment(calendarDetail.event)) {
                 var period = +calendarDetail.event.periods[0];
                 var periodIndex = period % CourseColors.length;
-
                 utils.setStatusBar(CourseColors[periodIndex]);
+            } else {
+                utils.setStatusBar("#009688");
             }
         }
 

@@ -29,7 +29,7 @@
 
             <ons-list class="attachements-view" ng-if="calendarDetail.event.links">
                 <ons-list-item modifier="longdivider" tappable ng-repeat="link in calendarDetail.event.links"
-                               ng-click="assignDetail.openURL(link)">
+                               ng-click="calendarDetail.openURL(link)">
                     <div class="left">
                         <ons-icon icon="md-attachment" class="ons-icon zmdi zmdi-attachment" size="20px"></ons-icon>
                     </div>
