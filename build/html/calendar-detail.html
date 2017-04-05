@@ -44,6 +44,7 @@
                 <ons-ripple color="rgba(156, 156, 156, 0.20)"></ons-ripple>
                 <ons-icon icon="ion-ios-email" size="32px"></ons-icon>{{calendarDetail.event.teacherName}}<span ng-show="calendarDetail.hasCoTeacher(calendarDetail.event)"> - {{calendarDetail.event.coTeacherName}}</span>
             </div>
+            <div class="category"><span translate>Assigned:</span> {{calendarDetail.event.startDay|moment:"MMM D, YYYY"}}</div>
         </div>
 
     </div>
@@ -72,10 +73,10 @@
             </ons-list>
         </div>
 
-    </div>
+        <div class="calendar-detail-footer">
+            <div class="category"><span translate>Posted By:</span> {{calendarDetail.event.postedBy}}</div>
+            <div class="category"><span translate>Posted Date:</span> {{calendarDetail.event.postedDate|moment:"MMM D, YYYY"}}</div>
+        </div>
 
-    <div class="calendar-detail-footer">
-        <div class="category"><span translate>Posted By:</span> {{calendarDetail.event.postedBy}}</div>
-        <div class="category"><span translate>Posted Date:</span> {{calendarDetail.event.postedDate}}</div>
     </div>
 </ons-page>

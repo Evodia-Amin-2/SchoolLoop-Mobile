@@ -89,6 +89,15 @@
                 return ts.format(format);
             };
         }])
+        .filter('moment', [function() {
+            return function (rawDate, format) {
+                if(_.isUndefined(rawDate)) {
+                    return "";
+                }
+                var ts = moment(new Date(rawDate));
+                return ts.format(format);
+            };
+        }])
         .filter('decimal', [function() {
             return function (input, places) {
                 if (isNaN(input)) {

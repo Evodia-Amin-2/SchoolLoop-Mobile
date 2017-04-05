@@ -144,7 +144,7 @@
         }
 
         function getCourseName(event) {
-            if(_.isUndefined(event.scopeNames) === true) {
+            if(_.isUndefined(event.scopeNames) === true || event.scopeNames.length == 0) {
                 return "";
             }
             var course = event.scopeNames[0].split(" Period ")[0];
