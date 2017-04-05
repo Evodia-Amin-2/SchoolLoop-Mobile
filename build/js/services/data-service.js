@@ -202,7 +202,12 @@
                     end = min;
                 }
                 defaultParams[DataType.CALENDAR] = {"startDate": today.valueOf(), "endDate":  end.valueOf()};
-                return doGet($q, $http, config, DataType.CALENDAR, {"startDate": today.valueOf(), "endDate":  end.valueOf()}, defaultParams, storageService, service);
+                return doGet($q, $http, config, DataType.CALENDAR, {"startDate": today.valueOf(), "endDate":  end.valueOf()}, defaultParams, storageService, service).then(
+                    function(response) {
+                        cache.calendar = response;
+                        return response;
+                    }
+                );
             },
             setLoopmailFolder: function(id) {
                 folderId = id;
