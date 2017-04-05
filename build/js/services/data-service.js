@@ -30,7 +30,6 @@
         if(end.isBefore(min)) {
             end = min;
         }
-
         var defaultParams = {};
         defaultParams[DataType.LOOPMAIL] = {"folderID": folderId, "start": 0, "max": 20};
         defaultParams[DataType.NEWS] = {"lastRequest": getLastRequestTime(), "alerts": true};

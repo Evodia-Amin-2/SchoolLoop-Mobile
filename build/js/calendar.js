@@ -181,7 +181,7 @@
                 object.date = keys[i];
                 var sourceDate = moment(object.date);
                 var today = moment();
-                if(i === 0 && sourceDate.isSame(today, "day") === false) {
+                if(i === 0 && sourceDate.isAfter(today, "day") === true && calendarCtrl.day.isAfter(today, "day") === false) {
                     object.day = today.get('date');
                     object.dow = today.format('ddd');
                     object.list = [];
