@@ -18,7 +18,7 @@
                 notificationData = undefined;
             }
             pushNotification = PushNotification.init({ "android": {"senderID": config.senderId, "icon": "notification", "iconColor": "olive", sound: true},
-                "ios": {"alert": "true", "badge": "false", "sound": "true"}, "windows": {} } );
+                "ios": {"alert": "true", "badge": "false", "sound": "true", "clearBadge": "true"}, "windows": {} } );
 
             pushNotification.on('registration', function(data) {
                 doPushRegister(data.registrationId);
@@ -160,11 +160,11 @@
 
         function clearNotification() {
             if(_.isUndefined(pushNotification) === false) {
-                pushNotification.setApplicationIconBadgeNumber(function() {
+                pushNotification.clearAllNotifications(function() {
                     console.log("clear badge success");
                 }, function() {
                     console.log("clear badge error");
-                }, 0);
+                });
             }
         }
 
