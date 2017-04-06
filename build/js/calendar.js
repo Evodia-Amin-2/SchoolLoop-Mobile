@@ -181,9 +181,9 @@
                 object.date = keys[i];
                 var sourceDate = moment(object.date);
                 var today = moment();
-                if(i === 0 && sourceDate.isAfter(today, "day") === true && calendarCtrl.day.isAfter(today, "day") === false) {
-                    object.day = today.get('date');
-                    object.dow = today.format('ddd');
+                if(i === 0 && sourceDate.isAfter(calendarCtrl.day, "day") === true) {
+                    object.day = calendarCtrl.day.get('date');
+                    object.dow = calendarCtrl.day.format('ddd');
                     object.list = [];
                     events.push(object);
                     object = {};
