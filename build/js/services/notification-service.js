@@ -25,6 +25,8 @@
             });
 
             pushNotification.on('notification', function(data) {
+                clearNotification();
+
                 console.log("notification " + JSON.stringify(data));
 
                 if(storageService.isLoggedIn() === false) {
@@ -160,6 +162,11 @@
 
         function clearNotification() {
             if(_.isUndefined(pushNotification) === false) {
+                pushNotification.setApplicationIconBadgeNumber(function() {
+                        console.log("clear badge success");
+                    }, function() {
+                        console.log("clear badge error");
+                    }, 0);
                 pushNotification.clearAllNotifications(function() {
                     console.log("clear badge success");
                 }, function() {

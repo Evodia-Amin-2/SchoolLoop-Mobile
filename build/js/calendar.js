@@ -144,7 +144,7 @@
         }
 
         function getCourseName(event) {
-            if(_.isUndefined(event.scopeNames) === true || event.scopeNames.length == 0) {
+            if(_.isUndefined(event.scopeNames) === true || event.scopeNames.length === 0) {
                 return "";
             }
             var course = event.scopeNames[0].split(" Period ")[0];
@@ -180,7 +180,6 @@
                 var object = {};
                 object.date = keys[i];
                 var sourceDate = moment(object.date);
-                var today = moment();
                 if(i === 0 && sourceDate.isAfter(calendarCtrl.day, "day") === true) {
                     object.day = calendarCtrl.day.get('date');
                     object.dow = calendarCtrl.day.format('ddd');
