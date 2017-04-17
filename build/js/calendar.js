@@ -223,18 +223,16 @@
             return event.eventType === "assigned" || event.eventType === "due";
         };
 
-
-        setStatusBar();
-
         calendarDetail.courseColor = function() {
             if(_.isUndefined(calendarDetail.event) === true) {
-                return "";
+                return "default-toolbar";
             }
             if(calendarDetail.event.eventType === "due" || calendarDetail.event.eventType === "assigned") {
                 var period = calendarDetail.event.periods[0];
                 var periodIndex = period % CourseColors.length;
                 return "period-" + periodIndex;
             }
+            return "default-toolbar";
         };
 
         calendarDetail.getDescription = function() {
@@ -313,6 +311,8 @@
                 $scope.calendarNavigator.popPage();
             }
         });
+
+        setStatusBar();
     }
 
 })();
