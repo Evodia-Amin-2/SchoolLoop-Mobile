@@ -2,6 +2,7 @@
   "version":"{version}",
   "build":"{build}",
   "changes": [
-    "Calendar enhancements."
+    "Fixed problem with sending LoopMail.",
+    "Minor Calendar enhancements."
   ]
 }

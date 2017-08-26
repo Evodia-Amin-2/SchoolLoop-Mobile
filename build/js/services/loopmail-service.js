@@ -52,7 +52,7 @@
         function sendmail(message) {
             dataService.sendLoopMail(message.to, message.cc, message.subject, message.body).then(
                 function(response) {
-                    if(response.statusText === "OK") {
+                    if(response.status === 200) {
                         retryIndex = 0;
                         storageService.removeOutgoingMail(message);
                         $rootScope.$broadcast("loopmail.sent");
@@ -91,7 +91,7 @@
             "send": function(toList, ccList, subject, body) {
                 return dataService.sendLoopMail(toList, ccList, subject, body).then(
                     function(response) {
-                        if(response.statusText === "OK") {
+                        if(response.status === 200) {
                             var message = gettextCatalog.getString("Success! LoopMail sent.");
                             window.plugins.toast.showLongBottom(message);
                             return response;
