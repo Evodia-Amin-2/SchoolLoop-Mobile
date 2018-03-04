@@ -57,8 +57,12 @@
         var ons = window.ons;
         ons.ready(function() {
             console.log("***** onsen ready *****");
-            if (!ons.platform.isIOS()) {
+            if (ons.platform.isChrome()) {
                 ons.platform.select('android');
+            }
+            if (ons.platform.isIPhoneX()) { // Utility function
+                document.documentElement.setAttribute('onsflag-iphonex-portrait', '');
+                document.documentElement.setAttribute('onsflag-iphonex-landscape', '');
             }
         });
 

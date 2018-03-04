@@ -1,3 +1,25 @@
+.card-view .list {
+    border: none;
+    background-color: inherit;
+}
+
+.card-view .list-header {
+    border: none;
+    background-color: inherit;
+}
+
+.card {
+    background-color: #fafafa;
+    border-radius: 3px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37) !important;
+    margin: 5px 15px;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+
+/*
 .card-view .page__background, .card-view .list__header {
     background-color: #f0f2f4 !important;
     box-shadow: none !important;
@@ -8,21 +30,9 @@
     padding-top: 15px !important;
 }
 
-.card-view .list {
-    border: none;
-}
 
 .card-view .list__header {
     border: none;
-}
-
-.card {
-    background-color: #fafafa;
-    border-radius: 3px;
-    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37) !important;
-    margin: 5px 15px;
-    overflow: hidden;
-    position: relative;
 }
 
 .card-item {
@@ -33,3 +43,4 @@
     padding: 0;
     min-width: 52px;
 }
+ */

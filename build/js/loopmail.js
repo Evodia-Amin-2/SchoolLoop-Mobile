@@ -60,25 +60,28 @@
         loadLoopMail();
 
         var page = 1;
-        mailCtrl.load = function($done) {
-            page = 1;
-            $timeout(function() {
-                if(dataService.getFolderId() === 1) {
-                    return dataService.refresh(DataType.LOOPMAIL).then(function(result) {
-                        mailCtrl.loopmail = result;
-                        $rootScope.$broadcast("update.counter");
-                        $done();
-                    }, function() {
-                        $done();
-                    });
-                } else if(dataService.getFolderId() === 2) {
-                    dataService.getLoopmail().then(function(response) {
-                        mailCtrl.loopmail = response;
-                        $done();
-                    });
-                }
-            }, 1000);
-        };
+        $scope.$on('pulldown.refresh', function(event, data) {
+            if(data.tabIndex === 1) {
+                var $done = data.done;
+                page = 1;
+                $timeout(function() {
+                    if(dataService.getFolderId() === 1) {
+                        return dataService.refresh(DataType.LOOPMAIL).then(function(result) {
+                            mailCtrl.loopmail = result;
+                            $rootScope.$broadcast("update.counter");
+                            $done();
+                        }, function() {
+                            $done();
+                        });
+                    } else if(dataService.getFolderId() === 2) {
+                        dataService.getLoopmail().then(function(response) {
+                            mailCtrl.loopmail = response;
+                            $done();
+                        });
+                    }
+                }, 1000);
+            }
+        });
 
         mailCtrl.removeOutgoing = function (message) {
             mailCtrl.loopmail = storageService.removeOutgoingMail(message);
@@ -91,7 +94,7 @@
 
         mailCtrl.showDetail = function(message) {
             if(mailCtrl.isOutbox() === false) {
-                $scope.loopmailNavigator.pushPage('loopmail-detail.html', {animation: 'slide', parent: mailCtrl, loopmail: message});
+                $scope.loopmailNavigator.pushPage('loopmail-detail.html', {animation: 'slide', data: {parent: mailCtrl, loopmail: message}});
             } else {
                 var title = gettextCatalog.getString("Confirm");
                 var remove = gettextCatalog.getString("Remove");
@@ -133,7 +136,7 @@
         };
 
         mailCtrl.compose = function() {
-            $scope.mainNavigator.pushPage('compose.html', {animation: 'slide', hasLMT: false});
+            $scope.mainNavigator.pushPage('compose.html', {animation: 'slide', data: {hasLMT: false}});
         };
 
         $scope.$on("refresh.all", function() {
@@ -169,7 +172,7 @@
                 return;
             } else {
                 if(_.isUndefined(mailCtrl.selectedLoopmail) === false) {
-                    $scope.mainNavigator.pushPage('reply.html', {animation: 'slide', loopmail: mailCtrl.selectedLoopmail, action: data.action});
+                    $scope.mainNavigator.pushPage('reply.html', {animation: 'slide', data: {loopmail: mailCtrl.selectedLoopmail, action: data.action}});
                 }
             }
         });
@@ -193,7 +196,7 @@
                             $scope.tabbar.setActiveTab(2);
                         }
                         var loopmailId = payload.messageid;
-                        $scope.loopmailNavigator.pushPage('loopmail-detail.html', {animation: 'slide', parent: mailCtrl, loopmail: {ID: loopmailId, schoolName: true}});
+                        $scope.loopmailNavigator.pushPage('loopmail-detail.html', {animation: 'slide', data: {parent: mailCtrl, loopmail: {ID: loopmailId, schoolName: true}}});
                     }
                 }
             );
@@ -237,8 +240,9 @@
                                       dataService, DataType, statusService, gettextCatalog, utils) {
         var mailDetail = this;
 
-        var parent = $scope.loopmailNavigator.topPage.pushedOptions.parent;
-        var loopmail = $scope.loopmailNavigator.topPage.pushedOptions.loopmail;
+        var data = $scope.loopmailNavigator.topPage.data;
+        var parent = data.parent;
+        var loopmail = data.loopmail;
         loopmail.read = true;
 
         mailDetail.loaded = false;

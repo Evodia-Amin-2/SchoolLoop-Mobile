@@ -1,4 +1,4 @@
-fastlane_version "1.110.0"
+fastlane_version "2.75.0"
 
 default_platform :ios
 
@@ -14,8 +14,8 @@ platform :ios do
   ######################### PUBLIC LANES ##########################
   desc "Build School Loop Beta"
   lane :beta do
-    build_app(
-      app_identifier: "com.schoolloop.mobileloop.beta",
+    do_build(
+      app_id: "com.schoolloop.mobileloop.beta",
       app_name: "School Loop Beta",
       type: "adhoc",
       release_path: "release/beta",
@@ -27,7 +27,7 @@ platform :ios do
 
   desc "Build School Loop"
   lane :app do
-    build_app(
+    do_build(
       app_identifier: "com.schoolloop.mobileloop.app",
       app_name: "School Loop",
       type: "appstore",
@@ -40,7 +40,7 @@ platform :ios do
 
   desc "Build Mirror Loop"
   lane :mirror do
-    build_app(
+    do_build(
       app_identifier: "com.schoolloop.mobileloop.mirror",
       app_name: "Mirror Loop",
       type: "adhoc",
@@ -53,7 +53,7 @@ platform :ios do
 
   desc "Build Dev Loop"
   lane :dev do
-    build_app(
+    do_build(
       app_identifier: "com.schoolloop.mobileloop.dev",
       app_name: "Dev Loop",
       type: "adhoc",
@@ -65,10 +65,9 @@ platform :ios do
   end
 
   ######################### PRIVATE LANES #########################
-  private_lane :build_app do |options|
-
+  private_lane :do_build do |options|
     produce(app_identifier: options[:app_identifier], app_name: options[:app_name])
-    match(app_identifier: options[:app_identifier], type: options[:type], force: true)
+    match(app_identifier: options[:app_identifier], type: options[:type], force: true, clone_branch_directly: true)
     pem(app_identifier: options[:app_identifier], output_path: options[:release_path], p12_password: "loops411")
 
     # Build the app

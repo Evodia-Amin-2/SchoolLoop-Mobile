@@ -35,6 +35,9 @@
             statusService.hideNoWait();
             navigator.splashscreen.hide();
             main.isLoaded = true;
+
+            main.setupTab("Assignments", 0);
+
         }, 750);
 
         if(storageService.isLoggedIn() === false) {
@@ -49,15 +52,29 @@
         var domain = storageService.getDefaultDomain();
         if(utils.isTrue(domain.user.isParent) === true) {
             main.currentStudent = storageService.getSelectedStudent();
+
+            setupCurrentStudent();
         }
 
         updateService.start();
         loopmailService.start();
         checkForUpdate();
 
+        main.setupTab = function(title, index) {
+            main.tabTitle = title;
+            main.tabIndex = index;
+        };
+
         var tabbar = document.querySelector("ons-tabbar");
-        tabbar.addEventListener("prechange", function() {
+        tabbar.addEventListener("prechange", function(event) {
             utils.setStatusBar("#009688");
+
+            var title = event.tabItem.children[1].innerText;
+
+            var index = event.index;
+            main.setupTab(title, index);
+
+            setupCurrentStudent(index);
         });
 
         tabbar.addEventListener("postchange", function() {
@@ -111,21 +128,22 @@
             $scope.tabbar.setActiveTab(currentTab, {animation: 'slide'});
         });
 
-        if(_.isUndefined(main.currentStudent) === false) {
-            tabbar.addEventListener("postchange", function() {
-                setupCurrentStudent();
-                $scope.$apply();
-            });
-        }
-
-        function setupCurrentStudent() {
-            var index = $scope.tabbar.getActiveTabIndex();
-            if(index === 2 || index === 3) {
-                main.currentStudentInfo =  main.currentStudent.school.name;
-            } else {
+        function setupCurrentStudent(tabIndex) {
+            if(_.isUndefined(main.currentStudent) === false) {
                 main.currentStudentInfo = main.currentStudent.name;
+                if(_.isUndefined(tabIndex) === true) {
+                    var tabbar = document.querySelector("ons-tabbar");
+                    tabIndex = tabbar.getActiveTabIndex();
+                }
+                if(tabIndex === 2 || tabIndex === 3) {
+                    main.currentStudentInfo =  main.currentStudent.school.name;
+                }
             }
         }
+
+        main.load = function($done) {
+            $rootScope.$broadcast("pulldown.refresh", {tabIndex: main.tabIndex, done: $done});
+        };
 
         main.openMenu = function() {
             $scope.mainSplitter.left.open();
@@ -172,9 +190,7 @@
 
             loadStudents();
 
-            if($scope.studentMenu._element[0].visible === false) {
-                $scope.studentMenu.show('.student-menu-popover');
-            }
+            $scope.studentPopover.show(".student-popover");
         };
 
         function loadStudents() {
@@ -189,7 +205,7 @@
             storageService.setSelectedStudentId(student.studentID);
 
             dataService.clearCache();
-            $scope.studentMenu.hide();
+            $scope.studentPopover.hide();
             var message = gettextCatalog.getString("Switching to {}");
             message = message.replace("{}", student.name);
             statusService.showMessage(message);

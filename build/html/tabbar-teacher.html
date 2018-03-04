@@ -1,66 +1,81 @@
-<ons-navigator var="mainNavigator">
-    <ons-page ng-controller="MainController as main">
-        <ons-tabbar var="tabbar">
-            <ons-tab page="loopmail.html" counter="main.getMailCount" active="true">
-                <div class="tab-bar__icon svg-icon">
-                    <svg viewBox="0 0 60 50">
-                        <use xlink:href="#loopmail"></use>
-                    </svg>
-                </div>
-                <div class="tab-bar__label" translate>
-                    Loopmail
-                </div>
-            </ons-tab>
-            <ons-tab page="news.html" counter="main.getNewsCount">
-                <div class="tab-bar__icon svg-icon">
-                    <svg viewBox="0 0 60 50">
-                        <use xlink:href="#news"></use>
-                    </svg>
-                </div>
-                <div class="tab-bar__label" translate>
-                    News
-                </div>
-            </ons-tab>
-            <ons-tab page="calendar.html">
-                <div class="tab-bar__icon svg-icon">
-                    <svg viewBox="0 0 60 50">
-                        <use xlink:href="#calendar"></use>
-                    </svg>
-                </div>
-                <div class="tab-bar__label" translate>
-                    Calendar
-                </div>
-            </ons-tab>
-        </ons-tabbar>
-        <ons-modal var="replyModal">
-            <div class="assignment-filter">
-                <ons-list>
-                    <ons-list-item modifier="nodivider" tappable ng-click="doReply('reply')">
-                        <label class="left">
-                            <ons-icon icon="md-mail-reply" size="32px"></ons-icon>
-                        </label>
-                        <label class="center" translate>
-                            Reply
-                        </label>
-                    </ons-list-item>
-                    <ons-list-item modifier="nodivider" tappable ng-click="doReply('reply-all')">
-                        <label class="left">
-                            <ons-icon icon="md-mail-reply-all" size="32px"></ons-icon>
-                        </label>
-                        <label class="center" translate>
-                            Reply All
-                        </label>
-                    </ons-list-item>
-                    <ons-list-item modifier="nodivider" tappable ng-click="doReply('cancel')">
-                        <label class="left">
-                            <ons-icon icon="md-close" size="32px"></ons-icon>
-                        </label>
-                        <label class="center" translate>
-                            Cancel
-                        </label>
-                    </ons-list-item>
-                </ons-list>
+<ons-page ng-controller="MainController as main">
+    <ons-pull-hook ng-action="main.load($done)" var="mainLoader">
+            <span ng-switch="mainLoader.state">
+              <span ng-switch-when="initial"><ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon><span translate>Pull down to refresh</span></span>
+              <span ng-switch-when="preaction"><ons-icon size="35px" icon="ion-arrow-up-a"></ons-icon><span translate>Release to refresh</span></span>
+              <span ng-switch-when="action"><ons-icon size="35px" spin="true" icon="ion-load-d"></ons-icon><span translate>Loading data...</span></span>
+            </span>
+    </ons-pull-hook>
+
+    <ons-toolbar class="default-toolbar" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
+        <div class="left">
+            <ons-toolbar-button ng-click="main.openMenu()">
+                <ons-icon icon="md-menu"></ons-icon>
+            </ons-toolbar-button>
+        </div>
+        <div class="center toolbar-title" translate>{{main.tabTitle}}</div>
+    </ons-toolbar>
+
+    <ons-tabbar var="tabbar">
+        <ons-tab page="loopmail.html" counter="main.getMailCount" active="true">
+            <div class="sl-tab-svg tabbar__icon svg-icon">
+                <svg viewBox="0 0 60 50">
+                    <use xlink:href="#loopmail"></use>
+                </svg>
             </div>
-        </ons-modal>
-    </ons-page>
-</ons-navigator>
+            <div class="sl-tab-label" translate>
+                Loopmail
+            </div>
+        </ons-tab>
+        <ons-tab page="news.html" counter="main.getNewsCount">
+            <div class="sl-tab-svg tabbar__icon svg-icon">
+                <svg viewBox="0 0 60 50">
+                    <use xlink:href="#news"></use>
+                </svg>
+            </div>
+            <div class="sl-tab-label" translate>
+                News
+            </div>
+        </ons-tab>
+        <ons-tab page="calendar.html">
+            <div class="sl-tab-svg tabbar__icon svg-icon">
+                <svg viewBox="0 0 60 50">
+                    <use xlink:href="#calendar"></use>
+                </svg>
+            </div>
+            <div class="sl-tab-label" translate>
+                Calendar
+            </div>
+        </ons-tab>
+    </ons-tabbar>
+    <ons-modal var="replyModal">
+        <div class="assignment-filter">
+            <ons-list>
+                <ons-list-item modifier="nodivider" tappable ng-click="doReply('reply')">
+                    <label class="left">
+                        <ons-icon icon="md-mail-reply" size="32px"></ons-icon>
+                    </label>
+                    <label class="center" translate>
+                        Reply
+                    </label>
+                </ons-list-item>
+                <ons-list-item modifier="nodivider" tappable ng-click="doReply('reply-all')">
+                    <label class="left">
+                        <ons-icon icon="md-mail-reply-all" size="32px"></ons-icon>
+                    </label>
+                    <label class="center" translate>
+                        Reply All
+                    </label>
+                </ons-list-item>
+                <ons-list-item modifier="nodivider" tappable ng-click="doReply('cancel')">
+                    <label class="left">
+                        <ons-icon icon="md-close" size="32px"></ons-icon>
+                    </label>
+                    <label class="center" translate>
+                        Cancel
+                    </label>
+                </ons-list-item>
+            </ons-list>
+        </div>
+    </ons-modal>
+</ons-page>

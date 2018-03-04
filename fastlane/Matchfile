@@ -1,6 +1,6 @@
-git_url "ssh://tombu@mini/Users/tombu/gitrepo/certificates.git"
+git_url "ssh://tombu@192.168.12.69/Users/tombu/gitrepo/certificates.git"
 
-type "adhoc" # The default type, can be: appstore, adhoc or development
+type "development" # The default type, can be: appstore, adhoc or development
 
 # app_identifier "tools.fastlane.app" 
 username "appledev@schoolloop.com" # Your Apple Developer Portal username

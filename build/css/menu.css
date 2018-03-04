@@ -18,7 +18,7 @@
 }
 
 .menu-content {
-    background-color: #f9f9f9;
+    background-color: white;
     position: absolute;
     top: 70px;
     left: 0;
@@ -94,6 +94,10 @@
 .menu-version {
     font-size: 0.9em;
     color: #aaa;
+}
+
+.menu-person {
+    color: white;
 }
 
 .menu .page__background {

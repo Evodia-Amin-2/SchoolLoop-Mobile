@@ -2,6 +2,9 @@
     <ons-toolbar class="default-toolbar" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
         <div class="left"><ons-back-button translate>Back</ons-back-button></div>
         <div class="center">{{::newsDetail.newsItem.title}}</div>
+        <div ng-show="main.currentStudentInfo" class="current-student ng-hide" ng-class="{ios:ons.platform.isIOS()}" ng-click="main.studentMenu()">
+            <div>{{main.currentStudentInfo}}</div><ons-icon ng-show="main.showStudentMenu()" icon="md-caret-down"></ons-icon>
+        </div>
     </ons-toolbar>
     <div class="news-content">
         <div class="news-title">{{newsDetail.newsItem.title}}</div>

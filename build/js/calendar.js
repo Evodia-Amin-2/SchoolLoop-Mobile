@@ -129,7 +129,7 @@
 
         var tabbar = document.querySelector("ons-tabbar");
         tabbar.addEventListener("postchange", function() {
-            utils.resetTab($scope.calendarNavigator, "calendar.html");
+            // utils.resetTab($scope.calendarNavigator, "calendar.html");
         });
 
         tabbar.addEventListener("reactive", function() {
@@ -267,7 +267,7 @@
         };
 
         calendarDetail.compose = function() {
-            $scope.mainNavigator.pushPage('compose.html', {animation: 'slide', hasLMT: true, teachers: calendarDetail.event});
+            $scope.mainNavigator.pushPage('compose.html', {data:{hasLMT: true, teachers: calendarDetail.event}});
         };
 
         calendarDetail.openURL = function (link) {

@@ -2,14 +2,15 @@
     'use strict';
 
     angular.module('mobileloop')
-        .controller('SchoolSearchController', ['$scope', '$timeout', 'LoginService', 'StorageService',
+        .controller('SchoolSearchController', ['$scope', '$timeout',
             'SchoolService', 'gettextCatalog', SchoolSearchController])
     ;
 
-    function SchoolSearchController($scope, $timeout, loginService, storageService, schoolService, gettextCatalog) {
+    function SchoolSearchController($scope, $timeout, schoolService, gettextCatalog) {
         var page = this;
 
-        page.searchCallback = $scope.loginNavigator.topPage.pushedOptions.searchCallback;
+        var data = $scope.loginNavigator.topPage.data;
+        page.searchCallback = data.searchCallback;
 
         page.selectedSchool = "";
         page.searchParam = "";

@@ -124,21 +124,12 @@
     color: #009688;
 }
 
-.zmdi-caret-down {
-    position: relative;
-    top: 5px;
-}
-
 .menu-popover {
     position: absolute;
     top: 64px;
     left: 90px;
     right: 90px;
     height: 2px;
-}
-
-.loopmail-menu.ios.popover {
-    top: 80px !important;
 }
 
 .loopmail-menu.ios .popover__content {
@@ -150,4 +141,8 @@
 
 .loopmail-menu.ios .popover__arrow {
     left: 50% !important;
+}
+
+.loopmail-compose .ons-icon {
+    color: #009688 ! important;
 }

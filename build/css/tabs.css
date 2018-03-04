@@ -1,6 +1,37 @@
-svg {
+.sl-tabbar .tabbar {
+    border-top: 1px solid #ccc !important;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    bottom: 0;
+}
+
+.sl-tab-svg > svg {
     height: 28px;
     fill: none;
     stroke: currentColor;
     stroke-width:  3px;
+    pointer-events: none;
+}
+
+.sl-tab-label {
+    font-size: 0.8em;
+}
+
+.tabbar__button {
+    line-height: 1em;
+}
+
+.tabbar--material__border {
+    display: none !important;
+}
+
+.tabbar--material__button {
+    line-height: 1em;
+    text-transform: inherit;
+    color: #999;
+}
+
+:checked + .tabbar--material__button {
+    background-color: transparent;
+    color: #009688;
 }

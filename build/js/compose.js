@@ -21,8 +21,9 @@
         page.placeholder.subject = gettextCatalog.getString("Subject");
         page.placeholder.body = gettextCatalog.getString("Message Text");
 
-        page.hasLMT = $scope.mainNavigator.topPage.pushedOptions.hasLMT;
-        var teachers = $scope.mainNavigator.topPage.pushedOptions.teachers;
+        var data =  $scope.mainNavigator.topPage.data;
+        page.hasLMT = data.hasLMT;
+        var teachers = data.teachers;
         if(_.isUndefined(teachers) === false) {
             page.toList.push({name: teachers.teacherName, id: teachers.teacherID});
             if(_.isUndefined(teachers.coTeacherID) === false && utils.isNull(teachers.coTeacherName) === false) {

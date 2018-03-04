@@ -15,17 +15,20 @@
 
         initialize();
 
-        assignCtrl.load = function($done) {
-            $timeout(function() {
-                return dataService.refresh(DataType.ASSIGNMENT).then(function(result) {
-                    getTimeZone(result);
-                    assignCtrl.assignments = groupAssignments(result, $scope);
-                    $done();
-                }, function() {
-                    $done();
-                });
-            }, 1000);
-        };
+        $scope.$on('pulldown.refresh', function(event, data) {
+            if(data.tabIndex === 0) {
+                var $done = data.done;
+                $timeout(function() {
+                    return dataService.refresh(DataType.ASSIGNMENT).then(function(result) {
+                        getTimeZone(result);
+                        assignCtrl.assignments = groupAssignments(result, $scope);
+                        $done();
+                    }, function() {
+                        $done();
+                    });
+                }, 1000);
+            }
+        });
 
         assignCtrl.getDate = function (source, timeZone) {
             return utils.getDisplayDate(source, timeZone, gettextCatalog);
@@ -53,7 +56,7 @@
 
         $scope.$on("refresh.all", function() {
             initialize();
-            utils.resetTab($scope.asgnNavigator, "assignments.html");
+            utils.resetTab($scope.asgnNavigator);
         });
 
         $scope.$on('notify.test tomorrow', function(event, data) {
@@ -92,7 +95,7 @@
                     assignCtrl.assignments = groupAssignments(result, $scope);
                     var assignment = _.findWhere(assignCtrl.assignments, {iD: payload.assignmentid});
                     if(assignment) {
-                        $scope.asgnNavigator.pushPage('assignment-detail.html', {animation: 'slide', assignment: assignment});
+                        $scope.asgnNavigator.pushPage('assignment-detail.html', {data: {assignment: assignment}});
                     }
                 }
             );
@@ -105,11 +108,11 @@
 
         var tabbar = document.querySelector("ons-tabbar");
         tabbar.addEventListener("postchange", function() {
-            utils.resetTab($scope.asgnNavigator, "assignments.html");
+            utils.resetTab($scope.asgnNavigator);
         });
 
         tabbar.addEventListener("reactive", function() {
-            utils.resetTab($scope.asgnNavigator, "assignments.html");
+            utils.resetTab($scope.asgnNavigator);
         });
 
         function initialize() {
@@ -128,7 +131,8 @@
     function AssignmentDetailController($scope, $timeout, $window, $sce, storageService, utils, CourseColors, gettextCatalog) {
         var assignDetail = this;
 
-        assignDetail.assignment = $scope.asgnNavigator.topPage.pushedOptions.assignment;
+        var data =  $scope.asgnNavigator.topPage.data;
+        assignDetail.assignment = data.assignment;
 
         var period = assignDetail.assignment.periodNumber;
         var periodIndex = period % CourseColors.length;
@@ -174,7 +178,7 @@
         };
 
         assignDetail.compose = function() {
-            $scope.mainNavigator.pushPage('compose.html', {animation: 'slide', hasLMT: true, teachers: assignDetail.assignment});
+            $scope.mainNavigator.pushPage('compose.html', {data: {hasLMT: true, teachers: assignDetail.assignment}});
         };
 
         $scope.mainNavigator.on("prepop", function(event) {

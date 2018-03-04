@@ -1,198 +1,194 @@
-<ons-navigator var="mainNavigator">
-    <ons-page ng-controller="MainController as main" ng-show="main.isLoaded">
-        <ons-tabbar var="tabbar">
-            <ons-tab page="assignments.html" active="true">
-                <div class="tab-bar__icon svg-icon">
-                    <svg viewBox="0 0 45 50">
-                        <use xlink:href="#assignments"></use>
-                    </svg>
-                </div>
-                <div class="tab-bar__label" translate>
-                    Assignments
-                </div>
-            </ons-tab>
-            <ons-tab page="courses.html">
-                <div class="tab-bar__icon svg-icon">
-                    <svg viewBox="0 0 60 50">
-                        <use xlink:href="#courses"></use>
-                    </svg>
-                </div>
-                <div class="tab-bar__label" translate>
-                    Courses
-                </div>
-            </ons-tab>
-            <ons-tab page="loopmail.html" counter="main.getMailCount">
-                <div class="tab-bar__icon svg-icon">
-                    <svg viewBox="0 0 60 50">
-                        <use xlink:href="#loopmail"></use>
-                    </svg>
-                </div>
-                <div class="tab-bar__label" translate>
-                    Loopmail
-                </div>
-            </ons-tab>
-            <ons-tab page="news.html" counter="main.getNewsCount">
-                <div class="tab-bar__icon svg-icon">
-                    <svg viewBox="0 0 60 50">
-                        <use xlink:href="#news"></use>
-                    </svg>
-                </div>
-                <div class="tab-bar__label" translate>
-                    News
-                </div>
-            </ons-tab>
-            <ons-tab page="calendar.html">
-                <div class="tab-bar__icon svg-icon">
-                    <svg viewBox="0 0 60 50">
-                        <use xlink:href="#calendar"></use>
-                    </svg>
-                </div>
-                <div class="tab-bar__label" translate>
-                    Calendar
-                </div>
-            </ons-tab>
-        </ons-tabbar>
-        <ons-modal var="filterModal">
-            <div class="assignment-filter">
-                <ons-row>
-                    <ons-col>
-                        <div class="left filter-prompt">Show:</div>
-                    </ons-col>
-                    <ons-col width="30px" tappable ng-click="doFilter('close')">
-                        <ons-ripple color="rgba(156, 156, 156, 0.20)"></ons-ripple>
-                        <ons-icon icon="md-close" size="32px"></ons-icon>
-                    </ons-col>
-                </ons-row>
-                <ons-list>
-                    <ons-list-item modifier="nodivider" tappable>
-                        <label class="left">
-                            <ons-input name="grade-filter" type="radio" input-id="radio-1" ng-model="gradeFilter" value="all" ng-change="doFilter(gradeFilter)"></ons-input>
-                        </label>
-                        <label for="radio-1" class="center" translate>
-                            All Assignments
-                        </label>
-                    </ons-list-item>
-                    <ons-list-item modifier="nodivider" tappable>
-                        <label class="left">
-                            <ons-input name="grade-filter" type="radio" input-id="radio-2" ng-model="gradeFilter" value="unscored" ng-change="doFilter(gradeFilter)"></ons-input>
-                        </label>
-                        <label for="radio-2" class="center" translate>
-                            Unscored Assignments
-                        </label>
-                    </ons-list-item>
-                    <ons-list-item modifier="nodivider" tappable>
-                        <label class="left">
-                            <ons-input name="grade-filter" type="radio" input-id="radio-3" ng-model="gradeFilter" value="graded" ng-change="doFilter(gradeFilter)"></ons-input>
-                        </label>
-                        <label for="radio-3" class="center" translate>
-                            Graded Assignments
-                        </label>
-                    </ons-list-item>
-                    <ons-list-item modifier="nodivider" tappable>
-                        <label class="left">
-                            <ons-input name="grade-filter" type="radio" input-id="radio-4" ng-model="gradeFilter" value="zeros" ng-change="doFilter(gradeFilter)"></ons-input>
-                        </label>
-                        <label for="radio-4" class="center" translate>
-                            Zeros
-                        </label>
-                    </ons-list-item>
-                </ons-list>
+<ons-page ng-controller="MainController as main" ng-show="main.isLoaded">
+    <ons-tabbar class="sl-tabbar" var="tabbar" swipeable position="bottom">
+        <ons-tab page="assignments.html" active="true">
+            <div class="sl-tab-svg svg-icon">
+                <svg viewBox="0 0 45 50">
+                    <use xlink:href="#assignments"></use>
+                </svg>
             </div>
-        </ons-modal>
-        <ons-modal var="replyModal">
-            <div class="assignment-filter">
-                <ons-list>
-                    <ons-list-item modifier="nodivider" tappable ng-click="doReply('reply')">
-                        <label class="left">
-                            <ons-icon icon="md-mail-reply" size="32px"></ons-icon>
-                        </label>
-                        <label class="center" translate>
-                            Reply
-                        </label>
-                    </ons-list-item>
-                    <ons-list-item modifier="nodivider" tappable ng-click="doReply('reply-all')">
-                        <label class="left">
-                            <ons-icon icon="md-mail-reply-all" size="32px"></ons-icon>
-                        </label>
-                        <label class="center" translate>
-                            Reply All
-                        </label>
-                    </ons-list-item>
-                    <ons-list-item modifier="nodivider" tappable ng-click="doReply('cancel')">
-                        <label class="left">
-                            <ons-icon icon="md-close" size="32px"></ons-icon>
-                        </label>
-                        <label class="center" translate>
-                            Cancel
-                        </label>
-                    </ons-list-item>
-                </ons-list>
+            <div class="sl-tab-label" translate>
+                Assignments
             </div>
-        </ons-modal>
-        <ons-modal var="calFilterModal">
-            <div class="assignment-filter">
-                <ons-row>
-                    <ons-col>
-                        <div class="left filter-prompt">Show:</div>
-                    </ons-col>
-                    <ons-col width="30px" tappable ng-click="doFilter('close')">
-                        <ons-ripple color="rgba(156, 156, 156, 0.20)"></ons-ripple>
-                        <ons-icon icon="md-close" size="32px"></ons-icon>
-                    </ons-col>
-                </ons-row>
-                <ons-list>
-                    <ons-list-item modifier="nodivider" tappable>
-                        <label class="left">
-                            <ons-input type="checkbox" input-id="checkbox-1" ng-model="calFilter.assigned"></ons-input>
-                        </label>
-                        <label for="checkbox-1" class="center" translate>
-                            Work (Assigned Date)
-                        </label>
-                    </ons-list-item>
-                    <ons-list-item modifier="nodivider" tappable>
-                        <label class="left">
-                            <ons-input type="checkbox" input-id="checkbox-2" ng-model="calFilter.due"></ons-input>
-                        </label>
-                        <label for="checkbox-2" class="center" translate>
-                            Work (Due Date)
-                        </label>
-                    </ons-list-item>
-                    <ons-list-item modifier="nodivider" tappable>
-                        <label class="left">
-                            <ons-input type="checkbox" input-id="checkbox-3" ng-model="calFilter.general"></ons-input>
-                        </label>
-                        <label for="checkbox-3" class="center" translate>
-                            General Events
-                        </label>
-                    </ons-list-item>
-                    <ons-list-item modifier="nodivider" tappable>
-                        <label class="left">
-                            <ons-input type="checkbox" input-id="checkbox-4" ng-model="calFilter.group"></ons-input>
-                        </label>
-                        <label for="checkbox-4" class="center" translate>
-                            My Group Events
-                        </label>
-                    </ons-list-item>
-                    <div class="cal-filter-button" tappable ng-click="doFilter(calFilter)" translate>Filter</div>
-                </ons-list>
+        </ons-tab>
+        <ons-tab page="courses.html">
+            <div class="sl-tab-svg svg-icon">
+                <svg viewBox="0 0 60 50">
+                    <use xlink:href="#courses"></use>
+                </svg>
             </div>
-        </ons-modal>
-        <div ng-show="main.currentStudentInfo" class="current-student ng-hide" ng-class="{ios:ons.platform.isIOS()}">
-            <span ng-click="main.studentMenu()" class="student-display" ng-class="{menu: main.showStudentMenu()}">{{main.currentStudentInfo}}<ons-icon ng-show="main.showStudentMenu()" icon="md-caret-down" size="24px"></ons-icon></span>
-            <ons-popover direction="down" cancelable var="studentMenu">
-                <ons-list>
-                    <ons-list-item modifier="longdivider" tappable ng-repeat="student in main.students"
-                                   ng-click="main.selectStudent(student, $index)">
-                        <div class="center">
-                            <div>
-                                <div class="menu-content-text">{{student.name}}</div>
-                                <div class="menu-content-subtext">{{student.school.name}}</div>
-                            </div>
-                        </div>
-                    </ons-list-item>
-                </ons-list>
-            </ons-popover>
+            <div class="sl-tab-label" translate>
+                Courses
+            </div>
+        </ons-tab>
+        <ons-tab page="loopmail.html" counter="main.getMailCount">
+            <div class="sl-tab-svg svg-icon">
+                <svg viewBox="0 0 60 50">
+                    <use xlink:href="#loopmail"></use>
+                </svg>
+            </div>
+            <div class="sl-tab-label" translate>
+                Loopmail
+            </div>
+        </ons-tab>
+        <ons-tab page="news.html" counter="main.getNewsCount">
+            <div class="sl-tab-svg svg-icon">
+                <svg viewBox="0 0 60 50">
+                    <use xlink:href="#news"></use>
+                </svg>
+            </div>
+            <div class="sl-tab-label" translate>
+                News
+            </div>
+        </ons-tab>
+        <ons-tab page="calendar.html">
+            <div class="sl-tab-svg svg-icon">
+                <svg viewBox="0 0 60 50">
+                    <use xlink:href="#calendar"></use>
+                </svg>
+            </div>
+            <div class="sl-tab-label" translate>
+                Calendar
+            </div>
+        </ons-tab>
+    </ons-tabbar>
+    <div class="student-popover"></div>
+    <ons-popover direction="down" cancelable var="studentPopover">
+        <ons-list>
+            <ons-list-item modifier="longdivider" tappable ng-repeat="student in main.students"
+                           ng-click="main.selectStudent(student, $index)">
+                <div class="center">
+                    <div>
+                        <div class="menu-content-text">{{student.name}}</div>
+                        <div class="menu-content-subtext">{{student.school.name}}</div>
+                    </div>
+                </div>
+            </ons-list-item>
+        </ons-list>
+    </ons-popover>
+    <ons-modal var="filterModal">
+        <div class="assignment-filter">
+            <ons-row>
+                <ons-col>
+                    <div class="left filter-prompt">Show:</div>
+                </ons-col>
+                <ons-col width="30px" tappable ng-click="doFilter('close')">
+                    <ons-ripple color="rgba(156, 156, 156, 0.20)"></ons-ripple>
+                    <ons-icon icon="md-close" size="32px"></ons-icon>
+                </ons-col>
+            </ons-row>
+            <ons-list>
+                <ons-list-item modifier="nodivider" tappable>
+                    <label class="left">
+                        <ons-radio name="grade-filter" input-id="radio-1" ng-model="gradeFilter" value="all" ng-change="doFilter(gradeFilter)"></ons-radio>
+                    </label>
+                    <label for="radio-1" class="center" translate>
+                        All Assignments
+                    </label>
+                </ons-list-item>
+                <ons-list-item modifier="nodivider" tappable>
+                    <label class="left">
+                        <ons-radio name="grade-filter" input-id="radio-2" ng-model="gradeFilter" value="unscored" ng-change="doFilter(gradeFilter)"></ons-radio>
+                    </label>
+                    <label for="radio-2" class="center" translate>
+                        Unscored Assignments
+                    </label>
+                </ons-list-item>
+                <ons-list-item modifier="nodivider" tappable>
+                    <label class="left">
+                        <ons-radio name="grade-filter" input-id="radio-3" ng-model="gradeFilter" value="graded" ng-change="doFilter(gradeFilter)"></ons-radio>
+                    </label>
+                    <label for="radio-3" class="center" translate>
+                        Graded Assignments
+                    </label>
+                </ons-list-item>
+                <ons-list-item modifier="nodivider" tappable>
+                    <label class="left">
+                        <ons-radio name="grade-filter" input-id="radio-4" ng-model="gradeFilter" value="zeros" ng-change="doFilter(gradeFilter)"></ons-radio>
+                    </label>
+                    <label for="radio-4" class="center" translate>
+                        Zeros
+                    </label>
+                </ons-list-item>
+            </ons-list>
         </div>
-        <div class="student-menu-popover"></div>
-    </ons-page>
-</ons-navigator>
+    </ons-modal>
+    <ons-modal var="replyModal">
+        <div class="assignment-filter">
+            <ons-list>
+                <ons-list-item modifier="nodivider" tappable ng-click="doReply('reply')">
+                    <label class="left">
+                        <ons-icon icon="md-mail-reply" size="32px"></ons-icon>
+                    </label>
+                    <label class="center" translate>
+                        Reply
+                    </label>
+                </ons-list-item>
+                <ons-list-item modifier="nodivider" tappable ng-click="doReply('reply-all')">
+                    <label class="left">
+                        <ons-icon icon="md-mail-reply-all" size="32px"></ons-icon>
+                    </label>
+                    <label class="center" translate>
+                        Reply All
+                    </label>
+                </ons-list-item>
+                <ons-list-item modifier="nodivider" tappable ng-click="doReply('cancel')">
+                    <label class="left">
+                        <ons-icon icon="md-close" size="32px"></ons-icon>
+                    </label>
+                    <label class="center" translate>
+                        Cancel
+                    </label>
+                </ons-list-item>
+            </ons-list>
+        </div>
+    </ons-modal>
+    <ons-modal var="calFilterModal">
+        <div class="assignment-filter">
+            <ons-row>
+                <ons-col>
+                    <div class="left filter-prompt">Show:</div>
+                </ons-col>
+                <ons-col width="30px" tappable ng-click="doFilter('close')">
+                    <ons-ripple color="rgba(156, 156, 156, 0.20)"></ons-ripple>
+                    <ons-icon icon="md-close" size="32px"></ons-icon>
+                </ons-col>
+            </ons-row>
+            <ons-list>
+                <ons-list-item modifier="nodivider" tappable>
+                    <label class="left">
+                        <ons-checkbox input-id="checkbox-1" ng-model="calFilter.assigned"></ons-checkbox>
+                    </label>
+                    <label for="checkbox-1" class="center" translate>
+                        Work (Assigned Date)
+                    </label>
+                </ons-list-item>
+                <ons-list-item modifier="nodivider" tappable>
+                    <label class="left">
+                        <ons-checkbox input-id="checkbox-2" ng-model="calFilter.due"></ons-checkbox>
+                    </label>
+                    <label for="checkbox-2" class="center" translate>
+                        Work (Due Date)
+                    </label>
+                </ons-list-item>
+                <ons-list-item modifier="nodivider" tappable>
+                    <label class="left">
+                        <ons-checkbox input-id="checkbox-3" ng-model="calFilter.general"></ons-checkbox>
+                    </label>
+                    <label for="checkbox-3" class="center" translate>
+                        General Events
+                    </label>
+                </ons-list-item>
+                <ons-list-item modifier="nodivider" tappable>
+                    <label class="left">
+                        <ons-checkbox input-id="checkbox-4" ng-model="calFilter.group"></ons-checkbox>
+                    </label>
+                    <label for="checkbox-4" class="center" translate>
+                        My Group Events
+                    </label>
+                </ons-list-item>
+                <div class="cal-filter-button" tappable ng-click="doFilter(calFilter)" translate>Filter</div>
+            </ons-list>
+        </div>
+    </ons-modal>
+
+</ons-page>

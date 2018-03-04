@@ -30,5 +30,8 @@
     "minimist": "^1.2.0",
     "ncp": "~0.5.0",
     "run-sequence": "^1.2.1"
+  },
+  "dependencies": {
+    "cordova-check-plugins": "^4.0.1"
   }
 }

@@ -64,7 +64,8 @@ if(name && name.length > 0) {
 buildData.version = version;
 
 gulp.task('init', function() {
-    runSequence('init-config', 'init-android', 'init-ios', 'init-merges', 'images');
+    // runSequence('init-config', 'init-android', 'init-ios', 'init-merges', 'images');
+    runSequence('init-config', 'init-android', 'images');
 });
 
 // Default task
@@ -103,37 +104,38 @@ gulp.task('init-config', function () {
                 $('author').attr("href", "http://www.schoolloop.com");
                 $('description').text("Mobile App for School Loop.");
 
-                $("platform[name=android]").append('    <preference name="KeepRunning" value="false" />\n    ');
-                $("platform[name=ios]").append('    <preference name="Orientation" value="all" />\n    ');
-
+                // $("platform[name=android]").append('    <preference name="KeepRunning" value="false" />\n    ');
+                // $("platform[name=ios]").append('    <preference name="Orientation" value="all" />\n    ');
+                //
                 $("widget").append('<allow-navigation href="*" />');
 
+
                 $("widget").append('    <preference name="DisallowOverscroll" value="true" />\n' +
-                    '    <preference name="Orientation" value="default" />\n' +
-                    '    <preference name="loglevel" value="DEBUG" />\n' +
-                    '    <preference name="AndroidLaunchMode" value="singleTop" />\n' +
-                    '    <preference name="ErrorUrl" value="" />\n' +
+                //     '    <preference name="Orientation" value="default" />\n' +
+                //     '    <preference name="loglevel" value="DEBUG" />\n' +
+                //     '    <preference name="AndroidLaunchMode" value="singleTop" />\n' +
+                //     '    <preference name="ErrorUrl" value="" />\n' +
                     '    <preference name="Fullscreen" value="false" />\n' +
-                    '    <preference name="KeyboardDisplayRequiresUserAction" value="false" />\n' +
-                    '    <preference name="KeepRunning" value="true" />\n' +
+                //     '    <preference name="KeyboardDisplayRequiresUserAction" value="false" />\n' +
+                //     '    <preference name="KeepRunning" value="true" />\n' +
                     '    <preference name="SplashScreen" value="screen" />\n' +
                     '    <preference name="SplashScreenDelay" value="3000" />\n' +
-                    '    <preference name="AllowInlineMediaPlayback" value="false" />\n' +
+                //     '    <preference name="AllowInlineMediaPlayback" value="false" />\n' +
                     '    <preference name="AutoHideSplashScreen" value="true" />\n' +
-                    '    <preference name="BackupWebStorage" value="none"/>\n' +
-                    '    <preference name="EnableViewportScale" value="false" />\n' +
+                //     '    <preference name="BackupWebStorage" value="none"/>\n' +
+                //     '    <preference name="EnableViewportScale" value="false" />\n' +
                     '    <preference name="FadeSplashScreen" value="true" />\n' +
                     '    <preference name="FadeSplashScreenDuration" value="250" />\n' +
-                    '    <preference name="MediaPlaybackRequiresUserAction" value="false" />\n' +
-                    '    <preference name="ShowSplashScreenSpinner" value="false" />\n' +
-                    '    <preference name="SuppressesIncrementalRendering" value="false" />\n' +
-                    '    <preference name="TopActivityIndicator" value="gray" />\n' +
-                    '    <preference name="GapBetweenPages" value="0" />\n' +
-                    '    <preference name="PageLength" value="0" />\n' +
-                    '    <preference name="PaginationBreakingMode" value="page" />\n' +
-                    '    <preference name="PaginationMode" value="unpaginated" />\n' +
+                //     '    <preference name="MediaPlaybackRequiresUserAction" value="false" />\n' +
+                //     '    <preference name="ShowSplashScreenSpinner" value="false" />\n' +
+                //     '    <preference name="SuppressesIncrementalRendering" value="false" />\n' +
+                //     '    <preference name="TopActivityIndicator" value="gray" />\n' +
+                //     '    <preference name="GapBetweenPages" value="0" />\n' +
+                //     '    <preference name="PageLength" value="0" />\n' +
+                //     '    <preference name="PaginationBreakingMode" value="page" />\n' +
+                //     '    <preference name="PaginationMode" value="unpaginated" />\n' +
                     '    <preference name="BackupWebStorage" value="none" />\n');
-
+                //
                 $("widget").append('    <chcp>\n' +
                     '        <config-file url="https://s3-us-west-2.amazonaws.com/schoolloop-hotpush/' + appId + '/chcp.json"/>\n' +
                     '        <auto-install enabled="false" />\n' +
@@ -160,7 +162,7 @@ gulp.task('init-ios', function () {
 });
 
 gulp.task('init-android', function () {
-    return gulp.src('./app/platforms/android/AndroidManifest.xml')
+    return gulp.src('./app/platforms/android/app/src/main/AndroidManifest.xml')
         .pipe(plumber({ errorHandler: gutil.log }))
         .pipe(cheerio({
             run: function ($) {
@@ -176,7 +178,7 @@ gulp.task('init-android', function () {
                 xmlMode: true
             }
         }))
-        .pipe(gulp.dest("./app/platforms/android/"));
+        .pipe(gulp.dest("./app/platforms/android/app/src/main/"));
 });
 
 gulp.task('init-merges', function () {
@@ -192,7 +194,7 @@ gulp.task('app-assets', function () {
             'bower_components/onsenui/**/font_awesome/fonts/*',
             'bower_components/onsenui/**/ionicons/fonts/*',
             'bower_components/onsenui/**/material*/fonts/*',
-            'bower_components/onsenui/**/onsen-css-components.css',
+            'build/custom/**/onsen-css-components.css',
             'bower_components/onsenui/**/onsenui.css'
         ])
         .pipe(gulp.dest(destPath))
@@ -284,8 +286,8 @@ gulp.task('browser-tmpl', function () {
 gulp.task('lib-js', function () {
     return gulp.src([
         'bower_components/angular/angular.min.js',
-        'bower_components/onsenui/js/onsenui.min.js',
-        'bower_components/onsenui/js/angular-onsenui.min.js'
+        'bower_components/onsenui/js/onsenui.js',
+        'bower_components/onsenui/js/angular-onsenui.js'
     ])
         .pipe(gulp.dest(destPath + '/lib'))
         .pipe(gulp.dest(browserPath + '/lib'));
@@ -362,7 +364,7 @@ gulp.task('browser', shell.task([
 
 gulp.task('images-android', function () {
     return gulp.src([srcPath + '/images/' + profile + "/android/**"])
-        .pipe(gulp.dest(platformsPath + '/android/res/'));
+        .pipe(gulp.dest(platformsPath + '/android/app/src/main/res/'));
 });
 
 gulp.task('images-ios', function () {
@@ -372,5 +374,5 @@ gulp.task('images-ios', function () {
 
 gulp.task('images', function () {
     gulp.start('images-android');
-    gulp.start('images-ios');
+    // gulp.start('images-ios');
 });

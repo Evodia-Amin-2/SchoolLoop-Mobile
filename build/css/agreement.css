@@ -1,0 +1,26 @@
+.scrollable-panel {
+    position: absolute;
+    top: 0;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+}
+
+.content-panel {
+    padding: 10px 20px;
+}
+
+.button-bar-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    text-align: center;
+}
+
+.button-bar-footer .button {
+    margin: 15px;
+}

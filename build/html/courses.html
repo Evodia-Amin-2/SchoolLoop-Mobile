@@ -1,20 +1,25 @@
-<ons-navigator var="courseNavigator">
-    <ons-page ng-controller="CoursesController as courseCtrl" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
-        <ons-pull-hook ng-action="courseCtrl.load($done)" var="cloader">
-            <span ng-switch="cloader.state">
-                  <span ng-switch-when="initial"><ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon><span translate>Pull down to refresh</span></span>
-                  <span ng-switch-when="preaction"><ons-icon size="35px" icon="ion-arrow-up-a"></ons-icon><span translate>Release to refresh</span></span>
-                  <span ng-switch-when="action"><ons-icon size="35px" spin="true" icon="ion-load-d"></ons-icon><span translate>Loading data...</span></span>
+<ons-navigator animation="slide" var="courseNavigator">
+    <ons-page ng-controller="CoursesController as courseCtrl" class="list-page" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
+        <ons-pull-hook ng-action="main.load($done)" var="mainLoader">
+            <span ng-switch="mainLoader.state">
+              <span ng-switch-when="initial"><ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon><span translate>Pull down to refresh</span></span>
+              <span ng-switch-when="preaction"><ons-icon size="35px" icon="ion-arrow-up-a"></ons-icon><span translate>Release to refresh</span></span>
+              <span ng-switch-when="action"><ons-icon size="35px" spin="true" icon="ion-load-d"></ons-icon><span translate>Loading data...</span></span>
             </span>
         </ons-pull-hook>
-        <ons-toolbar class="default-toolbar" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
+        <ons-toolbar ng-class="['default-toolbar', {student:main.currentStudent, ios:ons.platform.isIOS()}]">
             <div class="left">
                 <ons-toolbar-button ng-click="main.openMenu()">
                     <ons-icon icon="md-menu"></ons-icon>
                 </ons-toolbar-button>
             </div>
-            <div class="center" translate>Courses</div>
+            <div class="center toolbar-title" translate>{{main.tabTitle}}</div>
+
+            <div ng-show="main.currentStudentInfo" class="current-student ng-hide" ng-class="{ios:ons.platform.isIOS()}" ng-click="main.studentMenu()">
+                <div>{{main.currentStudentInfo}}</div><ons-icon ng-show="main.showStudentMenu()" icon="md-caret-down"></ons-icon>
+            </div>
         </ons-toolbar>
+
         <ons-list class="course-view">
             <ons-list-item class="card-item assignment-item" modifier="nodivider" ng-show="courseCtrl.courses.length === 0">
                 <div class="center">
@@ -22,7 +27,7 @@
                 </div>
             </ons-list-item>
             <ons-list-item class="course-item" modifier="longdivider" tappable ng-repeat="item in courseCtrl.courses"
-                           ng-click="courseNavigator.pushPage('course-detail.html', {animation: 'slide', course: item})">
+                           ng-click="courseNavigator.pushPage('course-detail.html', {animation: 'slide', data: {course: item}})">
                 <div class="left">
                     <div class="course-color" ng-class="courseCtrl.courseColor(item)">&nbsp;</div>
                     <div class="period">{{item.period}}</div>

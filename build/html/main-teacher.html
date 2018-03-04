@@ -25,7 +25,12 @@
         </defs>
     </svg>
 </div>
-<ons-splitter var="mainSplitter" ng-controller="MenuController as menu">
-    <ons-splitter-side side="left" width="85%" collapse page="menu.html"></ons-splitter-side>
-    <ons-splitter-content id="page-content" page="tabbar-teacher.html"></ons-splitter-content>
-</ons-splitter>
+
+<ons-navigator animation="slide" var="mainNavigator">
+    <ons-page>
+        <ons-splitter var="mainSplitter" ng-controller="MenuController as menu">
+            <ons-splitter-side side="left" width="85%" collapse page="menu.html"></ons-splitter-side>
+            <ons-splitter-content id="page-content" page="tabbar-teacher.html"></ons-splitter-content>
+        </ons-splitter>
+    </ons-page>
+</ons-navigator>

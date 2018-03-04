@@ -1,0 +1,136 @@
+.toolbar-title, .toolbar__title {
+    color: white;
+}
+
+.default-toolbar {
+    background-color: #009688;
+}
+
+.default-toolbar .ons-icon {
+    color: white;
+}
+
+.toolbar-button--material:active {
+    opacity: 1;
+    background-color: rgba(200, 200, 200, 0.3) !important;
+}
+
+.toolbar--material__center {
+    color: white;
+}
+
+.back-button__icon {
+    opacity: 0.6;
+    fill: white;
+}
+
+.back-button__icon:active {
+    opacity: 0.8;
+    background-color: rgba(200, 200, 200, 0.3) !important;
+}
+
+.navigation-bar__title {
+    color: white;
+}
+
+.back-button {
+    color: white !important;
+}
+
+.navigation-bar .ons-icon {
+    color: white !important;
+}
+
+.navigation-bar .toolbar-button {
+    color: white !important;
+}
+
+.navigation-bar__title {
+    text-overflow: ellipsis;
+    overflow: hidden !important;
+    white-space: nowrap;
+}
+
+.student .toolbar {
+    height: 70px;
+}
+
+.student .page__content {
+    top: 70px !important;
+}
+
+.ios.student .page__content {
+    top: 84px;
+}
+
+.ios.student[status-bar-fill] .toolbar {
+    height: 64px !important;
+}
+
+.ios.student[status-bar-fill] .page__content {
+    top: 84px !important;
+}
+
+.current-student {
+    color: #f0f0f0;
+    background-color: rgba(0,0,0,0.05);
+    position: absolute;
+    text-align: center;
+    top: 43px;
+    left: 0;
+    right: 0;
+    height:24px;
+    z-index: 100;
+}
+
+.current-student.ios {
+    top: 56px;
+}
+
+.current-student > div {
+    display: inline-block;
+    margin: 5px 0;
+}
+
+.current-student .zmdi-caret-down {
+    top: 3px;
+    left: 3px;
+    font-size: 21px;
+    position: relative;
+}
+
+/*
+
+.student-popover {
+    position: absolute;
+    top: 78px;
+    left: 0;
+    right: 0;
+}
+
+.current-student .popover__content {
+    max-height: 350px !important;
+    min-height: 50px !important;
+    top: 20px !important;
+}
+
+.current-student .popover__content {
+    max-height: 350px !important;
+    min-height: 50px !important;
+    top: 20px !important;
+}
+
+.current-student.ios .popover__content {
+    top: 10px;
+}
+
+.current-student.ios .popover__arrow {
+    top: 20px;
+}
+
+.popover__content .list__item--material {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+ */

@@ -47,12 +47,10 @@
                 }
                 return sourceDate.format("dddd, MMM D, YYYY");
             },
-            resetTab: function(navigator, page) {
+            resetTab: function(navigator) {
                 var pages = navigator.pages;
                 if(pages.length > 1) {
-                    $timeout(function() {
-                        navigator.resetToPage(page);
-                    });
+                    navigator.popPage();
                 }
             },
             setStatusBar: function(color) {

@@ -1,7 +1,10 @@
 <ons-page class="card-view" ng-controller="CourseDetailController as courseDetail" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
-    <ons-toolbar ng-class="[courseDetail.courseColor(), {student:main.currentStudent, ios:ons.platform.isIOS()}]">
+    <ons-toolbar ng-class="['default-toolbar', courseDetail.courseColor(), {student:main.currentStudent, ios:ons.platform.isIOS()}]">
         <div class="left"><ons-back-button translate>Back</ons-back-button></div>
         <div class="center">{{::courseDetail.course.courseName}}</div>
+        <div ng-show="main.currentStudentInfo" class="current-student ng-hide" ng-class="{ios:ons.platform.isIOS()}" ng-click="main.studentMenu()">
+            <div>{{main.currentStudentInfo}}</div><ons-icon ng-show="main.showStudentMenu()" icon="md-caret-down"></ons-icon>
+        </div>
     </ons-toolbar>
     <div class="course-summary" >
         <ons-row>
@@ -19,13 +22,13 @@
             </ons-col>
             <ons-col width="175px" ng-if="courseDetail.progress.grades.length > 0">
                 <div class="grade-info" ng-show="courseDetail.hasGrade() === true" tappable
-                                ng-click="courseNavigator.pushPage('course-info.html', {animation: 'slide', progress: courseDetail.progress, course: courseDetail.course})">
+                                ng-click="courseNavigator.pushPage('course-info.html', {animation: 'slide', data: {progress: courseDetail.progress, course: courseDetail.course}})">
                     <div class="grade" ng-show="courseDetail.hasGrade() === true && courseDetail.gradeHidden() === false">{{courseDetail.getGrade()}}</div>
                     <div class="grade" ng-show="courseDetail.hasGrade() === true && courseDetail.gradeHidden() === true"><ons-icon class="grade-info-icon" icon="ion-information" size="36px"></ons-icon></div>
                     <div class="score">{{courseDetail.getScore()}}<ons-icon class="nav-indicator" icon="ion-chevron-right" size="12px"></ons-icon></div>
                 </div>
                 <div class="grade-info" ng-show="courseDetail.zeroCount > 0" tappable
-                                ng-click="courseNavigator.pushPage('course-assignments.html', {animation: 'slide', filter: 'zeros', progress: courseDetail.progress, course: courseDetail.course})">
+                                ng-click="courseNavigator.pushPage('course-assignments.html', {animation: 'slide', data: {filter: 'zeros', progress: courseDetail.progress, course: courseDetail.course}})">
                     <div class="zero">
                         {{courseDetail.zeroCount}}</div>
                     <div class="score" ng-show="courseDetail.zeroCount == 1"><span translate>Zero</span><ons-icon class="nav-indicator" icon="ion-chevron-right" size="12px"></ons-icon></div>
@@ -51,7 +54,7 @@
             </ons-list-item>
             <ons-list-item class="card-item course-detail" modifier="longdivider" tappable
                            ng-if="courseDetail.progress.grades.length > 0"
-                           ng-click="courseNavigator.pushPage('course-assignments.html', {animation: 'slide', progress: courseDetail.progress, course: courseDetail.course})">
+                           ng-click="courseNavigator.pushPage('course-assignments.html', {animation: 'slide', data: {progress: courseDetail.progress, course: courseDetail.course}})">
                 <div class="right">
                     <div><span translate>View All Assignments</span><ons-icon class="nav-indicator" icon="ion-chevron-right" size="12px"></ons-icon></div>
                 </div>
@@ -59,7 +62,7 @@
             <ons-list-item class="card-item course-detail" ng-class="{'zero-grade': courseDetail.isZero(item)}"
                            ng-if="courseDetail.progress.grades.length > 0"
                            modifier="longdivider" tappable ng-repeat="item in courseDetail.progress.grades|limitTo:courseDetail.limit"
-                           ng-click="courseNavigator.pushPage('course-assignment-detail.html', {animation: 'slide', grade: item, course: courseDetail.course})">
+                           ng-click="courseNavigator.pushPage('course-assignment-detail.html', {animation: 'slide', data: {grade: item, course: courseDetail.course}})">
                 <div class="center">
                     <div class="progress-report course-row">
                         <div class="title">{{item.assignment.title}}</div>

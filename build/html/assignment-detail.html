@@ -1,7 +1,10 @@
 <ons-page ng-controller="AssignmentDetailController as assignDetail" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
-    <ons-toolbar ng-class="[assignDetail.courseColor(), {student:main.currentStudent, ios:ons.platform.isIOS()}]">
+    <ons-toolbar class="default-toolbar" ng-class="[assignDetail.courseColor(), {student:main.currentStudent, ios:ons.platform.isIOS()}]">
         <div class="left"><ons-back-button translate>Back</ons-back-button></div>
         <div class="center">{{::assignDetail.assignment.categoryName}}</div>
+        <div ng-show="main.currentStudentInfo" class="current-student ng-hide" ng-class="{ios:ons.platform.isIOS()}" ng-click="main.studentMenu()">
+            <div>{{main.currentStudentInfo}}</div><ons-icon ng-show="main.showStudentMenu()" icon="md-caret-down"></ons-icon>
+        </div>
     </ons-toolbar>
     <ons-list-item modifier="longdivider" class="assignment-detail-header">
         <div class="left">

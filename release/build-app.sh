@@ -20,7 +20,7 @@ fi
 
 bower install
 rm -rf tmp/*.js
-/bin/bash -ex ./release/create-app "$ID"
+/bin/bash -ex ./release/create-app.sh "$ID"
 gulp init --id "$ID" --name "$NAME"  --version "${VERSION}" --build "${BUILD}" --profile "$ID"
 gulp default --id "$ID" --name "$NAME" --version "${VERSION}" --build "${BUILD}" --profile "$ID"
 cd ./app
@@ -29,8 +29,8 @@ cordova prepare ios --verbose
 cordova build android --release --verbose
 cd ..
 fastlane ios "$ID"
-cp app/platforms/android/build/outputs/apk/android-release.apk tmp/${FILENAME}-${VERSION}-${BUILD}.apk
-mv tmp/MobileLoop.ipa tmp/${FILENAME}-${VERSION}-${BUILD}.ipa
-mv tmp/MobileLoop.app.dSYM.zip tmp/${FILENAME}-${VERSION}-${BUILD}-dSYM.zip
-cp tmp/${FILENAME}-*-*.{apk,ipa} ~/Downloads/builds/${ID}/
-rm -f tmp/${FILENAME}-*-*.{apk,ipa,zip}
+#cp app/platforms/android/build/outputs/apk/release/android-release.apk tmp/${FILENAME}-${VERSION}-${BUILD}.apk
+#mv tmp/MobileLoop.ipa tmp/${FILENAME}-${VERSION}-${BUILD}.ipa
+#mv tmp/MobileLoop.app.dSYM.zip tmp/${FILENAME}-${VERSION}-${BUILD}-dSYM.zip
+#cp tmp/${FILENAME}-*-*.{apk,ipa} ~/Downloads/builds/${ID}/
+#rm -f tmp/${FILENAME}-*-*.{apk,ipa,zip}

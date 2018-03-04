@@ -53,7 +53,8 @@
     function NewsDetailController($rootScope, $scope, $window, $sce, $filter, storageService, utils) {
         var newsDetail = this;
 
-        newsDetail.newsItem = $scope.newsNavigator.topPage.pushedOptions.news;
+        var data = $scope.newsNavigator.topPage.data;
+        newsDetail.newsItem = data.news;
 
         newsDetail.trustedDescription = "";
 

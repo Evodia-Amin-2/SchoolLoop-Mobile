@@ -6,9 +6,9 @@
             'Utils', 'CourseColors', CoursesController])
         .controller('CourseDetailController', ['$scope', '$timeout', 'DataService', 'StatusService', 'StorageService', 'Utils', 'gettextCatalog',
             'CourseColors', CourseDetailController])
-        .controller('CourseAsgnController', ['$rootScope', '$scope', '$timeout', 'Utils', 'DataService', 'DataType',
+        .controller('CourseAsgnController', ['$rootScope', '$scope', '$timeout', 'Utils', 'DataService',
             'CourseColors', CourseAsgnController])
-        .controller('CourseAsgnDetailController', ['$scope', '$window', '$sce', '$filter', '$timeout', 'DataService', 'StatusService',
+        .controller('CourseAsgnDetailController', ['$scope', '$window', '$sce', '$filter', 'DataService', 'StatusService',
             'StorageService', 'Utils', 'CourseColors', 'gettextCatalog', CourseAsgnDetailController])
     ;
 
@@ -22,16 +22,19 @@
         courseCtrl.courses = dataService.list(DataType.COURSE);
         courseCtrl.currentCourse = -1;
 
-        courseCtrl.load = function($done) {
-            $timeout(function() {
-                return dataService.refresh(DataType.COURSE).then(function(result) {
-                    courseCtrl.courses = result;
-                    $done();
-                }, function() {
-                    $done();
-                });
-            }, 1000);
-        };
+        $scope.$on('pulldown.refresh', function(event, data) {
+            if(data.tabIndex === 1) {
+                var $done = data.done;
+                $timeout(function() {
+                    return dataService.refresh(DataType.COURSE).then(function(result) {
+                        courseCtrl.courses = result;
+                        $done();
+                    }, function() {
+                        $done();
+                    });
+                }, 1000);
+            }
+        });
 
         courseCtrl.hasGrade = function(course) {
             return !(utils.isNull(course.grade) === true || course.grade === 'hidden');
@@ -93,7 +96,7 @@
                             dataService.clearProgressReport();
                         }
                         if(pages.length === 1) { // top page
-                            $scope.courseNavigator.pushPage('course-detail.html', {animation: 'slide', course: course});
+                            $scope.courseNavigator.pushPage('course-detail.html', {data: {course: course}});
                         }
                         break;
                     }
@@ -112,6 +115,7 @@
         var tabbar = document.querySelector("ons-tabbar");
         tabbar.addEventListener("postchange", function() {
             utils.resetTab($scope.courseNavigator, "courses.html");
+
         });
 
         tabbar.addEventListener("reactive", function() {
@@ -122,8 +126,9 @@
     function CourseDetailController($scope, $timeout, dataService, statusService, storageService, utils, gettextCatalog, CourseColors) {
         var courseDetail = this;
 
-        courseDetail.course = $scope.courseNavigator.topPage.pushedOptions.course;
-        courseDetail.progress = $scope.courseNavigator.topPage.pushedOptions.progress;
+        var data = $scope.courseNavigator.topPage.data;
+        courseDetail.course = data.course;
+        courseDetail.progress = data.progress;
 
         var periodIndex = courseDetail.course.period % CourseColors.length;
         utils.setStatusBar(CourseColors[periodIndex]);
@@ -169,7 +174,7 @@
         };
 
         courseDetail.compose = function() {
-            $scope.mainNavigator.pushPage('compose.html', {animation: 'slide', hasLMT: true, teachers: courseDetail.course});
+            $scope.mainNavigator.pushPage('compose.html', {animation: 'slide', data: {hasLMT: true, teachers: courseDetail.course}});
         };
 
         courseDetail.hasCoTeacher = function(item) {
@@ -348,12 +353,13 @@
 
     }
 
-    function CourseAsgnController($rootScope, $scope, $timeout, utils, dataService, DataType, CourseColors) {
+    function CourseAsgnController($rootScope, $scope, $timeout, utils, dataService, CourseColors) {
         var courseAsgn = this;
 
-        courseAsgn.course = $scope.courseNavigator.topPage.pushedOptions.course;
-        courseAsgn.progress = $scope.courseNavigator.topPage.pushedOptions.progress;
-        courseAsgn.filter = $scope.courseNavigator.topPage.pushedOptions.filter || "all";
+        var data = $scope.courseNavigator.topPage.data;
+        courseAsgn.course = data.course;
+        courseAsgn.progress = data.progress;
+        courseAsgn.filter = data.filter || "all";
 
         $rootScope.$broadcast("filter.reset", {action: courseAsgn.filter});
 
@@ -446,12 +452,13 @@
         }
     }
 
-    function CourseAsgnDetailController($scope, $window, $sce, $filter, $timeout, dataService, statusService, storageService, utils, CourseColors, gettextCatalog) {
+    function CourseAsgnDetailController($scope, $window, $sce, $filter, dataService, statusService, storageService, utils, CourseColors, gettextCatalog) {
         var assignDetail = this;
 
+        var data = $scope.courseNavigator.topPage.data;
         assignDetail.assignment = undefined;
-        assignDetail.grade = $scope.courseNavigator.topPage.pushedOptions.grade;
-        assignDetail.course = $scope.courseNavigator.topPage.pushedOptions.course;
+        assignDetail.grade = data.grade;
+        assignDetail.course = data.course;
         assignDetail.trustedDescription = "";
 
         var period = assignDetail.course.period;
@@ -507,7 +514,7 @@
         };
 
         assignDetail.compose = function() {
-            $scope.mainNavigator.pushPage('compose.html', {animation: 'slide', hasLMT: true, teachers: assignDetail.course});
+            $scope.mainNavigator.pushPage('compose.html', {animation: 'slide', data: {hasLMT: true, teachers: assignDetail.course}});
         };
     }
 

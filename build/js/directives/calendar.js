@@ -11,7 +11,7 @@
                 selected: "=",
                 set: "="
             },
-            templateUrl: 'calendar.html',
+            templateUrl: 'calendar-directive.html',
             link: function(scope) {
                 scope.selected = (scope.selected || moment());
                 scope.weekdays = moment.weekdaysShort();
