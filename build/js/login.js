@@ -98,9 +98,9 @@
 
         page.login = function () {
             if(isFormValid()) {
-                if(cordova.plugins.Keyboard) {
-                    cordova.plugins.Keyboard.close();
-                }
+                // if(cordova.plugins.Keyboard) {
+                //     cordova.plugins.Keyboard.close();
+                // }
 
                 statusService.showLogin();
 

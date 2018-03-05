@@ -111,31 +111,30 @@ gulp.task('init-config', function () {
 
 
                 $("widget").append('    <preference name="DisallowOverscroll" value="true" />\n' +
-                //     '    <preference name="Orientation" value="default" />\n' +
-                //     '    <preference name="loglevel" value="DEBUG" />\n' +
-                //     '    <preference name="AndroidLaunchMode" value="singleTop" />\n' +
-                //     '    <preference name="ErrorUrl" value="" />\n' +
+                    '    <preference name="Orientation" value="default" />\n' +
+                    '    <preference name="loglevel" value="DEBUG" />\n' +
+                    '    <preference name="AndroidLaunchMode" value="singleTop" />\n' +
+                    '    <preference name="ErrorUrl" value="" />\n' +
                     '    <preference name="Fullscreen" value="false" />\n' +
-                //     '    <preference name="KeyboardDisplayRequiresUserAction" value="false" />\n' +
-                //     '    <preference name="KeepRunning" value="true" />\n' +
+                    '    <preference name="KeyboardDisplayRequiresUserAction" value="false" />\n' +
+                    '    <preference name="KeepRunning" value="true" />\n' +
                     '    <preference name="SplashScreen" value="screen" />\n' +
                     '    <preference name="SplashScreenDelay" value="3000" />\n' +
-                //     '    <preference name="AllowInlineMediaPlayback" value="false" />\n' +
+                    '    <preference name="AllowInlineMediaPlayback" value="false" />\n' +
                     '    <preference name="AutoHideSplashScreen" value="true" />\n' +
-                //     '    <preference name="BackupWebStorage" value="none"/>\n' +
-                //     '    <preference name="EnableViewportScale" value="false" />\n' +
+                    '    <preference name="EnableViewportScale" value="false" />\n' +
                     '    <preference name="FadeSplashScreen" value="true" />\n' +
                     '    <preference name="FadeSplashScreenDuration" value="250" />\n' +
-                //     '    <preference name="MediaPlaybackRequiresUserAction" value="false" />\n' +
-                //     '    <preference name="ShowSplashScreenSpinner" value="false" />\n' +
-                //     '    <preference name="SuppressesIncrementalRendering" value="false" />\n' +
-                //     '    <preference name="TopActivityIndicator" value="gray" />\n' +
-                //     '    <preference name="GapBetweenPages" value="0" />\n' +
-                //     '    <preference name="PageLength" value="0" />\n' +
-                //     '    <preference name="PaginationBreakingMode" value="page" />\n' +
-                //     '    <preference name="PaginationMode" value="unpaginated" />\n' +
+                    '    <preference name="MediaPlaybackRequiresUserAction" value="false" />\n' +
+                    '    <preference name="ShowSplashScreenSpinner" value="false" />\n' +
+                    '    <preference name="SuppressesIncrementalRendering" value="false" />\n' +
+                    '    <preference name="TopActivityIndicator" value="gray" />\n' +
+                    '    <preference name="GapBetweenPages" value="0" />\n' +
+                    '    <preference name="PageLength" value="0" />\n' +
+                    '    <preference name="PaginationBreakingMode" value="page" />\n' +
+                    '    <preference name="PaginationMode" value="unpaginated" />\n' +
                     '    <preference name="BackupWebStorage" value="none" />\n');
-                //
+
                 $("widget").append('    <chcp>\n' +
                     '        <config-file url="https://s3-us-west-2.amazonaws.com/schoolloop-hotpush/' + appId + '/chcp.json"/>\n' +
                     '        <auto-install enabled="false" />\n' +

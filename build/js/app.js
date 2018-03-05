@@ -60,6 +60,7 @@
             if (ons.platform.isChrome()) {
                 ons.platform.select('android');
             }
+
             if (ons.platform.isIPhoneX()) { // Utility function
                 document.documentElement.setAttribute('onsflag-iphonex-portrait', '');
                 document.documentElement.setAttribute('onsflag-iphonex-landscape', '');
@@ -144,10 +145,6 @@
             }
 
         }
-
-        window.addEventListener("orientationchange", function() {
-            $rootScope.$broadcast("orientation.change");
-        }, true);
     }
 
     String.prototype.startsWith = function (str) {

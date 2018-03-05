@@ -1,74 +1,13 @@
-.toolbar-title, .toolbar__title {
-    color: white;
+.default-toolbar .toolbar__left, .default-toolbar .toolbar__center, .default-toolbar .toolbar__right {
+    height: 40px;
 }
 
-.default-toolbar {
-    background-color: #009688;
-}
-
-.default-toolbar .ons-icon {
-    color: white;
-}
-
-.toolbar-button--material:active {
-    opacity: 1;
-    background-color: rgba(200, 200, 200, 0.3) !important;
-}
-
-.toolbar--material__center {
-    color: white;
-}
-
-.back-button__icon {
-    opacity: 0.6;
-    fill: white;
-}
-
-.back-button__icon:active {
-    opacity: 0.8;
-    background-color: rgba(200, 200, 200, 0.3) !important;
-}
-
-.navigation-bar__title {
-    color: white;
-}
-
-.back-button {
-    color: white !important;
-}
-
-.navigation-bar .ons-icon {
-    color: white !important;
-}
-
-.navigation-bar .toolbar-button {
-    color: white !important;
-}
-
-.navigation-bar__title {
-    text-overflow: ellipsis;
-    overflow: hidden !important;
-    white-space: nowrap;
-}
-
-.student .toolbar {
-    height: 70px;
+.default-toolbar.student {
+    height: 64px;
 }
 
 .student .page__content {
-    top: 70px !important;
-}
-
-.ios.student .page__content {
-    top: 84px;
-}
-
-.ios.student[status-bar-fill] .toolbar {
-    height: 64px !important;
-}
-
-.ios.student[status-bar-fill] .page__content {
-    top: 84px !important;
+    top: 64px !important;
 }
 
 .current-student {
@@ -76,15 +15,11 @@
     background-color: rgba(0,0,0,0.05);
     position: absolute;
     text-align: center;
-    top: 43px;
+    top: 40px;
     left: 0;
     right: 0;
     height:24px;
     z-index: 100;
-}
-
-.current-student.ios {
-    top: 56px;
 }
 
 .current-student > div {
@@ -95,9 +30,53 @@
 .current-student .zmdi-caret-down {
     top: 3px;
     left: 3px;
-    font-size: 21px;
+    font-size: 20px;
     position: relative;
 }
+
+/* ios */
+
+.default-toolbar.student.ios {
+    height: 60px;
+}
+
+.student.ios .page__content {
+    top: 78px !important;
+}
+
+.current-student.ios {
+    top: 54px;
+}
+
+@media (orientation: portrait) {
+    html[onsflag-iphonex-portrait] .default-toolbar.toolbar.student {
+        height: 60px;
+    }
+
+    html[onsflag-iphonex-portrait] .student .page__content, .student .page__background {
+        top: 104px !important;
+    }
+
+    html[onsflag-iphonex-portrait] .current-student {
+        top: 78px;
+    }
+}
+
+@media (orientation: landscape) {
+    html[onsflag-iphonex-landscape] .default-toolbar.toolbar.student {
+        height: 60px;
+    }
+
+    html[onsflag-iphonex-landscape] .student .page__content, .student .page__background {
+        top: 60px !important;
+    }
+
+    html[onsflag-iphonex-landscape] .current-student {
+        top: 34px;
+    }
+}
+
+
 
 /*
 

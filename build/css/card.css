@@ -1,6 +1,7 @@
 .card-view .list {
     border: none;
     background-color: inherit;
+    background-image: none;
 }
 
 .card-view .list-header {

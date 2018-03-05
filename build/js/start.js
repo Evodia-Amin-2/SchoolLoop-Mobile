@@ -11,7 +11,7 @@
 
         console.log("Starting application");
 
-        StatusBar.overlaysWebView(true);
+        StatusBar.overlaysWebView(false);
         StatusBar.styleDefault();
         StatusBar.show();
 

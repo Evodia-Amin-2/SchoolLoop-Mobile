@@ -17,7 +17,7 @@
 
         loadStudents();
 
-        StatusBar.overlaysWebView(true);
+        StatusBar.overlaysWebView(false);
         StatusBar.styleLightContent();
         StatusBar.backgroundColorByHexString("#009688");
         StatusBar.show();

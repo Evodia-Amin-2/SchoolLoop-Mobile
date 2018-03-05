@@ -9,6 +9,7 @@
 .menu-header {
     height: 70px;
     background-color: #009688;
+    background-image:none;
 }
 
 .menu-header .list__item {
@@ -28,6 +29,12 @@
     overflow: auto;
 }
 
+@media (orientation: portrait) {
+    html[onsflag-iphonex-portrait] .menu-content {
+        top: 114px;
+    }
+}
+
 .menu-content .selected {
     background-color: #b2dfdb !important;
 }
@@ -35,6 +42,7 @@
 .menu-content .list {
     border-bottom: none;
     margin-top: 5px;
+    background-image: none;
 }
 
 .menu-content .list__item {
@@ -74,12 +82,18 @@
 
 .menu-footer {
     border-top: 1px #ccc solid !important;
-    background-color: #f9f9f9;
+    background-color: #fefefe;
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
     height: 60px;
+}
+
+@media (orientation: portrait) {
+    html[onsflag-iphonex-portrait] .menu-footer {
+        height: 94px;
+    }
 }
 
 .menu-footer .list {
