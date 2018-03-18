@@ -30,7 +30,7 @@ var platformsPath = "app/platforms";
 var browserPath = "app/platforms/browser/www";
 
 var appId = flags["id"] || "app";
-var version = flags["version"] || '3.1.0';
+var version = flags["version"] || '3.2.0';
 if(appId && appId.length > 0) {
     configFile = "build/versions/" + appId + "/config.json";
 }
@@ -104,19 +104,13 @@ gulp.task('init-config', function () {
                 $('author').attr("href", "http://www.schoolloop.com");
                 $('description').text("Mobile App for School Loop.");
 
-                // $("platform[name=android]").append('    <preference name="KeepRunning" value="false" />\n    ');
-                // $("platform[name=ios]").append('    <preference name="Orientation" value="all" />\n    ');
-                //
                 $("widget").append('<allow-navigation href="*" />');
-
 
                 $("widget").append('    <preference name="DisallowOverscroll" value="true" />\n' +
                     '    <preference name="Orientation" value="default" />\n' +
-                    '    <preference name="loglevel" value="DEBUG" />\n' +
                     '    <preference name="AndroidLaunchMode" value="singleTop" />\n' +
                     '    <preference name="ErrorUrl" value="" />\n' +
                     '    <preference name="Fullscreen" value="false" />\n' +
-                    '    <preference name="KeyboardDisplayRequiresUserAction" value="false" />\n' +
                     '    <preference name="KeepRunning" value="true" />\n' +
                     '    <preference name="SplashScreen" value="screen" />\n' +
                     '    <preference name="SplashScreenDelay" value="3000" />\n' +
@@ -373,5 +367,5 @@ gulp.task('images-ios', function () {
 
 gulp.task('images', function () {
     gulp.start('images-android');
-    // gulp.start('images-ios');
+    gulp.start('images-ios');
 });

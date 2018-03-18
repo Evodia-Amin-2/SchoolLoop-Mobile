@@ -19,29 +19,27 @@
     position: relative;
 }
 
-
-/*
-.card-view .page__background, .card-view .list__header {
-    background-color: #f0f2f4 !important;
-    box-shadow: none !important;
+.student .page__content {
+    top: 64px !important;
 }
 
-.card-view .list__header {
-    padding-bottom: 0 !important;
-    padding-top: 15px !important;
+.card-view .page__background,
+.card-view .page__content,
+.list-page .page__background,
+.list-page .page__content {
+    top: 44px !important;
+    bottom: 5px !important;
 }
 
-
-.card-view .list__header {
-    border: none;
+.card-view.student .page__background,
+.card-view.student .page__content,
+.list-page.student .page__background,
+.list-page.student .page__content {
+    top: 64px !important;
+    bottom: 5px !important;
 }
 
-.card-item {
-    padding-left: 0;
+.card-view .page__content {
+    top: 44px !important;
+    bottom: 5px !important;
 }
-
-.card-item .list__item__left {
-    padding: 0;
-    min-width: 52px;
-}
- */

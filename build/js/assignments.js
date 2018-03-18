@@ -13,23 +13,6 @@
 
         navigator.analytics.sendAppView('Assignments');
 
-        initialize();
-
-        $scope.$on('pulldown.refresh', function(event, data) {
-            if(data.tabIndex === 0) {
-                var $done = data.done;
-                $timeout(function() {
-                    return dataService.refresh(DataType.ASSIGNMENT).then(function(result) {
-                        getTimeZone(result);
-                        assignCtrl.assignments = groupAssignments(result, $scope);
-                        $done();
-                    }, function() {
-                        $done();
-                    });
-                }, 1000);
-            }
-        });
-
         assignCtrl.getDate = function (source, timeZone) {
             return utils.getDisplayDate(source, timeZone, gettextCatalog);
         };
@@ -47,6 +30,15 @@
             return "period-" + periodIndex;
         };
 
+        assignCtrl.showAssignmentDetail = function(assignment) {
+            $scope.asgnNavigator.pushPage('assignment-detail.html', {data: {assignment: assignment}});
+
+            var period = assignment.periodNumber;
+            var periodIndex = period % CourseColors.length;
+            utils.setStatusBar(CourseColors[periodIndex]);
+
+        };
+
         function getTimeZone(assignments) {
             if(assignments && assignments.length > 0) {
                 var assignment = assignments[0];
@@ -56,7 +48,7 @@
 
         $scope.$on("refresh.all", function() {
             initialize();
-            utils.resetTab($scope.asgnNavigator);
+            // utils.resetTab($scope.asgnNavigator);
         });
 
         $scope.$on('notify.test tomorrow', function(event, data) {
@@ -83,6 +75,21 @@
             assignmentNotification(data);
         });
 
+        $scope.$on('pulldown.refresh', function(event, data) {
+            if(data.tabIndex === 0) {
+                var $done = data.done;
+                $timeout(function() {
+                    return dataService.refresh(DataType.ASSIGNMENT).then(function(result) {
+                        getTimeZone(result);
+                        assignCtrl.assignments = groupAssignments(result, $scope);
+                        $done();
+                    }, function() {
+                        $done();
+                    });
+                }, 1000);
+            }
+        });
+
         function assignmentNotification(data) {
             if(data.view === false) {
                 return;
@@ -95,25 +102,11 @@
                     assignCtrl.assignments = groupAssignments(result, $scope);
                     var assignment = _.findWhere(assignCtrl.assignments, {iD: payload.assignmentid});
                     if(assignment) {
-                        $scope.asgnNavigator.pushPage('assignment-detail.html', {data: {assignment: assignment}});
+                        assignCtrl.showAssignmentDetail(assignment);
                     }
                 }
             );
         }
-
-        $scope.asgnNavigator.on("prepop", function() {
-            utils.setStatusBar("#009688");
-            storageService.setBackButtonExit(true);
-        });
-
-        var tabbar = document.querySelector("ons-tabbar");
-        tabbar.addEventListener("postchange", function() {
-            utils.resetTab($scope.asgnNavigator);
-        });
-
-        tabbar.addEventListener("reactive", function() {
-            utils.resetTab($scope.asgnNavigator);
-        });
 
         function initialize() {
             var assignments = dataService.list(DataType.ASSIGNMENT);
@@ -124,8 +117,28 @@
             getTimeZone(assignments);
             assignCtrl.assignments = groupAssignments(assignments, $scope);
 
+            $scope.asgnNavigator.on("prepop", function() {
+                utils.setStatusBar("#009688");
+                storageService.setBackButtonExit(true);
+            });
+
+            $scope.tabbar.on("prechange", function(event) {
+                if (event.index === 0) {
+                    utils.resetTab($scope.asgnNavigator);
+                    utils.setStatusBar("#009688");
+                }
+            });
+
+            $scope.tabbar.on("reactive", function() {
+                utils.resetTab($scope.asgnNavigator);
+                utils.setStatusBar("#009688");
+            });
+
             utils.setStatusBar("#009688");
+
         }
+
+        initialize();
     }
 
     function AssignmentDetailController($scope, $timeout, $window, $sce, storageService, utils, CourseColors, gettextCatalog) {
@@ -136,8 +149,6 @@
 
         var period = assignDetail.assignment.periodNumber;
         var periodIndex = period % CourseColors.length;
-
-        utils.setStatusBar(CourseColors[periodIndex]);
 
         assignDetail.courseColor = function() {
             return "period-" + periodIndex;
@@ -181,24 +192,6 @@
             $scope.mainNavigator.pushPage('compose.html', {data: {hasLMT: true, teachers: assignDetail.assignment}});
         };
 
-        $scope.mainNavigator.on("prepop", function(event) {
-            if($scope.tabbar.getActiveTabIndex() !== 0) {
-                return;
-            }
-            var navigator = event.navigator;
-            if(navigator.pages.length === 2) {
-                var page = navigator.pages[1];
-                if(page.name === "compose.html") {
-                    $timeout(function() {
-                        $scope.asgnNavigator.pages[1].backButton.style.display = "block";
-                    });
-                }
-                var period = assignDetail.assignment.periodNumber;
-                var periodIndex = period % CourseColors.length;
-                utils.setStatusBar(CourseColors[periodIndex]);
-            }
-        });
-
         storageService.setBackButtonExit(false);
 
         $scope.$on("hardware.backbutton", function() {
@@ -208,6 +201,23 @@
                 $scope.asgnNavigator.popPage();
             }
         });
+
+        $scope.mainNavigator.on("prepop", function() {
+            if($scope.mainNavigator.pages.length === 2) {
+                var period = assignDetail.assignment.periodNumber;
+                var periodIndex = period % CourseColors.length;
+                utils.setStatusBar(CourseColors[periodIndex]);
+
+                $timeout(function() {
+                    var pages = $scope.asgnNavigator.pages;
+                    var button = pages[pages.length - 1].backButton;
+                    if(_.isUndefined(button) === false) {
+                        button.style.display = "block";
+                    }
+                });
+            }
+        });
+
     }
 
     function groupAssignments(data) {

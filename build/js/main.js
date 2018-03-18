@@ -19,8 +19,7 @@
 
         StatusBar.overlaysWebView(false);
         StatusBar.styleLightContent();
-        StatusBar.backgroundColorByHexString("#009688");
-        StatusBar.show();
+        utils.setStatusBar("#009688");
 
         $scope.gradeFilter = "all";
 
@@ -36,6 +35,28 @@
             navigator.splashscreen.hide();
             main.isLoaded = true;
 
+            $scope.tabbar.on("prechange", prechange);
+
+            function prechange(event) {
+                console.log("tabbar prechange");
+                utils.setStatusBar("#009688");
+
+                var title = event.tabItem.children[1].innerText;
+                var index = event.index;
+                main.setupTab(title, index);
+
+                setupCurrentStudent(index);
+            }
+
+            $scope.tabbar.on("postchange", postchange);
+
+            function postchange() {
+                console.log("tabbar postchange");
+
+                var index = $scope.tabbar.getActiveTabIndex();
+                navStack.push(index);
+            }
+
             main.setupTab("Assignments", 0);
 
         }, 750);
@@ -48,6 +69,8 @@
         }
 
         navigator.analytics.sendAppView('Main');
+
+        var onsTabbar = document.querySelector("ons-tabbar");
 
         var domain = storageService.getDefaultDomain();
         if(utils.isTrue(domain.user.isParent) === true) {
@@ -65,23 +88,6 @@
             main.tabIndex = index;
         };
 
-        var tabbar = document.querySelector("ons-tabbar");
-        tabbar.addEventListener("prechange", function(event) {
-            utils.setStatusBar("#009688");
-
-            var title = event.tabItem.children[1].innerText;
-
-            var index = event.index;
-            main.setupTab(title, index);
-
-            setupCurrentStudent(index);
-        });
-
-        tabbar.addEventListener("postchange", function() {
-            var index = tabbar.getActiveTabIndex();
-            navStack.push(index);
-        });
-
         $scope.$on("hardware.backbutton", function() {
             if(storageService.getBackButtonExit() === false) {
                 return;
@@ -89,7 +95,7 @@
             if(navStack.length <= 1) {
                 navigator.app.exitApp(); // Close the app
             } else {
-                var currentTab = tabbar.getActiveTabIndex();
+                var currentTab = $scope.tabbar.getActiveTabIndex();
                 var lastTab = navStack.pop();
                 if(lastTab === currentTab) {
                     lastTab = navStack.pop();
@@ -99,41 +105,40 @@
             }
         });
 
-        var numTabs = tabbar.children[1].childElementCount;
-        var divGD = window.ons.GestureDetector(document.querySelector('#page-content'));
-        divGD.on('swipeleft', function(event) {
-            if (utils.hasParent(event.srcElement, "calendar") === true) {
-                $rootScope.$broadcast("swipe.left", {action: "calendar"});
-                return;
-            }
-
-            if(storageService.getBackButtonExit() === false) {
-                return;
-            }
-            var currentTab = tabbar.getActiveTabIndex();
-            $scope.tabbar.setActiveTab((currentTab + 1) % numTabs, {animation: 'slide'});
-        });
-
-        divGD.on('swiperight', function(event) {
-            if (utils.hasParent(event.srcElement, "calendar") === true) {
-                $rootScope.$broadcast("swipe.right", {action: "calendar"});
-                return;
-            }
-
-            if(storageService.getBackButtonExit() === false) {
-                return;
-            }
-            var currentTab = tabbar.getActiveTabIndex();
-            currentTab = (currentTab + numTabs - 1) % numTabs;
-            $scope.tabbar.setActiveTab(currentTab, {animation: 'slide'});
-        });
+        // var numTabs = onsTabbar.children[1].childElementCount;
+        // var divGD = window.ons.GestureDetector(document.querySelector('#page-content'));
+        // divGD.on('swipeleft', function(event) {
+        //     if (utils.hasParent(event.srcElement, "calendar") === true) {
+        //         $rootScope.$broadcast("swipe.left", {action: "calendar"});
+        //         return;
+        //     }
+        //
+        //     if(storageService.getBackButtonExit() === false) {
+        //         return;
+        //     }
+        //     var currentTab = $scope.tabbar.getActiveTabIndex();
+        //     $scope.tabbar.setActiveTab((currentTab + 1) % numTabs, {animation: 'slide'});
+        // });
+        //
+        // divGD.on('swiperight', function(event) {
+        //     if (utils.hasParent(event.srcElement, "calendar") === true) {
+        //         $rootScope.$broadcast("swipe.right", {action: "calendar"});
+        //         return;
+        //     }
+        //
+        //     if(storageService.getBackButtonExit() === false) {
+        //         return;
+        //     }
+        //     var currentTab = $scope.tabbar.getActiveTabIndex();
+        //     currentTab = (currentTab + numTabs - 1) % numTabs;
+        //     $scope.tabbar.setActiveTab(currentTab, {animation: 'slide'});
+        // });
 
         function setupCurrentStudent(tabIndex) {
             if(_.isUndefined(main.currentStudent) === false) {
                 main.currentStudentInfo = main.currentStudent.name;
                 if(_.isUndefined(tabIndex) === true) {
-                    var tabbar = document.querySelector("ons-tabbar");
-                    tabIndex = tabbar.getActiveTabIndex();
+                    tabIndex = onsTabbar.getActiveTabIndex();
                 }
                 if(tabIndex === 2 || tabIndex === 3) {
                     main.currentStudentInfo =  main.currentStudent.school.name;
@@ -176,21 +181,25 @@
         };
 
         main.showStudentMenu = function() {
+            return main.students.length > 0;
+        };
+
+        main.showStudentMenuDropdown = function() {
             var index = $scope.tabbar.getActiveTabIndex();
             if(index === 2 || index === 3) {
                 return false;
             }
-            return main.students.length > 0;
+            return main.showStudentMenu();
         };
 
-        main.studentMenu = function() {
-            if(main.showStudentMenu() === false) {
+        main.studentMenu = function(event) {
+            if(main.showStudentMenuDropdown() === false) {
                 return;
             }
 
             loadStudents();
 
-            $scope.studentPopover.show(".student-popover");
+            $scope.studentPopover.show(event);
         };
 
         function loadStudents() {
@@ -232,7 +241,7 @@
         });
 
         $rootScope.$on('hardware.resume', function() {
-            var currentTab = tabbar.getActiveTabIndex();
+            var currentTab = $scope.tabbar.getActiveTabIndex();
             navStack = [currentTab];
             checkForUpdate();
         });

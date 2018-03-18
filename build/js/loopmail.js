@@ -26,9 +26,9 @@
         var folderId = dataService.getFolderId();
         mailCtrl.mailbox = mailCtrl.mailboxes[convertToIndex(folderId)];
 
-        mailCtrl.showMenu = function() {
+        mailCtrl.showMenu = function(event) {
             if($scope.popover._element[0].visible === false) {
-                $scope.popover.show('.menu-popover');
+                $scope.popover.show(event);
             }
         };
 
@@ -136,7 +136,7 @@
         };
 
         mailCtrl.compose = function() {
-            $scope.mainNavigator.pushPage('compose.html', {animation: 'slide', data: {hasLMT: false}});
+            $scope.mainNavigator.pushPage('compose.html', {animation: 'lift', data: {hasLMT: false}});
         };
 
         $scope.$on("refresh.all", function() {
@@ -144,18 +144,18 @@
             resetTab();
         });
 
-        var tabbar = document.querySelector("ons-tabbar");
-        tabbar.addEventListener("postchange", function() {
-            resetTab();
-        });
-
-        tabbar.addEventListener("reactive", function() {
-            resetTab();
-        });
+        // var tabbar = document.querySelector("ons-tabbar");
+        // tabbar.addEventListener("postchange", function() {
+        //     resetTab();
+        // });
+        //
+        // tabbar.addEventListener("reactive", function() {
+        //     resetTab();
+        // });
 
         function resetTab() {
-            utils.resetTab($scope.loopmailNavigator, "loopmail.html");
-            utils.setStatusBar("#009688");
+            // utils.resetTab($scope.loopmailNavigator, "loopmail.html");
+            // utils.setStatusBar("#009688");
         }
 
         $scope.$on("loopmail.sent", function() {
@@ -172,7 +172,7 @@
                 return;
             } else {
                 if(_.isUndefined(mailCtrl.selectedLoopmail) === false) {
-                    $scope.mainNavigator.pushPage('reply.html', {animation: 'slide', data: {loopmail: mailCtrl.selectedLoopmail, action: data.action}});
+                    $scope.mainNavigator.pushPage('reply.html', {data: {loopmail: mailCtrl.selectedLoopmail, action: data.action}});
                 }
             }
         });

@@ -29,19 +29,13 @@
     overflow: auto;
 }
 
-@media (orientation: portrait) {
-    html[onsflag-iphonex-portrait] .menu-content {
-        top: 114px;
-    }
-}
-
 .menu-content .selected {
     background-color: #b2dfdb !important;
 }
 
 .menu-content .list {
     border-bottom: none;
-    margin-top: 5px;
+    margin-top: 2px;
     background-image: none;
 }
 
@@ -90,12 +84,6 @@
     height: 60px;
 }
 
-@media (orientation: portrait) {
-    html[onsflag-iphonex-portrait] .menu-footer {
-        height: 94px;
-    }
-}
-
 .menu-footer .list {
     margin-top: 10px;
 }
@@ -115,5 +103,5 @@
 }
 
 .menu .page__background {
-    background-color: #009688;
+    background-color: white;
 }

@@ -119,22 +119,22 @@
 
         $scope.$on("refresh.all", function() {
             initialize();
-            utils.resetTab($scope.calendarNavigator, "calendar.html");
-        });
-
-        $scope.calendarNavigator.on("prepop", function() {
-            utils.setStatusBar("#009688");
-            storageService.setBackButtonExit(true);
-        });
-
-        var tabbar = document.querySelector("ons-tabbar");
-        tabbar.addEventListener("postchange", function() {
             // utils.resetTab($scope.calendarNavigator, "calendar.html");
         });
 
-        tabbar.addEventListener("reactive", function() {
-            utils.resetTab($scope.calendarNavigator, "calendar.html");
+        $scope.calendarNavigator.on("prepop", function() {
+            // utils.setStatusBar("#009688");
+            // storageService.setBackButtonExit(true);
         });
+
+        // var tabbar = document.querySelector("ons-tabbar");
+        // tabbar.addEventListener("postchange", function() {
+        //     // utils.resetTab($scope.calendarNavigator, "calendar.html");
+        // });
+        //
+        // tabbar.addEventListener("reactive", function() {
+        //     utils.resetTab($scope.calendarNavigator, "calendar.html");
+        // });
 
         function initialize() {
             var events = dataService.list(DataType.CALENDAR);

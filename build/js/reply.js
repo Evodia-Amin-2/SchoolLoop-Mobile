@@ -10,8 +10,9 @@
 
             utils.setStatusBar("#009688");
 
-            var action = $scope.mainNavigator.topPage.pushedOptions.action;
-            var loopmail = $scope.mainNavigator.topPage.pushedOptions.loopmail;
+            var data =  $scope.mainNavigator.topPage.data;
+            var action = data.action;
+            var loopmail = data.loopmail;
 
             page.toList = [];
             page.ccList = [];

@@ -78,7 +78,7 @@
 .cal-day-display .ons-icon {
     position: relative;
     font-size: 20px;
-    top: 2px;
+    top: 0;
 }
 
 .cal-day {
@@ -99,7 +99,7 @@
 
 .cal-filter {
     position: relative;
-    top: 5px;
+    top: 3px;
 }
 
 .cal-dropdown-icon {

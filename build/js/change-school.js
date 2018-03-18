@@ -9,7 +9,8 @@
     function ChangeSchoolController($scope, $timeout, loginService, storageService, schoolService, gettextCatalog) {
         var page = this;
 
-        page.searchCallback = $scope.mainNavigator.topPage.pushedOptions.searchCallback;
+        var data = $scope.mainNavigator.topPage.data;
+        page.searchCallback = data.searchCallback;
         page.disabled = false;
         page.needsLogin = false;
 

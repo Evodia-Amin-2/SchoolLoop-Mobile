@@ -57,7 +57,7 @@
                 $timeout(function () {
                     StatusBar.backgroundColorByHexString(color);
                     StatusBar.show();
-                }, 100);
+                }, 1);
             },
             hasParent: function(element, className) {
                 var regex = new RegExp('\\b' + className + '\\b');

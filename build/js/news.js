@@ -32,18 +32,18 @@
 
         $scope.$on("refresh.all", function() {
             newsCtrl.news = dataService.list(DataType.NEWS);
-            utils.resetTab($scope.newsNavigator, "news.html");
+            // utils.resetTab($scope.newsNavigator, "news.html");
         });
 
 
-        var tabbar = document.querySelector("ons-tabbar");
-        tabbar.addEventListener("postchange", function() {
-            utils.resetTab($scope.newsNavigator, "news.html");
-        });
-
-        tabbar.addEventListener("reactive", function() {
-            utils.resetTab($scope.newsNavigator, "news.html");
-        });
+        // var tabbar = document.querySelector("ons-tabbar");
+        // tabbar.addEventListener("postchange", function() {
+        //     utils.resetTab($scope.newsNavigator, "news.html");
+        // });
+        //
+        // tabbar.addEventListener("reactive", function() {
+        //     utils.resetTab($scope.newsNavigator, "news.html");
+        // });
 
         $scope.newsNavigator.on("prepop", function() {
             storageService.setBackButtonExit(true);

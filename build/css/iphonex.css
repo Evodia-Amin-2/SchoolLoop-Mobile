@@ -1,0 +1,56 @@
+@media (orientation: portrait) {
+    html[onsflag-iphonex-portrait] .page__content {
+        padding-top: 0 !important;
+    }
+
+    html[onsflag-iphonex-portrait] .toolbar {
+        top: 0 !important;
+        padding-top: 0 !important;
+    }
+
+    html[onsflag-iphonex-portrait] .menu-content {
+        bottom: 80px;
+        left: 0;
+    }
+
+    html[onsflag-iphonex-portrait] .menu-footer {
+        left: 0;
+        height: 80px;
+    }
+
+    html[onsflag-iphonex-portrait] .toolbar:not(.toolbar--cover-content) + .page__background, html[onsflag-iphonex-portrait] .toolbar:not(.toolbar--cover-content) + .page__background + .page__content {
+        top: 64px;
+    }
+}
+
+@media (orientation: landscape) {
+    html[onsflag-iphonex-landscape] .menu-content {
+        bottom: 80px;
+        left: 44px;
+    }
+
+    html[onsflag-iphonex-landscape] .menu-footer {
+        left: 44px;
+        height: 80px;
+    }
+
+    html[onsflag-iphonex-landscape] .page__content > .list:not(.list--inset) {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+.page[status-bar-fill] > .toolbar {
+    padding-top: 0;
+}
+
+.page[status-bar-fill] > .page__content {
+    top: 0;
+}
+
+.current-student.ios {
+    top: 34px;
+    height: 26px;
+}
+
+

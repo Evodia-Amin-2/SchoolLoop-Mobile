@@ -88,10 +88,7 @@ blockquote cite {
 
 .full-page .page__background {
     background-color: white;
-}
-
-.list-page .page__content {
-    background-color: white !important;
+    top: 56px
 }
 
 .input-wide {

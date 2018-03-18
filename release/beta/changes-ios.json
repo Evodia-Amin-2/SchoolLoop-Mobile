@@ -2,7 +2,7 @@
   "version":"{version}",
   "build":"{build}",
   "changes": [
-    "Fixed problem with sending LoopMail.",
-    "Minor Calendar enhancements."
+    "Updated for iPhoneX.",
+    "Minor UI enhancements."
   ]
 }

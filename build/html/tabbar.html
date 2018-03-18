@@ -51,7 +51,7 @@
             </div>
         </ons-tab>
     </ons-tabbar>
-    <div class="student-popover"></div>
+
     <ons-popover direction="down" cancelable var="studentPopover">
         <ons-list>
             <ons-list-item modifier="longdivider" tappable ng-repeat="student in main.students"
@@ -65,6 +65,7 @@
             </ons-list-item>
         </ons-list>
     </ons-popover>
+
     <ons-modal var="filterModal">
         <div class="assignment-filter">
             <ons-row>
@@ -77,35 +78,35 @@
                 </ons-col>
             </ons-row>
             <ons-list>
-                <ons-list-item modifier="nodivider" tappable>
+                <ons-list-item modifier="nodivider" tappable translate>
                     <label class="left">
                         <ons-radio name="grade-filter" input-id="radio-1" ng-model="gradeFilter" value="all" ng-change="doFilter(gradeFilter)"></ons-radio>
                     </label>
-                    <label for="radio-1" class="center" translate>
+                    <label for="radio-1" class="center">
                         All Assignments
                     </label>
                 </ons-list-item>
-                <ons-list-item modifier="nodivider" tappable>
+                <ons-list-item modifier="nodivider" tappable translate>
                     <label class="left">
                         <ons-radio name="grade-filter" input-id="radio-2" ng-model="gradeFilter" value="unscored" ng-change="doFilter(gradeFilter)"></ons-radio>
                     </label>
-                    <label for="radio-2" class="center" translate>
+                    <label for="radio-2" class="center">
                         Unscored Assignments
                     </label>
                 </ons-list-item>
-                <ons-list-item modifier="nodivider" tappable>
+                <ons-list-item modifier="nodivider" tappable translate>
                     <label class="left">
                         <ons-radio name="grade-filter" input-id="radio-3" ng-model="gradeFilter" value="graded" ng-change="doFilter(gradeFilter)"></ons-radio>
                     </label>
-                    <label for="radio-3" class="center" translate>
+                    <label for="radio-3" class="center">
                         Graded Assignments
                     </label>
                 </ons-list-item>
-                <ons-list-item modifier="nodivider" tappable>
+                <ons-list-item modifier="nodivider" tappable translate>
                     <label class="left">
                         <ons-radio name="grade-filter" input-id="radio-4" ng-model="gradeFilter" value="zeros" ng-change="doFilter(gradeFilter)"></ons-radio>
                     </label>
-                    <label for="radio-4" class="center" translate>
+                    <label for="radio-4" class="center">
                         Zeros
                     </label>
                 </ons-list-item>
@@ -115,27 +116,27 @@
     <ons-modal var="replyModal">
         <div class="assignment-filter">
             <ons-list>
-                <ons-list-item modifier="nodivider" tappable ng-click="doReply('reply')">
+                <ons-list-item modifier="nodivider" tappable translate ng-click="doReply('reply')">
                     <label class="left">
                         <ons-icon icon="md-mail-reply" size="32px"></ons-icon>
                     </label>
-                    <label class="center" translate>
+                    <label class="center">
                         Reply
                     </label>
                 </ons-list-item>
-                <ons-list-item modifier="nodivider" tappable ng-click="doReply('reply-all')">
+                <ons-list-item modifier="nodivider" tappable translate ng-click="doReply('reply-all')">
                     <label class="left">
                         <ons-icon icon="md-mail-reply-all" size="32px"></ons-icon>
                     </label>
-                    <label class="center" translate>
+                    <label class="center">
                         Reply All
                     </label>
                 </ons-list-item>
-                <ons-list-item modifier="nodivider" tappable ng-click="doReply('cancel')">
+                <ons-list-item modifier="nodivider" tappable translate ng-click="doReply('cancel')">
                     <label class="left">
                         <ons-icon icon="md-close" size="32px"></ons-icon>
                     </label>
-                    <label class="center" translate>
+                    <label class="center">
                         Cancel
                     </label>
                 </ons-list-item>
@@ -154,35 +155,35 @@
                 </ons-col>
             </ons-row>
             <ons-list>
-                <ons-list-item modifier="nodivider" tappable>
+                <ons-list-item tappable translate>
                     <label class="left">
                         <ons-checkbox input-id="checkbox-1" ng-model="calFilter.assigned"></ons-checkbox>
                     </label>
-                    <label for="checkbox-1" class="center" translate>
+                    <label for="checkbox-1" class="center">
                         Work (Assigned Date)
                     </label>
                 </ons-list-item>
-                <ons-list-item modifier="nodivider" tappable>
+                <ons-list-item modifier="nodivider" tappable translate>
                     <label class="left">
                         <ons-checkbox input-id="checkbox-2" ng-model="calFilter.due"></ons-checkbox>
                     </label>
-                    <label for="checkbox-2" class="center" translate>
+                    <label for="checkbox-2" class="center">
                         Work (Due Date)
                     </label>
                 </ons-list-item>
-                <ons-list-item modifier="nodivider" tappable>
+                <ons-list-item modifier="nodivider" tappable translate>
                     <label class="left">
                         <ons-checkbox input-id="checkbox-3" ng-model="calFilter.general"></ons-checkbox>
                     </label>
-                    <label for="checkbox-3" class="center" translate>
+                    <label for="checkbox-3" class="center">
                         General Events
                     </label>
                 </ons-list-item>
-                <ons-list-item modifier="nodivider" tappable>
+                <ons-list-item modifier="nodivider" tappable translate>
                     <label class="left">
                         <ons-checkbox input-id="checkbox-4" ng-model="calFilter.group"></ons-checkbox>
                     </label>
-                    <label for="checkbox-4" class="center" translate>
+                    <label for="checkbox-4" class="center">
                         My Group Events
                     </label>
                 </ons-list-item>

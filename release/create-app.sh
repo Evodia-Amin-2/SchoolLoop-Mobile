@@ -9,7 +9,7 @@ if [ ! -d "app" ]; then
     cordova plugin add cordova-plugin-device@2.0.1 --save
     cordova plugin add cordova-plugin-dialogs@2.0.1 --save
     cordova plugin add cordova-plugin-inappbrowser@2.0.2 --save
-#    cordova plugin add cordova-plugin-screen-orientation@3.0.1 --save
+    cordova plugin add cordova-plugin-screen-orientation@3.0.1 --save
     cordova plugin add cordova-plugin-splashscreen@5.0.2 --save
     cordova plugin add cordova-plugin-statusbar@2.4.1 --save
     cordova plugin add cordova-plugin-vibration@3.0.1 --save

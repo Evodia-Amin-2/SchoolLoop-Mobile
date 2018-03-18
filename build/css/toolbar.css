@@ -1,13 +1,17 @@
-.default-toolbar .toolbar__left, .default-toolbar .toolbar__center, .default-toolbar .toolbar__right {
+.default-toolbar .toolbar__left,
+.default-toolbar .toolbar__center,
+.default-toolbar .toolbar__right,
+.back-button {
     height: 40px;
+    line-height: 44px;
+}
+
+.default-toolbar {
+    height: 44px;
 }
 
 .default-toolbar.student {
     height: 64px;
-}
-
-.student .page__content {
-    top: 64px !important;
 }
 
 .current-student {
@@ -33,83 +37,3 @@
     font-size: 20px;
     position: relative;
 }
-
-/* ios */
-
-.default-toolbar.student.ios {
-    height: 60px;
-}
-
-.student.ios .page__content {
-    top: 78px !important;
-}
-
-.current-student.ios {
-    top: 54px;
-}
-
-@media (orientation: portrait) {
-    html[onsflag-iphonex-portrait] .default-toolbar.toolbar.student {
-        height: 60px;
-    }
-
-    html[onsflag-iphonex-portrait] .student .page__content, .student .page__background {
-        top: 104px !important;
-    }
-
-    html[onsflag-iphonex-portrait] .current-student {
-        top: 78px;
-    }
-}
-
-@media (orientation: landscape) {
-    html[onsflag-iphonex-landscape] .default-toolbar.toolbar.student {
-        height: 60px;
-    }
-
-    html[onsflag-iphonex-landscape] .student .page__content, .student .page__background {
-        top: 60px !important;
-    }
-
-    html[onsflag-iphonex-landscape] .current-student {
-        top: 34px;
-    }
-}
-
-
-
-/*
-
-.student-popover {
-    position: absolute;
-    top: 78px;
-    left: 0;
-    right: 0;
-}
-
-.current-student .popover__content {
-    max-height: 350px !important;
-    min-height: 50px !important;
-    top: 20px !important;
-}
-
-.current-student .popover__content {
-    max-height: 350px !important;
-    min-height: 50px !important;
-    top: 20px !important;
-}
-
-.current-student.ios .popover__content {
-    top: 10px;
-}
-
-.current-student.ios .popover__arrow {
-    top: 20px;
-}
-
-.popover__content .list__item--material {
-    background-color: #f0f0f0;
-    border-bottom: 1px solid #e0e0e0;
-}
-
- */

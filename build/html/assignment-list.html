@@ -1,0 +1,61 @@
+<ons-page class="card-view" ng-controller="AssignmentsController as asgnCtrl" ng-class="{student:main.showStudentMenu(), ios:ons.platform.isIOS()}">
+    <ons-pull-hook ng-action="main.load($done)" var="mainLoader">
+            <span ng-switch="mainLoader.state">
+              <span ng-switch-when="initial"><ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon><span translate>Pull down to refresh</span></span>
+              <span ng-switch-when="preaction"><ons-icon size="35px" icon="ion-arrow-up-a"></ons-icon><span translate>Release to refresh</span></span>
+              <span ng-switch-when="action"><ons-icon size="35px" spin="true" icon="ion-load-d"></ons-icon><span translate>Loading data...</span></span>
+            </span>
+    </ons-pull-hook>
+
+    <ons-toolbar class="default-toolbar" ng-class="{student:main.showStudentMenu(), ios:ons.platform.isIOS()}">
+        <div class="left">
+            <ons-toolbar-button ng-click="main.openMenu()">
+                <ons-icon icon="md-menu"></ons-icon>
+            </ons-toolbar-button>
+        </div>
+        <div class="center toolbar-title" translate>{{main.tabTitle}}</div>
+
+        <div ng-show="main.showStudentMenu()" class="current-student ng-hide" ng-class="{ios:ons.platform.isIOS()}" ng-click="main.studentMenu('.current-student')">
+            <div>{{main.currentStudentInfo}}</div><ons-icon ng-show="main.showStudentMenuDropdown()" icon="md-caret-down"></ons-icon>
+        </div>
+    </ons-toolbar>
+
+    <ons-list ng-show="asgnCtrl.assignments.length === 0">
+        <div class="card">
+            <ons-list-item class="card-item assignment-item" modifier="longdivider">
+                <div class="center">
+                    <div class="status-message" translate>No Assignments Currently</div>
+                </div>
+            </ons-list-item>
+        </div>
+    </ons-list>
+    <ons-list ng-repeat="item in asgnCtrl.assignments">
+        <ons-list-header>
+            <strong>
+                <span>{{asgnCtrl.getDate(item.date, timeZone)}}</span>
+            </strong>
+        </ons-list-header>
+        <div class="card">
+            <ons-list-item class="card-item assignment-item" modifier="longdivider" tappable ng-repeat="item in item.list|orderBy:['periodNumber', 'title']"
+                           ng-click="asgnCtrl.showAssignmentDetail(item)">
+                <div class="left">
+                    <div class="course-color" ng-class="asgnCtrl.courseColor(item)">&nbsp;</div>
+                    <div class="period">{{item.periodNumber}}</div>
+                </div>
+                <div class="center">
+                    <div>
+                        <div class="course">{{item.courseName}}</div>
+                        <div class="title">{{item.title}}</div>
+                        <div class="category">{{item.categoryName}}</div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="assignment-points">
+                        <div class="points-max">{{item.maxPoints}}</div>
+                        <div class="points-label" translate>PTS</div>
+                    </div>
+                </div>
+            </ons-list-item>
+        </div>
+    </ons-list>
+</ons-page>

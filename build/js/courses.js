@@ -17,24 +17,8 @@
 
         navigator.analytics.sendAppView('Courses');
 
-        utils.setStatusBar("#009688");
-
         courseCtrl.courses = dataService.list(DataType.COURSE);
         courseCtrl.currentCourse = -1;
-
-        $scope.$on('pulldown.refresh', function(event, data) {
-            if(data.tabIndex === 1) {
-                var $done = data.done;
-                $timeout(function() {
-                    return dataService.refresh(DataType.COURSE).then(function(result) {
-                        courseCtrl.courses = result;
-                        $done();
-                    }, function() {
-                        $done();
-                    });
-                }, 1000);
-            }
-        });
 
         courseCtrl.hasGrade = function(course) {
             return !(utils.isNull(course.grade) === true || course.grade === 'hidden');
@@ -75,6 +59,20 @@
             courseNotification(data);
         });
 
+        $scope.$on('pulldown.refresh', function(event, data) {
+            if(data.tabIndex === 1) {
+                var $done = data.done;
+                $timeout(function() {
+                    return dataService.refresh(DataType.COURSE).then(function(result) {
+                        courseCtrl.courses = result;
+                        $done();
+                    }, function() {
+                        $done();
+                    });
+                }, 1000);
+            }
+        });
+
         function courseNotification(data) {
             if(data.view === false) {
                 return;
@@ -104,23 +102,35 @@
             });
         }
 
-        $scope.courseNavigator.on("prepop", function() {
-            var pages = $scope.courseNavigator.pages;
-            if(pages.length === 2) {
-                utils.setStatusBar("#009688");
-                storageService.setBackButtonExit(true);
+
+        function initialize() {
+            if(_.isUndefined(courseCtrl.courses) === true) {
+                $location.path("/start");
             }
-        });
 
-        var tabbar = document.querySelector("ons-tabbar");
-        tabbar.addEventListener("postchange", function() {
-            utils.resetTab($scope.courseNavigator, "courses.html");
+            $scope.courseNavigator.on("prepop", function(event) {
+                if(event.navigator.pages.length <= 2) {
+                    utils.setStatusBar("#009688");
+                }
+                storageService.setBackButtonExit(true);
+            });
 
-        });
+            $scope.tabbar.on("prechange", function(event) {
+                if (event.index === 1) {
+                    utils.resetTab($scope.courseNavigator);
+                    utils.setStatusBar("#009688");
+                }
+            });
 
-        tabbar.addEventListener("reactive", function() {
-            utils.resetTab($scope.courseNavigator, "courses.html");
-        });
+            $scope.tabbar.on("reactive", function() {
+                utils.resetTab($scope.courseNavigator);
+                utils.setStatusBar("#009688");
+            });
+
+            utils.setStatusBar("#009688");
+        }
+
+        initialize();
     }
 
     function CourseDetailController($scope, $timeout, dataService, statusService, storageService, utils, gettextCatalog, CourseColors) {
@@ -174,7 +184,7 @@
         };
 
         courseDetail.compose = function() {
-            $scope.mainNavigator.pushPage('compose.html', {animation: 'slide', data: {hasLMT: true, teachers: courseDetail.course}});
+            $scope.mainNavigator.pushPage('compose.html', {data: {hasLMT: true, teachers: courseDetail.course}});
         };
 
         courseDetail.hasCoTeacher = function(item) {
@@ -185,21 +195,19 @@
             return _.isUndefined(grade.comment) === false && grade.comment !== "null" && grade.comment.length > 0;
         };
 
-        $scope.mainNavigator.on("prepop", function(event) {
-            if($scope.tabbar.getActiveTabIndex() !== 1) {
-                return;
-            }
-            var navigator = event.navigator;
-            if(navigator.pages.length === 2) {
-                var page = navigator.pages[1];
-                if(page.name === "compose.html") {
-                    $timeout(function() {
-                        $scope.courseNavigator.pages[1].backButton.style.display = "block";
-                    });
-                }
-
-                var periodIndex = courseDetail.course.period % CourseColors.length;
+        $scope.mainNavigator.on("prepop", function() {
+            if($scope.mainNavigator.pages.length === 2) {
+                var period = courseDetail.course.period;
+                var periodIndex = period % CourseColors.length;
                 utils.setStatusBar(CourseColors[periodIndex]);
+
+                $timeout(function() {
+                    var pages = $scope.courseNavigator.pages;
+                    var button = pages[pages.length - 1].backButton;
+                    if(_.isUndefined(button) === false) {
+                        button.style.display = "block";
+                    }
+                });
             }
         });
 
@@ -514,7 +522,7 @@
         };
 
         assignDetail.compose = function() {
-            $scope.mainNavigator.pushPage('compose.html', {animation: 'slide', data: {hasLMT: true, teachers: assignDetail.course}});
+            $scope.mainNavigator.pushPage('compose.html', {data: {hasLMT: true, teachers: assignDetail.course}});
         };
     }
 

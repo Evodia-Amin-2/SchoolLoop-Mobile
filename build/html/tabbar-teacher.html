@@ -7,7 +7,7 @@
             </span>
     </ons-pull-hook>
 
-    <ons-toolbar class="default-toolbar" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
+    <ons-toolbar class="default-toolbar" ng-class="{student:main.showStudentMenu(), ios:ons.platform.isIOS()}">
         <div class="left">
             <ons-toolbar-button ng-click="main.openMenu()">
                 <ons-icon icon="md-menu"></ons-icon>

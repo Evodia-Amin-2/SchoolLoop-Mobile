@@ -145,6 +145,10 @@
             }
 
         }
+
+        window.addEventListener("orientationchange", function() {
+            $rootScope.$broadcast("orientation.change");
+        }, true);
     }
 
     String.prototype.startsWith = function (str) {

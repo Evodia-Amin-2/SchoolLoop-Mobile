@@ -4,3 +4,8 @@
 .list-item--material__left, .list-item--material__center, .list-item--material__right {
     padding: 8px 6px 8px 0;
 }
+
+.student .page[status-bar-fill] > .toolbar--material:not(.toolbar-transparent) + .page__background,
+.student .page[status-bar-fill] > .toolbar--material:not(.toolbar--cover-content) + .page__background + .page__content {
+    top: 64px;
+}

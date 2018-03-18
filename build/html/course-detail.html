@@ -1,9 +1,9 @@
-<ons-page class="card-view" ng-controller="CourseDetailController as courseDetail" ng-class="{student:main.currentStudent, ios:ons.platform.isIOS()}">
-    <ons-toolbar ng-class="['default-toolbar', courseDetail.courseColor(), {student:main.currentStudent, ios:ons.platform.isIOS()}]">
+<ons-page class="card-view" ng-controller="CourseDetailController as courseDetail" ng-class="{student:main.showStudentMenu(), ios:ons.platform.isIOS()}">
+    <ons-toolbar ng-class="['default-toolbar', courseDetail.courseColor(), {student:main.showStudentMenu(), ios:ons.platform.isIOS()}]">
         <div class="left"><ons-back-button translate>Back</ons-back-button></div>
         <div class="center">{{::courseDetail.course.courseName}}</div>
-        <div ng-show="main.currentStudentInfo" class="current-student ng-hide" ng-class="{ios:ons.platform.isIOS()}" ng-click="main.studentMenu()">
-            <div>{{main.currentStudentInfo}}</div><ons-icon ng-show="main.showStudentMenu()" icon="md-caret-down"></ons-icon>
+        <div ng-show="main.showStudentMenu()" class="current-student ng-hide" ng-class="{ios:ons.platform.isIOS()}" ng-click="main.studentMenu('.current-student')">
+            <div>{{main.currentStudentInfo}}</div><ons-icon ng-show="main.showStudentMenuDropdown()" icon="md-caret-down"></ons-icon>
         </div>
     </ons-toolbar>
     <div class="course-summary" >
