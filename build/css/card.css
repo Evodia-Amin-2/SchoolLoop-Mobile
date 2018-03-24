@@ -28,7 +28,7 @@
 .list-page .page__background,
 .list-page .page__content {
     top: 44px !important;
-    bottom: 5px !important;
+    bottom: 3px !important;
 }
 
 .card-view.student .page__background,
@@ -41,5 +41,5 @@
 
 .card-view .page__content {
     top: 44px !important;
-    bottom: 5px !important;
+    bottom: 3px !important;
 }

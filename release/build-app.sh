@@ -29,8 +29,10 @@ cordova prepare ios --verbose
 cordova build android --release --verbose
 cd ..
 fastlane ios "$ID"
-#cp app/platforms/android/build/outputs/apk/release/android-release.apk tmp/${FILENAME}-${VERSION}-${BUILD}.apk
-#mv tmp/MobileLoop.ipa tmp/${FILENAME}-${VERSION}-${BUILD}.ipa
-#mv tmp/MobileLoop.app.dSYM.zip tmp/${FILENAME}-${VERSION}-${BUILD}-dSYM.zip
-#cp tmp/${FILENAME}-*-*.{apk,ipa} ~/Downloads/builds/${ID}/
-#rm -f tmp/${FILENAME}-*-*.{apk,ipa,zip}
+
+cp app/platforms/android/app/build/outputs/apk/release/app-release.apk tmp/${FILENAME}-${VERSION}-${BUILD}.apk
+mv tmp/MobileLoop.ipa tmp/${FILENAME}-${VERSION}-${BUILD}.ipa
+mv tmp/MobileLoop.app.dSYM.zip tmp/${FILENAME}-${VERSION}-${BUILD}-dSYM.zip
+mkdir -p ~/Downloads/builds/${ID}/
+cp tmp/${FILENAME}-*-*.{apk,ipa} ~/Downloads/builds/${ID}/
+rm -f tmp/${FILENAME}-*-*.{apk,ipa,zip}
