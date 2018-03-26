@@ -64,7 +64,6 @@ if(name && name.length > 0) {
 buildData.version = version;
 
 gulp.task('init', function() {
-    // runSequence('init-config', 'init-android', 'init-ios', 'init-merges', 'images');
     runSequence('init-config', 'init-android', 'images');
 });
 
@@ -148,8 +147,7 @@ gulp.task('init-ios', function () {
     return gulp.src('./app/platforms/ios/MobileLoop/MobileLoop-info.plist')
         .pipe(plumber({ errorHandler: gutil.log }))
         .pipe(peditor({
-            "CFBundleDisplayName": buildData[appId].displayName,
-            "CFBundleVersion": buildData.build
+            "CFBundleDisplayName": buildData[appId].displayName
         }))
         .pipe(gulp.dest('./app/platforms/ios/MobileLoop/'));
 });

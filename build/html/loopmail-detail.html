@@ -7,7 +7,7 @@
                 <ons-icon size="24px" icon="md-mail-reply"></ons-icon>
             </ons-toolbar-button>
         </div>
-        <div ng-show="main.showStudentMenu()" class="current-student ng-hide" ng-class="{ios:ons.platform.isIOS()}" ng-click="main.studentMenu('.current-student')">
+        <div ng-show="main.showStudentMenu()" class="current-student ng-hide" ng-class="{ios:ons.platform.isIOS()}" ng-click="main.studentMenu($event)">
             <div>{{main.currentStudentInfo}}</div><ons-icon ng-show="main.showStudentMenuDropdown()" icon="md-caret-down"></ons-icon>
         </div>
     </ons-toolbar>

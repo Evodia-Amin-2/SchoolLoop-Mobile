@@ -26,10 +26,11 @@ gulp default --id "$ID" --name "$NAME" --version "${VERSION}" --build "${BUILD}"
 cd ./app
 /usr/local/bin/cordova-hcp build
 cordova prepare ios --verbose
+gulp init-ios --id "$ID" --name "$NAME"  --version "${VERSION}" --build "${BUILD}" --profile "$ID"
 cordova build android --release --verbose
 cd ..
 fastlane ios "$ID"
-
+#
 cp app/platforms/android/app/build/outputs/apk/release/app-release.apk tmp/${FILENAME}-${VERSION}-${BUILD}.apk
 mv tmp/MobileLoop.ipa tmp/${FILENAME}-${VERSION}-${BUILD}.ipa
 mv tmp/MobileLoop.app.dSYM.zip tmp/${FILENAME}-${VERSION}-${BUILD}-dSYM.zip
