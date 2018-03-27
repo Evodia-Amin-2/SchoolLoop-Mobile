@@ -15,7 +15,7 @@ platform :ios do
   desc "Build School Loop Beta"
   lane :beta do
     do_build(
-      app_id: "com.schoolloop.mobileloop.beta",
+      app_identifier: "com.schoolloop.mobileloop.beta",
       app_name: "School Loop Beta",
       type: "adhoc",
       release_path: "release/beta",
