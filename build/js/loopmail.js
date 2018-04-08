@@ -144,18 +144,25 @@
             resetTab();
         });
 
-        // var tabbar = document.querySelector("ons-tabbar");
-        // tabbar.addEventListener("postchange", function() {
-        //     resetTab();
-        // });
-        //
-        // tabbar.addEventListener("reactive", function() {
-        //     resetTab();
-        // });
+        $scope.loopmailNavigator.on("prepop", function() {
+            resetTab();
+        });
+
+        $scope.tabbar.on("prechange", function(event) {
+            if (event.index === 0) {
+                resetTab();
+            }
+        });
+
+        $scope.tabbar.on("reactive", function() {
+            resetTab();
+        });
+
+        utils.setStatusBar("#009688");
 
         function resetTab() {
-            // utils.resetTab($scope.loopmailNavigator, "loopmail.html");
-            // utils.setStatusBar("#009688");
+            // utils.resetTab($scope.loopmailNavigator);
+            utils.setStatusBar("#009688");
         }
 
         $scope.$on("loopmail.sent", function() {

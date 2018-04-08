@@ -14,7 +14,7 @@
         </div>
         <div class="center" translate>News</div>
         <div ng-show="main.showStudentMenu()" class="current-student ng-hide" ng-class="{ios:ons.platform.isIOS()}" ng-click="main.studentMenu($event)">
-            <div>{{main.currentStudentInfo}}</div><ons-icon icon="md-caret-down"></ons-icon>
+            <div>{{main.currentStudentInfo}}</div><ons-icon ng-show="main.showStudentMenuDropdown()" icon="md-caret-down"></ons-icon>
         </div>
     </ons-toolbar>
 

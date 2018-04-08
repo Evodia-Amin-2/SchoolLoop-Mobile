@@ -147,7 +147,8 @@ gulp.task('init-ios', function () {
     return gulp.src('./app/platforms/ios/MobileLoop/MobileLoop-info.plist')
         .pipe(plumber({ errorHandler: gutil.log }))
         .pipe(peditor({
-            "CFBundleDisplayName": buildData[appId].displayName
+                "CFBundleDisplayName": buildData[appId].displayName,
+                "UILaunchStoryboardName": "CDVLaunchScreen.storyboard"
         }))
         .pipe(gulp.dest('./app/platforms/ios/MobileLoop/'));
 });

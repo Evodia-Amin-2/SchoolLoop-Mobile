@@ -20,21 +20,22 @@ if [ ! -d "app" ]; then
 #    cordova plugin add https://github.com/amritk/cordova-plugin-firebase
 
     cordova plugin add com.cmackay.plugins.googleanalytics --save
-#    cordova plugin add phonegap-plugin-push@1.8.4 --variable SENDER_ID="497458348283" --save
+    cordova plugin add phonegap-plugin-push@1.10.7 --variable SENDER_ID="497458348283" --save
     cordova plugin add cordova-hot-code-push-plugin@1.5.3 --save
 
-    rm -rf app/res/icon
-    rm -rf app/res/screen
+    rm -rf res/icon/*
+    rm -rf res/screen/*
     rm -rf platforms/android/app/src/main/res/drawable-*/icon.png
     rm -rf platforms/android/app/src/main/res/mipmap-*/icon.png
-#    rm -rf platforms/ios/MobileLoop/Images.xcassets/*/*.*
+    rm -rf platforms/ios/MobileLoop/Images.xcassets/*/*.*
     cd ..
 
 #    cp -r build/custom/xcshareddata app/platforms/ios/MobileLoop.xcodeproj/
     cp build/custom/build.json app/
+    cp build/custom/PushPlugin.m app/platforms/ios/MobileLoop/Plugins/phonegap-plugin-push/PushPlugin.m
     cp build/versions/.chcplogin app/
     cp build/versions/$APP_ID/cordova-hcp.json app/
-#    ./release/update-xcode $APP_ID
+    ./release/update-xcode.sh $APP_ID
 else
     echo "MobileLoop project already exists"
 fi

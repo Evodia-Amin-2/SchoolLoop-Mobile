@@ -32,22 +32,30 @@
 
         $scope.$on("refresh.all", function() {
             newsCtrl.news = dataService.list(DataType.NEWS);
-            // utils.resetTab($scope.newsNavigator, "news.html");
+            resetTab();
         });
-
-
-        // var tabbar = document.querySelector("ons-tabbar");
-        // tabbar.addEventListener("postchange", function() {
-        //     utils.resetTab($scope.newsNavigator, "news.html");
-        // });
-        //
-        // tabbar.addEventListener("reactive", function() {
-        //     utils.resetTab($scope.newsNavigator, "news.html");
-        // });
 
         $scope.newsNavigator.on("prepop", function() {
-            storageService.setBackButtonExit(true);
+            resetTab();
         });
+
+        $scope.tabbar.on("prechange", function(event) {
+            if (event.index === 0) {
+                resetTab();
+            }
+        });
+
+        $scope.tabbar.on("reactive", function() {
+            resetTab();
+        });
+
+        utils.setStatusBar("#009688");
+
+        function resetTab() {
+            // utils.resetTab($scope.newsNavigator);
+            storageService.setBackButtonExit(true);
+            utils.setStatusBar("#009688");
+        }
     }
 
     function NewsDetailController($rootScope, $scope, $window, $sce, $filter, storageService, utils) {
