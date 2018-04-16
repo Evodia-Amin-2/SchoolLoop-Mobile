@@ -15,7 +15,7 @@
         <ons-list-item class="course-detail course-assignments" ng-class="{'zero-grade': courseAsgn.isZero(item)}"
                        ng-if="courseAsgn.grades.length > 0"
                        modifier="longdivider" tappable ng-repeat="item in filtered = (courseAsgn.grades|filter:courseAsgn.applyFilter)"
-                       ng-click="courseNavigator.pushPage('course-assignment-detail.html', {animation: 'slide', data: {grade: item, course: courseAsgn.course}})">
+                       ng-click="courseNavigator.pushPage('course-assignment-detail.html', {animation: 'none', data: {grade: item, course: courseAsgn.course}})">
             <div class="center">
                 <div class="progress-report course-row">
                     <div class="title">{{item.assignment.title}}</div>

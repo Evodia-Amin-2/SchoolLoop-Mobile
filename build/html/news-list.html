@@ -27,7 +27,7 @@
     </ons-list>
     <ons-list class="news-view" ng-show="newsCtrl.news.length > 0">
         <ons-list-item class="news-item" modifier="longdivider" tappable ng-repeat="item in newsCtrl.news"
-                       ng-click="newsNavigator.pushPage('news-detail.html', {animation: 'slide', data: {news: item}})">
+                       ng-click="newsNavigator.pushPage('news-detail.html', {animation: 'none', data: {news: item}})">
             <div class="center">
                 <span class="news-title" ng-class="{new:newsCtrl.isNew(item)}">{{item.title}}</span><br/>
                 <span class="news-date">{{item.createdDate|date:"MMM d, y"}}</span>

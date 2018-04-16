@@ -70,7 +70,7 @@
         }
 
         page.searchSchool = function() {
-            $scope.loginNavigator.pushPage("school-search.html", {animation: 'slide-up', data: {searchCallback: page.selectSchool}});
+            $scope.loginNavigator.pushPage("school-search.html", {animation: 'none', data: {searchCallback: page.selectSchool}});
         };
 
         var domain = storageService.getDefaultDomain();

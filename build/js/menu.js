@@ -28,7 +28,7 @@
 
         menu.action = function(page) {
             menu.closeMenu();
-            $scope.mainNavigator.pushPage(page, {animation: 'slide'});
+            $scope.mainNavigator.pushPage(page, {animation: 'none'});
         };
 
         menu.closeMenu = function() {

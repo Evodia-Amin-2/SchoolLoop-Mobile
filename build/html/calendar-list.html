@@ -57,7 +57,7 @@
                 <ons-list-item class="calender-item" modifier="longdivider" tappable
                                ng-class="{'cal-assignment': calendarCtrl.isAssignment(item)}"
                                ng-repeat="item in eventList.list"
-                               ng-click="calendarNavigator.pushPage('calendar-detail.html', {animation: 'slide', data: {event: item}})">
+                               ng-click="calendarNavigator.pushPage('calendar-detail.html', {animation: 'none', data: {event: item}})">
                     <div class="left" ng-show="calendarCtrl.isAssignment(item)">
                         <div class="course-color" ng-class="calendarCtrl.courseColor(item)">&nbsp;</div>
                         <div class="period">{{calendarCtrl.period(item)}}</div>

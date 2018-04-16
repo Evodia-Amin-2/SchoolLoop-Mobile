@@ -94,7 +94,7 @@
 
         mailCtrl.showDetail = function(message) {
             if(mailCtrl.isOutbox() === false) {
-                $scope.loopmailNavigator.pushPage('loopmail-detail.html', {animation: 'slide', data: {parent: mailCtrl, loopmail: message}});
+                $scope.loopmailNavigator.pushPage('loopmail-detail.html', {animation: 'none', data: {parent: mailCtrl, loopmail: message}});
             } else {
                 var title = gettextCatalog.getString("Confirm");
                 var remove = gettextCatalog.getString("Remove");
@@ -136,7 +136,7 @@
         };
 
         mailCtrl.compose = function() {
-            $scope.mainNavigator.pushPage('compose.html', {animation: 'lift', data: {hasLMT: false}});
+            $scope.mainNavigator.pushPage('compose.html', {animation: 'none', data: {hasLMT: false}});
         };
 
         $scope.$on("refresh.all", function() {
@@ -203,7 +203,7 @@
                             $scope.tabbar.setActiveTab(2);
                         }
                         var loopmailId = payload.messageid;
-                        $scope.loopmailNavigator.pushPage('loopmail-detail.html', {animation: 'slide', data: {parent: mailCtrl, loopmail: {ID: loopmailId, schoolName: true}}});
+                        $scope.loopmailNavigator.pushPage('loopmail-detail.html', {animation: 'none', data: {parent: mailCtrl, loopmail: {ID: loopmailId, schoolName: true}}});
                     }
                 }
             );

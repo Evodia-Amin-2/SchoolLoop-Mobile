@@ -26,7 +26,7 @@
             </div>
         </ons-list-item>
         <ons-list-item class="course-item" modifier="longdivider" tappable ng-repeat="item in courseCtrl.courses"
-                       ng-click="courseNavigator.pushPage('course-detail.html', {animation: 'slide', data: {course: item}})">
+                       ng-click="courseNavigator.pushPage('course-detail.html', {animation: 'none', data: {course: item}})">
             <div class="left">
                 <div class="course-color" ng-class="courseCtrl.courseColor(item)">&nbsp;</div>
                 <div class="period">{{item.period}}</div>

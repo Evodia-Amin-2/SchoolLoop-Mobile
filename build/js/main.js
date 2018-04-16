@@ -38,7 +38,6 @@
             $scope.tabbar.on("prechange", prechange);
 
             function prechange(event) {
-                console.log("tabbar prechange");
                 utils.setStatusBar("#009688");
 
                 var title = event.tabItem.children[1].innerText;
@@ -51,8 +50,6 @@
             $scope.tabbar.on("postchange", postchange);
 
             function postchange() {
-                console.log("tabbar postchange");
-
                 var index = $scope.tabbar.getActiveTabIndex();
                 navStack.push(index);
             }
