@@ -1,4 +1,4 @@
-git_url "ssh://tombu@192.168.12.69/Users/tombu/gitrepo/certificates.git"
+git_url "ssh://tombu@207.254.55.196/Users/tombu/gitrepo/certificates.git"
 
 type "development" # The default type, can be: appstore, adhoc or development
 
