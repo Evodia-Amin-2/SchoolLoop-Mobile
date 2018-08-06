@@ -217,7 +217,8 @@
     function CalendarDetailController($scope, $timeout, $filter, $window, $sce, storageService, utils, CourseColors, gettextCatalog) {
         var calendarDetail = this;
 
-        calendarDetail.event = $scope.calendarNavigator.topPage.pushedOptions.event;
+        var data = $scope.calendarNavigator.topPage.data;
+        calendarDetail.event = data.event;
 
         calendarDetail.isAssignment = function(event) {
             return event.eventType === "assigned" || event.eventType === "due";
