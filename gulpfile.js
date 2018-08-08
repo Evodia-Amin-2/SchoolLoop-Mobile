@@ -104,6 +104,7 @@ gulp.task('init-config', function () {
                 $('description').text("Mobile App for School Loop.");
 
                 $("widget").append('<allow-navigation href="*" />');
+                $("widget").append('<allow-intent href="*" />');
 
                 $("widget").append('    <preference name="DisallowOverscroll" value="true" />\n' +
                     '    <preference name="Orientation" value="default" />\n' +
