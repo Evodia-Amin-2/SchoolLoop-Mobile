@@ -8,6 +8,11 @@
     clear: both;
 }
 
+a {
+    color: dodgerblue;
+    text-decoration-line: none;
+}
+
 blockquote,
 blockquote p {
     font-size: 1.0em;
