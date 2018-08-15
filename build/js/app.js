@@ -163,5 +163,5 @@
 /*jshint unused:false*/
 function browse(url) {
     'use strict';
-    window.open(encodeURI(url), '_system', 'location=yes,clearcache=yes,clearsessioncache=yes');
+    cordova.InAppBrowser.open(encodeURI(url), '_system', 'location=yes,clearcache=yes,clearsessioncache=yes');
 }

@@ -238,8 +238,9 @@
 
         calendarDetail.getDescription = function() {
             if(_.isUndefined(calendarDetail.event) === false && utils.isNull(calendarDetail.event.description) === false) {
+                var description = $filter('replaceUrlFilter')(calendarDetail.event.description);
                 var school = storageService.getSelectedSchool().domainName;
-                var description = $filter('replaceSrcFilter')(calendarDetail.event.description, school);
+                description = $filter('replaceSrcFilter')(description, school);
                 return $sce.trustAsHtml(description);
             }
             return "";
@@ -259,7 +260,7 @@
                 var school = storageService.getSelectedSchool().domainName;
                 url = "http://" + school + url;
             }
-            $window.open(url, '_system', 'location=yes,clearcache=yes,clearsessioncache=yes');
+            cordova.InAppBrowser.open(url, '_system', 'location=yes,clearcache=yes,clearsessioncache=yes');
 
         };
 
@@ -277,7 +278,7 @@
                 var school = storageService.getSelectedSchool().domainName;
                 url = "http://" + school + url;
             }
-            $window.open(url, '_system', 'location=yes,clearcache=yes,clearsessioncache=yes');
+            cordova.InAppBrowser.open(url, '_system', 'location=yes,clearcache=yes,clearsessioncache=yes');
         };
 
         function setStatusBar() {

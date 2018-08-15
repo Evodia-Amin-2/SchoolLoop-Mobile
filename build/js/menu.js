@@ -86,21 +86,21 @@
             menu.closeMenu();
             var code = storageService.getLanguageCode();
             var url = "http://api.schoolloop.com/mobile/app_agreement?force_language=" + code;
-            $window.open(url, '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
+            cordova.InAppBrowser.open(url, '_system', 'location=yes,clearcache=yes,clearsessioncache=yes');
         };
 
         menu.privacy = function () {
             menu.closeMenu();
             var code = storageService.getLanguageCode();
             var url = "http://api.schoolloop.com/mobile/app_privacy?force_language=" + code;
-            $window.open(url, '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
+            cordova.InAppBrowser.open(url, '_system', 'location=yes,clearcache=yes,clearsessioncache=yes');
         };
 
         menu.security = function () {
             menu.closeMenu();
             var code = storageService.getLanguageCode();
             var url = "http://api.schoolloop.com/mobile/app_security?force_language=" + code;
-            $window.open(url, '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
+            cordova.InAppBrowser.open(url, '_system', 'location=yes,clearcache=yes,clearsessioncache=yes');
         };
 
         function logoutError() {

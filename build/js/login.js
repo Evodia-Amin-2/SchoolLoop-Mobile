@@ -223,7 +223,7 @@
         page.register = function () {
             var code = storageService.getLanguageCode();
             var url = "http://" + page.selectedSchool.domainName + "/mobile/app_register?force_language=" + code;
-            $window.open(url, '_blank', 'location=yes,clearcache=yes,clearsessioncache=yes');
+            cordova.InAppBrowser.open(url, '_system', 'location=yes,clearcache=yes,clearsessioncache=yes');
         };
     }
 

@@ -365,7 +365,7 @@
                 var school = storageService.getSelectedSchool().domainName;
                 url = "http://" + school + url;
             }
-            $window.open(url, '_system', 'location=yes,clearcache=yes,clearsessioncache=yes');
+            cordova.InAppBrowser.open(url, '_system', 'location=yes,clearcache=yes,clearsessioncache=yes');
 
         };
 
