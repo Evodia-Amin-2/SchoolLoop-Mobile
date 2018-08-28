@@ -1,4 +1,4 @@
-<ons-page class="card-view" ng-controller="CourseDetailController as courseDetail" ng-class="{student:main.showStudentMenu(), ios:ons.platform.isIOS()}">
+<ons-page id="course-detail" class="card-view" ng-controller="CourseDetailController as courseDetail" ng-class="{student:main.showStudentMenu(), ios:ons.platform.isIOS()}">
     <ons-toolbar ng-class="['default-toolbar', courseDetail.courseColor(), {student:main.showStudentMenu(), ios:ons.platform.isIOS()}]">
         <div class="left"><ons-back-button translate>Back</ons-back-button></div>
         <div class="center">{{::courseDetail.course.courseName}}</div>

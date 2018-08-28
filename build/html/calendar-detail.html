@@ -1,4 +1,4 @@
-<ons-page ng-controller="CalendarDetailController as calendarDetail" ng-class="{student:main.showStudentMenu(), ios:ons.platform.isIOS()}">
+<ons-page id="calendar-detail" ng-controller="CalendarDetailController as calendarDetail" ng-class="{student:main.showStudentMenu(), ios:ons.platform.isIOS()}">
     <ons-toolbar ng-class="[calendarDetail.courseColor(), {student:main.showStudentMenu(), ios:ons.platform.isIOS()}]">
         <div class="left"><ons-back-button translate>Back</ons-back-button></div>
         <div class="center">{{::calendarDetail.event.title}}</div>

@@ -1,4 +1,4 @@
-<ons-page class="card-view" ng-controller="CalendarController as calendarCtrl" ng-class="{student:main.showStudentMenu(), ios:ons.platform.isIOS()}">
+<ons-page id="calendar-list" class="card-view" ng-controller="CalendarController as calendarCtrl" ng-class="{student:main.showStudentMenu(), ios:ons.platform.isIOS()}">
     <ons-pull-hook ng-action="calendarCtrl.load($done)" var="caloader">
                 <span ng-switch="caloader.state">
                   <span ng-switch-when="initial"><ons-icon size="35px" icon="ion-arrow-down-a"></ons-icon><span translate>Pull down to refresh</span></span>

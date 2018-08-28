@@ -48,7 +48,7 @@
 
         $scope.$on("refresh.all", function() {
             courseCtrl.courses = dataService.list(DataType.COURSE);
-            utils.resetTab($scope.courseNavigator, "courses.html");
+            utils.resetTab($scope.courseNavigator);
         });
 
         $scope.$on('notify.assignment grade update', function(event, data) {
@@ -102,14 +102,25 @@
             });
         }
 
-
         function initialize() {
             if(_.isUndefined(courseCtrl.courses) === true) {
                 $location.path("/start");
             }
 
+            $scope.mainNavigator.on("postpop", function() {
+                var nav = $scope.courseNavigator;
+                if(nav.pages.length === 2) {
+                    nav.pages[1].backButton.style.display = "block";
+                } else if(nav.pages.length === 1) {
+                    var page = nav.pages[0];
+                    if(page._isShown === true) {
+                        utils.setStatusBar("#009688");
+                    }
+                }
+            });
+
             $scope.courseNavigator.on("prepop", function(event) {
-                if(event.navigator.pages.length <= 2) {
+                if(event.navigator.pages.length <= 1) {
                     utils.setStatusBar("#009688");
                 }
                 storageService.setBackButtonExit(true);

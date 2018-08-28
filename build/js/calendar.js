@@ -118,30 +118,51 @@
         };
 
         $scope.$on("refresh.all", function() {
-            initialize();
-            // utils.resetTab($scope.calendarNavigator, "calendar.html");
-        });
+            var events = dataService.list(DataType.CALENDAR);
+            calendarCtrl.events = groupEvents(events, $scope);
 
-        $scope.calendarNavigator.on("prepop", function() {
-            // utils.setStatusBar("#009688");
-            // storageService.setBackButtonExit(true);
+            utils.resetTab($scope.calendarNavigator);
         });
-
-        // var tabbar = document.querySelector("ons-tabbar");
-        // tabbar.addEventListener("postchange", function() {
-        //     // utils.resetTab($scope.calendarNavigator, "calendar.html");
-        // });
-        //
-        // tabbar.addEventListener("reactive", function() {
-        //     utils.resetTab($scope.calendarNavigator, "calendar.html");
-        // });
 
         function initialize() {
             var events = dataService.list(DataType.CALENDAR);
             calendarCtrl.events = groupEvents(events, $scope);
 
+            $scope.calendarNavigator.on("prepop", function() {
+                utils.setStatusBar("#009688");
+                storageService.setBackButtonExit(true);
+            });
+
+            $scope.mainNavigator.on("postpop", function() {
+                var nav = $scope.calendarNavigator;
+                if(nav.pages.length === 2) {
+                    nav.pages[1].backButton.style.display = "block";
+                } else if(nav.pages.length === 1) {
+                    var page = nav.pages[0];
+                    if(page._isShown === true) {
+                        utils.setStatusBar("#009688");
+                    }
+                }
+            });
+
+            $scope.tabbar.on("prechange", function(event) {
+                if (event.index === 4) {
+                    utils.resetTab($scope.calendarNavigator);
+                    calendarCtrl.set(moment());
+                    utils.setStatusBar("#009688");
+                }
+            });
+
+            $scope.tabbar.on("reactive", function() {
+                utils.resetTab($scope.calendarNavigator);
+                calendarCtrl.set(moment());
+                utils.setStatusBar("#009688");
+            });
+
             utils.setStatusBar("#009688");
         }
+
+        initialize();
 
         function getCourseName(event) {
             if(_.isUndefined(event.scopeNames) === true || event.scopeNames.length === 0) {
