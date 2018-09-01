@@ -68,8 +68,33 @@
                     element = element.parentNode;
                 } while (element);
                 return false;
-            }
+            },
+            openUrl: function(url) {
+                console.log("browse: " + url);
 
+                var inAppBrowserRef = cordova.InAppBrowser.open(encodeURI(url), '_system', 'location=yes,clearcache=yes,clearsessioncache=yes');
+                inAppBrowserRef.addEventListener('loadstart', loadStartCallBack);
+                inAppBrowserRef.addEventListener('loadstop', loadStopCallBack);
+                inAppBrowserRef.addEventListener('loaderror', loadErrorCallBack);
+
+                function loadStartCallBack() {
+                    console.log("Starting to browse");
+                }
+
+                function loadStopCallBack() {
+                    if (inAppBrowserRef !== undefined) {
+                        console.log("stop browse");
+                        inAppBrowserRef.show();
+                    }
+                }
+
+                function loadErrorCallBack(params) {
+                    console.log("Browse error: " + params.message);
+
+                    inAppBrowserRef.close();
+                    inAppBrowserRef = undefined;
+                }
+            }
         };
         return utils;
     }

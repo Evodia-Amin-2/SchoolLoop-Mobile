@@ -4,7 +4,7 @@
     angular.module('mobileloop')
         .controller('AssignmentsController', ['$scope', '$location', '$timeout', 'Utils',
                         'DataService', 'StorageService', 'DataType', 'CourseColors', 'gettextCatalog', AssignmentsController])
-        .controller('AssignmentDetailController', ['$scope', '$timeout', '$window', '$sce', 'StorageService',
+        .controller('AssignmentDetailController', ['$scope', '$timeout', '$window', '$sce', '$filter', 'StorageService',
                         'Utils', 'CourseColors', 'gettextCatalog', AssignmentDetailController])
     ;
 
@@ -141,7 +141,7 @@
         initialize();
     }
 
-    function AssignmentDetailController($scope, $timeout, $window, $sce, storageService, utils, CourseColors, gettextCatalog) {
+    function AssignmentDetailController($scope, $timeout, $window, $sce, $filter, storageService, utils, CourseColors, gettextCatalog) {
         var assignDetail = this;
 
         var data =  $scope.asgnNavigator.topPage.data;
@@ -156,7 +156,8 @@
 
         assignDetail.getDescription = function() {
             if(utils.isNull(assignDetail.assignment.description) === false) {
-                return $sce.trustAsHtml(assignDetail.assignment.description);
+                var description = $filter('replaceUrlFilter')(assignDetail.assignment.description);
+                return $sce.trustAsHtml(description);
             }
             return "";
         };
