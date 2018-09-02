@@ -21,7 +21,7 @@
         <div class="loopmail-date">{{loopmailDetail.loopmail.date|date:"MMM d, y" : "UTC"}}</div>
     </div>
     <div class="loopmail-content">
-        <div class="loopmail-desc" ng-bind-html="loopmailDetail.trustedMessage"></div>
+        <div class="loopmail-message" ng-bind-html="loopmailDetail.trustedMessage"></div>
 
         <ons-list class="attachements-view" ng-if="loopmailDetail.loopmail.links">
             <ons-list-item modifier="longdivider" tappable ng-repeat="link in loopmailDetail.loopmail.links"

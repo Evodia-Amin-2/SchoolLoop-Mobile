@@ -80,16 +80,21 @@
 
                 scope.loseFocus = function () {
                     $timeout(function () {
-                        data.hasFocus = false;
-                        data.token = "";
-                        data.results = undefined;
-                    });
+                        clearLookup();
+                    },500);
                 };
+
+                function clearLookup() {
+                    data.hasFocus = false;
+                    data.token = "";
+                    data.results = undefined;
+                }
 
                 scope.selectItem = function (item) {
                     scope.values.push(item);
                     data.token = "";
                     data.results = undefined;
+                    clearLookup();
                     scope.focusInput();
                 };
 
