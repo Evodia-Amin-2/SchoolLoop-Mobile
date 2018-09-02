@@ -39,6 +39,18 @@
 
         };
 
+        assignCtrl.load = function($done) {
+            $timeout(function() {
+                return dataService.refresh(DataType.ASSIGNMENT).then(function(result) {
+                    getTimeZone(result);
+                    assignCtrl.assignments = groupAssignments(result, $scope);
+                    $done();
+                }, function() {
+                    $done();
+                });
+            }, 1000);
+        };
+
         function getTimeZone(assignments) {
             if(assignments && assignments.length > 0) {
                 var assignment = assignments[0];
@@ -73,21 +85,6 @@
 
         $scope.$on('notify.test due', function(event, data) {
             assignmentNotification(data);
-        });
-
-        $scope.$on('pulldown.refresh', function(event, data) {
-            if(data.tabIndex === 0) {
-                var $done = data.done;
-                $timeout(function() {
-                    return dataService.refresh(DataType.ASSIGNMENT).then(function(result) {
-                        getTimeZone(result);
-                        assignCtrl.assignments = groupAssignments(result, $scope);
-                        $done();
-                    }, function() {
-                        $done();
-                    });
-                }, 1000);
-            }
         });
 
         function assignmentNotification(data) {

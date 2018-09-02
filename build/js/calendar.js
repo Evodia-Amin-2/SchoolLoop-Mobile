@@ -20,8 +20,6 @@
         calendarCtrl.showCalendar = false;
         calendarCtrl.loaded = false;
 
-        initialize();
-
         calendarCtrl.isAssignment = function(event) {
             return event.eventType === "assigned" || event.eventType === "due";
         };
@@ -61,12 +59,15 @@
         calendarCtrl.set = function(date) {
             calendarCtrl.showCalendar = false;
 
-            setDay(date);
+            var day = calendarCtrl.day.get('date');
+            var month = calendarCtrl.day.month();
+            if(day !== date.get('date') || month !== date.month()) {
+                setDay(date);
 
-            calendarCtrl.events = [];
-            dataService.getEvents(date).then(function(result) {
-                calendarCtrl.events = groupEvents(result, $scope);
-            });
+                dataService.getEvents(date).then(function(result) {
+                    calendarCtrl.events = groupEvents(result, $scope);
+                });
+            }
         };
 
         function setDay(day) {

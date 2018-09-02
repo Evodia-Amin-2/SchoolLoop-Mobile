@@ -46,6 +46,17 @@
             return "period-" + periodIndex;
         };
 
+        courseCtrl.load = function($done) {
+            $timeout(function() {
+                return dataService.refresh(DataType.COURSE).then(function(result) {
+                    courseCtrl.courses = result;
+                    $done();
+                }, function() {
+                    $done();
+                });
+            }, 1000);
+        };
+
         $scope.$on("refresh.all", function() {
             courseCtrl.courses = dataService.list(DataType.COURSE);
             utils.resetTab($scope.courseNavigator);
@@ -57,20 +68,6 @@
 
         $scope.$on('notify.letter grade update', function(event, data) {
             courseNotification(data);
-        });
-
-        $scope.$on('pulldown.refresh', function(event, data) {
-            if(data.tabIndex === 1) {
-                var $done = data.done;
-                $timeout(function() {
-                    return dataService.refresh(DataType.COURSE).then(function(result) {
-                        courseCtrl.courses = result;
-                        $done();
-                    }, function() {
-                        $done();
-                    });
-                }, 1000);
-            }
         });
 
         function courseNotification(data) {

@@ -1,5 +1,5 @@
 <ons-page ng-controller="MainController as main" ng-show="main.isLoaded">
-    <ons-tabbar class="sl-tabbar" var="tabbar" swipeable position="bottom">
+    <ons-tabbar class="sl-tabbar" var="tabbar" swipeable position="bottom" ng-if="!main.isTeacher">
         <ons-tab page="assignments.html" active="true">
             <div class="sl-tab-svg svg-icon">
                 <svg viewBox="0 0 45 50">
@@ -51,8 +51,40 @@
             </div>
         </ons-tab>
     </ons-tabbar>
+    <ons-tabbar class="sl-tabbar" var="tabbar" swipeable position="bottom" ng-if="main.isTeacher">
+        <ons-tab page="loopmail.html" active="true" counter="main.getMailCount">
+            <div class="sl-tab-svg svg-icon">
+                <svg viewBox="0 0 60 50">
+                    <use xlink:href="#loopmail"></use>
+                </svg>
+            </div>
+            <div class="sl-tab-label" translate>
+                Loopmail
+            </div>
+        </ons-tab>
+        <ons-tab page="news.html" counter="main.getNewsCount">
+            <div class="sl-tab-svg svg-icon">
+                <svg viewBox="0 0 60 50">
+                    <use xlink:href="#news"></use>
+                </svg>
+            </div>
+            <div class="sl-tab-label" translate>
+                News
+            </div>
+        </ons-tab>
+        <ons-tab page="calendar.html">
+            <div class="sl-tab-svg svg-icon">
+                <svg viewBox="0 0 60 50">
+                    <use xlink:href="#calendar"></use>
+                </svg>
+            </div>
+            <div class="sl-tab-label" translate>
+                Calendar
+            </div>
+        </ons-tab>
+    </ons-tabbar>
 
-    <ons-popover direction="down" cancelable var="studentPopover">
+    <ons-popover direction="down" cancelable var="studentPopover" ng-show="!main.isTeacher">
         <ons-list>
             <ons-list-item modifier="longdivider" tappable ng-repeat="student in main.students"
                            ng-click="main.selectStudent(student, $index)">

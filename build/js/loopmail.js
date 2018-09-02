@@ -11,6 +11,7 @@
     function LoopMailController($rootScope, $scope, $timeout, dataService, DataType, statusService,
                                 loopmailService, storageService, gettextCatalog, utils) {
         var mailCtrl = this;
+        var page = 1;
 
         navigator.analytics.sendAppView('LoopMail');
 
@@ -59,29 +60,26 @@
 
         loadLoopMail();
 
-        var page = 1;
-        $scope.$on('pulldown.refresh', function(event, data) {
-            if(data.tabIndex === 1) {
-                var $done = data.done;
-                page = 1;
-                $timeout(function() {
-                    if(dataService.getFolderId() === 1) {
-                        return dataService.refresh(DataType.LOOPMAIL).then(function(result) {
-                            mailCtrl.loopmail = result;
-                            $rootScope.$broadcast("update.counter");
-                            $done();
-                        }, function() {
-                            $done();
-                        });
-                    } else if(dataService.getFolderId() === 2) {
-                        dataService.getLoopmail().then(function(response) {
-                            mailCtrl.loopmail = response;
-                            $done();
-                        });
-                    }
-                }, 1000);
-            }
-        });
+
+        mailCtrl.load = function($done) {
+            page = 1;
+            $timeout(function() {
+                if(dataService.getFolderId() === 1) {
+                    return dataService.refresh(DataType.LOOPMAIL).then(function(result) {
+                        mailCtrl.loopmail = result;
+                        $rootScope.$broadcast("update.counter");
+                        $done();
+                    }, function() {
+                        $done();
+                    });
+                } else if(dataService.getFolderId() === 2) {
+                    dataService.getLoopmail().then(function(response) {
+                        mailCtrl.loopmail = response;
+                        $done();
+                    });
+                }
+            }, 1000);
+        };
 
         mailCtrl.removeOutgoing = function (message) {
             mailCtrl.loopmail = storageService.removeOutgoingMail(message);

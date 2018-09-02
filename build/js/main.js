@@ -14,12 +14,22 @@
         var navStack = [];
 
         main.isLoaded = true;
+        main.students = [];
 
         loadStudents();
 
         StatusBar.overlaysWebView(false);
         StatusBar.styleLightContent();
         utils.setStatusBar("#009688");
+
+        var domain = storageService.getDefaultDomain();
+        var user = domain.user;
+
+        main.isTeacher = (user.role !== 'student' && user.role !== 'parent');
+
+        if(utils.isTrue(domain.user.isParent) === true) {
+            main.currentStudent = storageService.getSelectedStudent();
+        }
 
         $scope.gradeFilter = "all";
 
@@ -54,7 +64,6 @@
                 navStack.push(index);
             }
 
-            main.setupTab("Assignments", 0);
 
         }, 750);
 
@@ -67,15 +76,6 @@
 
         navigator.analytics.sendAppView('Main');
 
-        var onsTabbar = document.querySelector("ons-tabbar");
-
-        var domain = storageService.getDefaultDomain();
-        if(utils.isTrue(domain.user.isParent) === true) {
-            main.currentStudent = storageService.getSelectedStudent();
-
-            setupCurrentStudent();
-        }
-
         updateService.start();
         loopmailService.start();
         checkForUpdate();
@@ -84,6 +84,14 @@
             main.tabTitle = title;
             main.tabIndex = index;
         };
+
+        if(main.isTeacher) {
+            main.setupTab("Loopmail", 0);
+        } else {
+            main.setupTab("Assignments", 0);
+        }
+
+        setupCurrentStudent(0);
 
         $scope.$on("hardware.backbutton", function() {
             if(storageService.getBackButtonExit() === false) {
@@ -102,50 +110,17 @@
             }
         });
 
-        // var numTabs = onsTabbar.children[1].childElementCount;
-        // var divGD = window.ons.GestureDetector(document.querySelector('#page-content'));
-        // divGD.on('swipeleft', function(event) {
-        //     if (utils.hasParent(event.srcElement, "calendar") === true) {
-        //         $rootScope.$broadcast("swipe.left", {action: "calendar"});
-        //         return;
-        //     }
-        //
-        //     if(storageService.getBackButtonExit() === false) {
-        //         return;
-        //     }
-        //     var currentTab = $scope.tabbar.getActiveTabIndex();
-        //     $scope.tabbar.setActiveTab((currentTab + 1) % numTabs, {animation: 'slide'});
-        // });
-        //
-        // divGD.on('swiperight', function(event) {
-        //     if (utils.hasParent(event.srcElement, "calendar") === true) {
-        //         $rootScope.$broadcast("swipe.right", {action: "calendar"});
-        //         return;
-        //     }
-        //
-        //     if(storageService.getBackButtonExit() === false) {
-        //         return;
-        //     }
-        //     var currentTab = $scope.tabbar.getActiveTabIndex();
-        //     currentTab = (currentTab + numTabs - 1) % numTabs;
-        //     $scope.tabbar.setActiveTab(currentTab, {animation: 'slide'});
-        // });
-
         function setupCurrentStudent(tabIndex) {
             if(_.isUndefined(main.currentStudent) === false) {
                 main.currentStudentInfo = main.currentStudent.name;
                 if(_.isUndefined(tabIndex) === true) {
-                    tabIndex = onsTabbar.getActiveTabIndex();
+                    tabIndex = $scope.tabbar.getActiveTabIndex();
                 }
                 if(tabIndex === 2 || tabIndex === 3) {
                     main.currentStudentInfo =  main.currentStudent.school.name;
                 }
             }
         }
-
-        main.load = function($done) {
-            $rootScope.$broadcast("pulldown.refresh", {tabIndex: main.tabIndex, done: $done});
-        };
 
         main.openMenu = function() {
             $scope.mainSplitter.left.open();
