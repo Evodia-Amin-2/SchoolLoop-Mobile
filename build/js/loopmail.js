@@ -76,6 +76,8 @@
                         mailCtrl.loopmail = response;
                         $done();
                     });
+                } else {
+                    $done();
                 }
             }, 1000);
         };
