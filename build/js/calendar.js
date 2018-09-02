@@ -13,6 +13,7 @@
         navigator.analytics.sendAppView('Calendar');
 
         var calendarCtrl = this;
+        calendarCtrl.loading = false;
 
         var months = moment.months();
         setDay(moment());
@@ -105,6 +106,28 @@
                     $done();
                 });
             }, 1000);
+        };
+
+        calendarCtrl.more = function() {
+            calendarCtrl.loading = true;
+
+            var nextMonth = calendarCtrl.day.clone();
+            nextMonth.add(1, 'M');
+            nextMonth.startOf('month');
+            nextMonth.startOf('day');
+            setDay(nextMonth);
+
+            dataService.getEvents(nextMonth).then(function(result) {
+                calendarCtrl.events = groupEvents(result, $scope);
+
+                calendarCtrl.loading = false;
+
+                var element = $('#calendar-list > .page__content');
+                element.scrollTop(0);
+
+            }, function() {
+                calendarCtrl.loading = false;
+            });
         };
 
         calendarCtrl.typeLabel = function(item) {

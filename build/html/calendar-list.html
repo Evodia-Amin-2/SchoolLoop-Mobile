@@ -86,6 +86,14 @@
             </div>
         </div>
     </ons-list>
+    <ons-list class="list-more">
+        <ons-list-item modifier="longdivider" tappable ng-click="calendarCtrl.more()">
+            <div class="center">
+                <div class="calendar-more" translate ng-show="calendarCtrl.loading === false">Next...</div>
+                <div class="calendar-more" ng-show="calendarCtrl.loading === true"><ons-icon size="25px" spin="true" icon="ion-load-d"></ons-icon><span translate>Loading data...</span></div>
+            </div>
+        </ons-list-item>
+    </ons-list>
     <div class="calendar-dropdown" ng-show="calendarCtrl.showCalendar">
         <calendar selected="calendarCtrl.day" set="calendarCtrl.set"></calendar>
     </div>

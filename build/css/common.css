@@ -126,3 +126,7 @@ blockquote cite {
     font-size: 1.1em;
     margin-bottom: 20px;
 }
+
+.list-more {
+    border-top: 1px solid lightgrey;
+}
