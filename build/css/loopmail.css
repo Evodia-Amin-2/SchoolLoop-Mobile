@@ -19,6 +19,17 @@
     color: #777;
 }
 
+.loopmail-more {
+    font-size: 1.1em;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+}
+
+.loopmail-more > span {
+    margin-left: 5px;
+}
+
 .new {
     font-weight: bold !important;
     color: black !important;

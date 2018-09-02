@@ -54,6 +54,14 @@
             </div>
         </ons-list-item>
     </ons-list>
+    <ons-list class="loopmail-view">
+        <ons-list-item modifier="longdivider" tappable ng-click="mailCtrl.more()">
+            <div class="center">
+                <div class="loopmail-more" translate ng-show="mailCtrl.loading === false">More...</div>
+                <div class="loopmail-more" ng-show="mailCtrl.loading === true"><ons-icon size="25px" spin="true" icon="ion-load-d"></ons-icon><span translate>Loading data...</span></div>
+            </div>
+        </ons-list-item>
+    </ons-list>
     <ons-popover class="loopmail-menu" ng-class="{ios:ons.platform.isIOS()}" direction="down" cancelable var="popover">
         <ons-list>
             <ons-list-item modifier="longdivider" tappable ng-repeat="mailbox in mailCtrl.mailboxes"

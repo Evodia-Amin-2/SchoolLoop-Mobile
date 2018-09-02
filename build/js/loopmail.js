@@ -11,12 +11,12 @@
     function LoopMailController($rootScope, $scope, $timeout, dataService, DataType, statusService,
                                 loopmailService, storageService, gettextCatalog, utils) {
         var mailCtrl = this;
-        var page = 1;
 
         navigator.analytics.sendAppView('LoopMail');
 
         mailCtrl.loading = false;
         mailCtrl.loopmail = [];
+        mailCtrl.page = 1;
 
         mailCtrl.mailboxes = [
             {folderId: 1, action:"inbox", label:gettextCatalog.getString('Inbox')},
@@ -60,9 +60,8 @@
 
         loadLoopMail();
 
-
         mailCtrl.load = function($done) {
-            page = 1;
+            mailCtrl.page = 1;
             $timeout(function() {
                 if(dataService.getFolderId() === 1) {
                     return dataService.refresh(DataType.LOOPMAIL).then(function(result) {
@@ -135,6 +134,22 @@
 
         mailCtrl.compose = function() {
             $scope.mainNavigator.pushPage('compose.html', {animation: 'none', data: {hasLMT: false}});
+        };
+
+        mailCtrl.more = function() {
+            mailCtrl.page += 1;
+            mailCtrl.loading = true;
+            dataService.getLoopmail(mailCtrl.page).then(function(response) {
+                mailCtrl.loopmail = mailCtrl.loopmail.concat(response);
+
+                dataService.cache()[DataType.LOOPMAIL] = mailCtrl.loopmail;
+
+                $rootScope.$broadcast("update.counter");
+
+                mailCtrl.loading = false;
+            }, function() {
+                mailCtrl.loading = false;
+            });
         };
 
         $scope.$on("refresh.all", function() {
