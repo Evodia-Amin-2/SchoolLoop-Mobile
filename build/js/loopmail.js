@@ -17,6 +17,7 @@
         mailCtrl.loading = false;
         mailCtrl.loopmail = [];
         mailCtrl.page = 1;
+        mailCtrl.more = true;
 
         mailCtrl.mailboxes = [
             {folderId: 1, action:"inbox", label:gettextCatalog.getString('Inbox')},
@@ -138,11 +139,19 @@
             $scope.mainNavigator.pushPage('compose.html', {animation: 'none', data: {hasLMT: false}});
         };
 
-        mailCtrl.more = function() {
-            mailCtrl.page += 1;
+        mailCtrl.showMore = function() {
+            return mailCtrl.mailbox.folderId >= 0 && mailCtrl.loopmail.length >= 20 && mailCtrl.more === true
+        };
+
+        mailCtrl.loadMore = function() {
             mailCtrl.loading = true;
             dataService.getLoopmail(mailCtrl.page).then(function(response) {
                 mailCtrl.loopmail = mailCtrl.loopmail.concat(response);
+                if(response.length < 20) {
+                    mailCtrl.more = false;
+                } else {
+                    mailCtrl.page += 1;
+                }
 
                 dataService.cache()[DataType.LOOPMAIL] = mailCtrl.loopmail;
 

@@ -54,8 +54,8 @@
             </div>
         </ons-list-item>
     </ons-list>
-    <ons-list class="list-more" ng-show="mailCtrl.mailbox.folderId >= 0 && mailCtrl.loopmail.length >= 20">
-        <ons-list-item modifier="longdivider" tappable ng-click="mailCtrl.more()">
+    <ons-list class="list-more" ng-show="mailCtrl.showMore()">
+        <ons-list-item modifier="longdivider" tappable ng-click="mailCtrl.loadMore()">
             <div class="center">
                 <div class="loopmail-more" translate ng-show="mailCtrl.loading === false">More...</div>
                 <div class="loopmail-more" ng-show="mailCtrl.loading === true"><ons-icon size="25px" spin="true" icon="ion-load-d"></ons-icon><span translate>Loading data...</span></div>
