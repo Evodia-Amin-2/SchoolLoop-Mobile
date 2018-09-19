@@ -149,7 +149,7 @@ gulp.task('init-ios', function () {
         .pipe(plumber({ errorHandler: gutil.log }))
         .pipe(peditor({
                 "CFBundleDisplayName": buildData[appId].displayName,
-                "UILaunchStoryboardName": "CDVLaunchScreen"
+                "UILaunchStoryboardName": "MainViewController"
         }))
         .pipe(gulp.dest('./app/platforms/ios/MobileLoop/'));
 });
