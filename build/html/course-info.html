@@ -40,7 +40,7 @@
                 <tr ng-repeat="cat in courseDetail.progress.categories">
                     <td align="left">{{cat.name}}</td>
                     <td align="center" ng-show="courseDetail.progress.useWeighting == 'true'" class="info-percent">{{cat.weight|percent:2}}</td>
-                    <td align="center" class="info-percent">{{cat.score|percent:2}}</td>
+                    <td align="center" class="info-percent">{{courseDetail.getCatScore(cat)}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -51,9 +51,9 @@
                 <table cellpadding="0" cellspacing="0">
                     <tbody>
                     <tr ng-repeat="grade in courseDetail.scale">
-                        <td class="scale" ng-class-odd="'stripe'"><span class="grade-name">{{grade[0].name}}</span><span class="grade-range">{{grade[0].start}}%</span></td>
+                        <td class="scale" ng-class-odd="'stripe'"><span class="grade-name">{{grade[0].name}}</span><span class="grade-range">{{grade[0].start}}</span></td>
                         <td width="50px"></td>
-                        <td ng-show="grade[1]" class="scale" ng-class-odd="'stripe'"><div ng-show="grade[1]"><span class="grade-name">{{grade[1].name}}</span><span class="grade-range">{{grade[1].start}}%</span></div></td>
+                        <td ng-show="grade[1]" class="scale" ng-class-odd="'stripe'"><div ng-show="grade[1]"><span class="grade-name">{{grade[1].name}}</span><span class="grade-range">{{grade[1].start}}</span></div></td>
                         <td ng-show="!grade[1]"></td>
                     </tr>
                     </tbody>

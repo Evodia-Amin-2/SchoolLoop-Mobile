@@ -28,8 +28,15 @@
             <div class="right">
                 <div class="course-grades" ng-if="item.graded != false">
                     <div ng-if="courseAsgn.isZero(item)" class="course-detail-grade" translate>Zero</div>
-                    <div ng-if="!courseAsgn.isZero(item)" class="course-detail-grade">{{item.percentScore}}</div>
-                    <div class="course-score">{{item.score}}</div>
+
+                    <div ng-if="!courseAsgn.isZero(item) && courseAsgn.hasGrade(item)">
+                        <div class="course-detail-grade">{{item.grade}}</div>
+                    </div>
+                    <div ng-if="!courseAsgn.hasGrade(item)">
+                        <div ng-if="!courseAsgn.isZero(item)" class="course-detail-grade">{{item.percentScore}}</div>
+                        <div class="course-score">{{item.score}}</div>
+                    </div>
+
                     <div class="comment" ng-show="courseAsgn.hasComment(item)"><ons-icon icon="md-comment-alt-text" size="24px"></ons-icon></div>
                 </div>
                 <div class="assignment-points" ng-if="item.graded == false">

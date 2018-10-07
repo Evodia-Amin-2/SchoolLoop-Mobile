@@ -4,7 +4,7 @@
     angular.module('mobileloop')
         .controller('CoursesController', ['$scope', '$timeout', '$location', 'DataService', 'DataType', 'StorageService',
             'Utils', 'CourseColors', CoursesController])
-        .controller('CourseDetailController', ['$scope', '$timeout', 'DataService', 'StatusService', 'StorageService', 'Utils', 'gettextCatalog',
+        .controller('CourseDetailController', ['$scope', '$timeout', '$filter', 'DataService', 'StatusService', 'StorageService', 'Utils', 'gettextCatalog',
             'CourseColors', CourseDetailController])
         .controller('CourseAsgnController', ['$rootScope', '$scope', '$timeout', 'Utils', 'DataService',
             'CourseColors', CourseAsgnController])
@@ -141,7 +141,7 @@
         initialize();
     }
 
-    function CourseDetailController($scope, $timeout, dataService, statusService, storageService, utils, gettextCatalog, CourseColors) {
+    function CourseDetailController($scope, $timeout, $filter, dataService, statusService, storageService, utils, gettextCatalog, CourseColors) {
         var courseDetail = this;
 
         var data = $scope.courseNavigator.topPage.data;
@@ -173,9 +173,19 @@
 
         courseDetail.getScore = function() {
             if(utils.isNull(courseDetail.progress.score) === true) {
-                return  gettextCatalog.getString("Info");
+                return gettextCatalog.getString("Info");
+            }
+            if(courseDetail.progress.useLongBeachScaledScoreSystem === "true") {
+                return courseDetail.progress.longBeachScaledScore;
             }
             return roundWithPrecision(courseDetail.progress.score * 100, courseDetail.progress.precision) + "%";
+        };
+
+        courseDetail.getCatScore = function(cat) {
+            if(courseDetail.progress.useLongBeachScaledScoreSystem === "true") {
+                return cat.longBeachScaledScore;
+            }
+            return $filter('percent')(cat.score, 2);
         };
 
         courseDetail.getGrade = function() {
@@ -251,11 +261,19 @@
                 for(var i = 0; i < mid; i++) {
                     var value = cutoffs[i];
                     var list = [];
-                    list.push({"name": value.Name, "start": value.Start});
+                    var start = value.Start + "%";
+                    if(courseDetail.progress.useLongBeachScaledScoreSystem === "true") {
+                        start = value.description;
+                    }
+                    list.push({"name": value.Name, "start": start});
 
                     value = cutoffs[mid + i];
                     if(value !== undefined) {
-                        list.push({"name": value.Name, "start": value.Start});
+                        var start = value.Start + "%";
+                        if(courseDetail.progress.useLongBeachScaledScoreSystem === "true") {
+                            start = value.description;
+                        }
+                        list.push({"name": value.Name, "start": start});
                     } else {
                         list.push(undefined);
                     }
@@ -392,6 +410,11 @@
 
         courseAsgn.isZero = function(item) {
             return utils.isTrue(item.zero);
+        };
+
+        courseAsgn.hasGrade = function(item) {
+            return _.isUndefined(item.grade) === false &&
+                utils.isNull(item.grade) === false;
         };
 
         courseAsgn.courseColor = function() {

@@ -20,8 +20,13 @@
             </div>
             <div class="right">
                 <div class="course-grades" ng-if="assignDetail.grade.score">
-                    <div class="course-detail-grade">{{assignDetail.grade.percentScore}}</div>
-                    <div class="course-score">{{assignDetail.grade.score}}</div>
+                    <div ng-if="assignDetail.grade.grade">
+                        <div class="course-detail-grade">{{assignDetail.grade.grade}}</div>
+                    </div>
+                    <div ng-if="!assignDetail.grade.grade">
+                        <div class="course-detail-grade">{{assignDetail.grade.percentScore}}</div>
+                        <div class="course-score">{{assignDetail.grade.score}}</div>
+                    </div>
                 </div>
                 <div class="assignment-points" ng-if="!assignDetail.grade.score">
                     <div class="points-max">{{assignDetail.assignment.maxPoints}}</div>

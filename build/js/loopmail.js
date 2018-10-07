@@ -140,7 +140,7 @@
         };
 
         mailCtrl.showMore = function() {
-            return mailCtrl.mailbox.folderId >= 0 && mailCtrl.loopmail.length >= 20 && mailCtrl.more === true
+            return mailCtrl.mailbox.folderId >= 0 && mailCtrl.loopmail.length >= 20 && mailCtrl.more === true;
         };
 
         mailCtrl.loadMore = function() {
