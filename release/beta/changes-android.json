@@ -2,6 +2,6 @@
   "version":"{version}",
   "build":"{build}",
   "changes": [
-    "Minor UI enhancements and bug fixes."
+    "Added graded scoring feature"
   ]
 }

@@ -2,7 +2,6 @@
   "version":"{version}",
   "build":"{build}",
   "changes": [
-    "Updated for iPhoneX.",
-    "Minor UI enhancements and bug fixes."
+    "Added graded scoring feature"
   ]
 }
