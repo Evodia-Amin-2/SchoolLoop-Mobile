@@ -269,7 +269,7 @@
 
                     value = cutoffs[mid + i];
                     if(value !== undefined) {
-                        var start = value.Start + "%";
+                        start = value.Start + "%";
                         if(courseDetail.progress.useLongBeachScaledScoreSystem === "true") {
                             start = value.description;
                         }

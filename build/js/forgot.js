@@ -30,18 +30,31 @@
                     var message;
                     var button;
                     dataService.sendForgetEmail(params).then(
-                        function() {
-                            message = gettextCatalog.getString("Please check your email for your password and try to login again.  Thanks!");
-                            button = gettextCatalog.getString("Login");
-                            navigator.notification.alert(message, function() {
-                                page.inReset = false;
-                                $timeout(function() {
-                                    $location.path("/login");
-                                });
-                            }, title, button);
+                        function(response) {
+                            var index = response.indexOf("LDAP:");
+                            if(index === 0) {
+                                var text = response.substring("LDAP:".length);
+                                message = gettextCatalog.getString(text);
+                                button = gettextCatalog.getString("Login");
+                                navigator.notification.alert(message, function() {
+                                    page.inReset = false;
+                                    $timeout(function() {
+                                        $location.path("/login");
+                                    });
+                                }, title, button);
+
+                            } else {
+                                message = gettextCatalog.getString("Please check your email for your password and try to login again.  Thanks!");
+                                button = gettextCatalog.getString("Login");
+                                navigator.notification.alert(message, function() {
+                                    page.inReset = false;
+                                    $timeout(function() {
+                                        $location.path("/login");
+                                    });
+                                }, title, button);
+                            }
                         },
                         function(response) {
-                            var message;
                             if(response.data === "ERROR: err_external_user_forgot_msg") {
                                 message = gettextCatalog.getString("Your username and password are managed by your school district. Please follow district protocol for resetting your password. In some cases, this can be done online. Visit your district website for more information.");
                             } else {
