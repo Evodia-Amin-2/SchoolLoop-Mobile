@@ -164,6 +164,7 @@
         courseDetail.hasGrade = function() {
             return _.isUndefined(courseDetail.progress.grade) === false &&
                 utils.isNull(courseDetail.progress.grade) === false &&
+                courseDetail.progress.useLongBeachScaledScoreSystem === "true" &&
                 courseDetail.progress.grade.length > 0;
         };
 
@@ -414,7 +415,8 @@
 
         courseAsgn.hasGrade = function(item) {
             return _.isUndefined(item.grade) === false &&
-                utils.isNull(item.grade) === false;
+                utils.isNull(item.grade) === false &&
+                courseAsgn.progress.useLongBeachScaledScoreSystem === "true";
         };
 
         courseAsgn.courseColor = function() {
