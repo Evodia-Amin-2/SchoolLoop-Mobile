@@ -164,8 +164,11 @@
         courseDetail.hasGrade = function() {
             return _.isUndefined(courseDetail.progress.grade) === false &&
                 utils.isNull(courseDetail.progress.grade) === false &&
-                courseDetail.progress.useLongBeachScaledScoreSystem === "true" &&
                 courseDetail.progress.grade.length > 0;
+        };
+
+        courseDetail.hasAsgnGrade = function() {
+            return courseDetail.hasGrade() && courseDetail.progress.useLongBeachScaledScoreSystem === "true";
         };
 
         courseDetail.gradeHidden = function() {
