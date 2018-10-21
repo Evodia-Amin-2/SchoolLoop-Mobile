@@ -510,7 +510,7 @@
         utils.setStatusBar(CourseColors[periodIndex]);
 
         var assignmentId = assignDetail.grade.assignment.systemID || assignDetail.assignment.systemID;
-        dataService.getAssignment(assignmentId).then(function(response) {
+        dataService.getAssignment(assignmentId, assignDetail.grade.score).then(function(response) {
             setAssignment(response);
             statusService.hideWait(500);
         });
@@ -528,6 +528,10 @@
 
         assignDetail.courseColor = function() {
             return "period-" + periodIndex;
+        };
+
+        assignDetail.hasGrade = function() {
+            return assignDetail.grade.grade && assignDetail.grade.grade !== "-";
         };
 
         assignDetail.getDate = function (source, timeZone) {
